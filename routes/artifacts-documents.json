@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "category": "artifacts-documents",
+  "summary": "Read, create, edit, and visually verify office and document formats.",
+  "skills": [
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "A DOCX, DOTX, Microsoft Word document, tracked change, or Word template is a primary input or output.",
+      "avoid_when": "Do not use for PDF-only, plain Markdown, or general prose with no Word deliverable.",
+      "triggers": [
+        ".docx",
+        ".dotx",
+        "docx",
+        "docx document",
+        "word document",
+        "microsoft word",
+        "tracked changes",
+        "word template",
+        "word 文档",
+        "docx 文档",
+        "修订模式"
+      ],
+      "negative_triggers": [
+        "pdf only",
+        "纯 markdown"
+      ],
+      "explicit_only": false,
+      "name": "work-with-docx",
+      "level": "A",
+      "path": "skills/work-with-docx/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "A PDF must be read, created, filled, edited, merged, split, OCRed, or visually checked.",
+      "avoid_when": "Do not use when PDF is only an incidental citation link.",
+      "triggers": [
+        ".pdf",
+        "pdf form",
+        "merge pdf",
+        "split pdf",
+        "ocr pdf",
+        "create pdf",
+        "pdf 表单",
+        "合并 pdf",
+        "拆分 pdf",
+        "生成 pdf",
+        "读取 pdf"
+      ],
+      "negative_triggers": [],
+      "explicit_only": false,
+      "name": "work-with-pdf",
+      "level": "A",
+      "path": "skills/work-with-pdf/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "PowerPoint slides, PPTX/POTX files, slide templates, or rendered deck QA are primary.",
+      "avoid_when": "Do not use for a static poster or prose outline with no slide deliverable.",
+      "triggers": [
+        ".pptx",
+        ".potx",
+        "powerpoint",
+        "slide deck",
+        "presentation template",
+        "rendered slides",
+        "幻灯片",
+        "演示文稿",
+        "ppt 模板",
+        "制作 ppt",
+        "编辑 ppt"
+      ],
+      "negative_triggers": [
+        "static poster",
+        "静态海报"
+      ],
+      "explicit_only": false,
+      "name": "work-with-pptx",
+      "level": "A",
+      "path": "skills/work-with-pptx/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "An Excel/XLSX/XLSM workbook, spreadsheet formulas, pivots, or CSV-to-workbook deliverable is primary.",
+      "avoid_when": "Do not use for a small Markdown table or database query with no spreadsheet artifact.",
+      "triggers": [
+        ".xlsx",
+        ".xlsm",
+        "excel workbook",
+        "spreadsheet",
+        "pivot table",
+        "excel formula",
+        "excel 表格",
+        "电子表格",
+        "工作簿",
+        "数据透视表"
+      ],
+      "negative_triggers": [
+        "markdown table",
+        "数据库查询"
+      ],
+      "explicit_only": false,
+      "name": "work-with-xlsx",
+      "level": "A",
+      "path": "skills/work-with-xlsx/SKILL.md"
+    }
+  ]
+}

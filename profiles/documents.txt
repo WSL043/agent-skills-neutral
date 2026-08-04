@@ -1,0 +1,5 @@
+skills/work-with-docx
+skills/work-with-pdf
+skills/work-with-pptx
+skills/work-with-xlsx
+skills/coauthor-documents

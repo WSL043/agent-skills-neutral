@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "library": "agent-skills-neutral",
+  "preferred_router": "python scripts/select_skills.py <task> --json",
+  "manual_protocol": [
+    "Choose one category from this index.",
+    "Read only that category's route_file.",
+    "Load the best matching SKILL.md completely.",
+    "Add at most one support skill unless the task explicitly spans multiple phases."
+  ],
+  "default_profile": "profiles/default.txt",
+  "profiles": {
+    "default": "profiles/default.txt",
+    "software-engineering": "profiles/software-engineering.txt",
+    "documents": "profiles/documents.txt",
+    "security": "profiles/security.txt",
+    "design": "profiles/design.txt",
+    "application-platforms": "profiles/application-platforms.txt"
+  },
+  "categories": [
+    {
+      "name": "agent-skill-ecosystem",
+      "summary": "Create, discover, compare, and maintain Agent Skills.",
+      "route_file": "routes/agent-skill-ecosystem.json",
+      "skill_count": 2
+    },
+    {
+      "name": "agent-tooling",
+      "summary": "Build protocols and tools that expose capabilities to agents.",
+      "route_file": "routes/agent-tooling.json",
+      "skill_count": 1
+    },
+    {
+      "name": "architecture-codebase",
+      "summary": "Design code boundaries and domain models before large structural change.",
+      "route_file": "routes/architecture-codebase.json",
+      "skill_count": 2
+    },
+    {
+      "name": "artifacts-documents",
+      "summary": "Read, create, edit, and visually verify office and document formats.",
+      "route_file": "routes/artifacts-documents.json",
+      "skill_count": 4
+    },
+    {
+      "name": "developer-tooling",
+      "summary": "Operate developer workflows, repositories, notebooks, screenshots, and scaffolding.",
+      "route_file": "routes/developer-tooling.json",
+      "skill_count": 8
+    },
+    {
+      "name": "implementation-quality",
+      "summary": "Implement, diagnose, review, and verify software behavior.",
+      "route_file": "routes/implementation-quality.json",
+      "skill_count": 4
+    },
+    {
+      "name": "mobile-desktop-development",
+      "summary": "Build explicitly requested Android, Flutter, iOS, React Native, or WinUI applications.",
+      "route_file": "routes/mobile-desktop-development.json",
+      "skill_count": 5
+    },
+    {
+      "name": "planning-orchestration",
+      "summary": "Plan, execute, delegate, and finish bounded engineering work.",
+      "route_file": "routes/planning-orchestration.json",
+      "skill_count": 4
+    },
+    {
+      "name": "requirements-design",
+      "summary": "Clarify decisions or prototype a specific uncertainty.",
+      "route_file": "routes/requirements-design.json",
+      "skill_count": 2
+    },
+    {
+      "name": "research-communication",
+      "summary": "Research authoritative sources and coauthor decision-ready documents.",
+      "route_file": "routes/research-communication.json",
+      "skill_count": 2
+    },
+    {
+      "name": "security",
+      "summary": "Threat-model, review, and map ownership of security-sensitive systems.",
+      "route_file": "routes/security.json",
+      "skill_count": 3
+    },
+    {
+      "name": "visual-design-motion",
+      "summary": "Design visual systems, interfaces, motion, art, and shaders.",
+      "route_file": "routes/visual-design-motion.json",
+      "skill_count": 5
+    },
+    {
+      "name": "web-backend-development",
+      "summary": "Build explicitly requested ASP.NET Core or end-to-end full-stack applications.",
+      "route_file": "routes/web-backend-development.json",
+      "skill_count": 2
+    },
+    {
+      "name": "web-ui-testing",
+      "summary": "Exercise and diagnose web applications in a real browser.",
+      "route_file": "routes/web-ui-testing.json",
+      "skill_count": 1
+    }
+  ]
+}

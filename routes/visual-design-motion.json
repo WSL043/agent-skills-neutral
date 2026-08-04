@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "category": "visual-design-motion",
+  "summary": "Design visual systems, interfaces, motion, art, and shaders.",
+  "skills": [
+    {
+      "kind": "domain",
+      "maturity": "conditional",
+      "choose_when": "The primary deliverable is an original static poster, cover, artwork, or print composition.",
+      "avoid_when": "Do not use for application UI, charts, slide decks, or image editing requiring a dedicated generation tool.",
+      "triggers": [
+        "visual artwork",
+        "poster design",
+        "book cover",
+        "static art",
+        "print composition",
+        "视觉艺术",
+        "海报设计",
+        "封面设计",
+        "静态作品"
+      ],
+      "negative_triggers": [
+        "app ui",
+        "dashboard",
+        "slide deck",
+        "图片编辑",
+        "应用界面",
+        "演示文稿"
+      ],
+      "explicit_only": false,
+      "name": "create-visual-art",
+      "level": "B",
+      "path": "skills/create-visual-art/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "The task is interface hierarchy, responsive layout, component design, UI polish, or implementation-aware frontend design.",
+      "avoid_when": "Do not use for a static poster, presentation, or backend-only task.",
+      "triggers": [
+        "frontend design",
+        "ui design",
+        "responsive interface",
+        "design component",
+        "polish ui",
+        "前端设计",
+        "界面设计",
+        "响应式页面",
+        "组件设计",
+        "优化 ui"
+      ],
+      "negative_triggers": [
+        "static poster",
+        "backend only",
+        "静态海报",
+        "纯后端"
+      ],
+      "explicit_only": false,
+      "name": "design-frontend",
+      "level": "A",
+      "path": "skills/design-frontend/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "The task explicitly concerns UI animation, transition timing, easing, motion audit, or reduced-motion behavior.",
+      "avoid_when": "Do not use for video editing or animation unrelated to interface behavior.",
+      "triggers": [
+        "ui animation",
+        "motion design",
+        "transition timing",
+        "easing",
+        "animation audit",
+        "界面动画",
+        "动效设计",
+        "过渡动画",
+        "缓动",
+        "动效审计"
+      ],
+      "negative_triggers": [
+        "video editing",
+        "视频剪辑"
+      ],
+      "explicit_only": false,
+      "name": "design-motion",
+      "level": "A",
+      "path": "skills/design-motion/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "The task needs reusable color, typography, spacing, style tokens, or a visual theme across artifacts.",
+      "avoid_when": "Do not use when only one isolated color value or font choice is requested.",
+      "triggers": [
+        "visual theme",
+        "design tokens",
+        "color typography system",
+        "theme system",
+        "视觉主题",
+        "设计 token",
+        "配色字体",
+        "主题系统",
+        "设计规范"
+      ],
+      "negative_triggers": [],
+      "explicit_only": false,
+      "name": "design-visual-theme",
+      "level": "A",
+      "path": "skills/design-visual-theme/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "conditional",
+      "choose_when": "The task explicitly involves GLSL, HLSL, WGSL, GPU materials, post-processing, or real-time shader performance.",
+      "avoid_when": "Do not use for ordinary CSS effects or offline image editing.",
+      "triggers": [
+        "glsl",
+        "hlsl",
+        "wgsl",
+        "shader",
+        "gpu material",
+        "post-processing",
+        "着色器",
+        "实时渲染",
+        "gpu 材质",
+        "后处理"
+      ],
+      "negative_triggers": [
+        "css gradient",
+        "图片编辑"
+      ],
+      "explicit_only": false,
+      "name": "develop-shaders",
+      "level": "B",
+      "path": "skills/develop-shaders/SKILL.md"
+    }
+  ]
+}
