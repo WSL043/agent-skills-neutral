@@ -1,0 +1,4 @@
+interface:
+  display_name: "Develop With TDD"
+  short_description: "Neutral workflow: Develop With TDD"
+  default_prompt: "Use $develop-with-tdd to deliver behavior whose contract was demonstrated by a failing test before the implementation and remains protected afterward."

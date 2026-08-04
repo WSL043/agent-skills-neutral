@@ -1,0 +1,4 @@
+interface:
+  display_name: "Work With PDF"
+  short_description: "Neutral workflow: Work With PDF"
+  default_prompt: "Use $work-with-pdf to produce or analyze a PDF with correct content, stable structure, and visually verified pages."

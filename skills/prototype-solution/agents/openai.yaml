@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prototype Solution"
+  short_description: "Neutral workflow: Prototype Solution"
+  default_prompt: "Use $prototype-solution to produce decision-grade evidence for a named uncertainty without disguising prototype shortcuts as production readiness."

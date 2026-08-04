@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resolve Merge Conflicts"
+  short_description: "Neutral workflow: Resolve Merge Conflicts"
+  default_prompt: "Use $resolve-merge-conflicts to produce an integrated change that preserves intended behavior from both histories rather than merely removing conflict markers."

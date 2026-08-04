@@ -1,0 +1,4 @@
+interface:
+  display_name: "Use Git Worktrees"
+  short_description: "Neutral workflow: Use Git Worktrees"
+  default_prompt: "Use $use-git-worktrees to create a verified isolated checkout with a clear branch, path, baseline, and cleanup plan."

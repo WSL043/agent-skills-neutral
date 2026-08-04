@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coauthor Documents"
+  short_description: "Neutral workflow: Coauthor Documents"
+  default_prompt: "Use $coauthor-documents to produce a coherent document that serves its audience and can be reviewed section by section without losing the overall argument."

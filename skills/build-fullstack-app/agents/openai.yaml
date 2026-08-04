@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Full-Stack App"
+  short_description: "Neutral workflow: Build Full-Stack App"
+  default_prompt: "Use $build-fullstack-app to deliver an end-to-end feature with explicit contracts, ownership, security, and observable runtime behavior."

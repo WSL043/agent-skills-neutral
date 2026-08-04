@@ -1,0 +1,4 @@
+interface:
+  display_name: "Map Security Ownership"
+  short_description: "Neutral workflow: Map Security Ownership"
+  default_prompt: "Use $map-security-ownership to produce an evidence-backed ownership map that identifies unowned sensitive areas and concentration risk."

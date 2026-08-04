@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Visual Theme"
+  short_description: "Neutral workflow: Design Visual Theme"
+  default_prompt: "Use $design-visual-theme to produce a reusable theme whose tokens and usage rules create consistency without erasing content hierarchy."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Frontend"
+  short_description: "Neutral workflow: Design Frontend"
+  default_prompt: "Use $design-frontend to create an interface that communicates clearly, feels intentional, and remains implementable and accessible across target states."

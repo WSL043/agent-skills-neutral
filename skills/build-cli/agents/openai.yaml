@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build CLI"
+  short_description: "Neutral workflow: Build CLI"
+  default_prompt: "Use $build-cli to deliver a scriptable CLI that is discoverable for humans and stable for automation."

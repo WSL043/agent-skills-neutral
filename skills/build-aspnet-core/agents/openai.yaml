@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build ASP.NET Core"
+  short_description: "Neutral workflow: Build ASP.NET Core"
+  default_prompt: "Use $build-aspnet-core to deliver a secure, observable ASP.NET Core feature that fits the solution architecture and deployment model."
