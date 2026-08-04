@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Primary Sources"
+  short_description: "Neutral workflow: Research Primary Sources"
+  default_prompt: "Use $research-primary-sources to deliver a synthesis whose important claims are traceable to current, authoritative evidence."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Codebase"
+  short_description: "Neutral workflow: Design Codebase"
+  default_prompt: "Use $design-codebase to produce an architecture that localizes change, makes dependencies explicit, and can be migrated incrementally."

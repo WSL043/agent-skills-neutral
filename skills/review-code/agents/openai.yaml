@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Code"
+  short_description: "Neutral workflow: Review Code"
+  default_prompt: "Use $review-code to produce prioritized, evidence-backed findings and a reviewed change whose remaining risks are explicit."

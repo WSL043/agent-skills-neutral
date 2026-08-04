@@ -1,0 +1,4 @@
+interface:
+  display_name: "Discover Agent Skills"
+  short_description: "Neutral workflow: Discover Agent Skills"
+  default_prompt: "Use $discover-agent-skills to find the smallest trustworthy skill set that covers the requested capability without redundant triggers."

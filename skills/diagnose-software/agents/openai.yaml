@@ -1,0 +1,4 @@
+interface:
+  display_name: "Diagnose Software"
+  short_description: "Neutral workflow: Diagnose Software"
+  default_prompt: "Use $diagnose-software to identify the root mechanism with discriminating evidence before implementing a durable fix."

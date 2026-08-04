@@ -1,0 +1,4 @@
+interface:
+  display_name: "Threat Model System"
+  short_description: "Neutral workflow: Threat Model System"
+  default_prompt: "Use $threat-model-system to produce a prioritized threat model that connects realistic attacker goals to system controls and verification work."

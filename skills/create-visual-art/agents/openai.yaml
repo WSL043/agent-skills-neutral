@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Visual Art"
+  short_description: "Neutral workflow: Create Visual Art"
+  default_prompt: "Use $create-visual-art to produce an original visual artifact with a coherent concept and verified output dimensions."

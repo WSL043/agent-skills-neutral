@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan Implementation"
+  short_description: "Neutral workflow: Plan Implementation"
+  default_prompt: "Use $plan-implementation to produce an executable plan that a capable implementer can follow without rediscovering architecture or inventing requirements."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Work With DOCX"
+  short_description: "Neutral workflow: Work With DOCX"
+  default_prompt: "Use $work-with-docx to produce a structurally valid Word document whose content and rendered layout match the request."

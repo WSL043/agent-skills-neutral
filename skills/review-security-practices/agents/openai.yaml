@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Security Practices"
+  short_description: "Neutral workflow: Review Security Practices"
+  default_prompt: "Use $review-security-practices to identify concrete security weaknesses and prioritized hardening actions without producing generic checklist noise."

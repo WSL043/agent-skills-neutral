@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Flutter App"
+  short_description: "Neutral workflow: Build Flutter App"
+  default_prompt: "Use $build-flutter-app to deliver a Flutter feature that behaves consistently across the declared targets while isolating platform differences."

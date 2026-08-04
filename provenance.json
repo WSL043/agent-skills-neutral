@@ -1,0 +1,573 @@
+{
+  "policy": "Original vendor-neutral synthesis. No upstream scripts, assets, or long-form instructions are bundled. Review each upstream license before porting implementation material.",
+  "source_snapshots": {
+    "anthropics/skills": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+    "emilkowalski/skills": "da80201b64de7d608a6dc5f723797ce6c65b692b",
+    "mattpocock/skills": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+    "MiniMax-AI/skills": "60aaae52bb2af8162732751a4332f62a5fef518b",
+    "obra/superpowers": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+    "openai/skills": "49f948faa9258a0c61caceaf225e179651397431",
+    "vercel-labs/skills": "1164afa5f0e21ebd01e6fc11249759353f494ad1"
+  },
+  "skills": {
+    "build-android-app": [
+      {
+        "repository": "MiniMax-AI/skills",
+        "skill": "android-native-dev",
+        "path": "skills/android-native-dev/SKILL.md",
+        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
+        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/android-native-dev"
+      }
+    ],
+    "build-aspnet-core": [
+      {
+        "repository": "openai/skills",
+        "skill": "aspnet-core",
+        "path": "skills/.curated/aspnet-core/SKILL.md",
+        "commit": "49f948faa9258a0c61caceaf225e179651397431",
+        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/aspnet-core"
+      }
+    ],
+    "build-cli": [
+      {
+        "repository": "openai/skills",
+        "skill": "cli-creator",
+        "path": "skills/.curated/cli-creator/SKILL.md",
+        "commit": "49f948faa9258a0c61caceaf225e179651397431",
+        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/cli-creator"
+      }
+    ],
+    "build-flutter-app": [
+      {
+        "repository": "MiniMax-AI/skills",
+        "skill": "flutter-dev",
+        "path": "skills/flutter-dev/SKILL.md",
+        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
+        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/flutter-dev"
+      }
+    ],
+    "build-fullstack-app": [
+      {
+        "repository": "MiniMax-AI/skills",
+        "skill": "fullstack-dev",
+        "path": "skills/fullstack-dev/SKILL.md",
+        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
+        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/fullstack-dev"
+      }
+    ],
+    "build-ios-app": [
+      {
+        "repository": "MiniMax-AI/skills",
+        "skill": "ios-application-dev",
+        "path": "skills/ios-application-dev/SKILL.md",
+        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
+        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/ios-application-dev"
+      }
+    ],
+    "build-mcp-server": [
+      {
+        "repository": "anthropics/skills",
+        "skill": "mcp-builder",
+        "path": "skills/mcp-builder/SKILL.md",
+        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/mcp-builder"
+      }
+    ],
+    "build-react-native-app": [
+      {
+        "repository": "MiniMax-AI/skills",
+        "skill": "react-native-dev",
+        "path": "skills/react-native-dev/SKILL.md",
+        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
+        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/react-native-dev"
+      }
+    ],
+    "build-winui-app": [
+      {
+        "repository": "openai/skills",
+        "skill": "winui-app",
+        "path": "skills/.curated/winui-app/SKILL.md",
+        "commit": "49f948faa9258a0c61caceaf225e179651397431",
+        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/winui-app"
+      }
+    ],
+    "capture-screen": [
+      {
+        "repository": "openai/skills",
+        "skill": "screenshot",
+        "path": "skills/.curated/screenshot/SKILL.md",
+        "commit": "49f948faa9258a0c61caceaf225e179651397431",
+        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/screenshot"
+      }
+    ],
+    "clarify-requirements": [
+      {
+        "repository": "mattpocock/skills",
+        "skill": "grilling",
+        "path": "skills/productivity/grilling/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/productivity/grilling"
+      },
+      {
+        "repository": "obra/superpowers",
+        "skill": "brainstorming",
+        "path": "skills/brainstorming/SKILL.md",
+        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/brainstorming"
+      }
+    ],
+    "coauthor-documents": [
+      {
+        "repository": "anthropics/skills",
+        "skill": "doc-coauthoring",
+        "path": "skills/doc-coauthoring/SKILL.md",
+        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/doc-coauthoring"
+      }
+    ],
+    "configure-pre-commit": [
+      {
+        "repository": "mattpocock/skills",
+        "skill": "setup-pre-commit",
+        "path": "skills/misc/setup-pre-commit/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/misc/setup-pre-commit"
+      }
+    ],
+    "create-agent-skill": [
+      {
+        "repository": "anthropics/skills",
+        "skill": "skill-creator",
+        "path": "skills/skill-creator/SKILL.md",
+        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/skill-creator"
+      },
+      {
+        "repository": "obra/superpowers",
+        "skill": "writing-skills",
+        "path": "skills/writing-skills/SKILL.md",
+        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/writing-skills"
+      },
+      {
+        "repository": "openai/skills",
+        "skill": "skill-creator",
+        "path": "skills/.system/skill-creator/SKILL.md",
+        "commit": "49f948faa9258a0c61caceaf225e179651397431",
+        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.system/skill-creator"
+      }
+    ],
+    "create-visual-art": [
+      {
+        "repository": "anthropics/skills",
+        "skill": "canvas-design",
+        "path": "skills/canvas-design/SKILL.md",
+        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/canvas-design"
+      }
+    ],
+    "design-codebase": [
+      {
+        "repository": "mattpocock/skills",
+        "skill": "codebase-design",
+        "path": "skills/engineering/codebase-design/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/codebase-design"
+      }
+    ],
+    "design-frontend": [
+      {
+        "repository": "anthropics/skills",
+        "skill": "frontend-design",
+        "path": "skills/frontend-design/SKILL.md",
+        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/frontend-design"
+      },
+      {
+        "repository": "emilkowalski/skills",
+        "skill": "apple-design",
+        "path": "skills/apple-design/SKILL.md",
+        "commit": "da80201b64de7d608a6dc5f723797ce6c65b692b",
+        "url": "https://github.com/emilkowalski/skills/tree/da80201b64de7d608a6dc5f723797ce6c65b692b/skills/apple-design"
+      },
+      {
+        "repository": "emilkowalski/skills",
+        "skill": "emil-design-eng",
+        "path": "skills/emil-design-eng/SKILL.md",
+        "commit": "da80201b64de7d608a6dc5f723797ce6c65b692b",
+        "url": "https://github.com/emilkowalski/skills/tree/da80201b64de7d608a6dc5f723797ce6c65b692b/skills/emil-design-eng"
+      }
+    ],
+    "design-motion": [
+      {
+        "repository": "emilkowalski/skills",
+        "skill": "animation-vocabulary",
+        "path": "skills/animation-vocabulary/SKILL.md",
+        "commit": "da80201b64de7d608a6dc5f723797ce6c65b692b",
+        "url": "https://github.com/emilkowalski/skills/tree/da80201b64de7d608a6dc5f723797ce6c65b692b/skills/animation-vocabulary"
+      },
+      {
+        "repository": "emilkowalski/skills",
+        "skill": "find-animation-opportunities",
+        "path": "skills/find-animation-opportunities/SKILL.md",
+        "commit": "da80201b64de7d608a6dc5f723797ce6c65b692b",
+        "url": "https://github.com/emilkowalski/skills/tree/da80201b64de7d608a6dc5f723797ce6c65b692b/skills/find-animation-opportunities"
+      },
+      {
+        "repository": "emilkowalski/skills",
+        "skill": "improve-animations",
+        "path": "skills/improve-animations/SKILL.md",
+        "commit": "da80201b64de7d608a6dc5f723797ce6c65b692b",
+        "url": "https://github.com/emilkowalski/skills/tree/da80201b64de7d608a6dc5f723797ce6c65b692b/skills/improve-animations"
+      }
+    ],
+    "design-visual-theme": [
+      {
+        "repository": "MiniMax-AI/skills",
+        "skill": "color-font-skill",
+        "path": "plugins/pptx-plugin/skills/color-font-skill/SKILL.md",
+        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
+        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/plugins/pptx-plugin/skills/color-font-skill"
+      },
+      {
+        "repository": "MiniMax-AI/skills",
+        "skill": "design-style-skill",
+        "path": "plugins/pptx-plugin/skills/design-style-skill/SKILL.md",
+        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
+        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/plugins/pptx-plugin/skills/design-style-skill"
+      },
+      {
+        "repository": "anthropics/skills",
+        "skill": "theme-factory",
+        "path": "skills/theme-factory/SKILL.md",
+        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/theme-factory"
+      }
+    ],
+    "develop-shaders": [
+      {
+        "repository": "MiniMax-AI/skills",
+        "skill": "shader-dev",
+        "path": "skills/shader-dev/SKILL.md",
+        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
+        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/shader-dev"
+      }
+    ],
+    "develop-with-tdd": [
+      {
+        "repository": "mattpocock/skills",
+        "skill": "tdd",
+        "path": "skills/engineering/tdd/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/tdd"
+      },
+      {
+        "repository": "obra/superpowers",
+        "skill": "test-driven-development",
+        "path": "skills/test-driven-development/SKILL.md",
+        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/test-driven-development"
+      }
+    ],
+    "diagnose-software": [
+      {
+        "repository": "mattpocock/skills",
+        "skill": "diagnosing-bugs",
+        "path": "skills/engineering/diagnosing-bugs/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/diagnosing-bugs"
+      },
+      {
+        "repository": "obra/superpowers",
+        "skill": "systematic-debugging",
+        "path": "skills/systematic-debugging/SKILL.md",
+        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/systematic-debugging"
+      }
+    ],
+    "discover-agent-skills": [
+      {
+        "repository": "vercel-labs/skills",
+        "skill": "find-skills",
+        "path": "skills/find-skills/SKILL.md",
+        "commit": "1164afa5f0e21ebd01e6fc11249759353f494ad1",
+        "url": "https://github.com/vercel-labs/skills/tree/1164afa5f0e21ebd01e6fc11249759353f494ad1/skills/find-skills"
+      }
+    ],
+    "execute-plan": [
+      {
+        "repository": "obra/superpowers",
+        "skill": "executing-plans",
+        "path": "skills/executing-plans/SKILL.md",
+        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/executing-plans"
+      }
+    ],
+    "finish-development-branch": [
+      {
+        "repository": "obra/superpowers",
+        "skill": "finishing-a-development-branch",
+        "path": "skills/finishing-a-development-branch/SKILL.md",
+        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/finishing-a-development-branch"
+      }
+    ],
+    "map-security-ownership": [
+      {
+        "repository": "openai/skills",
+        "skill": "security-ownership-map",
+        "path": "skills/.curated/security-ownership-map/SKILL.md",
+        "commit": "49f948faa9258a0c61caceaf225e179651397431",
+        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-ownership-map"
+      }
+    ],
+    "migrate-test-fixtures": [
+      {
+        "repository": "mattpocock/skills",
+        "skill": "migrate-to-shoehorn",
+        "path": "skills/misc/migrate-to-shoehorn/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/misc/migrate-to-shoehorn"
+      }
+    ],
+    "model-domain": [
+      {
+        "repository": "mattpocock/skills",
+        "skill": "domain-modeling",
+        "path": "skills/engineering/domain-modeling/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/domain-modeling"
+      }
+    ],
+    "orchestrate-agent-work": [
+      {
+        "repository": "obra/superpowers",
+        "skill": "dispatching-parallel-agents",
+        "path": "skills/dispatching-parallel-agents/SKILL.md",
+        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/dispatching-parallel-agents"
+      },
+      {
+        "repository": "obra/superpowers",
+        "skill": "subagent-driven-development",
+        "path": "skills/subagent-driven-development/SKILL.md",
+        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/subagent-driven-development"
+      }
+    ],
+    "plan-implementation": [
+      {
+        "repository": "obra/superpowers",
+        "skill": "writing-plans",
+        "path": "skills/writing-plans/SKILL.md",
+        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/writing-plans"
+      }
+    ],
+    "prototype-solution": [
+      {
+        "repository": "mattpocock/skills",
+        "skill": "prototype",
+        "path": "skills/engineering/prototype/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/prototype"
+      }
+    ],
+    "research-primary-sources": [
+      {
+        "repository": "mattpocock/skills",
+        "skill": "research",
+        "path": "skills/engineering/research/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/research"
+      }
+    ],
+    "resolve-merge-conflicts": [
+      {
+        "repository": "mattpocock/skills",
+        "skill": "resolving-merge-conflicts",
+        "path": "skills/engineering/resolving-merge-conflicts/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/resolving-merge-conflicts"
+      }
+    ],
+    "review-code": [
+      {
+        "repository": "mattpocock/skills",
+        "skill": "code-review",
+        "path": "skills/engineering/code-review/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/code-review"
+      },
+      {
+        "repository": "obra/superpowers",
+        "skill": "receiving-code-review",
+        "path": "skills/receiving-code-review/SKILL.md",
+        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/receiving-code-review"
+      },
+      {
+        "repository": "obra/superpowers",
+        "skill": "requesting-code-review",
+        "path": "skills/requesting-code-review/SKILL.md",
+        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/requesting-code-review"
+      }
+    ],
+    "review-security-practices": [
+      {
+        "repository": "openai/skills",
+        "skill": "security-best-practices",
+        "path": "skills/.curated/security-best-practices/SKILL.md",
+        "commit": "49f948faa9258a0c61caceaf225e179651397431",
+        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices"
+      }
+    ],
+    "scaffold-exercises": [
+      {
+        "repository": "mattpocock/skills",
+        "skill": "scaffold-exercises",
+        "path": "skills/misc/scaffold-exercises/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/misc/scaffold-exercises"
+      }
+    ],
+    "test-web-app": [
+      {
+        "repository": "anthropics/skills",
+        "skill": "webapp-testing",
+        "path": "skills/webapp-testing/SKILL.md",
+        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/webapp-testing"
+      },
+      {
+        "repository": "openai/skills",
+        "skill": "playwright",
+        "path": "skills/.curated/playwright/SKILL.md",
+        "commit": "49f948faa9258a0c61caceaf225e179651397431",
+        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/playwright"
+      }
+    ],
+    "threat-model-system": [
+      {
+        "repository": "openai/skills",
+        "skill": "security-threat-model",
+        "path": "skills/.curated/security-threat-model/SKILL.md",
+        "commit": "49f948faa9258a0c61caceaf225e179651397431",
+        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model"
+      }
+    ],
+    "use-git-worktrees": [
+      {
+        "repository": "obra/superpowers",
+        "skill": "using-git-worktrees",
+        "path": "skills/using-git-worktrees/SKILL.md",
+        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/using-git-worktrees"
+      }
+    ],
+    "verify-completion": [
+      {
+        "repository": "obra/superpowers",
+        "skill": "verification-before-completion",
+        "path": "skills/verification-before-completion/SKILL.md",
+        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/verification-before-completion"
+      }
+    ],
+    "work-with-docx": [
+      {
+        "repository": "anthropics/skills",
+        "skill": "docx",
+        "path": "skills/docx/SKILL.md",
+        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/docx"
+      }
+    ],
+    "work-with-jupyter-notebook": [
+      {
+        "repository": "openai/skills",
+        "skill": "jupyter-notebook",
+        "path": "skills/.curated/jupyter-notebook/SKILL.md",
+        "commit": "49f948faa9258a0c61caceaf225e179651397431",
+        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/jupyter-notebook"
+      }
+    ],
+    "work-with-pdf": [
+      {
+        "repository": "MiniMax-AI/skills",
+        "skill": "minimax-pdf",
+        "path": "skills/minimax-pdf/SKILL.md",
+        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
+        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/minimax-pdf"
+      },
+      {
+        "repository": "anthropics/skills",
+        "skill": "pdf",
+        "path": "skills/pdf/SKILL.md",
+        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/pdf"
+      },
+      {
+        "repository": "openai/skills",
+        "skill": "pdf",
+        "path": "skills/.curated/pdf/SKILL.md",
+        "commit": "49f948faa9258a0c61caceaf225e179651397431",
+        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/pdf"
+      }
+    ],
+    "work-with-pptx": [
+      {
+        "repository": "MiniMax-AI/skills",
+        "skill": "ppt-editing-skill",
+        "path": "plugins/pptx-plugin/skills/ppt-editing-skill/SKILL.md",
+        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
+        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/plugins/pptx-plugin/skills/ppt-editing-skill"
+      },
+      {
+        "repository": "MiniMax-AI/skills",
+        "skill": "ppt-orchestra-skill",
+        "path": "plugins/pptx-plugin/skills/ppt-orchestra-skill/SKILL.md",
+        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
+        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/plugins/pptx-plugin/skills/ppt-orchestra-skill"
+      },
+      {
+        "repository": "MiniMax-AI/skills",
+        "skill": "slide-making-skill",
+        "path": "plugins/pptx-plugin/skills/slide-making-skill/SKILL.md",
+        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
+        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/plugins/pptx-plugin/skills/slide-making-skill"
+      },
+      {
+        "repository": "MiniMax-AI/skills",
+        "skill": "pptx-generator",
+        "path": "skills/pptx-generator/SKILL.md",
+        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
+        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/pptx-generator"
+      },
+      {
+        "repository": "anthropics/skills",
+        "skill": "pptx",
+        "path": "skills/pptx/SKILL.md",
+        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/pptx"
+      }
+    ],
+    "work-with-xlsx": [
+      {
+        "repository": "MiniMax-AI/skills",
+        "skill": "minimax-xlsx",
+        "path": "skills/minimax-xlsx/SKILL.md",
+        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
+        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/minimax-xlsx"
+      },
+      {
+        "repository": "anthropics/skills",
+        "skill": "xlsx",
+        "path": "skills/xlsx/SKILL.md",
+        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/xlsx"
+      }
+    ]
+  }
+}

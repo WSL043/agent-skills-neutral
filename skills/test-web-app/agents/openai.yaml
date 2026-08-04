@@ -1,0 +1,4 @@
+interface:
+  display_name: "Test Web App"
+  short_description: "Neutral workflow: Test Web App"
+  default_prompt: "Use $test-web-app to produce reproducible browser evidence that the requested flow works in the final application state."

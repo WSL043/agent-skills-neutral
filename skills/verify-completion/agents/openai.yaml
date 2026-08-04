@@ -1,0 +1,4 @@
+interface:
+  display_name: "Verify Completion"
+  short_description: "Neutral workflow: Verify Completion"
+  default_prompt: "Use $verify-completion to make the completion claim no broader than the evidence produced in the current state."

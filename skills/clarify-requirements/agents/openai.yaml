@@ -1,0 +1,4 @@
+interface:
+  display_name: "Clarify Requirements"
+  short_description: "Neutral workflow: Clarify Requirements"
+  default_prompt: "Use $clarify-requirements to reach a decision-ready brief with explicit assumptions and no unresolved branch that would materially change the implementation."
