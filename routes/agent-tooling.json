@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "category": "agent-tooling",
+  "summary": "Build protocols and tools that expose capabilities to agents.",
+  "skills": [
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "The user explicitly needs an MCP server, MCP tools/resources, or an API exposed through MCP.",
+      "avoid_when": "Do not use for an ordinary API or CLI that is not consumed through MCP.",
+      "triggers": [
+        "mcp server",
+        "model context protocol",
+        "mcp tool",
+        "mcp resource",
+        "构建 mcp",
+        "mcp 服务",
+        "mcp 工具"
+      ],
+      "negative_triggers": [
+        "rest api only",
+        "普通 api"
+      ],
+      "explicit_only": false,
+      "name": "build-mcp-server",
+      "level": "A",
+      "path": "skills/build-mcp-server/SKILL.md"
+    }
+  ]
+}

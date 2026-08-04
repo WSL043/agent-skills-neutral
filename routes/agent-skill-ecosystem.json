@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "category": "agent-skill-ecosystem",
+  "summary": "Create, discover, compare, and maintain Agent Skills.",
+  "skills": [
+    {
+      "kind": "meta",
+      "maturity": "stable",
+      "choose_when": "The task is to create, consolidate, test, or revise an Agent Skill or SKILL.md.",
+      "avoid_when": "Do not use merely to find or install an existing skill.",
+      "triggers": [
+        "create agent skill",
+        "write skill.md",
+        "skill authoring",
+        "skill creator",
+        "创建技能",
+        "创建 agent skill",
+        "编写技能",
+        "整合技能",
+        "修改 skill"
+      ],
+      "negative_triggers": [
+        "find skill",
+        "install skill",
+        "查找技能",
+        "安装技能"
+      ],
+      "explicit_only": false,
+      "name": "create-agent-skill",
+      "level": "S",
+      "path": "skills/create-agent-skill/SKILL.md"
+    },
+    {
+      "kind": "meta",
+      "maturity": "stable",
+      "choose_when": "The task is to find, compare, audit, or install an existing Agent Skill.",
+      "avoid_when": "Do not use when the requested outcome is authoring a new skill.",
+      "triggers": [
+        "find skill",
+        "discover skill",
+        "install skill",
+        "skill registry",
+        "skills catalog",
+        "查找技能",
+        "查找可安装技能",
+        "发现技能",
+        "安装技能",
+        "技能清单"
+      ],
+      "negative_triggers": [
+        "write skill.md",
+        "create agent skill",
+        "编写技能",
+        "创建技能"
+      ],
+      "explicit_only": false,
+      "name": "discover-agent-skills",
+      "level": "A",
+      "path": "skills/discover-agent-skills/SKILL.md"
+    }
+  ]
+}

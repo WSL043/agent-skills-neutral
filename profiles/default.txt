@@ -1,0 +1,6 @@
+skills/clarify-requirements
+skills/plan-implementation
+skills/execute-plan
+skills/diagnose-software
+skills/review-code
+skills/verify-completion

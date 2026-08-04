@@ -1,0 +1,35 @@
+{
+  "positive": [
+    {"query": "debug a flaky integration test", "primary": "diagnose-software"},
+    {"query": "排查接口偶发失败", "primary": "diagnose-software"},
+    {"query": "edit existing PowerPoint template and verify rendered slides", "primary": "work-with-pptx"},
+    {"query": "编辑 Excel 工作簿公式", "primary": "work-with-xlsx"},
+    {"query": "write an implementation plan", "primary": "plan-implementation"},
+    {"query": "按现有计划执行", "primary": "execute-plan"},
+    {"query": "review this diff", "primary": "review-code"},
+    {"query": "安全代码审查", "primary": "review-security-practices"},
+    {"query": "做威胁建模", "primary": "threat-model-system"},
+    {"query": "build an MCP server", "primary": "build-mcp-server"},
+    {"query": "build an Android Compose app", "primary": "build-android-app"},
+    {"query": "create a full-stack end-to-end web feature", "primary": "build-fullstack-app"},
+    {"query": "browser test the checkout flow", "primary": "test-web-app"},
+    {"query": "take a screenshot", "primary": "capture-screen"},
+    {"query": "创建 agent skill", "primary": "create-agent-skill"},
+    {"query": "查找可安装技能", "primary": "discover-agent-skills"},
+    {"query": "resolve a git merge conflict", "primary": "resolve-merge-conflicts"},
+    {"query": "build a CLI", "primary": "build-cli"},
+    {"query": "create a PDF", "primary": "work-with-pdf"},
+    {"query": "write a DOCX document", "primary": "work-with-docx"},
+    {"query": "create a Jupyter notebook", "primary": "work-with-jupyter-notebook"},
+    {"query": "design UI animation", "primary": "design-motion"},
+    {"query": "design a frontend page", "primary": "design-frontend"},
+    {"query": "migrate test fixtures", "primary": "migrate-test-fixtures"}
+  ],
+  "guardrails": [
+    {"query": "fix tests", "forbid": ["migrate-test-fixtures"]},
+    {"query": "implement a feature", "forbid_level": "B"},
+    {"query": "review this ordinary code diff", "forbid": ["review-security-practices"]},
+    {"query": "design a mobile screen", "forbid": ["build-android-app", "build-flutter-app", "build-ios-app", "build-react-native-app"]},
+    {"query": "make a website", "forbid": ["build-fullstack-app", "build-aspnet-core"]}
+  ]
+}

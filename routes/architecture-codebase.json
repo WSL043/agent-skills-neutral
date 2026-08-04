@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "category": "architecture-codebase",
+  "summary": "Design code boundaries and domain models before large structural change.",
+  "skills": [
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "The task concerns module boundaries, dependency direction, modularization, or architecture migration.",
+      "avoid_when": "Do not use for a small localized implementation with no structural decision.",
+      "triggers": [
+        "codebase architecture",
+        "module boundary",
+        "modularize",
+        "dependency direction",
+        "architecture proposal",
+        "代码库架构",
+        "模块边界",
+        "架构重构",
+        "模块化"
+      ],
+      "negative_triggers": [],
+      "explicit_only": false,
+      "name": "design-codebase",
+      "level": "A",
+      "path": "skills/design-codebase/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "Business concepts, invariants, state transitions, or bounded contexts need explicit modeling.",
+      "avoid_when": "Do not use for directory organization without domain-rule ambiguity.",
+      "triggers": [
+        "domain model",
+        "bounded context",
+        "ubiquitous language",
+        "business invariant",
+        "state transition",
+        "领域模型",
+        "限界上下文",
+        "统一语言",
+        "业务不变量"
+      ],
+      "negative_triggers": [],
+      "explicit_only": false,
+      "name": "model-domain",
+      "level": "A",
+      "path": "skills/model-domain/SKILL.md"
+    }
+  ]
+}
