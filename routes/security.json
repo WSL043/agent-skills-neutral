@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "category": "security",
+  "summary": "Threat-model, review, and map ownership of security-sensitive systems.",
+  "skills": [
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "The task asks who owns security-sensitive code, bus factor, stewardship, or CODEOWNERS gaps.",
+      "avoid_when": "Do not use for general contributor statistics or ordinary code review.",
+      "triggers": [
+        "security ownership",
+        "security bus factor",
+        "codeowners gap",
+        "sensitive code owners",
+        "安全归属",
+        "安全代码负责人",
+        "关键代码所有权"
+      ],
+      "negative_triggers": [],
+      "explicit_only": false,
+      "name": "map-security-ownership",
+      "level": "A",
+      "path": "skills/map-security-ownership/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "The primary task is secure-coding review, vulnerability analysis, or framework-specific hardening.",
+      "avoid_when": "Do not use for a general quality review with no security focus.",
+      "triggers": [
+        "security review",
+        "secure coding",
+        "vulnerability review",
+        "security hardening",
+        "安全审查",
+        "安全代码审查",
+        "漏洞检查",
+        "安全加固",
+        "安全最佳实践"
+      ],
+      "negative_triggers": [
+        "general code review",
+        "普通代码评审"
+      ],
+      "explicit_only": true,
+      "name": "review-security-practices",
+      "level": "A",
+      "path": "skills/review-security-practices/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "The task explicitly needs assets, trust boundaries, attacker goals, abuse cases, attack paths, or a threat model.",
+      "avoid_when": "Do not use for a narrow code finding that is already known.",
+      "triggers": [
+        "threat model",
+        "trust boundary",
+        "attack path",
+        "abuse case",
+        "attacker goal",
+        "威胁建模",
+        "信任边界",
+        "攻击路径",
+        "滥用场景"
+      ],
+      "negative_triggers": [],
+      "explicit_only": false,
+      "name": "threat-model-system",
+      "level": "A",
+      "path": "skills/threat-model-system/SKILL.md"
+    }
+  ]
+}

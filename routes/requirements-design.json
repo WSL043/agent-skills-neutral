@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "category": "requirements-design",
+  "summary": "Clarify decisions or prototype a specific uncertainty.",
+  "skills": [
+    {
+      "kind": "workflow",
+      "maturity": "stable",
+      "choose_when": "Requirements are materially ambiguous, conflicting, high-impact, or the user explicitly asks for requirement clarification.",
+      "avoid_when": "Do not trigger merely because any task could benefit from more detail; inspect available context first.",
+      "triggers": [
+        "clarify requirements",
+        "requirements ambiguous",
+        "acceptance criteria",
+        "challenge this proposal",
+        "澄清需求",
+        "需求不清",
+        "验收标准",
+        "拷问方案"
+      ],
+      "negative_triggers": [],
+      "explicit_only": false,
+      "name": "clarify-requirements",
+      "level": "S",
+      "path": "skills/clarify-requirements/SKILL.md"
+    },
+    {
+      "kind": "workflow",
+      "maturity": "stable",
+      "choose_when": "A prototype, spike, proof of concept, or experiment is needed to answer one named uncertainty.",
+      "avoid_when": "Do not use when the user expects production-ready implementation without a learning goal.",
+      "triggers": [
+        "prototype",
+        "proof of concept",
+        "poc",
+        "technical spike",
+        "clickable prototype",
+        "原型",
+        "概念验证",
+        "技术预研",
+        "做个 poc"
+      ],
+      "negative_triggers": [
+        "production ready",
+        "生产级完整实现"
+      ],
+      "explicit_only": false,
+      "name": "prototype-solution",
+      "level": "A",
+      "path": "skills/prototype-solution/SKILL.md"
+    }
+  ]
+}

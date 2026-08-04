@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "category": "research-communication",
+  "summary": "Research authoritative sources and coauthor decision-ready documents.",
+  "skills": [
+    {
+      "kind": "workflow",
+      "maturity": "stable",
+      "choose_when": "The task is collaborative long-form writing, outlining, or revising a proposal, design doc, memo, report, or policy.",
+      "avoid_when": "Use a file-format skill as primary when manipulating DOCX/PDF/PPTX is the dominant task.",
+      "triggers": [
+        "coauthor document",
+        "write proposal",
+        "design document",
+        "draft memo",
+        "long-form report",
+        "共同写文档",
+        "撰写提案",
+        "设计文档",
+        "起草备忘录"
+      ],
+      "negative_triggers": [
+        ".docx",
+        ".pdf",
+        ".pptx",
+        "编辑 word 格式"
+      ],
+      "explicit_only": false,
+      "name": "coauthor-documents",
+      "level": "A",
+      "path": "skills/coauthor-documents/SKILL.md"
+    },
+    {
+      "kind": "workflow",
+      "maturity": "stable",
+      "choose_when": "The answer requires current authoritative primary sources, precise citations, or fact/inference separation.",
+      "avoid_when": "Do not use for purely local code inspection with no external or documentary research need.",
+      "triggers": [
+        "primary sources",
+        "official documentation",
+        "research with citations",
+        "verify sources",
+        "authoritative source",
+        "查官方资料",
+        "一手资料",
+        "带引用研究",
+        "核实来源"
+      ],
+      "negative_triggers": [],
+      "explicit_only": false,
+      "name": "research-primary-sources",
+      "level": "A",
+      "path": "skills/research-primary-sources/SKILL.md"
+    }
+  ]
+}

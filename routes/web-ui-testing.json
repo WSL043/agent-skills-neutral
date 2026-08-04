@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "category": "web-ui-testing",
+  "summary": "Exercise and diagnose web applications in a real browser.",
+  "skills": [
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "A real browser must exercise a web flow, inspect console/network state, or perform UI/runtime verification.",
+      "avoid_when": "Do not use for screenshot-only capture or non-web application testing.",
+      "triggers": [
+        "test web app",
+        "browser test",
+        "playwright",
+        "ui flow test",
+        "browser automation",
+        "测试网页",
+        "浏览器测试",
+        "自动化页面",
+        "验证 web 流程"
+      ],
+      "negative_triggers": [
+        "screenshot only",
+        "native mobile app",
+        "只截图",
+        "原生移动应用"
+      ],
+      "explicit_only": false,
+      "name": "test-web-app",
+      "level": "S",
+      "path": "skills/test-web-app/SKILL.md"
+    }
+  ]
+}

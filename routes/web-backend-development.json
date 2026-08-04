@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "category": "web-backend-development",
+  "summary": "Build explicitly requested ASP.NET Core or end-to-end full-stack applications.",
+  "skills": [
+    {
+      "kind": "domain",
+      "maturity": "conditional",
+      "choose_when": "The task explicitly targets ASP.NET Core, .NET web APIs, middleware, or server-rendered .NET web applications.",
+      "avoid_when": "Do not use for generic full-stack work or non-.NET backends.",
+      "triggers": [
+        "asp.net core",
+        "aspnet core",
+        ".net web api",
+        "asp.net middleware",
+        "asp.net 应用",
+        ".net 后端"
+      ],
+      "negative_triggers": [
+        "node backend",
+        "python backend",
+        "非 .net"
+      ],
+      "explicit_only": false,
+      "name": "build-aspnet-core",
+      "level": "B",
+      "path": "skills/build-aspnet-core/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "conditional",
+      "choose_when": "The user explicitly needs one end-to-end feature crossing frontend, backend, data, and authentication boundaries.",
+      "avoid_when": "Do not use for frontend-only, backend-only, or architecture-only work.",
+      "triggers": [
+        "full-stack app",
+        "fullstack app",
+        "end-to-end web feature",
+        "frontend and backend",
+        "全栈应用",
+        "前后端一起实现",
+        "端到端 web 功能"
+      ],
+      "negative_triggers": [
+        "frontend only",
+        "backend only",
+        "纯前端",
+        "纯后端"
+      ],
+      "explicit_only": false,
+      "name": "build-fullstack-app",
+      "level": "B",
+      "path": "skills/build-fullstack-app/SKILL.md"
+    }
+  ]
+}
