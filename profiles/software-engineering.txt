@@ -1,0 +1,13 @@
+skills/clarify-requirements
+skills/plan-implementation
+skills/execute-plan
+skills/develop-with-tdd
+skills/diagnose-software
+skills/review-code
+skills/verify-completion
+skills/resolve-merge-conflicts
+skills/use-git-worktrees
+skills/finish-development-branch
+skills/orchestrate-agent-work
+skills/build-cli
+skills/test-web-app

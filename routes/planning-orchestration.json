@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "category": "planning-orchestration",
+  "summary": "Plan, execute, delegate, and finish bounded engineering work.",
+  "skills": [
+    {
+      "kind": "workflow",
+      "maturity": "stable",
+      "choose_when": "An approved implementation plan already exists and the user asks to carry it out.",
+      "avoid_when": "Do not use when the plan still needs to be written or key decisions remain unresolved.",
+      "triggers": [
+        "execute the plan",
+        "implement existing plan",
+        "follow this plan",
+        "按计划执行",
+        "按现有计划执行",
+        "执行现有计划",
+        "照这个计划实现"
+      ],
+      "negative_triggers": [
+        "write a plan",
+        "create implementation plan",
+        "制定计划",
+        "写实现计划"
+      ],
+      "explicit_only": false,
+      "name": "execute-plan",
+      "level": "S",
+      "path": "skills/execute-plan/SKILL.md"
+    },
+    {
+      "kind": "workflow",
+      "maturity": "stable",
+      "choose_when": "Implementation is complete and the branch must be verified, prepared for review/merge, handed off, or cleaned up.",
+      "avoid_when": "Do not use in the middle of active implementation.",
+      "triggers": [
+        "finish branch",
+        "prepare for merge",
+        "ready for review",
+        "finalize development branch",
+        "完成开发分支",
+        "准备合并",
+        "提交前收尾"
+      ],
+      "negative_triggers": [
+        "start implementation",
+        "开始实现"
+      ],
+      "explicit_only": false,
+      "name": "finish-development-branch",
+      "level": "A",
+      "path": "skills/finish-development-branch/SKILL.md"
+    },
+    {
+      "kind": "workflow",
+      "maturity": "stable",
+      "choose_when": "The runtime supports delegation and the task contains independent bounded subtasks or explicit multi-agent work.",
+      "avoid_when": "Do not use for a single blocking task or overlapping writes without isolation.",
+      "triggers": [
+        "multiple agents",
+        "parallel agents",
+        "delegate tasks",
+        "subagent",
+        "多 agent",
+        "并行代理",
+        "委派任务",
+        "子代理"
+      ],
+      "negative_triggers": [],
+      "explicit_only": false,
+      "name": "orchestrate-agent-work",
+      "level": "A",
+      "path": "skills/orchestrate-agent-work/SKILL.md"
+    },
+    {
+      "kind": "workflow",
+      "maturity": "stable",
+      "choose_when": "The user asks for a concrete implementation plan, migration plan, or file-by-file engineering plan.",
+      "avoid_when": "Do not use when an approved plan already exists and should be executed.",
+      "triggers": [
+        "implementation plan",
+        "migration plan",
+        "plan the changes",
+        "file-by-file plan",
+        "实现计划",
+        "迁移计划",
+        "制定开发计划",
+        "拆解实现步骤"
+      ],
+      "negative_triggers": [
+        "execute the plan",
+        "按计划执行",
+        "已有计划直接实现"
+      ],
+      "explicit_only": false,
+      "name": "plan-implementation",
+      "level": "S",
+      "path": "skills/plan-implementation/SKILL.md"
+    }
+  ]
+}

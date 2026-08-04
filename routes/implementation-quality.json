@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "category": "implementation-quality",
+  "summary": "Implement, diagnose, review, and verify software behavior.",
+  "skills": [
+    {
+      "kind": "workflow",
+      "maturity": "stable",
+      "choose_when": "The user requests TDD, test-first implementation, or a behavior change suited to a red-green-refactor cycle.",
+      "avoid_when": "Do not force it onto exploratory spikes or changes that cannot be meaningfully tested first.",
+      "triggers": [
+        "tdd",
+        "test driven",
+        "test-first",
+        "red green refactor",
+        "测试驱动",
+        "先写测试",
+        "红绿重构"
+      ],
+      "negative_triggers": [
+        "throwaway spike",
+        "一次性探索"
+      ],
+      "explicit_only": false,
+      "name": "develop-with-tdd",
+      "level": "S",
+      "path": "skills/develop-with-tdd/SKILL.md"
+    },
+    {
+      "kind": "workflow",
+      "maturity": "stable",
+      "choose_when": "A bug, flaky behavior, regression, failure, or unexplained runtime symptom needs root-cause diagnosis.",
+      "avoid_when": "Do not use when the cause is already proven and the task is only implementation.",
+      "triggers": [
+        "debug",
+        "diagnose",
+        "root cause",
+        "flaky",
+        "regression",
+        "intermittent failure",
+        "排查问题",
+        "诊断 bug",
+        "根因",
+        "偶发失败",
+        "为什么失败"
+      ],
+      "negative_triggers": [
+        "known fix only",
+        "原因已确定"
+      ],
+      "explicit_only": false,
+      "name": "diagnose-software",
+      "level": "S",
+      "path": "skills/diagnose-software/SKILL.md"
+    },
+    {
+      "kind": "workflow",
+      "maturity": "stable",
+      "choose_when": "The user requests review of a diff, patch, branch, or implementation quality and requirement fit.",
+      "avoid_when": "Use the security review skill instead when the primary question is vulnerability or hardening analysis.",
+      "triggers": [
+        "code review",
+        "review diff",
+        "review patch",
+        "pull request review",
+        "self review",
+        "代码评审",
+        "审查 diff",
+        "审查补丁",
+        "评审代码"
+      ],
+      "negative_triggers": [
+        "security review",
+        "vulnerability review",
+        "安全审查",
+        "漏洞审查"
+      ],
+      "explicit_only": false,
+      "name": "review-code",
+      "level": "S",
+      "path": "skills/review-code/SKILL.md"
+    },
+    {
+      "kind": "support",
+      "maturity": "stable",
+      "choose_when": "The task asks to prove completion, validate a claimed result, or perform final evidence checks.",
+      "avoid_when": "Do not make it the primary domain skill when a concrete artifact or runtime skill matches better.",
+      "triggers": [
+        "verify completion",
+        "prove it works",
+        "final validation",
+        "completion evidence",
+        "确认完成",
+        "验证是否成功",
+        "最终验证",
+        "完成证据"
+      ],
+      "negative_triggers": [],
+      "explicit_only": false,
+      "name": "verify-completion",
+      "level": "S",
+      "path": "skills/verify-completion/SKILL.md"
+    }
+  ]
+}
