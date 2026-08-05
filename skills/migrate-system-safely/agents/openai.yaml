@@ -1,0 +1,4 @@
+interface:
+  display_name: "Migrate System Safely"
+  short_description: "Stage reversible migrations and deprecation"
+  default_prompt: "Use $migrate-system-safely to stage this migration with compatibility, reconciliation, rollback, cutover, and removal evidence."

@@ -1,39 +1,43 @@
 ---
 name: design-frontend
-description: "Design or refine web and application interfaces with deliberate hierarchy, typography, layout, states, accessibility, responsiveness, and implementation-aware polish. Use for new UI, design systems, component composition, or visual/interaction quality improvement."
+description: "Design, implement, audit, or redesign web and application interfaces with a coherent visual direction, faithful reference translation, complete states, accessibility, responsiveness, and rendered QA. Use for new UI, visual redesign, image-to-code work, design systems, component composition, or anti-generic interface polish."
 ---
 
 # Design Frontend
 
 ## Goal
 
-Create an interface that communicates clearly, feels intentional, and remains implementable and accessible across target states.
+Create an interface whose visual choices follow the product brief, whose implementation preserves those choices, and whose critical states remain usable across target viewports and input modes.
 
 ## Workflow
 
-1. Inspect product context, users, tasks, content density, brand constraints, platform conventions, and existing design tokens.
-2. Choose a clear visual direction and define hierarchy, grid, spacing, typography, color, radius, and elevation rules.
-3. Design the critical flow and all meaningful states: loading, empty, error, success, disabled, focus, and overflow.
-4. Build responsive components around content priorities rather than fixed screenshots.
-5. Add motion only where it explains causality, state, or continuity.
-6. Implement or prototype, then inspect at representative viewports and input modes.
+1. Inspect the product, audience, task, content, brand, existing routes/components/tokens, real assets, platform conventions, and target viewports.
+2. Write a one-line design read: visual concept, hierarchy, density, motion level, and what should remain quiet. Ask one question only when a missing choice materially changes the direction.
+3. Choose either an established design system or one coherent aesthetic direction. Define semantic type, color, spacing, grid, shape, imagery, and interaction rules before polishing components.
+4. Design the critical flow plus loading, empty, error, success, disabled, focus, overflow, long-content, and permission states that actually apply.
+5. If a visual reference is the source of truth, analyze its structure and regenerate a clearer reference only when unreadable details would otherwise be guessed.
+6. Implement responsive components around content priority and existing architecture. Preserve information architecture and behavior during redesign unless structural change is approved.
+7. Render and inspect representative viewports, keyboard/touch behavior, assistive semantics, real content, and performance-sensitive paths. Compare the result to the design read or source reference and correct drift.
 
 ## Decision rules
 
-- Use an explicit platform style profile only when requested; keep the core hierarchy and accessibility independent of that profile.
-- Prefer existing system components when they meet the interaction and visual intent.
-- Introduce distinctive details at high-attention surfaces, not uniformly everywhere.
+- Use real brand/product assets when they exist; generate or source new media only when it has a defined narrative or structural role.
+- Prefer existing system components when they meet interaction and visual intent; extend deliberately when a high-attention surface needs distinction.
+- Tune visual variance, motion, and density to the brief instead of applying fixed defaults.
+- Treat an image as a design reference, not as a substitute for responsive behavior or accessible semantics.
 
 ## Guardrails
 
-- Do not default to generic dashboard cards, gradient decoration, or excessive rounded containers without purpose.
+- Do not default to repetitive card rows, nested rounded containers, decorative pills, generic gradients, fake technical labels, or one composition repeated through every section.
 - Do not encode hierarchy with color alone.
-- Do not polish the happy path while omitting failure and keyboard states.
+- Do not impose arbitrary universal style bans, forced image counts, mandatory dark mode, a fixed framework, or motion without user value.
+- Do not polish the happy path while omitting failure, long-content, responsive, and keyboard states.
+- Do not alter routes, analytics, accessibility behavior, brand recognition, or core copy during a visual redesign without evidence and approval.
 
 ## Completion evidence
 
 - Critical flows work at target viewports with keyboard, touch, and assistive semantics where applicable.
-- Typography, spacing, contrast, alignment, and state coverage are visually reviewed.
+- Typography, spacing, contrast, alignment, content integrity, state coverage, and visual-reference fidelity are reviewed from rendered output.
 
 ## Related skills
 
@@ -43,7 +47,7 @@ Create an interface that communicates clearly, feels intentional, and remains im
 
 ## Conditional reference
 
-Read [references/variants.md](references/variants.md) when the task depends on implementation strategy or runtime capability.
+Read [references/variants.md](references/variants.md) to select the task mode. Then load only the linked detail reference for that mode.
 
 ## Provenance
 

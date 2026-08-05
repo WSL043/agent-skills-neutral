@@ -1,94 +1,90 @@
-# 技能实现与保留审查
+# 技能实现、去重与保留审查
 
-本清单覆盖仓库中的 45 个通用技能。核心技能只保留可迁移的方法，不包含厂商专属服务、私有运行时、弃用项、占位内容或上游可执行脚本。
+当前活动库共 37 个通用 Agent Skill：S=9、A=28，分为 13 组。所有 B 级、厂商专属、组织流程绑定、占位或只提供宽泛建议的实现都已移出活动库。默认配置仍只有 6 个 S 级核心工作流；其余能力由中英双语正向/负向规则按需路由，一般只加载 1 个主技能和最多 1 个辅助技能。
 
-路由状态：`默认`表示进入六项最小核心配置；`按需`表示稳定但只在任务匹配时加载；`显式`表示必须明确提到对应技术或任务；`实验`表示仅作检查清单，使用前必须验证。
+## 完整活动清单
 
-## Agent 技能生态
-
-| 技能 | 级别 | 具体实现 | 路由 |
-|---|---:|---|---|
-| `create-agent-skill` | S | 使用标准 frontmatter、精确触发描述和渐进披露；做有/无技能对照评测并执行结构校验。 | 按需 |
-| `discover-agent-skills` | A | 先查清单，再完整审查正文、依赖、信任边界、重复度和许可证后才推荐。 | 按需 |
-
-## Agent 工具协议
+### Agent 技能生态
 
 | 技能 | 级别 | 具体实现 | 路由 |
 |---|---:|---|---|
-| `build-mcp-server` | A | 把操作建模为窄粒度 MCP tools/resources，定义 schema、结构化错误、传输无关领域逻辑和客户端测试。 | 按需 |
+| `create-agent-skill` | S | 标准 frontmatter、精确触发描述、渐进披露、资源复用、有/无技能对照评测和结构校验。 | 按需 |
+| `discover-agent-skills` | A | 先查清单，再完整审查正文、依赖、信任边界、重叠度和许可证，最后推荐最小集合。 | 按需 |
 
-## 架构与领域建模
+### Agent 工具协议
 
 | 技能 | 级别 | 具体实现 | 路由 |
 |---|---:|---|---|
-| `design-codebase` | A | 绘制依赖和变更压力，比较结构方案，再设计含回滚点的增量迁移。 | 按需 |
+| `build-mcp-server` | A | 把能力建模为窄粒度 MCP tools/resources，定义 schema、结构化错误、传输无关领域逻辑和客户端测试。 | 按需 |
+
+### 架构、领域与 API
+
+| 技能 | 级别 | 具体实现 | 路由 |
+|---|---:|---|---|
+| `design-codebase` | A | 绘制依赖和变更压力，比较结构方案，再执行带回滚点的增量架构迁移。 | 按需 |
 | `model-domain` | A | 从真实场景提炼术语、实体、值对象、不变量、事件、状态转换、所有权和限界上下文。 | 按需 |
+| `review-api-design` | A | 盘点消费者与兼容承诺，审查资源、操作、schema、错误和演进策略；输出证据、影响、建议和严重级别。 | 明确 API 契约任务 |
 
-## 文档与办公制品
+### 文档与办公制品
 
 | 技能 | 级别 | 具体实现 | 路由 |
 |---|---:|---|---|
-| `work-with-docx` | A | 普通任务走 DOCX 库，高保真修改走 OOXML；完成后重新打开并渲染检查版式。 | 按需 |
-| `work-with-pdf` | A | 统一处理结构提取、编辑、表单、OCR、生成、拆分合并，并用页面渲染做视觉 QA。 | 按需 |
+| `work-with-docx` | A | 常规操作走 DOCX 库，高保真修改走 OOXML；重新打开并渲染验证版式。 | 按需 |
+| `work-with-pdf` | A | 统一处理提取、编辑、表单、OCR、生成、拆分合并，并用页面渲染做视觉 QA。 | 按需 |
 | `work-with-pptx` | A | 新建演示用可编辑生成，既有模板用 OOXML/包级修改，最后渲染每页检查。 | 按需 |
 | `work-with-xlsx` | A | 常规处理用 dataframe/workbook 库；需保留宏、透视表等特性时使用包级 XML 修改。 | 按需 |
 
-## 开发者工具
+### 开发者工具
 
 | 技能 | 级别 | 具体实现 | 路由 |
 |---|---:|---|---|
 | `build-cli` | A | 分离参数解析、领域逻辑、I/O 和展示，并测试配置优先级、stdout/stderr、JSON 输出与退出码。 | 按需 |
-| `capture-screen` | A | 只捕获必要区域，记录缩放与坐标，并检查隐私、裁切和尺寸。 | 按需 |
-| `configure-pre-commit` | B | 复用仓库已有且固定版本的快速检查和文件过滤；慢检查或联网检查留在 pre-push/CI。 | 显式 |
-| `migrate-test-fixtures` | B | 盘点 fixture 消费方，制作可重复、可 dry-run 的转换器，对比场景语义后才删除旧格式。 | 实验 |
-| `resolve-merge-conflicts` | A | 同时检查 base/ours/theirs 与相关提交，整合双方意图，重建派生文件并测试两边改动。 | 按需 |
-| `scaffold-exercises` | B | 定义学习目标、起始状态、测试、提示和独立参考答案，并从干净环境验证。 | 显式 |
-| `use-git-worktrees` | A | 使用明确路径和分支创建隔离工作区，验证基线，只在提交可达性确认后清理。 | 按需 |
+| `capture-screen` | A | 只捕获必要区域，保留缩放与坐标，检查隐私、裁切和尺寸。 | 显式截图任务 |
+| `resolve-merge-conflicts` | A | 同时检查 base/ours/theirs 与相关提交，整合双方意图，重建派生文件并测试两边改动。 | 显式冲突任务 |
+| `use-git-worktrees` | A | 使用明确路径和分支创建隔离工作区，验证基线，只在提交可达性确认后清理。 | 显式 worktree 任务 |
 | `work-with-jupyter-notebook` | A | 组织可复现叙事，把复用逻辑移到模块，重启内核后按顺序执行全部单元格。 | 按需 |
 
-## 实现与质量
+### 实现与质量
 
 | 技能 | 级别 | 具体实现 | 路由 |
 |---|---:|---|---|
 | `develop-with-tdd` | S | 围绕可观察行为执行 red-green-refactor；旧代码先补特征测试。 | 按需 |
 | `diagnose-software` | S | 复现并缩小问题，定位第一次分歧，逐个检验可证伪假设，修根因并补回归证据。 | 默认 |
 | `review-code` | S | 分开审查需求符合度和实现质量，只报告可验证问题，并支持自审、请求审查和处理反馈。 | 默认 |
-| `verify-completion` | S | 将每项完成声明映射到最新权威检查，同时验证副作用和最终状态；受阻时收窄结论。 | 默认 |
+| `verify-completion` | S | 将每项声明映射到最新权威检查，同时验证副作用和最终状态；受阻时收窄结论。 | 默认 |
 
-## 移动与桌面开发
-
-| 技能 | 级别 | 具体实现 | 路由 |
-|---|---:|---|---|
-| `build-android-app` | B | 用 Kotlin/Compose 完成垂直切片，覆盖生命周期、权限、无障碍、单元/UI 测试及设备验证。 | 显式 |
-| `build-flutter-app` | B | 用明确状态和自适应 UI 完成 Flutter 切片，为各目标提供适配层、widget 测试和发布构建。 | 显式 |
-| `build-ios-app` | B | 用 SwiftUI/UIKit 完成切片，处理状态所有权、并发取消、无障碍、测试和归档验证。 | 显式 |
-| `build-react-native-app` | B | 共享 React Native 行为并保持原生适配层小型化，控制性能，测试 Android/iOS 新鲜构建。 | 显式 |
-| `build-winui-app` | B | 处理 WinUI/XAML 状态、打包模式、DPI、主题和无障碍，并在 Windows 运行时验证。 | 显式 |
-
-## 规划与编排
+### 运行观测与系统演进
 
 | 技能 | 级别 | 具体实现 | 路由 |
 |---|---:|---|---|
-| `execute-plan` | S | 先验证计划假设，再按依赖顺序分批执行并逐步留证；遇到改变范围的新决策即停下。 | 默认 |
+| `instrument-observability` | A | 从运营问题反推日志、指标和 trace；限制标签基数、关联请求、保护敏感数据，并验证真实发出的信号和告警。 | 明确可观测性任务 |
+| `migrate-system-safely` | A | 盘点消费者和权威数据源，执行 expand/backfill/switch/contract，持续对账并保留回滚；只有实测零使用后才清理兼容层。 | 明确迁移任务 |
+
+### 规划、交接与编排
+
+| 技能 | 级别 | 具体实现 | 路由 |
+|---|---:|---|---|
+| `execute-plan` | S | 验证计划假设，按依赖顺序执行可验证的 tracer slice；新决策改变范围时暂停并更新计划。 | 默认 |
 | `finish-development-branch` | A | 检查分支和 diff，跑最终校验，安全选择合并、PR 或交接，并在清理前保证提交可达。 | 按需 |
-| `orchestrate-agent-work` | A | 主 Agent 保留阻塞路径，只委派互不重叠的旁支任务，最后统一集成并跑跨任务检查。 | 按需 |
-| `plan-implementation` | S | 检查仓库后输出按依赖排序的文件/符号级步骤，包含测试、迁移、回滚和验收证据。 | 默认 |
+| `handoff-task-context` | A | 保存目标、已验证现状、证据、决策、frontier、阻塞和下一步；恢复时逐项与实时仓库及运行状态对账。 | 明确保存/恢复交接 |
+| `orchestrate-agent-work` | A | 绘制决策 frontier，主 Agent 保留阻塞路径，只委派隔离的 tracer slice，最后统一集成并做跨任务验证。 | 明确多 Agent 任务 |
+| `plan-implementation` | S | 检查仓库后输出带依赖边的 tracer slice、文件/符号级步骤、测试、迁移、回滚和验收证据。 | 默认 |
 
-## 需求与方案验证
+### 需求与方案验证
 
 | 技能 | 级别 | 具体实现 | 路由 |
 |---|---:|---|---|
 | `clarify-requirements` | S | 分离事实、假设、约束和待决事项，只问高信息量问题并生成可测试验收条件。 | 默认 |
 | `prototype-solution` | A | 对一个明确不确定性限时制作最小可视或可执行原型，用结果接受或否决方案。 | 按需 |
 
-## 研究与沟通
+### 研究与沟通
 
 | 技能 | 级别 | 具体实现 | 路由 |
 |---|---:|---|---|
 | `coauthor-documents` | A | 先确定受众和大纲，再按章节用证据写作，最后做陌生读者检查。 | 按需 |
 | `research-primary-sources` | A | 广泛发现、精读权威一手来源、记录版本和矛盾，并给每个重要结论就近引用。 | 按需 |
 
-## 安全
+### 安全
 
 | 技能 | 级别 | 具体实现 | 路由 |
 |---|---:|---|---|
@@ -96,33 +92,55 @@
 | `review-security-practices` | A | 追踪真实安全数据流，对照当前官方指南，验证问题可达性并按验证成本排加固优先级。 | 显式安全意图 |
 | `threat-model-system` | A | 映射资产、数据流、信任边界、攻击者目标、攻击路径、控制、负责人和残余风险。 | 按需 |
 
-## 视觉、界面与动效
+### 视觉、界面与动效
 
 | 技能 | 级别 | 具体实现 | 路由 |
 |---|---:|---|---|
-| `create-visual-art` | B | 定义概念和视觉系统，先做低保真构图，再按目标尺寸渲染并检查屏幕/印刷约束。 | 显式 |
-| `design-frontend` | A | 建立视觉方向和 token，设计关键与失败状态，实现响应式组件并审查无障碍与细节。 | 按需 |
-| `design-motion` | A | 明确动效目的、时长、缓动和中断行为，在真实上下文原型中测试性能与减少动态效果。 | 按需 |
-| `design-visual-theme` | A | 创建语义化颜色、字体和间距 token，用代表性内容验证后通过共享样式应用。 | 按需 |
-| `develop-shaders` | B | 建立最小测试 shader，可视化中间空间和数值范围，处理数值边界、截图对比并分析 GPU 成本。 | 显式 |
+| `design-frontend` | A | 推断或确认 brief，建立单一设计系统，处理内容、资产、层级、完整状态、响应式、无障碍与性能；重设计时保持路由、IA、品牌和分析契约，并检查参考图漂移。 | UI、重设计、截图转代码 |
+| `design-motion` | A | 动效必须服务反馈、连续性、状态或层级；明确时长、缓动、中断，测试减少动态效果和性能。 | 明确界面动效 |
+| `design-visual-theme` | A | 将产品和品牌意图转成语义化颜色、字体、间距和组件 token，用代表性内容验证并通过共享样式应用。 | 主题、brand kit、token |
 
-## Web 与后端开发
-
-| 技能 | 级别 | 具体实现 | 路由 |
-|---|---:|---|---|
-| `build-aspnet-core` | B | 构建 ASP.NET Core 垂直切片，覆盖契约、DI 生命周期、取消、认证、问题响应、测试和类生产启动。 | 显式 |
-| `build-fullstack-app` | B | 实现跨 UI、服务契约、数据、认证、浏览器测试和生产构建的一条薄端到端切片。 | 显式 |
-
-## Web 运行时测试
+### Web 运行时测试
 
 | 技能 | 级别 | 具体实现 | 路由 |
 |---|---:|---|---|
 | `test-web-app` | S | 控制服务就绪和浏览器生命周期，使用语义选择器，收集断言、控制台、网络和截图后重新运行。 | 按需 |
 
-## 保留但需警惕的条目
+## 本轮深度整合
 
-- `migrate-test-fixtures`：当前最弱。上游灵感原本绑定 ShoeHorn；这里只保留通用迁移检查清单，没有可直接运行的转换器。若长期无实际使用，应删除。
-- 七个宽泛平台技能：`build-android-app`、`build-flutter-app`、`build-ios-app`、`build-react-native-app`、`build-winui-app`、`build-aspnet-core`、`build-fullstack-app`。它们没有固定 SDK 或项目模板，必须以当前仓库和官方文档为准。
-- 四个小众或工具依赖技能：`configure-pre-commit`、`scaffold-exercises`、`create-visual-art`、`develop-shaders`。方法可用，但增量价值、适用频率或运行时依赖较弱，所以仅显式触发。
+- `Leonxlnx/taste-skill`：13 个技能、研究文档、脚本和插件清单均已阅读。保留 brief 推断、三个视觉轴、统一设计系统、内容与资产、布局节奏、完整状态、响应式/无障碍/性能、审计式重设计和图像参考防漂移；合并进 `design-frontend`、`design-motion`、`design-visual-theme`，没有复制 13 个重叠技能。
+- `mattpocock/skills`：补齐 `ask-matt`、`implement`、`handoff`、`to-spec`、`to-tickets`、`triage`、`wayfinder` 的编排链路。把 phase transition、tracer slice、依赖边、decision frontier、expand-migrate-contract 和有界交接分别吸收进规划、执行、编排、迁移与交接技能。
+- `psenger/ai-agent-skills`：新增 `handoff-task-context` 和 `review-api-design`。API 评审来源标记 CC-BY-4.0，并删除绝对化风格偏好，以仓库契约和当前一手规范为准。
+- `addyosmani/agent-skills`：只保留现有库确实缺少的可观测性与系统迁移能力；上下文工程、增量开发、规格驱动等重叠内容并回现有核心工作流，不新增副本。
+- `muratcankoylan/Agent-Skills-for-Context-Engineering`：只吸收文件化上下文、压缩保真和恢复对账原则；不保留运行时专属压缩、固定阈值和 KV-cache 假设。
 
-以上 12 项均为 B 级，不在默认配置中；没有任何厂商专属技能被保留为活动技能。
+## 已移除的 12 个旧实现
+
+| 移除项 | 原因与替代 |
+|---|---|
+| `configure-pre-commit` | 过窄，且应遵循仓库既有 CI/钩子；通用检查由计划、执行和验证技能覆盖。 |
+| `migrate-test-fixtures` | 原始实现绑定 ShoeHorn，通用化后仍只是弱检查清单；真正迁移使用 `migrate-system-safely`。 |
+| `scaffold-exercises` | 小众且没有可复用模板或工具，未达到 A 级阈值。 |
+| `create-visual-art` | 与专用图像生成/设计工具重叠，且自身不含渲染能力。 |
+| `develop-shaders` | 依赖具体渲染器、GPU 和分析工具，宽泛清单无法提供稳定增量价值。 |
+| `build-android-app` | 宽泛平台指南，无模板和固定 SDK；具体项目应路由到代码实现并读取当前官方文档。 |
+| `build-flutter-app` | 同上，版本和目标平台差异太大。 |
+| `build-ios-app` | 同上，且强依赖 Apple 工具链和项目状态。 |
+| `build-react-native-app` | 同上，架构与版本差异会改变实现。 |
+| `build-winui-app` | 同上，SDK、打包与部署模型必须实时检查。 |
+| `build-aspnet-core` | 通用框架清单与现有工程流程高度重叠，目标 .NET 版本必须查当前项目和官方文档。 |
+| `build-fullstack-app` | 与前端、架构、API、测试和执行技能重叠；薄垂直切片方法已并入规划和执行。 |
+
+## 有意没有保留的新增实现
+
+- Taste 的 v2 实验稿、固定框架/GSAP/Tailwind 规则、强制每节图片数量、强制暗色模式、任意字体/颜色/标点禁令、静态风格变体、Google Stitch 和没有证据支撑的“懒惰”百分比。
+- Addy 的 source-driven/context/spec/incremental/shipping 等独立技能：方法有价值，但与现有研究、澄清、计划、执行、TDD、验证高度重复。
+- psenger 的 `design-critique`、`arch-lens`：分别与需求澄清、代码库设计重叠，且后者绑定特定 subagent/tracker 工作流。
+- Context Engineering 的独立压缩、退化与 latent briefing 技能：多数属于 Agent 运行时职责，固定阈值和 KV-cache 前提不具备跨客户端可移植性。
+
+## 仍需遵守的限制
+
+- `handoff-task-context` 的内容只是待验证声明，恢复时必须检查实时文件、Git、测试和运行状态。
+- `review-api-design` 不把 REST 风格偏好当成普遍真理；当前契约、消费者和官方标准优先。
+- `instrument-observability` 必须接入真实遥测后端并用代表性流量验证，禁止秘密信息和无界标签。
+- `migrate-system-safely` 的收缩清理必须有实际消费/运行数据，不能只凭部署成功或等待时间。

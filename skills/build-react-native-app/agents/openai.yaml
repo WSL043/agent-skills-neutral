@@ -1,4 +1,0 @@
-interface:
-  display_name: "Build React Native App"
-  short_description: "Neutral workflow: Build React Native App"
-  default_prompt: "Use $build-react-native-app to deliver a cross-platform feature with shared behavior and explicitly tested native differences."

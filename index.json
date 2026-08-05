@@ -15,7 +15,7 @@
     "documents": "profiles/documents.txt",
     "security": "profiles/security.txt",
     "design": "profiles/design.txt",
-    "application-platforms": "profiles/application-platforms.txt"
+    "operations": "profiles/operations.txt"
   },
   "categories": [
     {
@@ -34,7 +34,7 @@
       "name": "architecture-codebase",
       "summary": "Design code boundaries and domain models before large structural change.",
       "route_file": "routes/architecture-codebase.json",
-      "skill_count": 2
+      "skill_count": 3
     },
     {
       "name": "artifacts-documents",
@@ -46,7 +46,7 @@
       "name": "developer-tooling",
       "summary": "Operate developer workflows, repositories, notebooks, screenshots, and scaffolding.",
       "route_file": "routes/developer-tooling.json",
-      "skill_count": 8
+      "skill_count": 5
     },
     {
       "name": "implementation-quality",
@@ -55,16 +55,16 @@
       "skill_count": 4
     },
     {
-      "name": "mobile-desktop-development",
-      "summary": "Build explicitly requested Android, Flutter, iOS, React Native, or WinUI applications.",
-      "route_file": "routes/mobile-desktop-development.json",
-      "skill_count": 5
+      "name": "operations-evolution",
+      "summary": "Instrument production behavior and migrate live systems through reversible stages.",
+      "route_file": "routes/operations-evolution.json",
+      "skill_count": 2
     },
     {
       "name": "planning-orchestration",
       "summary": "Plan, execute, delegate, and finish bounded engineering work.",
       "route_file": "routes/planning-orchestration.json",
-      "skill_count": 4
+      "skill_count": 5
     },
     {
       "name": "requirements-design",
@@ -86,15 +86,9 @@
     },
     {
       "name": "visual-design-motion",
-      "summary": "Design visual systems, interfaces, motion, art, and shaders.",
+      "summary": "Design visual systems, interfaces, and motion.",
       "route_file": "routes/visual-design-motion.json",
-      "skill_count": 5
-    },
-    {
-      "name": "web-backend-development",
-      "summary": "Build explicitly requested ASP.NET Core or end-to-end full-stack applications.",
-      "route_file": "routes/web-backend-development.json",
-      "skill_count": 2
+      "skill_count": 3
     },
     {
       "name": "web-ui-testing",

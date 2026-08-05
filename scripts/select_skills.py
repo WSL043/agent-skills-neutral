@@ -9,7 +9,7 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-LEVEL_ORDER = {"S": 0, "A": 1, "B": 2}
+LEVEL_ORDER = {"S": 0, "A": 1}
 ALIASES = {
     "debug": {"diagnose", "bug", "failure"},
     "diagnose": {"debug", "bug", "failure"},
@@ -22,6 +22,10 @@ ALIASES = {
     "architecture": {"codebase", "design", "modules"},
     "security": {"secure", "threat", "vulnerability"},
     "review": {"inspect", "audit"},
+    "openapi": {"api", "contract", "schema"},
+    "observability": {"logs", "metrics", "traces", "telemetry"},
+    "migration": {"backfill", "cutover", "compatibility"},
+    "handoff": {"context", "resume", "transfer"},
 }
 
 if hasattr(sys.stdout, "reconfigure"):
@@ -135,10 +139,6 @@ def route_query(query: str, root: Path = ROOT, alternative_limit: int = 3) -> di
     ]
 
     warnings: list[str] = []
-    if primary and primary["level"] == "B":
-        warnings.append("Primary route is B-level and must remain explicit/on-demand.")
-    if primary and primary["maturity"] == "experimental":
-        warnings.append("Primary route is experimental; treat it as a checklist, not a bundled implementation.")
     if not primary:
         warnings.append("No confident route. Inspect index.json and one likely category route file; do not load every skill.")
 
