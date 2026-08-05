@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review API Design"
+  short_description: "Stress-test API contracts before build"
+  default_prompt: "Use $review-api-design to review this API contract against consumer, compatibility, security, resilience, and operability requirements."

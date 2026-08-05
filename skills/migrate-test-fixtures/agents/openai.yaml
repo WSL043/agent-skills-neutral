@@ -1,4 +1,0 @@
-interface:
-  display_name: "Migrate Test Fixtures"
-  short_description: "Neutral workflow: Migrate Test Fixtures"
-  default_prompt: "Use $migrate-test-fixtures to convert fixtures reproducibly without weakening the behaviors the tests are meant to protect."

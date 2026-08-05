@@ -1,4 +1,0 @@
-interface:
-  display_name: "Develop Shaders"
-  short_description: "Neutral workflow: Develop Shaders"
-  default_prompt: "Use $develop-shaders to deliver a visually correct shader that compiles across intended targets and stays within the declared performance budget."

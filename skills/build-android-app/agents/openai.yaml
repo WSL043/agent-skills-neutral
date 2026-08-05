@@ -1,4 +1,0 @@
-interface:
-  display_name: "Build Android App"
-  short_description: "Neutral workflow: Build Android App"
-  default_prompt: "Use $build-android-app to deliver an Android feature that survives lifecycle changes and works on the declared device/API range."

@@ -46,6 +46,36 @@
       "name": "model-domain",
       "level": "A",
       "path": "skills/model-domain/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "An API contract, OpenAPI description, public interface, versioning policy, or compatibility promise needs design review before or alongside implementation.",
+      "avoid_when": "Do not use for debugging one handler, reviewing an ordinary code diff, or merely documenting an already-fixed private function.",
+      "triggers": [
+        "api design review",
+        "review api contract",
+        "openapi review",
+        "public api interface",
+        "api compatibility",
+        "api versioning",
+        "审查 api 设计",
+        "评审 api 契约",
+        "openapi 评审",
+        "接口兼容性"
+      ],
+      "negative_triggers": [
+        "debug api handler",
+        "review code diff",
+        "ordinary code diff",
+        "private helper",
+        "调试接口实现",
+        "普通代码评审"
+      ],
+      "explicit_only": false,
+      "name": "review-api-design",
+      "level": "A",
+      "path": "skills/review-api-design/SKILL.md"
     }
   ]
 }

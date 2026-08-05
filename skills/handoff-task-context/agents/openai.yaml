@@ -1,0 +1,4 @@
+interface:
+  display_name: "Handoff Task Context"
+  short_description: "Save or resume verified task state"
+  default_prompt: "Use $handoff-task-context to create or resume a durable, redacted task handoff and reconcile it with current state."

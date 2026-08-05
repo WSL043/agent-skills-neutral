@@ -51,52 +51,6 @@
     },
     {
       "kind": "domain",
-      "maturity": "conditional",
-      "choose_when": "The repository explicitly needs pre-commit hooks or commit-time lint/format checks.",
-      "avoid_when": "Do not use for ordinary CI configuration or a one-time formatter run.",
-      "triggers": [
-        "pre-commit",
-        "commit hook",
-        "git hook",
-        "commit-time lint",
-        "提交前检查",
-        "提交钩子",
-        "precommit"
-      ],
-      "negative_triggers": [
-        "ci only",
-        "只跑一次格式化"
-      ],
-      "explicit_only": false,
-      "name": "configure-pre-commit",
-      "level": "B",
-      "path": "skills/configure-pre-commit/SKILL.md"
-    },
-    {
-      "kind": "domain",
-      "maturity": "experimental",
-      "choose_when": "The explicit task is a repeatable migration of test fixtures, fixture formats, or fixture factories.",
-      "avoid_when": "Do not use for ordinary test edits or application data migration.",
-      "triggers": [
-        "migrate test fixtures",
-        "fixture conversion",
-        "fixture format migration",
-        "迁移测试夹具",
-        "转换 fixture",
-        "测试数据夹具迁移"
-      ],
-      "negative_triggers": [
-        "database migration",
-        "普通测试修改",
-        "数据库迁移"
-      ],
-      "explicit_only": false,
-      "name": "migrate-test-fixtures",
-      "level": "B",
-      "path": "skills/migrate-test-fixtures/SKILL.md"
-    },
-    {
-      "kind": "domain",
       "maturity": "stable",
       "choose_when": "Git reports merge/rebase conflicts or the user explicitly asks to integrate conflicting histories.",
       "avoid_when": "Do not use for ordinary code review or non-conflicting branch updates.",
@@ -114,31 +68,6 @@
       "name": "resolve-merge-conflicts",
       "level": "A",
       "path": "skills/resolve-merge-conflicts/SKILL.md"
-    },
-    {
-      "kind": "domain",
-      "maturity": "conditional",
-      "choose_when": "The explicit deliverable is a coding exercise, workshop, kata, starter repo, hints, and reference solution.",
-      "avoid_when": "Do not use for ordinary project scaffolding or production features.",
-      "triggers": [
-        "coding exercise",
-        "workshop exercise",
-        "code kata",
-        "starter exercise",
-        "training task",
-        "编程练习",
-        "课程练习",
-        "代码 kata",
-        "教学脚手架"
-      ],
-      "negative_triggers": [
-        "production scaffold",
-        "生产项目脚手架"
-      ],
-      "explicit_only": false,
-      "name": "scaffold-exercises",
-      "level": "B",
-      "path": "skills/scaffold-exercises/SKILL.md"
     },
     {
       "kind": "domain",

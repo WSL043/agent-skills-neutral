@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "category": "operations-evolution",
+  "summary": "Instrument production behavior and migrate live systems through reversible stages.",
+  "skills": [
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "A system needs structured logs, metrics, traces, correlation, SLO signals, or production telemetry that answers operational questions.",
+      "avoid_when": "Do not use as the primary workflow for diagnosing one current bug or adding a temporary print statement.",
+      "triggers": [
+        "observability",
+        "structured logs",
+        "metrics and traces",
+        "correlation id",
+        "distributed tracing",
+        "production telemetry",
+        "slo instrumentation",
+        "可观测性",
+        "结构化日志",
+        "指标和链路",
+        "关联 id",
+        "生产遥测"
+      ],
+      "negative_triggers": [
+        "debug current bug",
+        "temporary print",
+        "一次性打印",
+        "排查当前故障"
+      ],
+      "explicit_only": false,
+      "name": "instrument-observability",
+      "level": "A",
+      "path": "skills/instrument-observability/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "A live schema, API, dependency, data representation, or behavior must migrate through compatibility, backfill, cutover, and cleanup stages.",
+      "avoid_when": "Do not use for resolving Git conflicts, moving one local file, or changing isolated test fixtures with no live consumers.",
+      "triggers": [
+        "safe migration",
+        "expand contract",
+        "database backfill",
+        "dual write",
+        "compatibility migration",
+        "deprecation plan",
+        "cutover plan",
+        "安全迁移",
+        "扩展收缩迁移",
+        "数据回填",
+        "双写",
+        "兼容迁移",
+        "弃用计划",
+        "切换方案"
+      ],
+      "negative_triggers": [
+        "git conflict",
+        "move one file",
+        "test fixtures only",
+        "解决 git 冲突",
+        "移动文件"
+      ],
+      "explicit_only": false,
+      "name": "migrate-system-safely",
+      "level": "A",
+      "path": "skills/migrate-system-safely/SKILL.md"
+    }
+  ]
+}

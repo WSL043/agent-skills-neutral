@@ -1,6 +1,6 @@
 # Agent Skills Neutral
 
-A private, vendor-neutral reference library of 45 canonical Agent Skills. It consolidates overlapping public implementations into concise standard `SKILL.md` files without bundling proprietary services, provider-specific runtimes, deprecated skills, upstream scripts, or licensed assets.
+A private, vendor-neutral reference library of 37 canonical Agent Skills. It consolidates overlapping public implementations into concise standard `SKILL.md` files without bundling proprietary services, provider-specific runtimes, deprecated skills, weak platform checklists, upstream scripts, or licensed assets.
 
 ## Agent quick start
 
@@ -26,7 +26,7 @@ CATALOG.md               human-readable complete list
 AGENTS.md                minimal loading and trust instructions
 skills/<name>/SKILL.md   portable canonical skills
 provenance.json          exact upstream source pointers and commits
-docs/SKILL_REVIEW.md     all 45 implementations, limits, and retention decisions
+docs/SKILL_REVIEW.md     all 37 implementations, limits, and retention decisions
 scripts/select_skills.py bilingual smallest-set router
 scripts/test_routing.py  positive and anti-misrouting tests
 scripts/validate_catalog.py deterministic integrity validator
@@ -35,13 +35,14 @@ scripts/validate_catalog.py deterministic integrity validator
 ## Levels
 
 - **S (9):** core workflows; only six are in `profiles/default.txt`.
-- **A (24):** high-value task-domain modules.
-- **B (12):** conditional specialists, excluded from the default profile and routed only by explicit matches.
+- **A (28):** high-value task-domain modules, loaded only when routed.
+
+There is no B tier in the active library. Twelve former B entries were removed after re-evaluation because their useful content was already covered by stronger general workflows or their implementation was too narrow/tool-light to justify routing context.
 
 The level is an installation/reference recommendation, not a license grant or authorization to perform external actions.
 
 ## 中文说明
 
-这是经过官方 Agent Skills 结构校验、厂商依赖剔除和语义去重后的私有参考库。Agent 应先运行路由器；无法运行时读取 `index.json` 和一个领域路由文件，只加载一个主技能，必要时再加一个辅助技能。不要把 45 个技能或完整 `catalog.json` 一次性塞进上下文。
+这是经过官方 Agent Skills 结构校验、厂商依赖剔除和语义去重后的私有参考库。Agent 应先运行路由器；无法运行时读取 `index.json` 和一个领域路由文件，只加载一个主技能，必要时再加一个辅助技能。不要把 37 个技能或完整 `catalog.json` 一次性塞进上下文。
 
-逐项实现、局限和保留理由见 [`docs/SKILL_REVIEW.zh-CN.md`](docs/SKILL_REVIEW.zh-CN.md)（[English](docs/SKILL_REVIEW.md)）。其中 `migrate-test-fixtures` 被明确标成 experimental；其余 B 级条目也都不会进入默认配置。
+逐项实现、局限和保留理由见 [`docs/SKILL_REVIEW.zh-CN.md`](docs/SKILL_REVIEW.zh-CN.md)（[English](docs/SKILL_REVIEW.md)）。默认配置仍只有六个核心工作流；设计、API、交接、可观测性和迁移能力都按具体任务单独路由。

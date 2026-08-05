@@ -1,0 +1,4 @@
+interface:
+  display_name: "Instrument Observability"
+  short_description: "Add evidence-driven production telemetry"
+  default_prompt: "Use $instrument-observability to make this production behavior diagnosable with safe, validated logs, metrics, traces, and alerts."
