@@ -54,6 +54,34 @@
     {
       "kind": "workflow",
       "maturity": "stable",
+      "choose_when": "The user explicitly asks to save, transfer, resume, or reconstruct bounded task context for another agent or later session.",
+      "avoid_when": "Do not use for a conversational status summary, generic JSON export, commit message, or automatic context compaction.",
+      "triggers": [
+        "create handoff",
+        "task handoff",
+        "save task context",
+        "resume from handoff",
+        "continue in another agent",
+        "交接任务",
+        "保存任务上下文",
+        "恢复任务交接",
+        "给下个 agent"
+      ],
+      "negative_triggers": [
+        "status summary",
+        "export json",
+        "commit message",
+        "自动压缩上下文",
+        "总结当前状态"
+      ],
+      "explicit_only": false,
+      "name": "handoff-task-context",
+      "level": "A",
+      "path": "skills/handoff-task-context/SKILL.md"
+    },
+    {
+      "kind": "workflow",
+      "maturity": "stable",
       "choose_when": "The runtime supports delegation and the task contains independent bounded subtasks or explicit multi-agent work.",
       "avoid_when": "Do not use for a single blocking task or overlapping writes without isolation.",
       "triggers": [

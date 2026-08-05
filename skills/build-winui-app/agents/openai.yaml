@@ -1,4 +1,0 @@
-interface:
-  display_name: "Build WinUI App"
-  short_description: "Neutral workflow: Build WinUI App"
-  default_prompt: "Use $build-winui-app to deliver a Windows feature that follows the existing app architecture and works in the intended packaged or unpackaged deployment model."

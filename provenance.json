@@ -1,33 +1,19 @@
 {
-  "policy": "Original vendor-neutral synthesis. No upstream scripts, assets, or long-form instructions are bundled. Review each upstream license before porting implementation material.",
+  "policy": "Original vendor-neutral synthesis. No upstream scripts, assets, or long-form instructions are bundled. Source-specific license and adaptation fields are recorded where they differ from the repository default; review every upstream license before porting further material.",
   "source_snapshots": {
     "anthropics/skills": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
     "emilkowalski/skills": "da80201b64de7d608a6dc5f723797ce6c65b692b",
+    "Leonxlnx/taste-skill": "e988add20dab0fa97d7a76781c48961c8184288e",
     "mattpocock/skills": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
     "MiniMax-AI/skills": "60aaae52bb2af8162732751a4332f62a5fef518b",
+    "muratcankoylan/Agent-Skills-for-Context-Engineering": "a1841d1ea3dadc70098d94b60fa7a4ab8875dc50",
     "obra/superpowers": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
     "openai/skills": "49f948faa9258a0c61caceaf225e179651397431",
+    "psenger/ai-agent-skills": "96716a643138665b4e335f836fb661f126944644",
+    "addyosmani/agent-skills": "bdf76c7c6b7b3b3e01bb15c9fdc42ac5351855c1",
     "vercel-labs/skills": "1164afa5f0e21ebd01e6fc11249759353f494ad1"
   },
   "skills": {
-    "build-android-app": [
-      {
-        "repository": "MiniMax-AI/skills",
-        "skill": "android-native-dev",
-        "path": "skills/android-native-dev/SKILL.md",
-        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
-        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/android-native-dev"
-      }
-    ],
-    "build-aspnet-core": [
-      {
-        "repository": "openai/skills",
-        "skill": "aspnet-core",
-        "path": "skills/.curated/aspnet-core/SKILL.md",
-        "commit": "49f948faa9258a0c61caceaf225e179651397431",
-        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/aspnet-core"
-      }
-    ],
     "build-cli": [
       {
         "repository": "openai/skills",
@@ -37,33 +23,6 @@
         "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/cli-creator"
       }
     ],
-    "build-flutter-app": [
-      {
-        "repository": "MiniMax-AI/skills",
-        "skill": "flutter-dev",
-        "path": "skills/flutter-dev/SKILL.md",
-        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
-        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/flutter-dev"
-      }
-    ],
-    "build-fullstack-app": [
-      {
-        "repository": "MiniMax-AI/skills",
-        "skill": "fullstack-dev",
-        "path": "skills/fullstack-dev/SKILL.md",
-        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
-        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/fullstack-dev"
-      }
-    ],
-    "build-ios-app": [
-      {
-        "repository": "MiniMax-AI/skills",
-        "skill": "ios-application-dev",
-        "path": "skills/ios-application-dev/SKILL.md",
-        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
-        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/ios-application-dev"
-      }
-    ],
     "build-mcp-server": [
       {
         "repository": "anthropics/skills",
@@ -71,24 +30,6 @@
         "path": "skills/mcp-builder/SKILL.md",
         "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
         "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/mcp-builder"
-      }
-    ],
-    "build-react-native-app": [
-      {
-        "repository": "MiniMax-AI/skills",
-        "skill": "react-native-dev",
-        "path": "skills/react-native-dev/SKILL.md",
-        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
-        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/react-native-dev"
-      }
-    ],
-    "build-winui-app": [
-      {
-        "repository": "openai/skills",
-        "skill": "winui-app",
-        "path": "skills/.curated/winui-app/SKILL.md",
-        "commit": "49f948faa9258a0c61caceaf225e179651397431",
-        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/winui-app"
       }
     ],
     "capture-screen": [
@@ -125,15 +66,6 @@
         "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/doc-coauthoring"
       }
     ],
-    "configure-pre-commit": [
-      {
-        "repository": "mattpocock/skills",
-        "skill": "setup-pre-commit",
-        "path": "skills/misc/setup-pre-commit/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/misc/setup-pre-commit"
-      }
-    ],
     "create-agent-skill": [
       {
         "repository": "anthropics/skills",
@@ -155,15 +87,6 @@
         "path": "skills/.system/skill-creator/SKILL.md",
         "commit": "49f948faa9258a0c61caceaf225e179651397431",
         "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.system/skill-creator"
-      }
-    ],
-    "create-visual-art": [
-      {
-        "repository": "anthropics/skills",
-        "skill": "canvas-design",
-        "path": "skills/canvas-design/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/canvas-design"
       }
     ],
     "design-codebase": [
@@ -196,6 +119,27 @@
         "path": "skills/emil-design-eng/SKILL.md",
         "commit": "da80201b64de7d608a6dc5f723797ce6c65b692b",
         "url": "https://github.com/emilkowalski/skills/tree/da80201b64de7d608a6dc5f723797ce6c65b692b/skills/emil-design-eng"
+      },
+      {
+        "repository": "Leonxlnx/taste-skill",
+        "skill": "taste-skill",
+        "path": "skills/taste-skill/SKILL.md",
+        "commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+        "url": "https://github.com/Leonxlnx/taste-skill/tree/e988add20dab0fa97d7a76781c48961c8184288e/skills/taste-skill"
+      },
+      {
+        "repository": "Leonxlnx/taste-skill",
+        "skill": "redesign-skill",
+        "path": "skills/redesign-skill/SKILL.md",
+        "commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+        "url": "https://github.com/Leonxlnx/taste-skill/tree/e988add20dab0fa97d7a76781c48961c8184288e/skills/redesign-skill"
+      },
+      {
+        "repository": "Leonxlnx/taste-skill",
+        "skill": "image-to-code-skill",
+        "path": "skills/image-to-code-skill/SKILL.md",
+        "commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+        "url": "https://github.com/Leonxlnx/taste-skill/tree/e988add20dab0fa97d7a76781c48961c8184288e/skills/image-to-code-skill"
       }
     ],
     "design-motion": [
@@ -219,6 +163,13 @@
         "path": "skills/improve-animations/SKILL.md",
         "commit": "da80201b64de7d608a6dc5f723797ce6c65b692b",
         "url": "https://github.com/emilkowalski/skills/tree/da80201b64de7d608a6dc5f723797ce6c65b692b/skills/improve-animations"
+      },
+      {
+        "repository": "Leonxlnx/taste-skill",
+        "skill": "taste-skill",
+        "path": "skills/taste-skill/SKILL.md",
+        "commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+        "url": "https://github.com/Leonxlnx/taste-skill/tree/e988add20dab0fa97d7a76781c48961c8184288e/skills/taste-skill"
       }
     ],
     "design-visual-theme": [
@@ -242,15 +193,13 @@
         "path": "skills/theme-factory/SKILL.md",
         "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
         "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/theme-factory"
-      }
-    ],
-    "develop-shaders": [
+      },
       {
-        "repository": "MiniMax-AI/skills",
-        "skill": "shader-dev",
-        "path": "skills/shader-dev/SKILL.md",
-        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
-        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/shader-dev"
+        "repository": "Leonxlnx/taste-skill",
+        "skill": "brandkit",
+        "path": "skills/brandkit/SKILL.md",
+        "commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+        "url": "https://github.com/Leonxlnx/taste-skill/tree/e988add20dab0fa97d7a76781c48961c8184288e/skills/brandkit"
       }
     ],
     "develop-with-tdd": [
@@ -301,6 +250,13 @@
         "path": "skills/executing-plans/SKILL.md",
         "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
         "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/executing-plans"
+      },
+      {
+        "repository": "mattpocock/skills",
+        "skill": "implement",
+        "path": "skills/engineering/implement/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/implement"
       }
     ],
     "finish-development-branch": [
@@ -312,6 +268,45 @@
         "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/finishing-a-development-branch"
       }
     ],
+    "handoff-task-context": [
+      {
+        "repository": "psenger/ai-agent-skills",
+        "skill": "handoff",
+        "path": "skills/handoff/SKILL.md",
+        "commit": "96716a643138665b4e335f836fb661f126944644",
+        "url": "https://github.com/psenger/ai-agent-skills/tree/96716a643138665b4e335f836fb661f126944644/skills/handoff"
+      },
+      {
+        "repository": "mattpocock/skills",
+        "skill": "handoff",
+        "path": "skills/productivity/handoff/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/productivity/handoff"
+      },
+      {
+        "repository": "muratcankoylan/Agent-Skills-for-Context-Engineering",
+        "skill": "context-compression",
+        "path": "skills/context-compression/SKILL.md",
+        "commit": "a1841d1ea3dadc70098d94b60fa7a4ab8875dc50",
+        "url": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/tree/a1841d1ea3dadc70098d94b60fa7a4ab8875dc50/skills/context-compression"
+      },
+      {
+        "repository": "muratcankoylan/Agent-Skills-for-Context-Engineering",
+        "skill": "filesystem-context",
+        "path": "skills/filesystem-context/SKILL.md",
+        "commit": "a1841d1ea3dadc70098d94b60fa7a4ab8875dc50",
+        "url": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/tree/a1841d1ea3dadc70098d94b60fa7a4ab8875dc50/skills/filesystem-context"
+      }
+    ],
+    "instrument-observability": [
+      {
+        "repository": "addyosmani/agent-skills",
+        "skill": "observability-and-instrumentation",
+        "path": "skills/observability-and-instrumentation/SKILL.md",
+        "commit": "bdf76c7c6b7b3b3e01bb15c9fdc42ac5351855c1",
+        "url": "https://github.com/addyosmani/agent-skills/tree/bdf76c7c6b7b3b3e01bb15c9fdc42ac5351855c1/skills/observability-and-instrumentation"
+      }
+    ],
     "map-security-ownership": [
       {
         "repository": "openai/skills",
@@ -321,13 +316,20 @@
         "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-ownership-map"
       }
     ],
-    "migrate-test-fixtures": [
+    "migrate-system-safely": [
+      {
+        "repository": "addyosmani/agent-skills",
+        "skill": "deprecation-and-migration",
+        "path": "skills/deprecation-and-migration/SKILL.md",
+        "commit": "bdf76c7c6b7b3b3e01bb15c9fdc42ac5351855c1",
+        "url": "https://github.com/addyosmani/agent-skills/tree/bdf76c7c6b7b3b3e01bb15c9fdc42ac5351855c1/skills/deprecation-and-migration"
+      },
       {
         "repository": "mattpocock/skills",
-        "skill": "migrate-to-shoehorn",
-        "path": "skills/misc/migrate-to-shoehorn/SKILL.md",
+        "skill": "to-tickets",
+        "path": "skills/engineering/to-tickets/SKILL.md",
         "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/misc/migrate-to-shoehorn"
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/to-tickets"
       }
     ],
     "model-domain": [
@@ -353,6 +355,27 @@
         "path": "skills/subagent-driven-development/SKILL.md",
         "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
         "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/subagent-driven-development"
+      },
+      {
+        "repository": "mattpocock/skills",
+        "skill": "ask-matt",
+        "path": "skills/engineering/ask-matt/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/ask-matt"
+      },
+      {
+        "repository": "mattpocock/skills",
+        "skill": "to-tickets",
+        "path": "skills/engineering/to-tickets/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/to-tickets"
+      },
+      {
+        "repository": "mattpocock/skills",
+        "skill": "wayfinder",
+        "path": "skills/engineering/wayfinder/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/wayfinder"
       }
     ],
     "plan-implementation": [
@@ -362,6 +385,20 @@
         "path": "skills/writing-plans/SKILL.md",
         "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
         "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/writing-plans"
+      },
+      {
+        "repository": "mattpocock/skills",
+        "skill": "to-spec",
+        "path": "skills/engineering/to-spec/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/to-spec"
+      },
+      {
+        "repository": "mattpocock/skills",
+        "skill": "to-tickets",
+        "path": "skills/engineering/to-tickets/SKILL.md",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/to-tickets"
       }
     ],
     "prototype-solution": [
@@ -414,6 +451,18 @@
         "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/requesting-code-review"
       }
     ],
+    "review-api-design": [
+      {
+        "repository": "psenger/ai-agent-skills",
+        "skill": "review-api-design",
+        "path": "skills/review-api-design/SKILL.md",
+        "commit": "96716a643138665b4e335f836fb661f126944644",
+        "license": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "adaptation_note": "Rewritten and condensed into a vendor-neutral evidence/impact/recommendation workflow; dogmatic and temporally unstable claims were removed.",
+        "url": "https://github.com/psenger/ai-agent-skills/tree/96716a643138665b4e335f836fb661f126944644/skills/review-api-design"
+      }
+    ],
     "review-security-practices": [
       {
         "repository": "openai/skills",
@@ -421,15 +470,6 @@
         "path": "skills/.curated/security-best-practices/SKILL.md",
         "commit": "49f948faa9258a0c61caceaf225e179651397431",
         "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices"
-      }
-    ],
-    "scaffold-exercises": [
-      {
-        "repository": "mattpocock/skills",
-        "skill": "scaffold-exercises",
-        "path": "skills/misc/scaffold-exercises/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/misc/scaffold-exercises"
       }
     ],
     "test-web-app": [

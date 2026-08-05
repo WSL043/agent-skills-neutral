@@ -78,6 +78,21 @@
       "merge_treatment": "standalone"
     },
     {
+      "name": "review-api-design",
+      "path": "skills/review-api-design",
+      "category": "architecture-codebase",
+      "reference_level": "A",
+      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "description": "Review an API contract, endpoint set, schema, or service interface before implementation for consumer fit, HTTP semantics, compatibility, errors, security boundaries, resilience, and operability. Use for REST/OpenAPI or comparable request-response API design review, not for debugging implemented handlers or reviewing a code diff.",
+      "related": [
+        "model-domain",
+        "review-security-practices",
+        "plan-implementation"
+      ],
+      "has_variants_reference": false,
+      "merge_treatment": "merge-best-review-coverage"
+    },
+    {
       "name": "work-with-docx",
       "path": "skills/work-with-docx",
       "category": "artifacts-documents",
@@ -157,30 +172,6 @@
       "merge_treatment": "standalone"
     },
     {
-      "name": "configure-pre-commit",
-      "path": "skills/configure-pre-commit",
-      "category": "developer-tooling",
-      "reference_level": "B",
-      "recommended_use": "专业场景按需安装；不进入默认全局技能集",
-      "description": "Configure repository pre-commit checks that are fast, reproducible, and aligned with existing CI. Use when adding or repairing local commit-time linting, formatting, validation, or secret checks.",
-      "related": [],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
-      "name": "migrate-test-fixtures",
-      "path": "skills/migrate-test-fixtures",
-      "category": "developer-tooling",
-      "reference_level": "B",
-      "recommended_use": "专业场景按需安装；不进入默认全局技能集",
-      "description": "Migrate test fixtures between formats, factories, directories, or harnesses while preserving scenario intent and failure coverage. Use for bulk fixture conversion or test-data modernization.",
-      "related": [
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
       "name": "resolve-merge-conflicts",
       "path": "skills/resolve-merge-conflicts",
       "category": "developer-tooling",
@@ -190,19 +181,6 @@
       "related": [
         "review-code",
         "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
-      "name": "scaffold-exercises",
-      "path": "skills/scaffold-exercises",
-      "category": "developer-tooling",
-      "reference_level": "B",
-      "recommended_use": "专业场景按需安装；不进入默认全局技能集",
-      "description": "Scaffold coding exercises, starter repositories, tests, hints, and solutions with controlled difficulty and verifiable learning objectives. Use when creating workshops, kata, interview tasks, or training modules.",
-      "related": [
-        "develop-with-tdd"
       ],
       "has_variants_reference": false,
       "merge_treatment": "standalone"
@@ -288,76 +266,6 @@
       "merge_treatment": "standalone"
     },
     {
-      "name": "build-android-app",
-      "path": "skills/build-android-app",
-      "category": "mobile-desktop-development",
-      "reference_level": "B",
-      "recommended_use": "专业场景按需安装；不进入默认全局技能集",
-      "description": "Build or extend native Android applications with lifecycle-aware architecture, modern UI, state management, persistence, and device-level verification. Use for Kotlin, Jetpack Compose, Android platform APIs, packaging, or app architecture tasks.",
-      "related": [
-        "design-frontend",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
-      "name": "build-flutter-app",
-      "path": "skills/build-flutter-app",
-      "category": "mobile-desktop-development",
-      "reference_level": "B",
-      "recommended_use": "专业场景按需安装；不进入默认全局技能集",
-      "description": "Build or extend Flutter applications with explicit state ownership, adaptive UI, navigation, platform integration, and tested release builds. Use for Dart, Flutter widgets, packages, mobile/desktop/web targets, or cross-platform app architecture.",
-      "related": [
-        "design-frontend",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
-      "name": "build-ios-app",
-      "path": "skills/build-ios-app",
-      "category": "mobile-desktop-development",
-      "reference_level": "B",
-      "recommended_use": "专业场景按需安装；不进入默认全局技能集",
-      "description": "Build or extend native Apple-platform applications with Swift, SwiftUI or UIKit, explicit state, persistence, concurrency, accessibility, and simulator/device verification. Use for iOS application features, architecture, packaging, or platform APIs.",
-      "related": [
-        "design-frontend",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
-      "name": "build-react-native-app",
-      "path": "skills/build-react-native-app",
-      "category": "mobile-desktop-development",
-      "reference_level": "B",
-      "recommended_use": "专业场景按需安装；不进入默认全局技能集",
-      "description": "Build or extend React Native applications with predictable state, navigation, native-module boundaries, performance controls, and Android/iOS verification. Use for cross-platform mobile features implemented with React Native.",
-      "related": [
-        "design-frontend",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
-      "name": "build-winui-app",
-      "path": "skills/build-winui-app",
-      "category": "mobile-desktop-development",
-      "reference_level": "B",
-      "recommended_use": "专业场景按需安装；不进入默认全局技能集",
-      "description": "Build or extend Windows desktop applications with WinUI, Windows App SDK, XAML, packaging, accessibility, and runtime verification. Use for native Windows UI, app lifecycle, deployment, or platform integration tasks.",
-      "related": [
-        "design-frontend",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
       "name": "execute-plan",
       "path": "skills/execute-plan",
       "category": "planning-orchestration",
@@ -387,6 +295,21 @@
       "merge_treatment": "standalone"
     },
     {
+      "name": "handoff-task-context",
+      "path": "skills/handoff-task-context",
+      "category": "planning-orchestration",
+      "reference_level": "A",
+      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "description": "Create or resume a durable, redacted task-state handoff that preserves goals, decisions, evidence, changed files, constraints, open risks, and the next valid action. Use when the user explicitly asks to save, transfer, pause, resume, or continue work across agent sessions.",
+      "related": [
+        "plan-implementation",
+        "execute-plan",
+        "orchestrate-agent-work"
+      ],
+      "has_variants_reference": false,
+      "merge_treatment": "merge-structured-and-readable-handoffs"
+    },
+    {
       "name": "orchestrate-agent-work",
       "path": "skills/orchestrate-agent-work",
       "category": "planning-orchestration",
@@ -395,6 +318,7 @@
       "description": "Coordinate multiple agents or isolated work streams by decomposing tasks, controlling context, assigning disjoint scopes, and integrating verified results. Use when the runtime supports delegation and independent subtasks can materially reduce latency or context contention.",
       "related": [
         "plan-implementation",
+        "handoff-task-context",
         "verify-completion"
       ],
       "has_variants_reference": true,
@@ -471,6 +395,36 @@
       "merge_treatment": "standalone"
     },
     {
+      "name": "instrument-observability",
+      "path": "skills/instrument-observability",
+      "category": "operations-evolution",
+      "reference_level": "A",
+      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "description": "Design, add, or review production telemetry so operators can answer concrete questions with structured logs, bounded-cardinality metrics, traces, and actionable alerts. Use for observability, instrumentation, correlation IDs, SLO signals, or when a production feature is impossible to diagnose from existing evidence.",
+      "related": [
+        "diagnose-software",
+        "verify-completion",
+        "migrate-system-safely"
+      ],
+      "has_variants_reference": false,
+      "merge_treatment": "standalone-gap-fill"
+    },
+    {
+      "name": "migrate-system-safely",
+      "path": "skills/migrate-system-safely",
+      "category": "operations-evolution",
+      "reference_level": "A",
+      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "description": "Plan or execute a reversible migration from an old API, schema, dependency, service, format, or implementation to a replacement while preserving live consumers and data. Use for deprecation, backfill, expand-contract, dual-read/write, staged cutover, or removal of a legacy path.",
+      "related": [
+        "plan-implementation",
+        "instrument-observability",
+        "verify-completion"
+      ],
+      "has_variants_reference": false,
+      "merge_treatment": "merge-lifecycle-and-data-migration"
+    },
+    {
       "name": "map-security-ownership",
       "path": "skills/map-security-ownership",
       "category": "security",
@@ -513,25 +467,12 @@
       "merge_treatment": "standalone"
     },
     {
-      "name": "create-visual-art",
-      "path": "skills/create-visual-art",
-      "category": "visual-design-motion",
-      "reference_level": "B",
-      "recommended_use": "专业场景按需安装；不进入默认全局技能集",
-      "description": "Create original static visual artwork, posters, covers, or decorative compositions with an explicit concept, hierarchy, typography, color system, and rendered QA. Use when the primary deliverable is a designed image or print-ready visual rather than an application UI.",
-      "related": [
-        "design-visual-theme"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
       "name": "design-frontend",
       "path": "skills/design-frontend",
       "category": "visual-design-motion",
       "reference_level": "A",
       "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Design or refine web and application interfaces with deliberate hierarchy, typography, layout, states, accessibility, responsiveness, and implementation-aware polish. Use for new UI, design systems, component composition, or visual/interaction quality improvement.",
+      "description": "Design, implement, audit, or redesign web and application interfaces with a coherent visual direction, faithful reference translation, complete states, accessibility, responsiveness, and rendered QA. Use for new UI, visual redesign, image-to-code work, design systems, component composition, or anti-generic interface polish.",
       "related": [
         "design-motion",
         "design-visual-theme",
@@ -559,56 +500,12 @@
       "category": "visual-design-motion",
       "reference_level": "A",
       "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Create or apply a coherent visual theme across documents, presentations, interfaces, or artwork using semantic color, typography, spacing, and style rules. Use when selecting a theme, deriving design tokens, or aligning multiple artifacts visually.",
+      "description": "Create, extract, or apply a coherent brand and visual theme across documents, presentations, interfaces, or artwork using a meaningful concept plus semantic color, typography, spacing, imagery, and style rules. Use for brand-system direction, theme derivation, design tokens, or cross-artifact visual alignment.",
       "related": [
-        "design-frontend",
-        "create-visual-art"
+        "design-frontend"
       ],
       "has_variants_reference": true,
       "merge_treatment": "merge-as-modes"
-    },
-    {
-      "name": "develop-shaders",
-      "path": "skills/develop-shaders",
-      "category": "visual-design-motion",
-      "reference_level": "B",
-      "recommended_use": "专业场景按需安装；不进入默认全局技能集",
-      "description": "Develop, port, debug, or optimize real-time graphics shaders with explicit coordinate spaces, numerical constraints, visual targets, and GPU-aware verification. Use for GLSL, HLSL, WGSL, materials, post-processing, procedural effects, or shader performance work.",
-      "related": [
-        "capture-screen",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
-      "name": "build-aspnet-core",
-      "path": "skills/build-aspnet-core",
-      "category": "web-backend-development",
-      "reference_level": "B",
-      "recommended_use": "专业场景按需安装；不进入默认全局技能集",
-      "description": "Build or extend ASP.NET Core applications and APIs using current framework conventions, dependency injection, configuration, authentication, data access, observability, and automated tests. Use for .NET web backends, services, or server-rendered applications.",
-      "related": [
-        "review-security-practices",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
-      "name": "build-fullstack-app",
-      "path": "skills/build-fullstack-app",
-      "category": "web-backend-development",
-      "reference_level": "B",
-      "recommended_use": "专业场景按需安装；不进入默认全局技能集",
-      "description": "Build or extend full-stack web applications through a thin vertical slice covering UI, server logic, data, authentication, errors, and deployment-ready verification. Use when a feature crosses frontend and backend boundaries or when scaffolding a complete web application.",
-      "related": [
-        "design-frontend",
-        "test-web-app",
-        "review-security-practices"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
     },
     {
       "name": "test-web-app",

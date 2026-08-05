@@ -10,4 +10,8 @@ skills/use-git-worktrees
 skills/finish-development-branch
 skills/orchestrate-agent-work
 skills/build-cli
+skills/review-api-design
+skills/handoff-task-context
+skills/instrument-observability
+skills/migrate-system-safely
 skills/test-web-app

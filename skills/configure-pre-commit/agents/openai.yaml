@@ -1,4 +1,0 @@
-interface:
-  display_name: "Configure Pre Commit"
-  short_description: "Neutral workflow: Configure Pre Commit"
-  default_prompt: "Use $configure-pre-commit to create a low-friction pre-commit gate that catches cheap deterministic failures without blocking normal work unnecessarily."

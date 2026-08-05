@@ -1,4 +1,0 @@
-interface:
-  display_name: "Scaffold Exercises"
-  short_description: "Neutral workflow: Scaffold Exercises"
-  default_prompt: "Use $scaffold-exercises to deliver an exercise package that teaches a defined skill and can be validated independently of the solution."

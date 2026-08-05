@@ -1,5 +1,3 @@
 skills/design-frontend
 skills/design-motion
 skills/design-visual-theme
-skills/create-visual-art
-skills/develop-shaders

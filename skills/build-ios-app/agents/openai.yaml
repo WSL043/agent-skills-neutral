@@ -1,4 +1,0 @@
-interface:
-  display_name: "Build iOS App"
-  short_description: "Neutral workflow: Build iOS App"
-  default_prompt: "Use $build-ios-app to deliver an iOS feature that follows platform conventions and behaves correctly across lifecycle and concurrency boundaries."

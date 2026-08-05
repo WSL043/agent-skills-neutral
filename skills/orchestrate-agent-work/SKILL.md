@@ -11,17 +11,19 @@ Use delegation only where task boundaries are real, then integrate results witho
 
 ## Workflow
 
-1. Map dependencies, shared state, write scopes, required artifacts, and the immediate critical path.
-2. Keep the blocking next step local; delegate only bounded side tasks with self-contained context.
-3. Assign explicit inputs, outputs, constraints, validation, and disjoint write ownership.
-4. Continue non-overlapping local work while delegates run; avoid repeated status polling.
-5. Review returned artifacts and evidence, resolve conflicts, and run integration-level checks.
-6. Close or release delegated contexts after their results are integrated.
+1. Identify the current phase: clarify, research/prototype, specify, plan/slice, implement, review, verify, or handoff. Do not skip an unresolved decision by distributing it.
+2. Map dependency edges, the unblocked frontier, shared state, write scopes, required artifacts, and the immediate critical path.
+3. Keep the blocking next step local; delegate only bounded side tasks with self-contained context and a reason parallelism improves latency or independence.
+4. Assign explicit inputs, outputs, constraints, source locations, validation, and disjoint write ownership. Pass task-relevant evidence, not the parent's full conversation.
+5. Continue non-overlapping local work while delegates run; avoid repeated status polling.
+6. Review returned artifacts as claims, reconcile them with source evidence, resolve conflicts, and run integration-level checks.
+7. Close or release delegated contexts after integration. Create a durable handoff when work crosses a session boundary.
 
 ## Decision rules
 
 - Use parallel-analysis mode for independent investigations with no shared mutation.
 - Use sequential-implementation mode when each task depends on the previous state or requires staged review.
+- Use a decision map for work too uncertain to decompose into implementation slices: record destination, resolved decisions, current frontier, unresolved fog, and out-of-scope items.
 - Fall back to one agent when delegation support, isolation, or task boundaries are insufficient.
 
 ## Guardrails
@@ -29,6 +31,7 @@ Use delegation only where task boundaries are real, then integrate results witho
 - Do not delegate the immediate blocker and then wait idly.
 - Do not assign overlapping write sets without an explicit integration owner.
 - Do not leak expected answers into independent validation tasks.
+- Do not make agent count a goal or require a tracker, branch, or specific subagent API when local artifacts suffice.
 
 ## Completion evidence
 
@@ -38,6 +41,7 @@ Use delegation only where task boundaries are real, then integrate results witho
 ## Related skills
 
 - `plan-implementation`
+- `handoff-task-context`
 - `verify-completion`
 
 ## Conditional reference

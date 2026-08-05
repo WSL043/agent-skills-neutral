@@ -10,8 +10,6 @@
     {"query": "安全代码审查", "primary": "review-security-practices"},
     {"query": "做威胁建模", "primary": "threat-model-system"},
     {"query": "build an MCP server", "primary": "build-mcp-server"},
-    {"query": "build an Android Compose app", "primary": "build-android-app"},
-    {"query": "create a full-stack end-to-end web feature", "primary": "build-fullstack-app"},
     {"query": "browser test the checkout flow", "primary": "test-web-app"},
     {"query": "take a screenshot", "primary": "capture-screen"},
     {"query": "创建 agent skill", "primary": "create-agent-skill"},
@@ -23,13 +21,20 @@
     {"query": "create a Jupyter notebook", "primary": "work-with-jupyter-notebook"},
     {"query": "design UI animation", "primary": "design-motion"},
     {"query": "design a frontend page", "primary": "design-frontend"},
-    {"query": "migrate test fixtures", "primary": "migrate-test-fixtures"}
+    {"query": "review this OpenAPI contract before implementation", "primary": "review-api-design"},
+    {"query": "把当前任务状态保存成 handoff 给下个 agent", "primary": "handoff-task-context"},
+    {"query": "add structured logs metrics traces and correlation IDs", "primary": "instrument-observability"},
+    {"query": "plan an expand-contract database migration with backfill", "primary": "migrate-system-safely"},
+    {"query": "implement this screenshot as a responsive frontend", "primary": "design-frontend"},
+    {"query": "redesign this landing page without changing routes", "primary": "design-frontend"},
+    {"query": "create a coherent brand kit and design token system", "primary": "design-visual-theme"}
   ],
   "guardrails": [
-    {"query": "fix tests", "forbid": ["migrate-test-fixtures"]},
-    {"query": "implement a feature", "forbid_level": "B"},
-    {"query": "review this ordinary code diff", "forbid": ["review-security-practices"]},
-    {"query": "design a mobile screen", "forbid": ["build-android-app", "build-flutter-app", "build-ios-app", "build-react-native-app"]},
-    {"query": "make a website", "forbid": ["build-fullstack-app", "build-aspnet-core"]}
+    {"query": "review this ordinary code diff", "forbid": ["review-security-practices", "review-api-design"]},
+    {"query": "fix this 500 in an Express route", "forbid": ["review-api-design"]},
+    {"query": "summarize current status", "forbid": ["handoff-task-context"]},
+    {"query": "resolve a git conflict", "forbid": ["migrate-system-safely"]},
+    {"query": "add a temporary print statement", "forbid": ["instrument-observability"]},
+    {"query": "make a website", "forbid": ["design-motion", "design-visual-theme"]}
   ]
 }
