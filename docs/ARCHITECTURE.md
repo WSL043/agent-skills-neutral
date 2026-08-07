@@ -1,12 +1,12 @@
-# SkillConverge Architecture
+# Architecture
 
-SkillConverge separates **source growth** from **runtime growth**. The source reservoir may grow continuously; the canonical library and the context loaded for any one task stay filtered by capability and evidence.
+The repository separates **source growth** from **runtime growth**. The source reservoir may grow continuously; the canonical library and the context loaded for any one task stay filtered by capability and evidence.
 
 ## Layers
 
 ### 0. Discovery — untrusted metadata
 
-`discover_upstreams.py` and external discovery tools find repositories that may contain Agent Skills. Discovery may inspect repository metadata and file paths, but it does not execute candidate code or import candidate instructions into the canonical library.
+`discover_upstreams.py` and other discovery tools find repositories that may contain useful Agent Skill implementations or maintenance mechanisms. Discovery may inspect repository metadata and source relationships, but it does not execute candidate code or import candidate instructions into the canonical library.
 
 Output from this layer is a candidate set, not acceptance.
 
@@ -30,17 +30,17 @@ A candidate is translated out of its author-specific vocabulary into:
 
 This is the semantic unit used for comparison. Names, popularity, prompt length, and repository structure are not capabilities.
 
-### 3. Arena — current baseline versus candidate
+### 3. Baseline comparison
 
 Compare the candidate with the canonical implementation that owns the same outcome. Use the same representative task conditions and assertions for both sides.
 
 Deterministic evidence is preferred where possible. Judgment-heavy capabilities may use model evaluation, rendered review, or human review, but the evaluation contract is defined before candidate output is inspected.
 
-The result is `strengthen`, `replace`, `new capability`, or `reject`.
+The result may be `strengthen`, `replace`, `new capability`, `architecture lesson`, or `reject`.
 
 ### 4. Promotion
 
-Promotion copies no upstream artifact by default. It retains the smallest behavior that improves the canonical implementation and records the contributing source in `provenance.json`.
+Promotion copies no upstream artifact by default. It retains the smallest behavior that improves the canonical implementation and records a contributing source only when that source materially shaped retained behavior.
 
 For a genuinely new capability with no established winner, a useful evidence-backed implementation may become the **current baseline**. Baseline means "best retained implementation currently available to this project," not "globally optimal." It remains replaceable.
 
@@ -54,20 +54,20 @@ Canonical skills can be strengthened, merged, replaced, or deleted. Age and hist
 
 ### 6. Runtime routing
 
-The router loads the smallest matching skill set for the actual task. The size of the upstream reservoir therefore does not directly increase runtime context.
+The router loads the smallest matching skill set for the actual task. The size of the source reservoir therefore does not directly increase runtime context.
 
 This is the primary contamination boundary: unreviewed sources never participate in task routing.
 
 ### 7. Feedback and evolution
 
-Routing failures, task failures, user corrections, benchmarks, upstream changes, and newly discovered sources become evidence for another ingestion pass. The feedback points back to a capability; it does not grant an upstream source permission to edit canonical instructions.
+Routing failures, task failures, user corrections, benchmarks, upstream changes, and newly discovered sources become evidence for another ingestion pass. The feedback points back to a capability; it does not grant an external source permission to edit canonical instructions.
 
 ## What prevents contamination
 
 The architecture relies on separation rather than assuming perfect filters:
 
 ```text
-public ecosystem
+external sources
       |
       v
  discovery metadata        (untrusted, automatic)
@@ -117,7 +117,7 @@ The domain set therefore has no target size. Expansion follows demonstrated capa
 
 Safe scheduled automation may:
 
-- discover repository candidates;
+- discover repository candidates and source relationships;
 - compare tracked commits;
 - validate the canonical repository;
 - produce machine-readable reports and artifacts.
@@ -130,4 +130,4 @@ Scheduled automation must not, by default:
 - change a canonical skill because a source changed;
 - advance a reviewed commit before the relevant delta is classified.
 
-A future evaluation service may automate more of the arena, but promotion remains gated by explicit evidence and repository policy rather than upstream-controlled content.
+More of the comparison loop may be automated later, but promotion remains gated by explicit evidence and repository policy rather than source-controlled instructions.
