@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "policy": "Track upstream repositories by reviewed commit. A commit is advanced only after its delta has been inspected, filtered, and either absorbed into a canonical skill or rejected. Source files are not vendored merely for history.",
+  "policy": "Track direct skill-source repositories by reviewed commit. A commit is advanced only after its delta has been inspected, filtered, and either absorbed into a canonical skill or rejected. External mechanism research and transitive references may be discovered dynamically without becoming permanent tracked entries.",
   "repositories": [
     {"repository": "anthropics/skills", "last_reviewed_commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb", "focus": ["core", "design", "artifacts"]},
     {"repository": "emilkowalski/skills", "last_reviewed_commit": "de33dbed000212b54400a33767d1e4d03654db2a", "focus": ["design", "motion"]},
@@ -20,19 +20,6 @@
     {"repository": "K-Dense-AI/scientific-agent-skills", "last_reviewed_commit": null, "focus": ["research-reservoir", "scientific-workflows"]},
     {"repository": "supabase/agent-skills", "last_reviewed_commit": null, "focus": ["postgresql", "database"]},
     {"repository": "johnpapa/ai-ready", "last_reviewed_commit": null, "focus": ["repository-guidance", "agent-readiness"]},
-    {"repository": "remotion-dev/skills", "last_reviewed_commit": null, "focus": ["motion", "visual-storytelling", "media-reservoir"]},
-
-    {"repository": "agentskills/agentskills", "last_reviewed_commit": null, "focus": ["skill-standard", "interoperability"]},
-    {"repository": "Evol-ai/SkillCompass", "last_reviewed_commit": null, "focus": ["skill-evaluation", "skill-lifecycle", "usage-feedback", "security"]},
-    {"repository": "mgechev/skillgrade", "last_reviewed_commit": null, "focus": ["skill-evaluation", "benchmarking", "baseline-comparison"]},
-    {"repository": "AgentSkillOS/SkillAnything", "last_reviewed_commit": null, "focus": ["skill-generation", "evaluation", "multi-platform-packaging"]},
-    {"repository": "objectivlabs/reposkillopt", "last_reviewed_commit": null, "focus": ["skill-convergence", "grounded-evaluation", "held-out-validation", "specialization"]},
-    {"repository": "THU-AICosmos/skillevolver", "last_reviewed_commit": null, "focus": ["skill-evolution", "trajectory-learning", "fresh-agent-evaluation"]},
-    {"repository": "AIoT-MLSys-Lab/SkillEvolBench", "last_reviewed_commit": null, "focus": ["skill-evolution-benchmark", "evaluation"]},
-    {"repository": "OSU-NLP-Group/SkillWeaver", "last_reviewed_commit": null, "focus": ["skill-discovery", "practice-distillation", "web-agent-learning"]},
-    {"repository": "cisco-ai-defense/skill-scanner", "last_reviewed_commit": null, "focus": ["skill-supply-chain", "prompt-injection", "behavioral-security"]},
-
-    {"repository": "HKUDS/CLI-Anything", "last_reviewed_commit": null, "focus": ["transitive-source", "capability-extraction", "tool-interface-generation"]},
-    {"repository": "DazhuangJammy/DazhuangSkill-Creator", "last_reviewed_commit": null, "focus": ["transitive-source", "skill-authoring", "project-structure"]}
+    {"repository": "remotion-dev/skills", "last_reviewed_commit": null, "focus": ["motion", "visual-storytelling", "media-reservoir"]}
   ]
 }
