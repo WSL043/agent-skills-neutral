@@ -65,45 +65,64 @@ def load_rules(root: Path = ROOT) -> list[dict[str, Any]]:
     return rules
 
 
-def score_rule(query: str, rule: dict[str, Any]) -> dict[str, Any] | None:
+def match_rule(query: str, rule: dict[str, Any]) -> dict[str, Any] | None:
     normalized_query = normalize(query)
     query_tokens = expanded_tokens(query)
-    name_phrase = rule["name"].replace("-", " ")
-    score = 0.0
-    reasons: list[str] = []
-    explicit_hits = 0
 
     for phrase in rule["negative_triggers"]:
         normalized_phrase = normalize(phrase)
         if normalized_phrase and normalized_phrase in normalized_query:
             return None
 
-    if name_phrase in normalized_query or rule["name"] in normalized_query:
-        score += 24
-        explicit_hits += 1
-        reasons.append(f"name:{rule['name']}")
+    name_phrase = rule["name"].replace("-", " ")
+    name_hit = name_phrase in normalized_query or rule["name"] in normalized_query
 
-    for phrase in rule["triggers"]:
-        normalized_phrase = normalize(phrase)
-        if normalized_phrase and normalized_phrase in normalized_query:
-            score += 12 + min(4, len(normalized_phrase.split()))
-            explicit_hits += 1
-            reasons.append(f"trigger:{phrase}")
+    trigger_hits = [
+        phrase
+        for phrase in rule["triggers"]
+        if normalize(phrase) and normalize(phrase) in normalized_query
+    ]
 
     route_text = " ".join(
         [rule["name"], rule["category"], rule["choose_when"], *rule["triggers"]]
     )
-    overlap = query_tokens & expanded_tokens(route_text)
-    score += 1.5 * len(overlap)
-    if overlap:
-        reasons.append("terms:" + ",".join(sorted(overlap)))
+    overlap = sorted(query_tokens & expanded_tokens(route_text))
+    explicit = name_hit or bool(trigger_hits)
 
-    if rule["maturity"] in {"conditional", "experimental"} and explicit_hits == 0:
+    if rule["maturity"] in {"conditional", "experimental"} and not explicit:
         return None
-    if rule.get("explicit_only") and explicit_hits == 0:
+    if rule.get("explicit_only") and not explicit:
         return None
-    if explicit_hits == 0 and not overlap:
+    if not explicit and not overlap:
         return None
+
+    if name_hit:
+        match_class = "name"
+        class_order = 0
+    elif trigger_hits:
+        match_class = "trigger"
+        class_order = 1
+    else:
+        match_class = "terms"
+        class_order = 2
+
+    # Ranking evidence is derived only from the text that actually matched:
+    # explicit name > explicit trigger > shared terms. Within the same class,
+    # more matched triggers/terms and a more specific trigger phrase provide
+    # stronger evidence. Project S/A priority and the skill name are stable
+    # tie-breakers rather than invented numeric weights.
+    longest_trigger_terms = max(
+        (len(tokens(phrase)) for phrase in trigger_hits),
+        default=0,
+    )
+    sort_key = (
+        class_order,
+        -len(trigger_hits),
+        -longest_trigger_terms,
+        -len(overlap),
+        LEVEL_ORDER[rule["level"]],
+        rule["name"],
+    )
 
     return {
         "name": rule["name"],
@@ -112,12 +131,21 @@ def score_rule(query: str, rule: dict[str, Any]) -> dict[str, Any] | None:
         "level": rule["level"],
         "kind": rule["kind"],
         "maturity": rule["maturity"],
-        "score": round(score, 1),
-        "matched": reasons,
+        "match_class": match_class,
+        "matched": {
+            "name": name_hit,
+            "triggers": trigger_hits,
+            "terms": overlap,
+        },
         "choose_when": rule["choose_when"],
         "avoid_when": rule["avoid_when"],
-        "explicit": explicit_hits > 0,
+        "explicit": explicit,
+        "_sort_key": sort_key,
     }
+
+
+def public_result(item: dict[str, Any]) -> dict[str, Any]:
+    return {key: value for key, value in item.items() if key != "_sort_key"}
 
 
 def route_query(
@@ -128,15 +156,9 @@ def route_query(
     candidates = [
         result
         for rule in load_rules(root)
-        if (result := score_rule(query, rule))
+        if (result := match_rule(query, rule))
     ]
-    candidates.sort(
-        key=lambda item: (
-            -item["score"],
-            LEVEL_ORDER[item["level"]],
-            item["name"],
-        )
-    )
+    candidates.sort(key=lambda item: item["_sort_key"])
 
     primary_pool = [
         item
@@ -149,6 +171,8 @@ def route_query(
         else (candidates[0] if candidates else None)
     )
 
+    # AGENTS.md explicitly authorizes at most one support skill for a distinct
+    # second phase, so this is project policy rather than an inferred cap.
     supports = [
         item
         for item in candidates
@@ -173,9 +197,9 @@ def route_query(
 
     return {
         "query": query,
-        "primary": primary,
-        "support": supports,
-        "alternatives": alternatives,
+        "primary": public_result(primary) if primary else None,
+        "support": [public_result(item) for item in supports],
+        "alternatives": [public_result(item) for item in alternatives],
         "warnings": warnings,
     }
 
@@ -185,21 +209,31 @@ def print_text(result: dict[str, Any]) -> None:
     if primary:
         print(
             f"PRIMARY  [{primary['level']}] {primary['name']}  "
-            f"score={primary['score']}"
+            f"match={primary['match_class']}"
         )
         print(f"         {primary['path']}")
-        print(f"         matched: {'; '.join(primary['matched'])}")
+        matched = primary["matched"]
+        evidence: list[str] = []
+        if matched["name"]:
+            evidence.append("name")
+        if matched["triggers"]:
+            evidence.append("triggers=" + ",".join(matched["triggers"]))
+        if matched["terms"]:
+            evidence.append("terms=" + ",".join(matched["terms"]))
+        print(f"         matched: {'; '.join(evidence)}")
     else:
         print("PRIMARY  none")
 
     for item in result["support"]:
         print(
-            f"SUPPORT  [{item['level']}] {item['name']}  score={item['score']}"
+            f"SUPPORT  [{item['level']}] {item['name']}  "
+            f"match={item['match_class']}"
         )
         print(f"         {item['path']}")
     for item in result["alternatives"]:
         print(
-            f"ALT      [{item['level']}] {item['name']}  score={item['score']}"
+            f"ALT      [{item['level']}] {item['name']}  "
+            f"match={item['match_class']}"
         )
     for warning in result["warnings"]:
         print(f"WARNING  {warning}")
