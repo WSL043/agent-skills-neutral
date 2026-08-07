@@ -41,7 +41,13 @@
     {"query": "turn this observation into rival scientific hypotheses and discriminating predictions", "primary": "formulate-scientific-hypotheses"},
     {"query": "把这个观察结果变成可证伪的科学假设和对立解释", "primary": "formulate-scientific-hypotheses"},
     {"query": "make this repository easier for coding agents to work in", "primary": "prepare-repository-for-agents"},
-    {"query": "基于这个仓库真实结构整理 AGENTS.md 和 agent 开发约定", "primary": "prepare-repository-for-agents"}
+    {"query": "基于这个仓库真实结构整理 AGENTS.md 和 agent 开发约定", "primary": "prepare-repository-for-agents"},
+    {"query": "diagnose this performance regression and optimize the measured bottleneck", "primary": "optimize-performance"},
+    {"query": "make this endpoint faster without changing behavior", "primary": "optimize-performance"},
+    {"query": "research the latest papers about X", "primary": "research-primary-sources"},
+    {"query": "research the latest papers and use them to formulate rival scientific hypotheses", "primary": "formulate-scientific-hypotheses"},
+    {"query": "compare two agent prompts on the same task set", "primary": "evaluate-agent"},
+    {"query": "整理这个仓库的模块边界和依赖方向", "primary": "design-codebase"}
   ],
   "guardrails": [
     {"query": "review this ordinary code diff", "forbid": ["review-security-practices", "review-api-design"]},
@@ -56,6 +62,8 @@
     {"query": "research the latest papers about X", "forbid": ["formulate-scientific-hypotheses"]},
     {"query": "design a generic SQL schema", "forbid": ["work-with-postgresql"]},
     {"query": "design a frontend page", "forbid": ["prepare-repository-for-agents"]},
-    {"query": "take a screenshot", "forbid": ["simplify-code", "optimize-performance", "evaluate-agent", "work-with-postgresql", "formulate-scientific-hypotheses", "prepare-repository-for-agents"]}
+    {"query": "take a screenshot", "forbid": ["simplify-code", "optimize-performance", "evaluate-agent", "work-with-postgresql", "formulate-scientific-hypotheses", "prepare-repository-for-agents"]},
+    {"query": "make this endpoint faster without changing behavior", "forbid": ["simplify-code"]},
+    {"query": "整理这个仓库的模块边界和依赖方向", "forbid": ["prepare-repository-for-agents"]}
   ]
 }

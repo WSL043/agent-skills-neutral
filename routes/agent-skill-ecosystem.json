@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "category": "agent-skill-ecosystem",
-  "summary": "Create, discover, compare, and maintain Agent Skills.",
+  "summary": "Create, discover, evaluate, compare, and maintain Agent Skills and agent workflows.",
   "skills": [
     {
       "kind": "meta",
@@ -68,11 +68,13 @@
         "agent evaluation",
         "evaluate skill",
         "skill evaluation",
-        "evaluation loop",
+        "agent evaluation loop",
         "benchmark agent",
         "compare two versions of this agent",
         "task success and tool use",
-        "baseline and candidate eval",
+        "agent baseline and candidate eval",
+        "compare agent prompts",
+        "compare agent variants",
         "评估 agent",
         "评估技能",
         "智能体评估",

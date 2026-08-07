@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "category": "implementation-quality",
-  "summary": "Implement, diagnose, review, and verify software behavior.",
+  "summary": "Implement, simplify, optimize, diagnose, review, and verify software behavior.",
   "skills": [
     {
       "kind": "workflow",
@@ -68,20 +68,20 @@
         "slow endpoint",
         "measured bottleneck",
         "profile slow endpoint",
+        "make this faster",
+        "make this endpoint faster",
+        "speed up",
+        "reduce latency",
+        "improve throughput",
         "测量后再优化",
         "性能优化",
         "性能回归",
         "延迟回归",
-        "吞吐量优化"
+        "吞吐量优化",
+        "提升性能",
+        "加速"
       ],
-      "negative_triggers": [
-        "debug",
-        "diagnose",
-        "root cause",
-        "排查",
-        "诊断",
-        "根因"
-      ],
+      "negative_triggers": [],
       "explicit_only": false,
       "name": "optimize-performance",
       "level": "A",
@@ -124,13 +124,11 @@
         "code simplification",
         "simplify implementation",
         "simplify this function",
-        "without changing behavior",
         "reduce code complexity",
         "remove duplication",
         "简化代码",
         "简化实现",
-        "不改变行为",
-        "保持行为",
+        "简化",
         "减少代码复杂度",
         "减少重复",
         "降低复杂度"
@@ -141,7 +139,7 @@
         "architecture migration",
         "架构迁移"
       ],
-      "explicit_only": false,
+      "explicit_only": true,
       "name": "simplify-code",
       "level": "A",
       "path": "skills/simplify-code/SKILL.md"

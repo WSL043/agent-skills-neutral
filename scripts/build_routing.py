@@ -29,17 +29,17 @@ def R(
 
 
 CATEGORY_SUMMARIES = {
-    "agent-skill-ecosystem": "Create, discover, compare, and maintain Agent Skills.",
+    "agent-skill-ecosystem": "Create, discover, evaluate, compare, and maintain Agent Skills and agent workflows.",
     "agent-tooling": "Build protocols and tools that expose capabilities to agents.",
     "architecture-codebase": "Design code boundaries and domain models before large structural change.",
     "artifacts-documents": "Read, create, edit, and visually verify office and document formats.",
     "database-data": "Design, query, migrate, and secure relational data systems using evidence from the live workload.",
     "developer-tooling": "Operate developer workflows, repositories, notebooks, screenshots, and scaffolding.",
-    "implementation-quality": "Implement, diagnose, review, and verify software behavior.",
+    "implementation-quality": "Implement, simplify, optimize, diagnose, review, and verify software behavior.",
     "operations-evolution": "Instrument production behavior and migrate live systems through reversible stages.",
     "planning-orchestration": "Plan, execute, delegate, and finish bounded engineering work.",
     "requirements-design": "Clarify decisions or prototype a specific uncertainty.",
-    "research-communication": "Research authoritative sources and coauthor decision-ready documents.",
+    "research-communication": "Research primary sources, formulate scientific hypotheses, and coauthor decision-ready documents.",
     "security": "Threat-model, review, and map ownership of security-sensitive systems.",
     "visual-design-motion": "Design visual systems, interfaces, and motion.",
     "web-ui-testing": "Exercise and diagnose web applications in a real browser.",
@@ -65,7 +65,7 @@ ROUTING = {
         "domain",
         "The task evaluates an agent, skill, workflow, or tool-using system with explicit tasks, graders, traces, or failure analysis.",
         "Do not use for ordinary product or model evaluation without an agent or workflow behavior contract.",
-        ["evaluate agent", "agent evaluation", "evaluate skill", "skill evaluation", "evaluation loop", "benchmark agent", "compare two versions of this agent", "task success and tool use", "baseline and candidate eval", "评估 agent", "评估技能", "智能体评估", "评测 agent", "评测技能"],
+        ["evaluate agent", "agent evaluation", "evaluate skill", "skill evaluation", "agent evaluation loop", "benchmark agent", "compare two versions of this agent", "task success and tool use", "agent baseline and candidate eval", "compare agent prompts", "compare agent variants", "评估 agent", "评估技能", "智能体评估", "评测 agent", "评测技能"],
         ["model weights", "普通模型评估", "create agent skill", "create a new agent skill", "创建技能", "创建新的 agent skill"],
     ),
     "build-mcp-server": R(
@@ -164,7 +164,7 @@ ROUTING = {
         "domain",
         "The task assesses or prepares a repository for reliable agent contributions, discoverable conventions, tests, CI, or scoped agent guidance.",
         "Do not use for creating one isolated skill or for ordinary repository maintenance with no agent-readiness outcome.",
-        ["prepare repository for agents", "make repository agent-ready", "agent-ready repository", "ai-ready repository", "repository guidance for agents", "easier for coding agents", "准备仓库给 agent", "让仓库适合 agent", "仓库 agent-ready", "仓库智能体准备", "真实结构整理", "agent 开发约定", "整理 agents.md"],
+        ["prepare repository for agents", "make repository agent-ready", "agent-ready repository", "ai-ready repository", "repository guidance for agents", "easier for coding agents", "准备仓库给 agent", "让仓库适合 agent", "仓库 agent-ready", "仓库智能体准备", "agent 开发约定", "整理 agents.md"],
         ["create agent skill", "create a new agent skill", "find skill", "创建技能", "创建新的 agent skill", "查找技能"],
     ),
     "develop-with-tdd": R(
@@ -185,15 +185,17 @@ ROUTING = {
         "domain",
         "The task explicitly optimizes measured software performance or addresses a latency, throughput, resource, or performance regression with a remeasurement loop.",
         "Do not use for an unexplained failure whose primary need is root-cause diagnosis, or for a generic code cleanup with no performance signal.",
-        ["optimize performance", "performance optimization", "performance regression", "latency regression", "throughput regression", "slow query optimization", "slow endpoint", "measured bottleneck", "profile slow endpoint", "测量后再优化", "性能优化", "性能回归", "延迟回归", "吞吐量优化"],
-        ["debug", "diagnose", "root cause", "排查", "诊断", "根因"],
+        ["optimize performance", "performance optimization", "performance regression", "latency regression", "throughput regression", "slow query optimization", "slow endpoint", "measured bottleneck", "profile slow endpoint", "make this faster", "make this endpoint faster", "speed up", "reduce latency", "improve throughput", "测量后再优化", "性能优化", "性能回归", "延迟回归", "吞吐量优化", "提升性能", "加速"],
+        [],
     ),
     "simplify-code": R(
         "domain",
         "The task reduces incidental code complexity, duplication, nesting, or confusing structure while preserving the existing behavior contract.",
         "Do not use for a performance optimization, a public contract redesign, or a broad architecture migration without a simplification goal.",
-        ["simplify code", "code simplification", "simplify implementation", "simplify this function", "without changing behavior", "reduce code complexity", "remove duplication", "简化代码", "简化实现", "不改变行为", "保持行为", "减少代码复杂度", "减少重复", "降低复杂度"],
+        ["simplify code", "code simplification", "simplify implementation", "simplify this function", "reduce code complexity", "remove duplication", "简化代码", "简化实现", "简化", "减少代码复杂度", "减少重复", "降低复杂度"],
         ["performance optimization", "性能优化", "architecture migration", "架构迁移"],
+        "stable",
+        True,
     ),
     "review-code": R(
         "workflow",
@@ -266,14 +268,16 @@ ROUTING = {
         "workflow",
         "The answer requires current authoritative primary sources, precise citations, or fact/inference separation.",
         "Do not use for purely local code inspection with no external or documentary research need.",
-        ["primary sources", "official documentation", "research with citations", "verify sources", "authoritative source", "查官方资料", "一手资料", "带引用研究", "核实来源"],
+        ["primary sources", "official documentation", "research with citations", "verify sources", "authoritative source", "latest papers", "research latest papers", "查官方资料", "一手资料", "带引用研究", "核实来源", "查最新论文"],
     ),
     "formulate-scientific-hypotheses": R(
         "domain",
         "The task turns observations into competing, falsifiable scientific hypotheses, discriminating predictions, or an experiment and analysis plan.",
         "Do not use for a source-only fact lookup or a general document with no hypothesis or research-design decision.",
-        ["formulate hypothesis", "scientific hypothesis", "rival scientific hypotheses", "research hypothesis", "causal hypothesis", "experiment design", "mechanism hypothesis", "hypothesis generation", "可证伪的科学假设", "提出假设", "科学假设", "研究假设", "因果假设", "实验设计", "机制假设"],
-        ["latest papers", "research latest papers", "最新论文"],
+        ["formulate hypothesis", "scientific hypothesis", "rival scientific hypotheses", "research hypothesis", "causal hypothesis", "scientific experiment design", "mechanism hypothesis", "hypothesis generation", "可证伪的科学假设", "提出假设", "科学假设", "研究假设", "因果假设", "科学实验设计", "机制假设"],
+        [],
+        "stable",
+        True,
     ),
     "map-security-ownership": R(
         "domain",
@@ -387,6 +391,10 @@ IMPLEMENTATION = {
 
 
 RISK_NOTES = {
+    "diagnose-software": "Intermittent failures may require probabilistic or repeated evidence rather than deterministic reproduction.",
+    "evaluate-agent": "Intentional treatment-variable differences must be separated from uncontrolled confounds.",
+    "work-with-postgresql": "Destructive or privilege-changing operations require explicit authorization; safe recovery may require forward repair instead of rollback.",
+    "create-agent-skill": "Negative routing triggers are hard vetoes, so important boundaries require mixed-intent regression coverage.",
     "handoff-task-context": "A handoff is a claim, not authority; resume mode must reconcile it with live repository and runtime state.",
     "review-api-design": "API conventions are contextual and can change; repository contracts and current primary standards override generic preferences.",
     "instrument-observability": "Useful only with the real telemetry backend and representative traffic; avoid secrets and unbounded labels.",
@@ -532,6 +540,8 @@ for item in sorted(catalog["skills"], key=lambda value: (value["reference_level"
     risk = RISK_NOTES.get(name, "No material design defect found; still requires task-local tools and verification.")
     decision = (
         "Stable but exact-trigger-only to prevent false-positive security routing."
+        if route["explicit_only"] and name == "review-security-practices"
+        else "Stable but exact-trigger-only to prevent false-positive routing."
         if route["explicit_only"]
         else "Default core profile."
         if name in PROFILES["default"]

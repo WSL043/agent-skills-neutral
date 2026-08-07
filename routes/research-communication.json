@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "category": "research-communication",
-  "summary": "Research authoritative sources and coauthor decision-ready documents.",
+  "summary": "Research primary sources, formulate scientific hypotheses, and coauthor decision-ready documents.",
   "skills": [
     {
       "kind": "workflow",
@@ -41,7 +41,7 @@
         "rival scientific hypotheses",
         "research hypothesis",
         "causal hypothesis",
-        "experiment design",
+        "scientific experiment design",
         "mechanism hypothesis",
         "hypothesis generation",
         "可证伪的科学假设",
@@ -49,15 +49,11 @@
         "科学假设",
         "研究假设",
         "因果假设",
-        "实验设计",
+        "科学实验设计",
         "机制假设"
       ],
-      "negative_triggers": [
-        "latest papers",
-        "research latest papers",
-        "最新论文"
-      ],
-      "explicit_only": false,
+      "negative_triggers": [],
+      "explicit_only": true,
       "name": "formulate-scientific-hypotheses",
       "level": "A",
       "path": "skills/formulate-scientific-hypotheses/SKILL.md"
@@ -73,10 +69,13 @@
         "research with citations",
         "verify sources",
         "authoritative source",
+        "latest papers",
+        "research latest papers",
         "查官方资料",
         "一手资料",
         "带引用研究",
-        "核实来源"
+        "核实来源",
+        "查最新论文"
       ],
       "negative_triggers": [],
       "explicit_only": false,

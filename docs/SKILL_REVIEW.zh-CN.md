@@ -151,6 +151,10 @@
 
 ## 仍需遵守的限制
 
+- `diagnose-software`：间歇性故障可能需要概率性或重复证据，而不是强求完全确定性的复现。
+- `evaluate-agent`：必须区分主动改变的实验变量与未受控的混杂变量。
+- `work-with-postgresql`：破坏性操作或权限变更需要明确授权；安全恢复有时应采用前向修复而非回滚。
+- `create-agent-skill`：负向路由触发器属于硬排除，因此重要边界必须覆盖正负意图同时出现的回归场景。
 - `handoff-task-context` 的内容只是待验证声明，恢复时必须检查实时文件、Git、测试和运行状态。
 - `review-api-design` 不把 REST 风格偏好当成普遍真理；当前契约、消费者和官方标准优先。
 - `instrument-observability` 必须接入真实遥测后端并用代表性流量验证，禁止秘密信息和无界标签。
