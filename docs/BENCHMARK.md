@@ -1,6 +1,6 @@
 # Benchmark Contract
 
-SkillConverge should not claim that convergence improves agent behavior merely because a canonical skill is shorter, newer, or synthesized from more sources. Improvements need deployment evidence.
+Do not claim that a canonical change improves agent behavior merely because it is shorter, newer, or synthesized from more sources. Improvements need deployment evidence.
 
 This document defines the comparison structure. It intentionally does not invent one universal score, pass threshold, trial count, or model requirement.
 
@@ -10,7 +10,7 @@ For a capability under evaluation, compare whichever of these states are necessa
 
 - **no-skill baseline** — the same agent receives the task without the capability skill;
 - **previous canonical** — the current or prior retained implementation;
-- **raw upstream candidate** — the candidate as authored, when its license and trust boundary allow evaluation;
+- **raw candidate** — the candidate as authored, when its license and trust boundary allow evaluation;
 - **normalized candidate** — provider-specific details removed or scoped before comparison;
 - **proposed canonical** — the smallest retained synthesis after the candidate delta is applied;
 - **specialized variant** — when testing whether a local optimization should remain local instead of entering the shared base.
@@ -59,7 +59,7 @@ A functional improvement that creates unresolved material risk is not eligible f
 
 Did the retained implementation reduce duplicate triggers or redundant behavior while preserving or improving the task contract?
 
-This is the library-level benefit that ordinary single-skill benchmarks miss: a candidate can be individually good and still be rejected because the canonical library already expresses its useful behavior more cleanly.
+A candidate can be individually useful and still be rejected because the canonical library already expresses its useful behavior more cleanly.
 
 ## Fresh deployment rule
 
@@ -67,7 +67,7 @@ When the claim concerns how instructions change agent behavior, prefer evaluatin
 
 The authoring trace may explain why a change was proposed; it is not the proof that the deployed change works.
 
-## Deterministic and model graders
+## Deterministic and judgment graders
 
 Use deterministic graders for claims they can directly settle. Use model or human judgment for irreducibly qualitative claims.
 
@@ -90,12 +90,12 @@ A candidate is allowed to produce no canonical change. Rejection is a valid succ
 
 ## Benchmark suites
 
-The project should accumulate capability-specific suites rather than one artificial master benchmark. A suite may be deterministic, agent-run, rendered/visual, security-focused, or domain-specific.
+Accumulate capability-specific suites rather than one artificial master benchmark. A suite may be deterministic, agent-run, rendered/visual, security-focused, or domain-specific.
 
-A public claim such as "SkillConverge improves X" should point to the exact suite, source versions, agent/model/runtime, task set, and evidence used. Results from one suite do not silently become a quality ranking for unrelated skills.
+Any quality claim should point to the exact suite, source versions, agent/model/runtime, task set, and evidence used. Results from one suite do not silently become a quality ranking for unrelated skills.
 
-## Comparing the project against adjacent routes
+## Evaluation infrastructure
 
-Where practical, use existing evaluators or benchmarks as independent evidence rather than rebuilding every harness. `skillgrade`, SkillEvolver/SkillsBench-style deployment evaluation, repository-grounding checks, or other tools may be adapters into this contract.
+Evaluation tools are replaceable adapters around this contract. Use existing or custom harnesses when they provide relevant independent evidence, but do not import their default thresholds, weights, trial counts, or assumptions as project policy without authority.
 
-The benchmark tool is replaceable. The contract — same task conditions, explicit assertions, baseline comparison, fresh deployment where relevant, and no hidden regression — is the durable part.
+The durable contract is: same task conditions, explicit assertions, baseline comparison, fresh deployment where relevant, and no hidden regression.
