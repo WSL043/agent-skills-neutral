@@ -10,6 +10,64 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 LEVEL_ORDER = {"S": 0, "A": 1}
+STOP_WORDS = frozenset(
+    {
+        "a",
+        "an",
+        "and",
+        "are",
+        "as",
+        "at",
+        "be",
+        "been",
+        "being",
+        "by",
+        "can",
+        "could",
+        "did",
+        "do",
+        "does",
+        "for",
+        "from",
+        "had",
+        "has",
+        "have",
+        "if",
+        "in",
+        "into",
+        "is",
+        "it",
+        "its",
+        "may",
+        "might",
+        "must",
+        "no",
+        "not",
+        "of",
+        "on",
+        "or",
+        "our",
+        "should",
+        "that",
+        "the",
+        "their",
+        "there",
+        "these",
+        "they",
+        "this",
+        "those",
+        "to",
+        "was",
+        "were",
+        "will",
+        "with",
+        "without",
+        "would",
+        "you",
+        "your",
+        "task",
+    }
+)
 ALIASES = {
     "debug": {"diagnose", "bug", "failure"},
     "diagnose": {"debug", "bug", "failure"},
@@ -42,7 +100,7 @@ def tokens(value: str) -> set[str]:
         for token in re.findall(
             r"[a-z0-9][a-z0-9.+#-]*|[\u3400-\u9fff]+", normalize(value)
         )
-        if len(token) > 1
+        if len(token) > 1 and token not in STOP_WORDS
     }
 
 

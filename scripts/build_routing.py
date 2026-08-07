@@ -124,7 +124,7 @@ ROUTING = {
         "support",
         "The user explicitly needs a screenshot, window capture, pixel evidence, or coordinate-preserving image.",
         "Do not select merely because another visual skill will eventually render an artifact.",
-        ["take screenshot", "capture screen", "window capture", "screen region", "pixel coordinates", "截图", "截屏", "窗口截图", "屏幕区域"],
+        ["take screenshot", "take a screenshot", "capture screen", "window capture", "screen region", "pixel coordinates", "截图", "截屏", "窗口截图", "屏幕区域"],
     ),
     "resolve-merge-conflicts": R(
         "domain",

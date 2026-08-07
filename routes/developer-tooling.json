@@ -34,6 +34,7 @@
       "avoid_when": "Do not select merely because another visual skill will eventually render an artifact.",
       "triggers": [
         "take screenshot",
+        "take a screenshot",
         "capture screen",
         "window capture",
         "screen region",
