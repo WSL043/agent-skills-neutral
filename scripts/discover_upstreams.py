@@ -85,24 +85,6 @@ def search_repositories(query: str) -> list[dict[str, Any]]:
     return found
 
 
-def skill_paths(repository: str, default_branch: str) -> tuple[list[str], bool]:
-    owner, name = repository.split("/", 1)
-    ref = urllib.parse.quote(default_branch, safe="")
-    payload, _ = github_get(
-        f"/repos/{owner}/{name}/git/trees/{ref}?recursive=1"
-    )
-    if not isinstance(payload, dict):
-        raise RuntimeError("invalid git tree response")
-    paths = []
-    for item in payload.get("tree", []):
-        if not isinstance(item, dict) or item.get("type") != "blob":
-            continue
-        path = item.get("path")
-        if isinstance(path, str) and Path(path).name.casefold() == "skill.md":
-            paths.append(path)
-    return sorted(set(paths)), bool(payload.get("truncated"))
-
-
 def license_id(item: dict[str, Any]) -> str | None:
     license_data = item.get("license")
     if not isinstance(license_data, dict):
@@ -201,23 +183,15 @@ def discover(queries: list[str]) -> dict[str, Any]:
         default_branch = item.get("default_branch")
         if not isinstance(default_branch, str) or not default_branch:
             continue
-        try:
-            paths, tree_truncated = skill_paths(repository, default_branch)
-        except (urllib.error.URLError, urllib.error.HTTPError, RuntimeError) as exc:
-            errors.append({"repository": repository, "error": str(exc)})
-            continue
-        if not paths:
-            continue
         candidates.append(
             {
                 "repository": repository,
                 "url": item.get("html_url"),
                 "default_branch": default_branch,
                 "license": license_id(item),
-                "skill_paths": paths,
-                "tree_truncated": tree_truncated,
                 "matched_queries": sorted(raw[repository]["queries"]),
-                "review_state": "untrusted-candidate",
+                "review_state": "untrusted-search-candidate",
+                "note": "File-level skill verification is deferred to review to keep discovery metadata-only.",
             }
         )
 
@@ -237,8 +211,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(
         description=(
             "Discover untracked Agent Skill repositories and one-hop GitHub sources "
-            "referenced by tracked upstreams. The command reads metadata, file paths, "
-            "and README URLs only; it does not execute or promote candidate content."
+            "referenced by tracked upstreams. The command reads repository metadata "
+            "and README URLs only; file-level inspection is deferred to review and no "
+            "candidate content is executed or promoted."
         )
     )
     parser.add_argument(
