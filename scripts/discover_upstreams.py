@@ -36,7 +36,7 @@ DEFAULT_QUERIES = [
 def github_get(path: str) -> tuple[Any, dict[str, str]]:
     headers = {
         "Accept": "application/vnd.github+json",
-        "User-Agent": "skillconverge-discovery",
+        "User-Agent": "agent-skills-neutral-discovery",
         "X-GitHub-Api-Version": "2022-11-28",
     }
     token = os.environ.get("GITHUB_TOKEN")
