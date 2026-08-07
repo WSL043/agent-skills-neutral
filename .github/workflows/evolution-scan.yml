@@ -23,7 +23,7 @@ jobs:
         run: mkdir -p artifacts
       - name: Scan tracked upstream deltas
         run: python scripts/scan_upstreams.py --json > artifacts/tracked-upstreams.json
-      - name: Discover untracked skill repositories
+      - name: Discover direct and transitive ecosystem sources
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/discover_upstreams.py --output artifacts/discovered-upstreams.json
@@ -41,7 +41,8 @@ jobs:
               f.write('# Skill ecosystem scan\n\n')
               f.write('Tracked upstream states: ' + ', '.join(f'{k}={v}' for k, v in sorted(states.items())) + '\n\n')
               f.write(f"Untracked repositories containing SKILL.md: {len(discovered['candidates'])}\n\n")
-              f.write('Discovery remains metadata-only. No candidate was executed or promoted.\n')
+              f.write(f"One-hop GitHub repositories referenced by tracked sources: {len(discovered['transitive_references'])}\n\n")
+              f.write('Discovery remains metadata-only. No candidate or referenced project was executed or promoted.\n')
           PY
       - name: Upload scan reports
         uses: actions/upload-artifact@v4
