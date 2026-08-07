@@ -16,15 +16,15 @@ Identify the root mechanism with discriminating evidence before implementing a d
 3. Inspect logs, state transitions, data, timing, dependencies, and recent changes near the first divergence. Prefer evidence from the boundary where the symptom becomes observable over guesses about internals.
 4. State ranked falsifiable hypotheses and the observation that would distinguish each from alternatives.
 5. Run the smallest discriminating experiment; update the hypothesis from evidence rather than layering fixes.
-6. Fix the root cause, add a regression test, and verify focused plus broader behavior.
+6. Fix the root cause, add a regression test when a correct seam exists, and verify focused plus broader behavior.
 
 ## Decision rules
 
 - Use instrumentation before code changes when the failing state is not observable.
-- For flaky behavior, measure timing, concurrency, shared state, retries, and environmental variance across repeated runs.
+- For flaky or probabilistic behavior, determinism is not required. A stable reproduction-rate shift, repeated trace pattern, statistically distinguishable signal, or other repeatable evidence can serve as the feedback loop when it is strong enough to test the causal claim.
 - Label facts, inferences, and blocked checks separately.
 - Treat each hypothesis, instrumentation step, adjacent anomaly, and proposed fix as a claim; pursue it only if it can explain the contract failure or invalidate current proof.
-- If no deterministic, red-capable loop or correct test seam exists, record that limitation and stop short of claiming a proven diagnosis.
+- If no sufficiently discriminating feedback loop or correct test seam exists, record that limitation and narrow the claim rather than presenting a guessed cause as proven.
 
 ## Guardrails
 
@@ -36,7 +36,7 @@ Identify the root mechanism with discriminating evidence before implementing a d
 ## Completion evidence
 
 - The report explains the causal chain and cites the observations that falsified alternatives.
-- A regression test fails before the fix and passes after it, or equivalent repeated evidence is recorded.
+- A regression test fails before the fix and passes after it when a correct test seam exists; otherwise equivalent repeated evidence and the missing seam are recorded explicitly.
 - Broader checks show no introduced regression.
 
 ## Related skills
