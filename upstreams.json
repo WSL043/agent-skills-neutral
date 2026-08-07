@@ -3,7 +3,7 @@
   "policy": "Track upstream repositories by reviewed commit. A commit is advanced only after its delta has been inspected, filtered, and either absorbed into a canonical skill or rejected. Source files are not vendored merely for history.",
   "repositories": [
     {"repository": "anthropics/skills", "last_reviewed_commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb", "focus": ["core", "design", "artifacts"]},
-    {"repository": "emilkowalski/skills", "last_reviewed_commit": "da80201b64de7d608a6dc5f723797ce6c65b692b", "focus": ["design", "motion"]},
+    {"repository": "emilkowalski/skills", "last_reviewed_commit": "de33dbed000212b54400a33767d1e4d03654db2a", "focus": ["design", "motion"]},
     {"repository": "Leonxlnx/taste-skill", "last_reviewed_commit": "e988add20dab0fa97d7a76781c48961c8184288e", "focus": ["design", "aesthetic-calibration"]},
     {"repository": "mattpocock/skills", "last_reviewed_commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c", "focus": ["core", "engineering"]},
     {"repository": "MiniMax-AI/skills", "last_reviewed_commit": "60aaae52bb2af8162732751a4332f62a5fef518b", "focus": ["artifacts", "design"]},
