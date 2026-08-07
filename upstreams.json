@@ -20,6 +20,19 @@
     {"repository": "K-Dense-AI/scientific-agent-skills", "last_reviewed_commit": null, "focus": ["research-reservoir", "scientific-workflows"]},
     {"repository": "supabase/agent-skills", "last_reviewed_commit": null, "focus": ["postgresql", "database"]},
     {"repository": "johnpapa/ai-ready", "last_reviewed_commit": null, "focus": ["repository-guidance", "agent-readiness"]},
-    {"repository": "remotion-dev/skills", "last_reviewed_commit": null, "focus": ["motion", "visual-storytelling", "media-reservoir"]}
+    {"repository": "remotion-dev/skills", "last_reviewed_commit": null, "focus": ["motion", "visual-storytelling", "media-reservoir"]},
+
+    {"repository": "agentskills/agentskills", "last_reviewed_commit": null, "focus": ["skill-standard", "interoperability"]},
+    {"repository": "Evol-ai/SkillCompass", "last_reviewed_commit": null, "focus": ["skill-evaluation", "skill-lifecycle", "usage-feedback", "security"]},
+    {"repository": "mgechev/skillgrade", "last_reviewed_commit": null, "focus": ["skill-evaluation", "benchmarking", "baseline-comparison"]},
+    {"repository": "AgentSkillOS/SkillAnything", "last_reviewed_commit": null, "focus": ["skill-generation", "evaluation", "multi-platform-packaging"]},
+    {"repository": "objectivlabs/reposkillopt", "last_reviewed_commit": null, "focus": ["skill-convergence", "grounded-evaluation", "held-out-validation", "specialization"]},
+    {"repository": "THU-AICosmos/skillevolver", "last_reviewed_commit": null, "focus": ["skill-evolution", "trajectory-learning", "fresh-agent-evaluation"]},
+    {"repository": "AIoT-MLSys-Lab/SkillEvolBench", "last_reviewed_commit": null, "focus": ["skill-evolution-benchmark", "evaluation"]},
+    {"repository": "OSU-NLP-Group/SkillWeaver", "last_reviewed_commit": null, "focus": ["skill-discovery", "practice-distillation", "web-agent-learning"]},
+    {"repository": "cisco-ai-defense/skill-scanner", "last_reviewed_commit": null, "focus": ["skill-supply-chain", "prompt-injection", "behavioral-security"]},
+
+    {"repository": "HKUDS/CLI-Anything", "last_reviewed_commit": null, "focus": ["transitive-source", "capability-extraction", "tool-interface-generation"]},
+    {"repository": "DazhuangJammy/DazhuangSkill-Creator", "last_reviewed_commit": null, "focus": ["transitive-source", "skill-authoring", "project-structure"]}
   ]
 }
