@@ -16,7 +16,7 @@ Produce a focused, portable skill whose behavior is more reliable than an unstru
 3. Put only name and description in core frontmatter. Put concise trigger branches in the description, and make each pointer identify both its target and the condition for reaching it.
 4. Write the minimum decision workflow in SKILL.md. Move branch-specific detail to references and deterministic repetition to scripts; let repository files, config, and command help remain the source of truth for facts they expose.
 5. Define assertions before reading evaluation outputs. Compare representative runs with the candidate skill against the relevant baseline: no skill for a new capability, or the current canonical skill for an improvement.
-6. Give every step a clear, checkable completion criterion and enough demand to account for all material files, cases, or claims. Revise only instructions linked to observed gaps, then rerun affected and regression cases.
+6. Give every step a clear, checkable completion criterion and enough demand to account for every file, case, or claim material to the skill's stated contract. Revise only instructions linked to observed gaps, then rerun affected and regression cases.
 7. Run structural validation and inspect every retained artifact before publishing.
 
 ## Decision rules
@@ -27,6 +27,7 @@ Produce a focused, portable skill whose behavior is more reliable than an unstru
 - A newer, longer, more popular, or more opinionated upstream implementation is a candidate, not authority. Keep only the behavior that produces a demonstrated improvement without creating overlapping triggers or unjustified constraints.
 - When a rule performs well only in one style, framework, model family, or operating environment, scope it there instead of promoting it to universal guidance.
 - Treat the environment as authoritative for discoverable commands, paths, versions, and configuration; document only conventions, rationale, and gotchas that cannot be looked up reliably.
+- Negative triggers are hard vetoes, so reserve them for genuinely incompatible intent. Do not use generic neighboring verbs or phases as negative triggers when a valid request can naturally contain both concepts; add mixed-intent regression coverage for important veto boundaries.
 
 ## Guardrails
 
