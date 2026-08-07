@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import datetime as dt
 import json
 import os
@@ -9,6 +10,7 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +19,9 @@ ROOT = Path(__file__).resolve().parents[1]
 STATE_PATH = ROOT / "upstreams.json"
 SELF_REPOSITORY = "WSL043/agent-skills-neutral"
 API_ROOT = "https://api.github.com"
+GITHUB_REPO_URL_RE = re.compile(
+    r"https?://github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)"
+)
 
 # These are discovery lenses, not quality gates. Add or revise lenses as the
 # ecosystem vocabulary changes; acceptance happens later in the ingestion loop.
@@ -108,6 +113,64 @@ def license_id(item: dict[str, Any]) -> str | None:
     return value
 
 
+def readme_text(repository: str) -> str | None:
+    owner, name = repository.split("/", 1)
+    payload, _ = github_get(f"/repos/{owner}/{name}/readme")
+    if not isinstance(payload, dict):
+        return None
+    content = payload.get("content")
+    encoding = payload.get("encoding")
+    if not isinstance(content, str) or encoding != "base64":
+        return None
+    try:
+        return base64.b64decode(content).decode("utf-8", errors="replace")
+    except (ValueError, UnicodeError):
+        return None
+
+
+def normalize_repo_reference(owner: str, name: str) -> str:
+    cleaned = name.rstrip(".,);]}>\"").removesuffix(".git")
+    return f"{owner}/{cleaned}"
+
+
+def referenced_repositories(
+    repositories: set[str],
+    errors: list[dict[str, str]],
+) -> list[dict[str, Any]]:
+    tracked_folded = {repository.casefold() for repository in repositories}
+    references: dict[str, set[str]] = defaultdict(set)
+
+    # This is intentionally a one-hop metadata crawl. It reads README text only
+    # to extract GitHub repository URLs; it never treats the README as agent
+    # instructions and never executes referenced content.
+    for source in sorted(repositories, key=str.casefold):
+        try:
+            text = readme_text(source)
+        except (urllib.error.URLError, urllib.error.HTTPError, RuntimeError) as exc:
+            errors.append({"repository": source, "readme_error": str(exc)})
+            continue
+        if not text:
+            continue
+        for owner, name in GITHUB_REPO_URL_RE.findall(text):
+            target = normalize_repo_reference(owner, name)
+            if target.casefold() == SELF_REPOSITORY.casefold():
+                continue
+            if target.casefold() in tracked_folded:
+                continue
+            references[target].add(source)
+
+    return [
+        {
+            "repository": repository,
+            "referenced_by": sorted(sources, key=str.casefold),
+            "review_state": "untrusted-transitive-reference",
+        }
+        for repository, sources in sorted(
+            references.items(), key=lambda item: item[0].casefold()
+        )
+    ]
+
+
 def discover(queries: list[str]) -> dict[str, Any]:
     tracked = tracked_repositories()
     raw: dict[str, dict[str, Any]] = {}
@@ -158,11 +221,14 @@ def discover(queries: list[str]) -> dict[str, Any]:
             }
         )
 
+    transitive = referenced_repositories(tracked, errors)
+
     return {
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
         "queries": queries,
         "tracked_count": len(tracked),
         "candidates": candidates,
+        "transitive_references": transitive,
         "errors": errors,
     }
 
@@ -170,9 +236,9 @@ def discover(queries: list[str]) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser(
         description=(
-            "Discover untracked GitHub repositories that contain SKILL.md files. "
-            "The command reads metadata and file paths only; it does not execute or "
-            "promote candidate content."
+            "Discover untracked Agent Skill repositories and one-hop GitHub sources "
+            "referenced by tracked upstreams. The command reads metadata, file paths, "
+            "and README URLs only; it does not execute or promote candidate content."
         )
     )
     parser.add_argument(
