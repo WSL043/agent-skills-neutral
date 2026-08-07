@@ -2,9 +2,19 @@
 
 The library is a distillation layer, not an archive. Upstream coverage may grow without bound; the canonical skill set should grow only when a genuinely distinct reusable capability survives comparison with what already exists.
 
+## Source discovery
+
+Continuous evolution has two loops: discover new sources and inspect changes from known sources.
+
+Use `discover-agent-skills`, GitHub/Agent Skills registries, official vendor skill repositories, high-quality community repositories, and source links found while reviewing existing upstreams to discover repositories not yet tracked. Reputation and popularity may help prioritize inspection but never grant acceptance.
+
+A promising new repository enters `upstreams.json` with `last_reviewed_commit: null`. This means it still requires a first review; adding it to the watch pool does not mean any of its skills have been accepted. The watch pool may expand freely because it does not enter normal agent context or routing.
+
+Do not add obvious mirrors, generated spam, abandoned placeholders, or repositories with no inspectable skill implementation merely to increase source count.
+
 ## State
 
-`upstreams.json` records the last commit whose delta was fully reviewed for each tracked repository. `provenance.json` records only sources that actually contributed to retained canonical skills. Upstream files are not copied merely to preserve history.
+`upstreams.json` records the last commit whose relevant delta was fully reviewed for each tracked repository. `provenance.json` records only sources that actually contributed to retained canonical skills. Upstream files are not copied merely to preserve history.
 
 Run:
 
@@ -18,7 +28,7 @@ The scanner is read-only. A changed or unreviewed repository remains pending unt
 
 ## Ingestion loop
 
-1. Scan only the delta after `last_reviewed_commit` when one exists.
+1. Scan only the delta after `last_reviewed_commit` when one exists; do a first relevant review when it is null.
 2. Inspect each changed candidate's complete instructions, references needed to understand its behavior, bundled scripts, dependencies, license, and trust boundary before using it.
 3. Translate the candidate into capability, trigger, decision logic, evidence, and failure modes. Ignore naming differences.
 4. Compare it against existing canonical skills before proposing a new one.
