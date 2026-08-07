@@ -2,12 +2,10 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
-import sys
-import urllib.error
-import urllib.parse
-import urllib.request
+import shutil
+import subprocess
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,60 +13,58 @@ STATE_PATH = ROOT / "upstreams.json"
 SHA_RE = re.compile(r"^[0-9a-f]{40}$")
 
 
-def github_get(path: str) -> object:
-    url = f"https://api.github.com{path}"
-    headers = {
-        "Accept": "application/vnd.github+json",
-        "User-Agent": "agent-skills-neutral-upstream-scanner",
-        "X-GitHub-Api-Version": "2022-11-28",
-    }
-    token = os.environ.get("GITHUB_TOKEN")
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
-    request = urllib.request.Request(url, headers=headers)
-    with urllib.request.urlopen(request, timeout=30) as response:
-        return json.load(response)
+def git(*args: str, cwd: Path | None = None) -> str:
+    completed = subprocess.run(
+        ["git", *args],
+        cwd=cwd,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return completed.stdout.strip()
+
+
+def repo_url(repository: str) -> str:
+    return f"https://github.com/{repository}.git"
 
 
 def repo_head(repository: str) -> str:
-    owner, name = repository.split("/", 1)
-    payload = github_get(f"/repos/{owner}/{name}/commits?per_page=1")
-    if not isinstance(payload, list) or not payload:
-        raise RuntimeError("no commits returned")
-    sha = payload[0].get("sha")
-    if not isinstance(sha, str) or not SHA_RE.fullmatch(sha):
-        raise RuntimeError("invalid head sha")
+    output = git("ls-remote", repo_url(repository), "HEAD")
+    if not output:
+        raise RuntimeError("remote HEAD not found")
+    sha = output.split()[0]
+    if not SHA_RE.fullmatch(sha):
+        raise RuntimeError("remote HEAD is not a full commit SHA")
     return sha
 
 
 def compare(repository: str, base: str, head: str) -> dict[str, object]:
-    owner, name = repository.split("/", 1)
-    base_q = urllib.parse.quote(base, safe="")
-    head_q = urllib.parse.quote(head, safe="")
-    payload = github_get(f"/repos/{owner}/{name}/compare/{base_q}...{head_q}")
-    if not isinstance(payload, dict):
-        raise RuntimeError("invalid compare response")
+    with tempfile.TemporaryDirectory(prefix="agent-skills-upstream-") as temp:
+        work = Path(temp)
+        git("init", "-q", cwd=work)
+        git("remote", "add", "origin", repo_url(repository), cwd=work)
+        git("fetch", "-q", "--no-tags", "--depth=1", "origin", base, cwd=work)
+        git("fetch", "-q", "--no-tags", "--depth=1", "origin", head, cwd=work)
+        output = git("diff", "--name-status", base, head, "--", cwd=work)
 
-    skills: list[dict[str, str]] = []
-    guidance: list[dict[str, str]] = []
-    for file in payload.get("files", []):
-        if not isinstance(file, dict):
+    skill_changes: list[dict[str, str]] = []
+    guidance_changes: list[dict[str, str]] = []
+    for line in output.splitlines():
+        if not line.strip():
             continue
-        path = str(file.get("filename", ""))
-        status = str(file.get("status", ""))
-        lowered = path.lower()
+        fields = line.split("\t")
+        status = fields[0]
+        path = fields[-1]
         record = {"path": path, "status": status}
+        lowered = path.lower()
         if lowered.endswith("skill.md"):
-            skills.append(record)
+            skill_changes.append(record)
         elif lowered.endswith(("agents.md", "claude.md", "gemini.md", "copilot-instructions.md")):
-            guidance.append(record)
+            guidance_changes.append(record)
 
     return {
-        "status": payload.get("status"),
-        "ahead_by": payload.get("ahead_by"),
-        "behind_by": payload.get("behind_by"),
-        "skill_changes": skills,
-        "guidance_changes": guidance,
+        "skill_changes": skill_changes,
+        "guidance_changes": guidance_changes,
     }
 
 
@@ -80,6 +76,9 @@ def load_state() -> dict[str, object]:
 
 
 def scan(selected: set[str] | None) -> list[dict[str, object]]:
+    if shutil.which("git") is None:
+        raise RuntimeError("git is required to scan upstream repositories")
+
     data = load_state()
     results: list[dict[str, object]] = []
 
@@ -103,9 +102,12 @@ def scan(selected: set[str] | None) -> list[dict[str, object]]:
             else:
                 result["state"] = "changed"
                 result.update(compare(repository, reviewed, head))
-        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, RuntimeError) as exc:
+        except (subprocess.CalledProcessError, RuntimeError) as exc:
             result["state"] = "error"
-            result["error"] = str(exc)
+            if isinstance(exc, subprocess.CalledProcessError):
+                result["error"] = (exc.stderr or str(exc)).strip()
+            else:
+                result["error"] = str(exc)
         results.append(result)
     return results
 
