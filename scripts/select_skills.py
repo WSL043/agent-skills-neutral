@@ -39,7 +39,9 @@ def normalize(value: str) -> str:
 def tokens(value: str) -> set[str]:
     return {
         token
-        for token in re.findall(r"[a-z0-9][a-z0-9.+#-]*|[\u3400-\u9fff]+", normalize(value))
+        for token in re.findall(
+            r"[a-z0-9][a-z0-9.+#-]*|[\u3400-\u9fff]+", normalize(value)
+        )
         if len(token) > 1
     }
 
@@ -55,7 +57,9 @@ def load_rules(root: Path = ROOT) -> list[dict[str, Any]]:
     rules: list[dict[str, Any]] = []
     index = json.loads((root / "index.json").read_text(encoding="utf-8"))
     for category in index["categories"]:
-        route = json.loads((root / category["route_file"]).read_text(encoding="utf-8"))
+        route = json.loads(
+            (root / category["route_file"]).read_text(encoding="utf-8")
+        )
         for item in route["skills"]:
             rules.append(dict(item, category=route["category"]))
     return rules
@@ -69,6 +73,11 @@ def score_rule(query: str, rule: dict[str, Any]) -> dict[str, Any] | None:
     reasons: list[str] = []
     explicit_hits = 0
 
+    for phrase in rule["negative_triggers"]:
+        normalized_phrase = normalize(phrase)
+        if normalized_phrase and normalized_phrase in normalized_query:
+            return None
+
     if name_phrase in normalized_query or rule["name"] in normalized_query:
         score += 24
         explicit_hits += 1
@@ -80,12 +89,6 @@ def score_rule(query: str, rule: dict[str, Any]) -> dict[str, Any] | None:
             score += 12 + min(4, len(normalized_phrase.split()))
             explicit_hits += 1
             reasons.append(f"trigger:{phrase}")
-
-    for phrase in rule["negative_triggers"]:
-        normalized_phrase = normalize(phrase)
-        if normalized_phrase and normalized_phrase in normalized_query:
-            score -= 24
-            reasons.append(f"negative:{phrase}")
 
     route_text = " ".join(
         [rule["name"], rule["category"], rule["choose_when"], *rule["triggers"]]
@@ -99,7 +102,7 @@ def score_rule(query: str, rule: dict[str, Any]) -> dict[str, Any] | None:
         return None
     if rule.get("explicit_only") and explicit_hits == 0:
         return None
-    if score < 3:
+    if explicit_hits == 0 and not overlap:
         return None
 
     return {
@@ -117,30 +120,56 @@ def score_rule(query: str, rule: dict[str, Any]) -> dict[str, Any] | None:
     }
 
 
-def route_query(query: str, root: Path = ROOT, alternative_limit: int = 3) -> dict[str, Any]:
-    candidates = [result for rule in load_rules(root) if (result := score_rule(query, rule))]
-    candidates.sort(key=lambda item: (-item["score"], LEVEL_ORDER[item["level"]], item["name"]))
+def route_query(
+    query: str,
+    root: Path = ROOT,
+    alternative_limit: int | None = None,
+) -> dict[str, Any]:
+    candidates = [
+        result
+        for rule in load_rules(root)
+        if (result := score_rule(query, rule))
+    ]
+    candidates.sort(
+        key=lambda item: (
+            -item["score"],
+            LEVEL_ORDER[item["level"]],
+            item["name"],
+        )
+    )
 
     primary_pool = [
-        item for item in candidates if item["kind"] != "support" or item["explicit"]
+        item
+        for item in candidates
+        if item["kind"] != "support" or item["explicit"]
     ]
-    primary = primary_pool[0] if primary_pool else (candidates[0] if candidates else None)
+    primary = (
+        primary_pool[0]
+        if primary_pool
+        else (candidates[0] if candidates else None)
+    )
 
     supports = [
         item
         for item in candidates
-        if item["kind"] == "support" and item is not primary and item["score"] >= 4
+        if item["kind"] == "support" and item is not primary
     ][:1]
+
     excluded_names = {item["name"] for item in supports}
     if primary:
         excluded_names.add(primary["name"])
-    alternatives = [item for item in candidates if item["name"] not in excluded_names][
-        : max(0, alternative_limit)
+    alternatives = [
+        item for item in candidates if item["name"] not in excluded_names
     ]
+    if alternative_limit is not None:
+        alternatives = alternatives[: max(0, alternative_limit)]
 
     warnings: list[str] = []
     if not primary:
-        warnings.append("No confident route. Inspect index.json and one likely category route file; do not load every skill.")
+        warnings.append(
+            "No confident route. Inspect index.json and one likely category route file; "
+            "do not load every skill."
+        )
 
     return {
         "query": query,
@@ -154,25 +183,42 @@ def route_query(query: str, root: Path = ROOT, alternative_limit: int = 3) -> di
 def print_text(result: dict[str, Any]) -> None:
     primary = result["primary"]
     if primary:
-        print(f"PRIMARY  [{primary['level']}] {primary['name']}  score={primary['score']}")
+        print(
+            f"PRIMARY  [{primary['level']}] {primary['name']}  "
+            f"score={primary['score']}"
+        )
         print(f"         {primary['path']}")
         print(f"         matched: {'; '.join(primary['matched'])}")
     else:
         print("PRIMARY  none")
 
     for item in result["support"]:
-        print(f"SUPPORT  [{item['level']}] {item['name']}  score={item['score']}")
+        print(
+            f"SUPPORT  [{item['level']}] {item['name']}  score={item['score']}"
+        )
         print(f"         {item['path']}")
     for item in result["alternatives"]:
-        print(f"ALT      [{item['level']}] {item['name']}  score={item['score']}")
+        print(
+            f"ALT      [{item['level']}] {item['name']}  score={item['score']}"
+        )
     for warning in result["warnings"]:
         print(f"WARNING  {warning}")
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Route a task to the smallest matching Agent Skill set")
-    parser.add_argument("query", help="Natural-language task or capability query (English or Chinese)")
-    parser.add_argument("--alternatives", type=int, default=3)
+    parser = argparse.ArgumentParser(
+        description="Route a task to the smallest matching Agent Skill set"
+    )
+    parser.add_argument(
+        "query",
+        help="Natural-language task or capability query (English or Chinese)",
+    )
+    parser.add_argument(
+        "--alternatives",
+        type=int,
+        default=None,
+        help="Optional user-selected cap for displayed fallback routes.",
+    )
     parser.add_argument("--json", action="store_true", dest="as_json")
     args = parser.parse_args()
     result = route_query(args.query, alternative_limit=args.alternatives)
