@@ -1,6 +1,6 @@
 ---
 name: discover-agent-skills
-description: "Discover reusable Agent Skills and adjacent skill-system implementations from local catalogs or remote repositories, assess compatibility and trust, and recommend the smallest suitable set or evolution candidate. Use when an agent needs a capability that may already exist or when comparing installable skills, evaluators, generators, optimizers, or related skill infrastructure."
+description: "Discover reusable Agent Skills from local catalogs or remote repositories, assess compatibility and trust, and recommend the smallest suitable set. Use when an agent needs a capability that may already exist or when comparing installable skills."
 ---
 
 # Discover Agent Skills
