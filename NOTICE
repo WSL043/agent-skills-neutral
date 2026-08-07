@@ -1,0 +1,18 @@
+SkillConverge
+Copyright 2026 WSL043
+
+This repository contains original vendor-neutral syntheses and supporting
+maintenance tooling released under the Apache License, Version 2.0.
+
+The project studies public Agent Skill implementations but does not treat public
+visibility as permission to copy them. Exact source repositories, immutable
+commits, and source-specific license/adaptation notes for material that actually
+contributed to retained canonical skills are recorded in provenance.json.
+
+Upstream prose, scripts, templates, assets, and other implementation material
+are not vendored merely for archival or comparison purposes. Their original
+licenses and trademarks remain with their respective owners.
+
+A repository listed only in upstreams.json is an untrusted review source, not a
+bundled dependency, endorsement, accepted contribution, or part of the licensed
+Work unless retained material is separately recorded in provenance.json.
