@@ -21,6 +21,8 @@
     {"query": "create a Jupyter notebook", "primary": "work-with-jupyter-notebook"},
     {"query": "design UI animation", "primary": "design-motion"},
     {"query": "design a frontend page", "primary": "design-frontend"},
+    {"query": "audit this UI aesthetic and remove generic AI-looking design", "primary": "design-frontend"},
+    {"query": "这个界面AI味很重，帮我做审美优化", "primary": "design-frontend"},
     {"query": "review this OpenAPI contract before implementation", "primary": "review-api-design"},
     {"query": "把当前任务状态保存成 handoff 给下个 agent", "primary": "handoff-task-context"},
     {"query": "add structured logs metrics traces and correlation IDs", "primary": "instrument-observability"},
