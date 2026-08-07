@@ -35,7 +35,7 @@ Treat the task contract as the requested outcome plus applicable repository, tec
 ## Evolution protocol
 
 - Treat this repository as a distillation layer, not an archive. Upstream coverage may expand freely; canonical skills expand only for distinct reusable capabilities that survive comparison with existing coverage.
-- Before a broad library refresh, run `python scripts/scan_upstreams.py --json` and inspect only changed or unreviewed upstreams. Follow `docs/EVOLUTION.md` for classification and evidence rules.
+- Before a broad library refresh, run `python scripts/scan_upstreams.py --json` and inspect only changed or unreviewed upstreams. Also use `discover-agent-skills`, public registries, official skill repositories, and links found during review to discover promising repositories not yet tracked; add them to `upstreams.json` with a null reviewed commit before their first review.
 - Prefer strengthening an existing canonical skill over adding an overlapping trigger. A new source, newer date, larger file, or famous author is not evidence of superiority.
 - Advance an upstream's `last_reviewed_commit` only after its relevant delta has been fully classified. Do not save rejected upstream prose merely as history.
 - When a retained change comes from an upstream implementation, preserve only the source pointer required by provenance; never copy source process history into the skill body.
