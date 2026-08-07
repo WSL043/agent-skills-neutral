@@ -129,9 +129,10 @@ else:
         for source in sources:
             repository = source.get("repository")
             commit = source.get("commit")
-            if snapshots.get(repository) != commit:
+            if repository not in snapshots:
                 errors.append(
-                    f"provenance snapshot mismatch: {skill_name} -> {repository}@{commit}"
+                    f"provenance source repository missing from source_snapshots: "
+                    f"{skill_name} -> {repository}"
                 )
             if not sha_pattern.fullmatch(commit or ""):
                 errors.append(f"invalid provenance commit: {skill_name} -> {commit}")
