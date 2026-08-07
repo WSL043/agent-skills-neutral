@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "policy": "Track upstream repositories by reviewed commit. A commit is advanced only after its delta has been inspected, filtered, and either absorbed into a canonical skill or rejected. Source files are not vendored merely for history.",
+  "repositories": [
+    {"repository": "anthropics/skills", "last_reviewed_commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb", "focus": ["core", "design", "artifacts"]},
+    {"repository": "emilkowalski/skills", "last_reviewed_commit": "da80201b64de7d608a6dc5f723797ce6c65b692b", "focus": ["design", "motion"]},
+    {"repository": "Leonxlnx/taste-skill", "last_reviewed_commit": "e988add20dab0fa97d7a76781c48961c8184288e", "focus": ["design", "aesthetic-calibration"]},
+    {"repository": "mattpocock/skills", "last_reviewed_commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c", "focus": ["core", "engineering"]},
+    {"repository": "MiniMax-AI/skills", "last_reviewed_commit": "60aaae52bb2af8162732751a4332f62a5fef518b", "focus": ["artifacts", "design"]},
+    {"repository": "muratcankoylan/Agent-Skills-for-Context-Engineering", "last_reviewed_commit": "a1841d1ea3dadc70098d94b60fa7a4ab8875dc50", "focus": ["context", "agent-workflows"]},
+    {"repository": "obra/superpowers", "last_reviewed_commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1", "focus": ["core", "engineering"]},
+    {"repository": "openai/skills", "last_reviewed_commit": "49f948faa9258a0c61caceaf225e179651397431", "focus": ["core", "artifacts", "tooling"]},
+    {"repository": "psenger/ai-agent-skills", "last_reviewed_commit": "96716a643138665b4e335f836fb661f126944644", "focus": ["general-reservoir"]},
+    {"repository": "addyosmani/agent-skills", "last_reviewed_commit": "bdf76c7c6b7b3b3e01bb15c9fdc42ac5351855c1", "focus": ["core", "engineering", "quality"]},
+    {"repository": "vercel-labs/skills", "last_reviewed_commit": "1164afa5f0e21ebd01e6fc11249759353f494ad1", "focus": ["skill-tooling"]},
+    {"repository": "vercel-labs/agent-skills", "last_reviewed_commit": null, "focus": ["frontend", "react", "design-quality"]},
+    {"repository": "vercel-labs/web-interface-guidelines", "last_reviewed_commit": null, "focus": ["frontend", "interaction-quality", "accessibility"]},
+    {"repository": "google/skills", "last_reviewed_commit": null, "focus": ["agent-evaluation", "cloud-reservoir"]},
+    {"repository": "github/awesome-copilot", "last_reviewed_commit": null, "focus": ["general-reservoir", "evidence", "agent-security"]},
+    {"repository": "K-Dense-AI/scientific-agent-skills", "last_reviewed_commit": null, "focus": ["research-reservoir", "scientific-workflows"]},
+    {"repository": "supabase/agent-skills", "last_reviewed_commit": null, "focus": ["postgresql", "database"]},
+    {"repository": "johnpapa/ai-ready", "last_reviewed_commit": null, "focus": ["repository-guidance", "agent-readiness"]},
+    {"repository": "remotion-dev/skills", "last_reviewed_commit": null, "focus": ["motion", "visual-storytelling", "media-reservoir"]}
+  ]
+}
