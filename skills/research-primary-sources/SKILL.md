@@ -14,7 +14,7 @@ Deliver a synthesis whose important claims are traceable to current, authoritati
 1. Define the question, decision context, freshness requirement, jurisdictions/versions, and what would change the answer.
 2. List candidate primary sources such as official documentation, specifications, source code, datasets, filings, or papers.
 3. Search broadly for discovery, then open and read the sources that directly support each material claim.
-4. Record source date/version, scope, exact support, contradictions, and inaccessible checks.
+4. Record source date/version, scope, exact support, contradictions, qualifying differences, and inaccessible or missing checks. Structure each material claim around evidence that supports, contradicts, qualifies, or remains missing.
 5. Triangulate unstable or high-impact claims and explain any inference from multiple sources.
 6. Write the answer with citations next to claims, bounded quotations, and explicit uncertainty.
 
@@ -22,6 +22,7 @@ Deliver a synthesis whose important claims are traceable to current, authoritati
 
 - Prefer current official material over summaries; use secondary sources mainly to find or contextualize primary evidence.
 - Use source code or executable tests when documentation and implementation disagree, while noting version scope.
+- Preserve counterevidence and scope differences instead of collapsing them into a single verdict; label synthesis or inference explicitly.
 
 ## Guardrails
 

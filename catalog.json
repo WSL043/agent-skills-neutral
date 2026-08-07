@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "library": "agent-skills-neutral",
-  "generated_on": "2026-08-05",
+  "generated_on": "2026-08-08",
   "selection": {
     "S": "First-wave core workflow; keep one canonical trigger.",
     "A": "High-value task-domain module; load on demand.",
@@ -34,6 +34,21 @@
       ],
       "has_variants_reference": false,
       "merge_treatment": "standalone"
+    },
+    {
+      "name": "evaluate-agent",
+      "path": "skills/evaluate-agent",
+      "category": "agent-skill-ecosystem",
+      "reference_level": "A",
+      "recommended_use": "高参考价值；按需评估 Agent、Skill 或工具工作流",
+      "description": "Evaluate an agent, skill, workflow, or tool-using system with explicit claims, repeatable tasks, traceable graders, and failure analysis. Use when comparing agent behavior, validating a skill, or building an evaluation loop.",
+      "related": [
+        "create-agent-skill",
+        "discover-agent-skills",
+        "verify-completion"
+      ],
+      "has_variants_reference": false,
+      "merge_treatment": "standalone-gap-fill"
     },
     {
       "name": "build-mcp-server",
@@ -148,6 +163,21 @@
       "merge_treatment": "keep-editing-strategy-variants"
     },
     {
+      "name": "work-with-postgresql",
+      "path": "skills/work-with-postgresql",
+      "category": "database-data",
+      "reference_level": "A",
+      "recommended_use": "高参考价值；按需处理 PostgreSQL 数据库和查询任务",
+      "description": "Design, query, migrate, secure, or diagnose PostgreSQL systems using runtime, schema, workload, and evidence-aware decisions. Use when PostgreSQL tables, queries, indexes, transactions, roles, row policies, migrations, or database performance are central.",
+      "related": [
+        "migrate-system-safely",
+        "diagnose-software",
+        "review-security-practices"
+      ],
+      "has_variants_reference": false,
+      "merge_treatment": "standalone-gap-fill"
+    },
+    {
       "name": "build-cli",
       "path": "skills/build-cli",
       "category": "developer-tooling",
@@ -213,6 +243,21 @@
       "merge_treatment": "standalone"
     },
     {
+      "name": "prepare-repository-for-agents",
+      "path": "skills/prepare-repository-for-agents",
+      "category": "developer-tooling",
+      "reference_level": "A",
+      "recommended_use": "高参考价值；按需审查并准备仓库的 Agent 工作流",
+      "description": "Assess and prepare a repository for reliable agent contributions by discovering real conventions, tests, CI, instructions, and missing workflow assets. Use when making a repository agent-ready or reducing contributor and review friction.",
+      "related": [
+        "create-agent-skill",
+        "plan-implementation",
+        "verify-completion"
+      ],
+      "has_variants_reference": false,
+      "merge_treatment": "standalone-gap-fill"
+    },
+    {
       "name": "develop-with-tdd",
       "path": "skills/develop-with-tdd",
       "category": "implementation-quality",
@@ -239,6 +284,36 @@
       ],
       "has_variants_reference": true,
       "merge_treatment": "merge-same-workflow"
+    },
+    {
+      "name": "optimize-performance",
+      "path": "skills/optimize-performance",
+      "category": "implementation-quality",
+      "reference_level": "A",
+      "recommended_use": "高参考价值；按需进行测量驱动的性能优化",
+      "description": "Improve software performance through measurement, bottleneck isolation, targeted changes, and remeasurement. Use for slow code, latency or throughput regressions, resource waste, or explicit performance optimization.",
+      "related": [
+        "diagnose-software",
+        "instrument-observability",
+        "verify-completion"
+      ],
+      "has_variants_reference": false,
+      "merge_treatment": "standalone-gap-fill"
+    },
+    {
+      "name": "simplify-code",
+      "path": "skills/simplify-code",
+      "category": "implementation-quality",
+      "reference_level": "A",
+      "recommended_use": "高参考价值；按需减少实现复杂度并保持行为不变",
+      "description": "Simplify existing code while preserving its observable behavior, interfaces, and operational contracts. Use when reducing duplication, nesting, incidental complexity, or confusing structure in an existing implementation.",
+      "related": [
+        "develop-with-tdd",
+        "review-code",
+        "verify-completion"
+      ],
+      "has_variants_reference": false,
+      "merge_treatment": "standalone-gap-fill"
     },
     {
       "name": "review-code",
@@ -393,6 +468,21 @@
       ],
       "has_variants_reference": false,
       "merge_treatment": "standalone"
+    },
+    {
+      "name": "formulate-scientific-hypotheses",
+      "path": "skills/formulate-scientific-hypotheses",
+      "category": "research-communication",
+      "reference_level": "A",
+      "recommended_use": "高参考价值；按需组织可证伪的研究假设和分析计划",
+      "description": "Turn observations and evidence into competing, falsifiable scientific hypotheses with discriminating predictions and an analysis plan. Use for research questions, mechanism proposals, causal explanations, or experiment design.",
+      "related": [
+        "research-primary-sources",
+        "coauthor-documents",
+        "verify-completion"
+      ],
+      "has_variants_reference": false,
+      "merge_treatment": "standalone-gap-fill"
     },
     {
       "name": "instrument-observability",

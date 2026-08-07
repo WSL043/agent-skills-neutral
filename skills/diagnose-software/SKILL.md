@@ -11,10 +11,10 @@ Identify the root mechanism with discriminating evidence before implementing a d
 
 ## Workflow
 
-1. Reproduce the failure with exact inputs, environment, observed result, expected result, and frequency.
-2. Minimize the reproducer while preserving the failure and establish the last known-good boundary when possible.
-3. Inspect logs, state transitions, data, timing, dependencies, and recent changes near the first divergence.
-4. State one falsifiable hypothesis and the observation that would distinguish it from alternatives.
+1. Build a tight feedback loop that exercises the real failing path and asserts the user's exact symptom: inputs, environment, observed result, expected result, and frequency. Redact secrets before retaining commands or artifacts.
+2. Reproduce the failure, then minimize the reproducer one element at a time while preserving the same symptom. Establish the last known-good boundary when possible.
+3. Inspect logs, state transitions, data, timing, dependencies, and recent changes near the first divergence. Prefer evidence from the boundary where the symptom becomes observable over guesses about internals.
+4. State ranked falsifiable hypotheses and the observation that would distinguish each from alternatives.
 5. Run the smallest discriminating experiment; update the hypothesis from evidence rather than layering fixes.
 6. Fix the root cause, add a regression test, and verify focused plus broader behavior.
 
@@ -24,6 +24,7 @@ Identify the root mechanism with discriminating evidence before implementing a d
 - For flaky behavior, measure timing, concurrency, shared state, retries, and environmental variance across repeated runs.
 - Label facts, inferences, and blocked checks separately.
 - Treat each hypothesis, instrumentation step, adjacent anomaly, and proposed fix as a claim; pursue it only if it can explain the contract failure or invalidate current proof.
+- If no deterministic, red-capable loop or correct test seam exists, record that limitation and stop short of claiming a proven diagnosis.
 
 ## Guardrails
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Simplify Code"
+  short_description: "Preserve behavior while reducing incidental complexity"
+  default_prompt: "Use $simplify-code to make the scoped implementation clearer while preserving its observable contract."

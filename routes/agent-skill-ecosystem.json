@@ -57,6 +57,40 @@
       "name": "discover-agent-skills",
       "level": "A",
       "path": "skills/discover-agent-skills/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "The task evaluates an agent, skill, workflow, or tool-using system with explicit tasks, graders, traces, or failure analysis.",
+      "avoid_when": "Do not use for ordinary product or model evaluation without an agent or workflow behavior contract.",
+      "triggers": [
+        "evaluate agent",
+        "agent evaluation",
+        "evaluate skill",
+        "skill evaluation",
+        "evaluation loop",
+        "benchmark agent",
+        "compare two versions of this agent",
+        "task success and tool use",
+        "baseline and candidate eval",
+        "评估 agent",
+        "评估技能",
+        "智能体评估",
+        "评测 agent",
+        "评测技能"
+      ],
+      "negative_triggers": [
+        "model weights",
+        "普通模型评估",
+        "create agent skill",
+        "create a new agent skill",
+        "创建技能",
+        "创建新的 agent skill"
+      ],
+      "explicit_only": false,
+      "name": "evaluate-agent",
+      "level": "A",
+      "path": "skills/evaluate-agent/SKILL.md"
     }
   ]
 }

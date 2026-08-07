@@ -11,12 +11,12 @@ Produce a focused, portable skill whose behavior is more reliable than an unstru
 
 ## Workflow
 
-1. Collect representative positive trigger prompts, boundary cases, and at least one prompt that must not trigger the skill. Add cases because they represent a materially different failure mode, not to satisfy an invented count.
+1. Collect representative positive triggers, boundary cases, and at least one non-trigger. Add a case only for a distinct failure mode, and write the branch conditions that decide whether linked references must be read.
 2. Choose the smallest reusable unit and a verb-led kebab-case name; split unrelated outcomes into separate skills.
-3. Put only name and description in core frontmatter. Put trigger conditions in description, not in a body section.
-4. Write the minimum decision workflow in SKILL.md. Move detailed variants to references and deterministic repetition to scripts.
+3. Put only name and description in core frontmatter. Put concise trigger branches in the description, and make each pointer identify both its target and the condition for reaching it.
+4. Write the minimum decision workflow in SKILL.md. Move branch-specific detail to references and deterministic repetition to scripts; let repository files, config, and command help remain the source of truth for facts they expose.
 5. Define assertions before reading evaluation outputs. Compare representative runs with the candidate skill against the relevant baseline: no skill for a new capability, or the current canonical skill for an improvement.
-6. Revise only instructions linked to observed gaps, then rerun the affected cases and any regression cases whose contract could have changed.
+6. Give every step a clear, checkable completion criterion and enough demand to account for all material files, cases, or claims. Revise only instructions linked to observed gaps, then rerun affected and regression cases.
 7. Run structural validation and inspect every retained artifact before publishing.
 
 ## Decision rules
@@ -26,6 +26,7 @@ Produce a focused, portable skill whose behavior is more reliable than an unstru
 - Merge skills only when they share outcome, inputs, and completion evidence; preserve materially different strategies as modes or references.
 - A newer, longer, more popular, or more opinionated upstream implementation is a candidate, not authority. Keep only the behavior that produces a demonstrated improvement without creating overlapping triggers or unjustified constraints.
 - When a rule performs well only in one style, framework, model family, or operating environment, scope it there instead of promoting it to universal guidance.
+- Treat the environment as authoritative for discoverable commands, paths, versions, and configuration; document only conventions, rationale, and gotchas that cannot be looked up reliably.
 
 ## Guardrails
 

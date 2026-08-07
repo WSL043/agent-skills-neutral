@@ -54,6 +54,40 @@
       "path": "skills/diagnose-software/SKILL.md"
     },
     {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "The task explicitly optimizes measured software performance or addresses a latency, throughput, resource, or performance regression with a remeasurement loop.",
+      "avoid_when": "Do not use for an unexplained failure whose primary need is root-cause diagnosis, or for a generic code cleanup with no performance signal.",
+      "triggers": [
+        "optimize performance",
+        "performance optimization",
+        "performance regression",
+        "latency regression",
+        "throughput regression",
+        "slow query optimization",
+        "slow endpoint",
+        "measured bottleneck",
+        "profile slow endpoint",
+        "测量后再优化",
+        "性能优化",
+        "性能回归",
+        "延迟回归",
+        "吞吐量优化"
+      ],
+      "negative_triggers": [
+        "debug",
+        "diagnose",
+        "root cause",
+        "排查",
+        "诊断",
+        "根因"
+      ],
+      "explicit_only": false,
+      "name": "optimize-performance",
+      "level": "A",
+      "path": "skills/optimize-performance/SKILL.md"
+    },
+    {
       "kind": "workflow",
       "maturity": "stable",
       "choose_when": "The user requests review of a diff, patch, branch, or implementation quality and requirement fit.",
@@ -79,6 +113,38 @@
       "name": "review-code",
       "level": "S",
       "path": "skills/review-code/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "The task reduces incidental code complexity, duplication, nesting, or confusing structure while preserving the existing behavior contract.",
+      "avoid_when": "Do not use for a performance optimization, a public contract redesign, or a broad architecture migration without a simplification goal.",
+      "triggers": [
+        "simplify code",
+        "code simplification",
+        "simplify implementation",
+        "simplify this function",
+        "without changing behavior",
+        "reduce code complexity",
+        "remove duplication",
+        "简化代码",
+        "简化实现",
+        "不改变行为",
+        "保持行为",
+        "减少代码复杂度",
+        "减少重复",
+        "降低复杂度"
+      ],
+      "negative_triggers": [
+        "performance optimization",
+        "性能优化",
+        "architecture migration",
+        "架构迁移"
+      ],
+      "explicit_only": false,
+      "name": "simplify-code",
+      "level": "A",
+      "path": "skills/simplify-code/SKILL.md"
     },
     {
       "kind": "support",

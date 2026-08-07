@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prepare Repository For Agents"
+  short_description: "Make repository conventions discoverable and verifiable"
+  default_prompt: "Use $prepare-repository-for-agents to inspect the real repository workflow, identify gaps, and add only evidence-backed agent guidance."

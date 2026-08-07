@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evaluate Agent"
+  short_description: "Run fair, traceable agent evaluations"
+  default_prompt: "Use $evaluate-agent to define the claim and graders first, compare like-for-like runs, and analyze failures without hiding uncertainty."

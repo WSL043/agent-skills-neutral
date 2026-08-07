@@ -1,6 +1,6 @@
 # 技能实现、去重与保留审查
 
-当前活动库共 37 个通用 Agent Skill：S=9、A=28，分为 13 组。所有 B 级、厂商专属、组织流程绑定、占位或只提供宽泛建议的实现都已移出活动库。默认配置仍只有 6 个 S 级核心工作流；其余能力由中英双语正向/负向规则按需路由，一般只加载 1 个主技能和最多 1 个辅助技能。
+当前活动库共 43 个通用 Agent Skill：S=9、A=34，分为 14 组。所有 B 级、厂商专属、组织流程绑定、占位或只提供宽泛建议的实现都已移出活动库。默认配置仍只有 6 个 S 级核心工作流；其余能力由中英双语正向/负向规则按需路由，一般只加载 1 个主技能和最多 1 个辅助技能。
 
 ## 完整活动清单
 
@@ -10,6 +10,7 @@
 |---|---:|---|---|
 | `create-agent-skill` | S | 标准 frontmatter、精确触发描述、渐进披露、资源复用、有/无技能对照评测和结构校验。 | 按需 |
 | `discover-agent-skills` | A | 先查清单，再完整审查正文、依赖、信任边界、重叠度和许可证，最后推荐最小集合。 | 按需 |
+| `evaluate-agent` | A | 先定义 claim、任务集和 grader，再做同条件 baseline/candidate 运行，保存 trace 并分析失败和不确定性。 | 按需 |
 
 ### Agent 工具协议
 
@@ -34,6 +35,12 @@
 | `work-with-pptx` | A | 新建演示用可编辑生成，既有模板用 OOXML/包级修改，最后渲染每页检查。 | 按需 |
 | `work-with-xlsx` | A | 常规处理用 dataframe/workbook 库；需保留宏、透视表等特性时使用包级 XML 修改。 | 按需 |
 
+### 数据库与数据
+
+| 技能 | 级别 | 具体实现 | 路由 |
+|---|---:|---|---|
+| `work-with-postgresql` | A | 先确认运行时、schema、workload、权限和一致性，再基于 plan、锁、代表性数据和迁移证据做可回滚修改。 | PostgreSQL 任务 |
+
 ### 开发者工具
 
 | 技能 | 级别 | 具体实现 | 路由 |
@@ -43,6 +50,7 @@
 | `resolve-merge-conflicts` | A | 同时检查 base/ours/theirs 与相关提交，整合双方意图，重建派生文件并测试两边改动。 | 显式冲突任务 |
 | `use-git-worktrees` | A | 使用明确路径和分支创建隔离工作区，验证基线，只在提交可达性确认后清理。 | 显式 worktree 任务 |
 | `work-with-jupyter-notebook` | A | 组织可复现叙事，把复用逻辑移到模块，重启内核后按顺序执行全部单元格。 | 按需 |
+| `prepare-repository-for-agents` | A | 基于真实仓库约定、测试、CI、指令和缺口，只补充不重复的 Agent guidance，并运行结构和项目校验。 | 仓库 Agent-ready 任务 |
 
 ### 实现与质量
 
@@ -50,6 +58,8 @@
 |---|---:|---|---|
 | `develop-with-tdd` | S | 围绕可观察行为执行 red-green-refactor；旧代码先补特征测试。 | 按需 |
 | `diagnose-software` | S | 复现并缩小问题，定位第一次分歧，逐个检验可证伪假设，修根因并补回归证据。 | 默认 |
+| `optimize-performance` | A | 用可比 baseline 定位 bottleneck，做 targeted change，重新测量 correctness 和收益，并留下 guard。 | 按需 |
+| `simplify-code` | A | 明确可观察 contract，只简化已证明的 incidental complexity，并用聚焦和回归检查证明行为保持。 | 按需 |
 | `review-code` | S | 分开审查需求符合度和实现质量，只报告可验证问题，并支持自审、请求审查和处理反馈。 | 默认 |
 | `verify-completion` | S | 将每项声明映射到最新权威检查，同时验证副作用和最终状态；受阻时收窄结论。 | 默认 |
 
@@ -83,6 +93,7 @@
 |---|---:|---|---|
 | `coauthor-documents` | A | 先确定受众和大纲，再按章节用证据写作，最后做陌生读者检查。 | 按需 |
 | `research-primary-sources` | A | 广泛发现、精读权威一手来源、记录版本和矛盾，并给每个重要结论就近引用。 | 按需 |
+| `formulate-scientific-hypotheses` | A | 冻结 observation，区分 claim type，生成 rival explanations 和 discriminating predictions，并匹配测量与分析。 | 按需 |
 
 ### 安全
 

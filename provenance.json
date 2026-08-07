@@ -1,17 +1,22 @@
 {
   "policy": "Original vendor-neutral synthesis. No upstream scripts, assets, or long-form instructions are bundled. Source-specific license and adaptation fields are recorded where they differ from the repository default; review every upstream license before porting further material.",
   "source_snapshots": {
-    "anthropics/skills": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+    "anthropics/skills": "f17010c9bb483898c1d9c9f42dde2b3a98889434",
     "emilkowalski/skills": "da80201b64de7d608a6dc5f723797ce6c65b692b",
     "Leonxlnx/taste-skill": "e988add20dab0fa97d7a76781c48961c8184288e",
-    "mattpocock/skills": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+    "mattpocock/skills": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
     "MiniMax-AI/skills": "60aaae52bb2af8162732751a4332f62a5fef518b",
     "muratcankoylan/Agent-Skills-for-Context-Engineering": "a1841d1ea3dadc70098d94b60fa7a4ab8875dc50",
     "obra/superpowers": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
     "openai/skills": "49f948faa9258a0c61caceaf225e179651397431",
     "psenger/ai-agent-skills": "96716a643138665b4e335f836fb661f126944644",
-    "addyosmani/agent-skills": "bdf76c7c6b7b3b3e01bb15c9fdc42ac5351855c1",
-    "vercel-labs/skills": "1164afa5f0e21ebd01e6fc11249759353f494ad1"
+    "addyosmani/agent-skills": "d2478bf0c73a6357df39a3ed6aff16acaa218843",
+    "vercel-labs/skills": "a4d243c3d4f86cdf9385dd1b6a0733f6937e70b5",
+    "google/skills": "426c0776b0adc0a8c873f4012fc166756c0a989a",
+    "github/awesome-copilot": "811ed362dd9cdbbc83efc10e43039598654a7dda",
+    "K-Dense-AI/scientific-agent-skills": "d767725c6e93b1d02a220e6be75b261a9833ede5",
+    "supabase/agent-skills": "1207767388a0ffb55f21fb4e6988fee96942431d",
+    "johnpapa/ai-ready": "b3538e9104e710c8ce528466840e8db1fee3c56b"
   },
   "skills": {
     "build-cli": [
@@ -28,8 +33,8 @@
         "repository": "anthropics/skills",
         "skill": "mcp-builder",
         "path": "skills/mcp-builder/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/mcp-builder"
+        "commit": "f17010c9bb483898c1d9c9f42dde2b3a98889434",
+        "url": "https://github.com/anthropics/skills/tree/f17010c9bb483898c1d9c9f42dde2b3a98889434/skills/mcp-builder"
       }
     ],
     "capture-screen": [
@@ -46,8 +51,8 @@
         "repository": "mattpocock/skills",
         "skill": "grilling",
         "path": "skills/productivity/grilling/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/productivity/grilling"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/productivity/grilling"
       },
       {
         "repository": "obra/superpowers",
@@ -62,8 +67,8 @@
         "repository": "anthropics/skills",
         "skill": "doc-coauthoring",
         "path": "skills/doc-coauthoring/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/doc-coauthoring"
+        "commit": "f17010c9bb483898c1d9c9f42dde2b3a98889434",
+        "url": "https://github.com/anthropics/skills/tree/f17010c9bb483898c1d9c9f42dde2b3a98889434/skills/doc-coauthoring"
       }
     ],
     "create-agent-skill": [
@@ -71,8 +76,8 @@
         "repository": "anthropics/skills",
         "skill": "skill-creator",
         "path": "skills/skill-creator/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/skill-creator"
+        "commit": "f17010c9bb483898c1d9c9f42dde2b3a98889434",
+        "url": "https://github.com/anthropics/skills/tree/f17010c9bb483898c1d9c9f42dde2b3a98889434/skills/skill-creator"
       },
       {
         "repository": "obra/superpowers",
@@ -87,6 +92,16 @@
         "path": "skills/.system/skill-creator/SKILL.md",
         "commit": "49f948faa9258a0c61caceaf225e179651397431",
         "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.system/skill-creator"
+      },
+      {
+        "repository": "mattpocock/skills",
+        "skill": "writing-for-agents",
+        "path": "skills/productivity/writing-for-agents/SKILL.md",
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/productivity/writing-for-agents",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Extracted context-pointer branches, environment-as-source-of-truth, and checkable completion criteria; rewritten for the neutral library."
       }
     ],
     "design-codebase": [
@@ -94,8 +109,8 @@
         "repository": "mattpocock/skills",
         "skill": "codebase-design",
         "path": "skills/engineering/codebase-design/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/codebase-design"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/codebase-design"
       }
     ],
     "design-frontend": [
@@ -103,8 +118,8 @@
         "repository": "anthropics/skills",
         "skill": "frontend-design",
         "path": "skills/frontend-design/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/frontend-design"
+        "commit": "f17010c9bb483898c1d9c9f42dde2b3a98889434",
+        "url": "https://github.com/anthropics/skills/tree/f17010c9bb483898c1d9c9f42dde2b3a98889434/skills/frontend-design"
       },
       {
         "repository": "emilkowalski/skills",
@@ -191,8 +206,8 @@
         "repository": "anthropics/skills",
         "skill": "theme-factory",
         "path": "skills/theme-factory/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/theme-factory"
+        "commit": "f17010c9bb483898c1d9c9f42dde2b3a98889434",
+        "url": "https://github.com/anthropics/skills/tree/f17010c9bb483898c1d9c9f42dde2b3a98889434/skills/theme-factory"
       },
       {
         "repository": "Leonxlnx/taste-skill",
@@ -207,8 +222,8 @@
         "repository": "mattpocock/skills",
         "skill": "tdd",
         "path": "skills/engineering/tdd/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/tdd"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/tdd"
       },
       {
         "repository": "obra/superpowers",
@@ -223,8 +238,8 @@
         "repository": "mattpocock/skills",
         "skill": "diagnosing-bugs",
         "path": "skills/engineering/diagnosing-bugs/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/diagnosing-bugs"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/diagnosing-bugs"
       },
       {
         "repository": "obra/superpowers",
@@ -239,8 +254,18 @@
         "repository": "vercel-labs/skills",
         "skill": "find-skills",
         "path": "skills/find-skills/SKILL.md",
-        "commit": "1164afa5f0e21ebd01e6fc11249759353f494ad1",
-        "url": "https://github.com/vercel-labs/skills/tree/1164afa5f0e21ebd01e6fc11249759353f494ad1/skills/find-skills"
+        "commit": "a4d243c3d4f86cdf9385dd1b6a0733f6937e70b5",
+        "url": "https://github.com/vercel-labs/skills/tree/a4d243c3d4f86cdf9385dd1b6a0733f6937e70b5/skills/find-skills"
+      },
+      {
+        "repository": "github/awesome-copilot",
+        "skill": "trojan-skill-hunter",
+        "path": "agents/trojan-skill-hunter.agent.md",
+        "commit": "811ed362dd9cdbbc83efc10e43039598654a7dda",
+        "url": "https://github.com/github/awesome-copilot/tree/811ed362dd9cdbbc83efc10e43039598654a7dda/agents",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Added static supply-chain inspection points for hidden directives, Unicode, permission mismatch, and unpinned execution paths."
       }
     ],
     "execute-plan": [
@@ -255,8 +280,8 @@
         "repository": "mattpocock/skills",
         "skill": "implement",
         "path": "skills/engineering/implement/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/implement"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/implement"
       }
     ],
     "finish-development-branch": [
@@ -280,8 +305,8 @@
         "repository": "mattpocock/skills",
         "skill": "handoff",
         "path": "skills/productivity/handoff/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/productivity/handoff"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/productivity/handoff"
       },
       {
         "repository": "muratcankoylan/Agent-Skills-for-Context-Engineering",
@@ -303,8 +328,8 @@
         "repository": "addyosmani/agent-skills",
         "skill": "observability-and-instrumentation",
         "path": "skills/observability-and-instrumentation/SKILL.md",
-        "commit": "bdf76c7c6b7b3b3e01bb15c9fdc42ac5351855c1",
-        "url": "https://github.com/addyosmani/agent-skills/tree/bdf76c7c6b7b3b3e01bb15c9fdc42ac5351855c1/skills/observability-and-instrumentation"
+        "commit": "d2478bf0c73a6357df39a3ed6aff16acaa218843",
+        "url": "https://github.com/addyosmani/agent-skills/tree/d2478bf0c73a6357df39a3ed6aff16acaa218843/skills/observability-and-instrumentation"
       }
     ],
     "map-security-ownership": [
@@ -321,15 +346,15 @@
         "repository": "addyosmani/agent-skills",
         "skill": "deprecation-and-migration",
         "path": "skills/deprecation-and-migration/SKILL.md",
-        "commit": "bdf76c7c6b7b3b3e01bb15c9fdc42ac5351855c1",
-        "url": "https://github.com/addyosmani/agent-skills/tree/bdf76c7c6b7b3b3e01bb15c9fdc42ac5351855c1/skills/deprecation-and-migration"
+        "commit": "d2478bf0c73a6357df39a3ed6aff16acaa218843",
+        "url": "https://github.com/addyosmani/agent-skills/tree/d2478bf0c73a6357df39a3ed6aff16acaa218843/skills/deprecation-and-migration"
       },
       {
         "repository": "mattpocock/skills",
         "skill": "to-tickets",
         "path": "skills/engineering/to-tickets/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/to-tickets"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/to-tickets"
       }
     ],
     "model-domain": [
@@ -337,8 +362,8 @@
         "repository": "mattpocock/skills",
         "skill": "domain-modeling",
         "path": "skills/engineering/domain-modeling/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/domain-modeling"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/domain-modeling"
       }
     ],
     "orchestrate-agent-work": [
@@ -360,22 +385,22 @@
         "repository": "mattpocock/skills",
         "skill": "ask-matt",
         "path": "skills/engineering/ask-matt/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/ask-matt"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/ask-matt"
       },
       {
         "repository": "mattpocock/skills",
         "skill": "to-tickets",
         "path": "skills/engineering/to-tickets/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/to-tickets"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/to-tickets"
       },
       {
         "repository": "mattpocock/skills",
         "skill": "wayfinder",
         "path": "skills/engineering/wayfinder/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/wayfinder"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/wayfinder"
       }
     ],
     "plan-implementation": [
@@ -390,15 +415,15 @@
         "repository": "mattpocock/skills",
         "skill": "to-spec",
         "path": "skills/engineering/to-spec/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/to-spec"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/to-spec"
       },
       {
         "repository": "mattpocock/skills",
         "skill": "to-tickets",
         "path": "skills/engineering/to-tickets/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/to-tickets"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/to-tickets"
       }
     ],
     "prototype-solution": [
@@ -406,8 +431,8 @@
         "repository": "mattpocock/skills",
         "skill": "prototype",
         "path": "skills/engineering/prototype/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/prototype"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/prototype"
       }
     ],
     "research-primary-sources": [
@@ -415,8 +440,18 @@
         "repository": "mattpocock/skills",
         "skill": "research",
         "path": "skills/engineering/research/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/research"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/research"
+      },
+      {
+        "repository": "github/awesome-copilot",
+        "skill": "build-evidence-map",
+        "path": "skills/build-evidence-map/SKILL.md",
+        "commit": "811ed362dd9cdbbc83efc10e43039598654a7dda",
+        "url": "https://github.com/github/awesome-copilot/tree/811ed362dd9cdbbc83efc10e43039598654a7dda/skills/build-evidence-map",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Added supports/contradicts/qualifies/missing evidence structure without copying the source artifact format or scripts."
       }
     ],
     "resolve-merge-conflicts": [
@@ -424,8 +459,8 @@
         "repository": "mattpocock/skills",
         "skill": "resolving-merge-conflicts",
         "path": "skills/engineering/resolving-merge-conflicts/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/resolving-merge-conflicts"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/resolving-merge-conflicts"
       }
     ],
     "review-code": [
@@ -433,8 +468,8 @@
         "repository": "mattpocock/skills",
         "skill": "code-review",
         "path": "skills/engineering/code-review/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/code-review"
+        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/engineering/code-review"
       },
       {
         "repository": "obra/superpowers",
@@ -477,8 +512,8 @@
         "repository": "anthropics/skills",
         "skill": "webapp-testing",
         "path": "skills/webapp-testing/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/webapp-testing"
+        "commit": "f17010c9bb483898c1d9c9f42dde2b3a98889434",
+        "url": "https://github.com/anthropics/skills/tree/f17010c9bb483898c1d9c9f42dde2b3a98889434/skills/webapp-testing"
       },
       {
         "repository": "openai/skills",
@@ -520,8 +555,8 @@
         "repository": "anthropics/skills",
         "skill": "docx",
         "path": "skills/docx/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/docx"
+        "commit": "f17010c9bb483898c1d9c9f42dde2b3a98889434",
+        "url": "https://github.com/anthropics/skills/tree/f17010c9bb483898c1d9c9f42dde2b3a98889434/skills/docx"
       }
     ],
     "work-with-jupyter-notebook": [
@@ -545,8 +580,8 @@
         "repository": "anthropics/skills",
         "skill": "pdf",
         "path": "skills/pdf/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/pdf"
+        "commit": "f17010c9bb483898c1d9c9f42dde2b3a98889434",
+        "url": "https://github.com/anthropics/skills/tree/f17010c9bb483898c1d9c9f42dde2b3a98889434/skills/pdf"
       },
       {
         "repository": "openai/skills",
@@ -589,8 +624,8 @@
         "repository": "anthropics/skills",
         "skill": "pptx",
         "path": "skills/pptx/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/pptx"
+        "commit": "f17010c9bb483898c1d9c9f42dde2b3a98889434",
+        "url": "https://github.com/anthropics/skills/tree/f17010c9bb483898c1d9c9f42dde2b3a98889434/skills/pptx"
       }
     ],
     "work-with-xlsx": [
@@ -605,8 +640,80 @@
         "repository": "anthropics/skills",
         "skill": "xlsx",
         "path": "skills/xlsx/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/xlsx"
+        "commit": "f17010c9bb483898c1d9c9f42dde2b3a98889434",
+        "url": "https://github.com/anthropics/skills/tree/f17010c9bb483898c1d9c9f42dde2b3a98889434/skills/xlsx"
+      }
+    ],
+    "simplify-code": [
+      {
+        "repository": "addyosmani/agent-skills",
+        "skill": "code-simplification",
+        "path": "skills/code-simplification/SKILL.md",
+        "commit": "d2478bf0c73a6357df39a3ed6aff16acaa218843",
+        "url": "https://github.com/addyosmani/agent-skills/tree/d2478bf0c73a6357df39a3ed6aff16acaa218843/skills/code-simplification",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Rewritten as a behavior-preserving, vendor-neutral simplification workflow; arbitrary numeric heuristics and source branding were removed."
+      }
+    ],
+    "optimize-performance": [
+      {
+        "repository": "addyosmani/agent-skills",
+        "skill": "performance-optimization",
+        "path": "skills/performance-optimization/SKILL.md",
+        "commit": "d2478bf0c73a6357df39a3ed6aff16acaa218843",
+        "url": "https://github.com/addyosmani/agent-skills/tree/d2478bf0c73a6357df39a3ed6aff16acaa218843/skills/performance-optimization",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Rewritten as a measure-first bottleneck loop; fixed budgets, thresholds, and provider-specific assumptions were removed."
+      }
+    ],
+    "evaluate-agent": [
+      {
+        "repository": "google/skills",
+        "skill": "agent-platform-eval-flywheel",
+        "path": "skills/cloud/agent-platform-eval-flywheel/SKILL.md",
+        "commit": "426c0776b0adc0a8c873f4012fc166756c0a989a",
+        "url": "https://github.com/google/skills/tree/426c0776b0adc0a8c873f4012fc166756c0a989a/skills/cloud/agent-platform-eval-flywheel",
+        "license": "Apache-2.0",
+        "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+        "adaptation_note": "Extracted the provider-independent evaluation flywheel and failure analysis; cloud SDK setup and fixed iteration rules were removed."
+      }
+    ],
+    "work-with-postgresql": [
+      {
+        "repository": "supabase/agent-skills",
+        "skill": "supabase-postgres-best-practices",
+        "path": "skills/supabase-postgres-best-practices/SKILL.md",
+        "commit": "1207767388a0ffb55f21fb4e6988fee96942431d",
+        "url": "https://github.com/supabase/agent-skills/tree/1207767388a0ffb55f21fb4e6988fee96942431d/skills/supabase-postgres-best-practices",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Rewritten as a vendor-neutral PostgreSQL workflow grounded in runtime, workload, security, migration, and plan evidence."
+      }
+    ],
+    "formulate-scientific-hypotheses": [
+      {
+        "repository": "K-Dense-AI/scientific-agent-skills",
+        "skill": "hypothesis-generation",
+        "path": "skills/hypothesis-generation/SKILL.md",
+        "commit": "d767725c6e93b1d02a220e6be75b261a9833ede5",
+        "url": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/d767725c6e93b1d02a220e6be75b261a9833ede5/skills/hypothesis-generation",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Extracted falsifiable rival hypotheses, discriminating predictions, and measurement safeguards; bundled scripts and domain-specific material were excluded."
+      }
+    ],
+    "prepare-repository-for-agents": [
+      {
+        "repository": "johnpapa/ai-ready",
+        "skill": "ai-ready",
+        "path": "skills/ai-ready/SKILL.md",
+        "commit": "b3538e9104e710c8ce528466840e8db1fee3c56b",
+        "url": "https://github.com/johnpapa/ai-ready/tree/b3538e9104e710c8ce528466840e8db1fee3c56b/skills/ai-ready",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Rewritten as a minimal evidence-backed repository-readiness audit; generated boilerplate, provider-specific integrations, and overwrite behavior were excluded."
       }
     ]
   }

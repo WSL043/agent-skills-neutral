@@ -22,7 +22,7 @@
       "name": "agent-skill-ecosystem",
       "summary": "Create, discover, compare, and maintain Agent Skills.",
       "route_file": "routes/agent-skill-ecosystem.json",
-      "skill_count": 2
+      "skill_count": 3
     },
     {
       "name": "agent-tooling",
@@ -43,16 +43,22 @@
       "skill_count": 4
     },
     {
+      "name": "database-data",
+      "summary": "Design, query, migrate, and secure relational data systems using evidence from the live workload.",
+      "route_file": "routes/database-data.json",
+      "skill_count": 1
+    },
+    {
       "name": "developer-tooling",
       "summary": "Operate developer workflows, repositories, notebooks, screenshots, and scaffolding.",
       "route_file": "routes/developer-tooling.json",
-      "skill_count": 5
+      "skill_count": 6
     },
     {
       "name": "implementation-quality",
       "summary": "Implement, diagnose, review, and verify software behavior.",
       "route_file": "routes/implementation-quality.json",
-      "skill_count": 4
+      "skill_count": 6
     },
     {
       "name": "operations-evolution",
@@ -76,7 +82,7 @@
       "name": "research-communication",
       "summary": "Research authoritative sources and coauthor decision-ready documents.",
       "route_file": "routes/research-communication.json",
-      "skill_count": 2
+      "skill_count": 3
     },
     {
       "name": "security",

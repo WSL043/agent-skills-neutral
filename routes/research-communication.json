@@ -31,6 +31,38 @@
       "path": "skills/coauthor-documents/SKILL.md"
     },
     {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "The task turns observations into competing, falsifiable scientific hypotheses, discriminating predictions, or an experiment and analysis plan.",
+      "avoid_when": "Do not use for a source-only fact lookup or a general document with no hypothesis or research-design decision.",
+      "triggers": [
+        "formulate hypothesis",
+        "scientific hypothesis",
+        "rival scientific hypotheses",
+        "research hypothesis",
+        "causal hypothesis",
+        "experiment design",
+        "mechanism hypothesis",
+        "hypothesis generation",
+        "可证伪的科学假设",
+        "提出假设",
+        "科学假设",
+        "研究假设",
+        "因果假设",
+        "实验设计",
+        "机制假设"
+      ],
+      "negative_triggers": [
+        "latest papers",
+        "research latest papers",
+        "最新论文"
+      ],
+      "explicit_only": false,
+      "name": "formulate-scientific-hypotheses",
+      "level": "A",
+      "path": "skills/formulate-scientific-hypotheses/SKILL.md"
+    },
+    {
       "kind": "workflow",
       "maturity": "stable",
       "choose_when": "The answer requires current authoritative primary sources, precise citations, or fact/inference separation.",

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Work With PostgreSQL"
+  short_description: "Make evidence-backed PostgreSQL changes"
+  default_prompt: "Use $work-with-postgresql to inspect the live schema and workload, choose a reversible change, and verify integrity, access, and performance."

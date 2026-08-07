@@ -53,6 +53,39 @@
     {
       "kind": "domain",
       "maturity": "stable",
+      "choose_when": "The task assesses or prepares a repository for reliable agent contributions, discoverable conventions, tests, CI, or scoped agent guidance.",
+      "avoid_when": "Do not use for creating one isolated skill or for ordinary repository maintenance with no agent-readiness outcome.",
+      "triggers": [
+        "prepare repository for agents",
+        "make repository agent-ready",
+        "agent-ready repository",
+        "ai-ready repository",
+        "repository guidance for agents",
+        "easier for coding agents",
+        "准备仓库给 agent",
+        "让仓库适合 agent",
+        "仓库 agent-ready",
+        "仓库智能体准备",
+        "真实结构整理",
+        "agent 开发约定",
+        "整理 agents.md"
+      ],
+      "negative_triggers": [
+        "create agent skill",
+        "create a new agent skill",
+        "find skill",
+        "创建技能",
+        "创建新的 agent skill",
+        "查找技能"
+      ],
+      "explicit_only": false,
+      "name": "prepare-repository-for-agents",
+      "level": "A",
+      "path": "skills/prepare-repository-for-agents/SKILL.md"
+    },
+    {
+      "kind": "domain",
+      "maturity": "stable",
       "choose_when": "Git reports merge/rebase conflicts or the user explicitly asks to integrate conflicting histories.",
       "avoid_when": "Do not use for ordinary code review or non-conflicting branch updates.",
       "triggers": [

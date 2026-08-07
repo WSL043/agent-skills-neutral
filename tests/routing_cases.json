@@ -29,7 +29,19 @@
     {"query": "plan an expand-contract database migration with backfill", "primary": "migrate-system-safely"},
     {"query": "implement this screenshot as a responsive frontend", "primary": "design-frontend"},
     {"query": "redesign this landing page without changing routes", "primary": "design-frontend"},
-    {"query": "create a coherent brand kit and design token system", "primary": "design-visual-theme"}
+    {"query": "create a coherent brand kit and design token system", "primary": "design-visual-theme"},
+    {"query": "simplify this function without changing its behavior", "primary": "simplify-code"},
+    {"query": "这段代码功能没问题，帮我在不改变行为的情况下简化", "primary": "simplify-code"},
+    {"query": "profile this slow endpoint and improve the measured bottleneck", "primary": "optimize-performance"},
+    {"query": "分析这个接口为什么慢，测量后再优化", "primary": "optimize-performance"},
+    {"query": "compare two versions of this agent on task success and tool use", "primary": "evaluate-agent"},
+    {"query": "给这个 agent 做一套 baseline 和 candidate eval", "primary": "evaluate-agent"},
+    {"query": "design a safe PostgreSQL migration and inspect locking/index impact", "primary": "work-with-postgresql"},
+    {"query": "帮我分析这个 PostgreSQL 查询的 EXPLAIN 和索引", "primary": "work-with-postgresql"},
+    {"query": "turn this observation into rival scientific hypotheses and discriminating predictions", "primary": "formulate-scientific-hypotheses"},
+    {"query": "把这个观察结果变成可证伪的科学假设和对立解释", "primary": "formulate-scientific-hypotheses"},
+    {"query": "make this repository easier for coding agents to work in", "primary": "prepare-repository-for-agents"},
+    {"query": "基于这个仓库真实结构整理 AGENTS.md 和 agent 开发约定", "primary": "prepare-repository-for-agents"}
   ],
   "guardrails": [
     {"query": "review this ordinary code diff", "forbid": ["review-security-practices", "review-api-design"]},
@@ -37,6 +49,13 @@
     {"query": "summarize current status", "forbid": ["handoff-task-context"]},
     {"query": "resolve a git conflict", "forbid": ["migrate-system-safely"]},
     {"query": "add a temporary print statement", "forbid": ["instrument-observability"]},
-    {"query": "make a website", "forbid": ["design-motion", "design-visual-theme"]}
+    {"query": "make a website", "forbid": ["design-motion", "design-visual-theme"]},
+    {"query": "add a new feature", "forbid": ["simplify-code"]},
+    {"query": "debug this crash", "forbid": ["optimize-performance"]},
+    {"query": "create a new agent skill", "forbid": ["evaluate-agent"]},
+    {"query": "research the latest papers about X", "forbid": ["formulate-scientific-hypotheses"]},
+    {"query": "design a generic SQL schema", "forbid": ["work-with-postgresql"]},
+    {"query": "design a frontend page", "forbid": ["prepare-repository-for-agents"]},
+    {"query": "take a screenshot", "forbid": ["simplify-code", "optimize-performance", "evaluate-agent", "work-with-postgresql", "formulate-scientific-hypotheses", "prepare-repository-for-agents"]}
   ]
 }

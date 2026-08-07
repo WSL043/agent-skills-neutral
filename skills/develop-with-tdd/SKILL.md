@@ -11,8 +11,8 @@ Deliver behavior whose contract was demonstrated by a failing test before the im
 
 ## Workflow
 
-1. Choose one externally observable behavior and write the smallest test that expresses it in domain language.
-2. Run the focused test and confirm it fails for the intended missing behavior, not setup or syntax.
+1. Choose one externally observable behavior at a public or integration boundary and write the smallest test that expresses it in domain language.
+2. Use an expected value or fixture from an independent contract, specification, known-good example, or consumer—not a value recomputed by the implementation—and confirm the focused test fails for the intended missing behavior, not setup or syntax.
 3. Implement the minimum production change that makes the test pass.
 4. Run the focused test, then the relevant suite; inspect failures rather than weakening assertions.
 5. Refactor names and structure while keeping all tests green.
@@ -22,6 +22,7 @@ Deliver behavior whose contract was demonstrated by a failing test before the im
 
 - Use integration or contract tests when the risk lies at a boundary; use unit tests for isolated rules.
 - For legacy code, first add a characterization test around current behavior unless the behavior is explicitly being changed.
+- If the failure lives across callers, adapters, persistence, or transport, test at the shallowest public seam that still reaches that contract rather than a private helper.
 
 ## Guardrails
 
