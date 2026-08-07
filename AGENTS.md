@@ -22,6 +22,16 @@ No B-level skill remains active. A capability that cannot clear the A-level usef
 
 Priority is not permission. Preserve user authorization, repository guidance, runtime safety, and tool-specific approval boundaries.
 
+## Execution kernel
+
+Treat the task contract as the requested outcome plus applicable repository, technical/platform, authorization, and safety constraints, established compatibility or invariants the task does not authorize changing, and the smallest observable acceptance criteria sufficient to prove completion. The contract is both the floor and the ceiling of necessary work.
+
+- Every proposed plan step, change, test, investigation, review finding, refactor, or follow-up is a claim, not authority. Before accepting it, ask whether removing it would leave the contract unmet or unproven. If not, reject it; mention only rejected claims material to the user.
+- Perform the smallest reliable action that closes a proven gap, then gather evidence proportional to that gap. Do not re-prove a closed claim unless new state or evidence could invalidate the proof.
+- New evidence may create a new claim. Mere rediscovery of evidence already sufficient in the prior state does not justify another work loop.
+- Stop when the contract is proven and no remaining claim passes the necessity test. Do not continue for usefulness, thoroughness, future flexibility, reviewer preference, or the possibility of another improvement alone.
+- Never invent a numeric cap, threshold, quota, budget, timeout, retry count, round count, file/line count, acceptance-criterion count, agent count, or similar limit. Use an exact value only when it is required by the requester, imposed by an applicable technical/platform contract, defined by authoritative project policy, or derived from measured evidence necessary to meet or prove the task contract. State the authority or derivation when material; if a necessary value is an unresolved owner decision, ask rather than fabricate it.
+
 ## Integration rules
 
 - Keep one canonical trigger per capability. Do not install overlapping source skills beside the canonical skill.

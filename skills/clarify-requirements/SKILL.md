@@ -7,7 +7,7 @@ description: "Clarify goals, users, constraints, edge cases, and decision tradeo
 
 ## Goal
 
-Reach a decision-ready brief with explicit assumptions and no unresolved branch that would materially change the implementation.
+Reach a decision-ready brief with explicit assumptions, the smallest acceptance criteria sufficient to prove the requested outcome, and no unresolved branch that would materially change the implementation.
 
 ## Workflow
 
@@ -23,16 +23,19 @@ Reach a decision-ready brief with explicit assumptions and no unresolved branch 
 - Use explore mode for a new idea and challenge mode for stress-testing an existing plan.
 - Proceed with a labeled reversible assumption when the missing detail has low impact; stop for choices with materially different outcomes.
 - Prefer one focused question over a questionnaire dump.
+- Treat each proposed edge case or acceptance criterion as a claim; retain it only when removing it would leave the requested outcome materially ambiguous or unproven.
 
 ## Guardrails
 
 - Do not ask for information that can be inspected from available files or runtime state.
 - Do not treat the first implementation idea as a requirement.
 - Do not continue interrogation after the work is decision-ready.
+- Do not expand the contract for hypothetical future flexibility or generic thoroughness.
 
 ## Completion evidence
 
 - The brief states goal, actors, constraints, scenarios, acceptance criteria, non-goals, and assumptions.
+- Every retained acceptance criterion is necessary to keep the requested outcome specified or provable.
 - Any remaining open question is explicitly non-blocking or assigned to a decision owner.
 
 ## Related skills

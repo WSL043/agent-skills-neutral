@@ -23,12 +23,14 @@ Identify the root mechanism with discriminating evidence before implementing a d
 - Use instrumentation before code changes when the failing state is not observable.
 - For flaky behavior, measure timing, concurrency, shared state, retries, and environmental variance across repeated runs.
 - Label facts, inferences, and blocked checks separately.
+- Treat each hypothesis, instrumentation step, adjacent anomaly, and proposed fix as a claim; pursue it only if it can explain the contract failure or invalidate current proof.
 
 ## Guardrails
 
 - Do not apply multiple speculative changes in one experiment.
 - Do not confuse a retry, restart, or symptom suppression with a root-cause fix.
 - Do not declare success from a single non-reproduction when the bug is intermittent.
+- Do not continue investigating adjacent behavior once the causal chain and fix are proven unless new evidence invalidates that proof.
 
 ## Completion evidence
 
