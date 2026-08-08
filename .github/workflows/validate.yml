@@ -25,3 +25,9 @@ jobs:
         run: python scripts/test_routing.py
       - name: Test evolution runner
         run: python scripts/test_evolution_runner.py
+      - name: Test runtime bundle boundary
+        run: python scripts/test_runtime_bundle.py
+      - name: Build clean runtime bundle
+        run: python scripts/build_runtime_bundle.py build --output dist/runtime
+      - name: Verify runtime bundle manifest
+        run: python scripts/build_runtime_bundle.py verify --bundle dist/runtime
