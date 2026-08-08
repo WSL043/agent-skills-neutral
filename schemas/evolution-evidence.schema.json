@@ -1,0 +1,299 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-skills-neutral.local/schemas/evolution-evidence.schema.json",
+  "title": "Agent Skills Neutral Evolution Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "candidate_id",
+    "target",
+    "claim",
+    "proposal_evidence",
+    "candidate_change",
+    "acceptance_evidence",
+    "decision"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "candidate_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "owner"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "skill",
+            "shared-kernel",
+            "routing",
+            "memory-retrieval",
+            "evaluator",
+            "discovery",
+            "architecture"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "current_version": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "condition",
+        "behavior_change",
+        "evidence_signal",
+        "transfer_scope",
+        "protected_behavior"
+      ],
+      "properties": {
+        "condition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "behavior_change": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_signal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transfer_scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "protected_behavior": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "non_transferable_assumptions": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "falsifier": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "source_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "reference", "role"],
+        "properties": {
+          "kind": {
+            "enum": [
+              "execution",
+              "user-correction",
+              "upstream-skill",
+              "mechanism-source",
+              "benchmark",
+              "incident",
+              "other"
+            ]
+          },
+          "reference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1
+          },
+          "trust_note": {
+            "type": ["string", "null"]
+          }
+        }
+      }
+    },
+    "proposal_evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/executionEvidence"
+      }
+    },
+    "local_lessons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["decision_point", "observation", "lesson", "scope"],
+        "properties": {
+          "decision_point": {"type": "string", "minLength": 1},
+          "observation": {"type": "string", "minLength": 1},
+          "lesson": {"type": "string", "minLength": 1},
+          "scope": {"type": "string", "minLength": 1},
+          "counterexample": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "candidate_change": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation", "reference", "rationale"],
+      "properties": {
+        "operation": {
+          "enum": [
+            "add",
+            "delete",
+            "replace",
+            "move",
+            "merge",
+            "split",
+            "new-owner",
+            "architecture-change",
+            "evaluator-change",
+            "retrieval-change"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bounded_to_claim": {
+          "type": "boolean"
+        }
+      }
+    },
+    "acceptance_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "held_out",
+        "regressions",
+        "deterministic_checks",
+        "semantic_judgments"
+      ],
+      "properties": {
+        "held_out": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/executionEvidence"}
+        },
+        "regressions": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/executionEvidence"}
+        },
+        "transfer_cases": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/executionEvidence"}
+        },
+        "deterministic_checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["check", "result"],
+            "properties": {
+              "check": {"type": "string", "minLength": 1},
+              "result": {"enum": ["pass", "fail", "blocked", "not-applicable"]},
+              "evidence": {"type": ["string", "null"]}
+            }
+          }
+        },
+        "semantic_judgments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["claim_dimension", "result"],
+            "properties": {
+              "claim_dimension": {"type": "string", "minLength": 1},
+              "result": {"enum": ["supports", "contradicts", "mixed", "indeterminate"]},
+              "judge": {"type": ["string", "null"]},
+              "independence_note": {"type": ["string", "null"]},
+              "evidence": {"type": ["string", "null"]}
+            }
+          }
+        },
+        "holdout_integrity": {
+          "enum": ["clean", "leaked", "unknown"]
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "scope", "reason"],
+      "properties": {
+        "status": {
+          "enum": [
+            "pending",
+            "retain",
+            "narrow",
+            "specialize",
+            "merge",
+            "reject",
+            "evaluator-fix"
+          ]
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "negative_lesson": {
+          "type": ["string", "null"]
+        },
+        "reconsider_if": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "model_roles": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "worker": {"type": ["string", "null"]},
+        "analyst": {"type": ["string", "null"]},
+        "curator": {"type": ["string", "null"]},
+        "judge": {"type": ["string", "null"]}
+      }
+    }
+  },
+  "$defs": {
+    "executionEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["case_id", "role", "result"],
+      "properties": {
+        "case_id": {"type": "string", "minLength": 1},
+        "role": {
+          "enum": ["success", "failure", "boundary", "counterexample", "transfer"]
+        },
+        "result": {
+          "enum": ["success", "partial", "failure", "blocked", "indeterminate"]
+        },
+        "trajectory_reference": {"type": ["string", "null"]},
+        "evidence": {"type": ["string", "null"]},
+        "model_runtime": {"type": ["string", "null"]},
+        "notes": {"type": ["string", "null"]}
+      }
+    }
+  }
+}
