@@ -31,7 +31,7 @@
     {"query": "redesign this landing page without changing routes", "primary": "design-frontend"},
     {"query": "create a coherent brand kit and design token system", "primary": "design-visual-theme"},
     {"query": "simplify this function without changing its behavior", "primary": "simplify-code"},
-    {"query": "这段代码功能没问题，帮我在不改变行为的情况下简化", "primary": "simplify-code"},
+    {"query": "这段代码功能没问题，帮我在不改变行为的情况下简化代码", "primary": "simplify-code"},
     {"query": "profile this slow endpoint and improve the measured bottleneck", "primary": "optimize-performance"},
     {"query": "分析这个接口为什么慢，测量后再优化", "primary": "optimize-performance"},
     {"query": "compare two versions of this agent on task success and tool use", "primary": "evaluate-agent"},
@@ -64,6 +64,7 @@
     {"query": "design a frontend page", "forbid": ["prepare-repository-for-agents"]},
     {"query": "take a screenshot", "forbid": ["simplify-code", "optimize-performance", "evaluate-agent", "work-with-postgresql", "formulate-scientific-hypotheses", "prepare-repository-for-agents"]},
     {"query": "make this endpoint faster without changing behavior", "forbid": ["simplify-code"]},
-    {"query": "整理这个仓库的模块边界和依赖方向", "forbid": ["prepare-repository-for-agents"]}
+    {"query": "整理这个仓库的模块边界和依赖方向", "forbid": ["prepare-repository-for-agents"]},
+    {"query": "简化部署流程", "forbid": ["simplify-code"]}
   ]
 }
