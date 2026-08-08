@@ -106,39 +106,89 @@ if disk_names != names:
 
 provenance_path = ROOT / "provenance.json"
 source_repositories: set[str] = set()
+mechanism_repositories: set[str] = set()
 if not provenance_path.is_file():
     errors.append("missing provenance.json")
 else:
     provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
-    snapshots = provenance.get("source_snapshots", {})
-    source_repositories = set(snapshots)
+    source_snapshots = provenance.get("source_snapshots")
+    mechanism_snapshots = provenance.get("mechanism_snapshots")
+    if not isinstance(source_snapshots, dict):
+        errors.append("provenance source_snapshots must be an object")
+        source_snapshots = {}
+    if not isinstance(mechanism_snapshots, dict):
+        errors.append("provenance mechanism_snapshots must be an object")
+        mechanism_snapshots = {}
+    source_repositories = set(source_snapshots)
+    mechanism_repositories = set(mechanism_snapshots)
+    overlap = sorted(source_repositories & mechanism_repositories)
+    if overlap:
+        errors.append(f"provenance snapshot role overlap: {overlap}")
     provenance_skills = provenance.get("skills", {})
+    if not isinstance(provenance_skills, dict):
+        errors.append("provenance skills must be an object")
+        provenance_skills = {}
     if set(provenance_skills) != names:
         errors.append(
             f"provenance/catalog mismatch: catalog_only={sorted(names-set(provenance_skills))} "
             f"provenance_only={sorted(set(provenance_skills)-names)}"
         )
-    for repository, commit in snapshots.items():
-        if not repo_pattern.fullmatch(repository):
-            errors.append(f"invalid provenance repository: {repository}")
-        if not sha_pattern.fullmatch(commit or ""):
-            errors.append(f"invalid provenance snapshot: {repository}@{commit}")
+
+    for snapshot_role, snapshots in (
+        ("source", source_snapshots),
+        ("mechanism", mechanism_snapshots),
+    ):
+        for repository, commit in snapshots.items():
+            if not repo_pattern.fullmatch(repository):
+                errors.append(f"invalid {snapshot_role} provenance repository: {repository}")
+            if not sha_pattern.fullmatch(commit or ""):
+                errors.append(
+                    f"invalid {snapshot_role} provenance snapshot: {repository}@{commit}"
+                )
+
     for skill_name, sources in provenance_skills.items():
-        if not sources:
+        if not isinstance(sources, list) or not sources:
             errors.append(f"empty provenance sources: {skill_name}")
+            continue
         for source in sources:
+            if not isinstance(source, dict):
+                errors.append(f"invalid provenance entry: {skill_name}")
+                continue
             repository = source.get("repository")
             commit = source.get("commit")
-            if repository not in snapshots:
+            source_kind = source.get("source_kind", "direct")
+            if source_kind == "direct":
+                if repository not in source_snapshots:
+                    errors.append(
+                        f"provenance source repository missing from source_snapshots: "
+                        f"{skill_name} -> {repository}"
+                    )
+            elif source_kind == "mechanism":
+                if repository not in mechanism_snapshots:
+                    errors.append(
+                        f"provenance mechanism repository missing from mechanism_snapshots: "
+                        f"{skill_name} -> {repository}"
+                    )
+                if repository in source_snapshots:
+                    errors.append(
+                        f"mechanism provenance repository also in source_snapshots: "
+                        f"{skill_name} -> {repository}"
+                    )
+                adaptation_note = source.get("adaptation_note")
+                if not isinstance(adaptation_note, str) or not adaptation_note.strip():
+                    errors.append(
+                        f"mechanism provenance missing adaptation note: {skill_name} -> {repository}"
+                    )
+            else:
                 errors.append(
-                    f"provenance source repository missing from source_snapshots: "
-                    f"{skill_name} -> {repository}"
+                    f"unknown provenance source_kind: {skill_name} -> {source_kind}"
                 )
             if not sha_pattern.fullmatch(commit or ""):
                 errors.append(f"invalid provenance commit: {skill_name} -> {commit}")
-            if commit and commit not in source.get("url", ""):
+            url = source.get("url", "")
+            if not isinstance(commit, str) or not isinstance(url, str) or commit not in url:
                 errors.append(
-                    f"unpinned provenance URL: {skill_name} -> {source.get('url')}"
+                    f"unpinned provenance URL: {skill_name} -> {url}"
                 )
             if source.get("license") and not source.get("license_url"):
                 errors.append(
@@ -180,6 +230,45 @@ else:
         errors.append(
             f"provenance sources missing from upstream tracking: {missing_tracked_sources}"
         )
+
+evidence_schema_path = ROOT / "schemas" / "evolution-evidence.schema.json"
+if not evidence_schema_path.is_file():
+    errors.append("missing evolution evidence schema: schemas/evolution-evidence.schema.json")
+else:
+    try:
+        evidence_schema = json.loads(evidence_schema_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        errors.append(f"invalid evolution evidence schema JSON: {exc}")
+    else:
+        if not isinstance(evidence_schema, dict) or evidence_schema.get("type") != "object":
+            errors.append("evolution evidence schema top level must be an object schema")
+        schema_properties = (
+            evidence_schema.get("properties", {})
+            if isinstance(evidence_schema, dict)
+            else {}
+        )
+        schema_version = (
+            schema_properties.get("schema_version", {})
+            if isinstance(schema_properties, dict)
+            else {}
+        )
+        if not isinstance(schema_version, dict) or schema_version.get("const") != 1:
+            errors.append("evolution evidence schema_version must have const=1")
+        required = evidence_schema.get("required", []) if isinstance(evidence_schema, dict) else []
+        required_fields = {
+            "schema_version",
+            "candidate_id",
+            "target",
+            "claim",
+            "proposal_evidence",
+            "candidate_change",
+            "acceptance_evidence",
+            "decision",
+        }
+        if not isinstance(required, list) or not required_fields.issubset(required):
+            errors.append(
+                "evolution evidence schema required fields are incomplete"
+            )
 
 levels = Counter(
     item.get("reference_level") for item in catalog.get("skills", [])

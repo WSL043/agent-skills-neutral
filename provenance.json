@@ -1,5 +1,5 @@
 {
-  "policy": "Canonical skills are vendor-neutral syntheses: upstream prose, scripts, and assets are not bundled. Each per-skill commit identifies the source version from which that canonical lineage retained behavior. source_snapshots is a repository-level provenance anchor/registry and may point to the current retained-lineage commit; it does not mean the entire repository or configured focus has been reviewed. Complete review progress is tracked only by upstreams.json:last_reviewed_commit.",
+  "policy": "Canonical skills are vendor-neutral syntheses: upstream prose, scripts, and assets are not bundled. source_snapshots records retained direct-skill-source lineage snapshots, while mechanism_snapshots records retained mechanism-research snapshots; the two repository sets are disjoint. Per-skill direct entries identify retained lineage, but do not mean the entire repository or configured focus has been reviewed. upstreams.json:last_reviewed_commit tracks direct skill-source review progress only. Mechanism provenance does not imply recurring upstream review state.",
   "source_snapshots": {
     "anthropics/skills": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
     "emilkowalski/skills": "da80201b64de7d608a6dc5f723797ce6c65b692b",
@@ -11,7 +11,7 @@
     "openai/skills": "49f948faa9258a0c61caceaf225e179651397431",
     "psenger/ai-agent-skills": "96716a643138665b4e335f836fb661f126944644",
     "addyosmani/agent-skills": "d2478bf0c73a6357df39a3ed6aff16acaa218843",
-    "vercel-labs/skills": "1164afa5f0e21ebd01e6fc11249759353f494ad1",
+    "vercel-labs/skills": "941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c",
     "vercel-labs/web-interface-guidelines": "4e799d45c17aec1498c269287a83b9dba22b966b",
     "google/skills": "426c0776b0adc0a8c873f4012fc166756c0a989a",
     "github/awesome-copilot": "811ed362dd9cdbbc83efc10e43039598654a7dda",
@@ -19,6 +19,10 @@
     "supabase/agent-skills": "1207767388a0ffb55f21fb4e6988fee96942431d",
     "johnpapa/ai-ready": "b3538e9104e710c8ce528466840e8db1fee3c56b",
     "saranambiar/hyperframes-video-agent-skills": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4"
+  },
+  "mechanism_snapshots": {
+    "microsoft/SkillOpt": "47fe269d75d3def79ffd90236261d26d84868ae5",
+    "Qwen-Applications/Trace2Skill": "3d0b52a140f002a512930252b613c49048f7d5ac"
   },
   "skills": {
     "build-cli": [
@@ -104,6 +108,27 @@
         "license": "MIT",
         "license_url": "https://opensource.org/license/mit/",
         "adaptation_note": "Extracted context-pointer branches, environment-as-source-of-truth, and checkable completion criteria; rewritten for the neutral library."
+      },
+      {
+        "source_kind": "mechanism",
+        "repository": "microsoft/SkillOpt",
+        "skill": "skill-evolution-loop",
+        "path": "skillopt/engine/trainer.py",
+        "commit": "47fe269d75d3def79ffd90236261d26d84868ae5",
+        "url": "https://github.com/microsoft/SkillOpt/blob/47fe269d75d3def79ffd90236261d26d84868ae5/skillopt/engine/trainer.py",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained the separation of rollout experience, reflection, patch aggregation, bounded update, and post-update evaluation as an evidence-gated skill-evolution loop; source-specific optimizer settings, scoring formulas, learning-rate policies, and semantic-density heuristics were excluded."
+      },
+      {
+        "source_kind": "mechanism",
+        "repository": "Qwen-Applications/Trace2Skill",
+        "skill": "parallel-trajectory-skill-evolution",
+        "path": "skill_evolver/parallel_evolving_agent.py",
+        "commit": "3d0b52a140f002a512930252b613c49048f7d5ac",
+        "url": "https://github.com/Qwen-Applications/Trace2Skill/blob/3d0b52a140f002a512930252b613c49048f7d5ac/skill_evolver/parallel_evolving_agent.py",
+        "license_note": "Repository README advertises Apache-2.0 at this snapshot, but no root LICENSE file was resolved during review. Only the mechanism concept was synthesized; no source code or prose was copied.",
+        "adaptation_note": "Retained independent trajectory-local patch proposals against a frozen baseline followed by hierarchical semantic consolidation; spreadsheet-specific agents, benchmark settings, worker counts, prompts, and implementation code were excluded."
       }
     ],
     "design-codebase": [
@@ -268,6 +293,26 @@
         "path": "skills/find-skills/SKILL.md",
         "commit": "1164afa5f0e21ebd01e6fc11249759353f494ad1",
         "url": "https://github.com/vercel-labs/skills/tree/1164afa5f0e21ebd01e6fc11249759353f494ad1/skills/find-skills"
+      },
+      {
+        "repository": "vercel-labs/skills",
+        "skill": "git-transport-authentication",
+        "path": "src/git.ts",
+        "commit": "941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c",
+        "url": "https://github.com/vercel-labs/skills/blob/941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c/src/git.ts",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained host- and transport-bound authentication, explicit transport restrictions, credential-safe fallback behavior, and separation of authentication failures from unrelated remote errors."
+      },
+      {
+        "repository": "vercel-labs/skills",
+        "skill": "authenticated-tree-discovery",
+        "path": "src/blob.ts",
+        "commit": "941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c",
+        "url": "https://github.com/vercel-labs/skills/blob/941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c/src/blob.ts",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained lazy credential escalation for authentication-recoverable failures, rate-limit versus permission distinction, and credential-safe authenticated repository-tree fallback."
       },
       {
         "repository": "github/awesome-copilot",
@@ -690,6 +735,28 @@
         "license": "Apache-2.0",
         "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
         "adaptation_note": "Extracted the provider-independent evaluation flywheel and failure analysis; cloud SDK setup and fixed iteration rules were removed."
+      },
+      {
+        "source_kind": "mechanism",
+        "repository": "microsoft/SkillOpt",
+        "skill": "holdout-integrity-gate",
+        "path": "tests/test_holdout_integrity.py",
+        "commit": "47fe269d75d3def79ffd90236261d26d84868ae5",
+        "url": "https://github.com/microsoft/SkillOpt/blob/47fe269d75d3def79ffd90236261d26d84868ae5/tests/test_holdout_integrity.py",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained explicit detection of train/validation leakage and the principle that an unverifiable candidate must not pass an acceptance gate; source-specific task structures and scoring logic were excluded."
+      },
+      {
+        "source_kind": "mechanism",
+        "repository": "microsoft/SkillOpt",
+        "skill": "candidate-validation-gate",
+        "path": "skillopt/evaluation/gate.py",
+        "commit": "47fe269d75d3def79ffd90236261d26d84868ae5",
+        "url": "https://github.com/microsoft/SkillOpt/blob/47fe269d75d3def79ffd90236261d26d84868ae5/skillopt/evaluation/gate.py",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained the architectural separation between candidate generation and an explicit accept/reject validation gate. Hard/soft/mixed score formulas, fixed weights, semantic-density bonuses, leading-word heuristics, and project-specific thresholds were explicitly rejected."
       }
     ],
     "work-with-postgresql": [

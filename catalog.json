@@ -28,7 +28,7 @@
       "category": "agent-skill-ecosystem",
       "reference_level": "A",
       "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Discover reusable Agent Skills from local catalogs or remote repositories, assess compatibility and trust, and recommend the smallest suitable set. Use when an agent needs a capability that may already exist or when comparing installable skills.",
+      "description": "Discover reusable Agent Skills and transferable agent-capability mechanisms from local catalogs or remote repositories, assess compatibility and trust, and recommend the smallest useful retained set. Use when an agent needs a capability that may already exist or when comparing external skill or agent-improvement implementations.",
       "related": [
         "create-agent-skill"
       ],
@@ -41,7 +41,7 @@
       "category": "agent-skill-ecosystem",
       "reference_level": "A",
       "recommended_use": "高参考价值；按需评估 Agent、Skill 或工具工作流",
-      "description": "Evaluate an agent, skill, workflow, or tool-using system with explicit claims, repeatable tasks, traceable graders, and failure analysis. Use when comparing agent behavior, validating a skill, or building an evaluation loop.",
+      "description": "Evaluate an agent, skill, workflow, memory/routing policy, or tool-using system with explicit claims, repeatable tasks, traceable graders, and failure analysis. Use when comparing agent behavior, validating a skill, or building an evidence-gated improvement loop.",
       "related": [
         "create-agent-skill",
         "discover-agent-skills",
