@@ -9,6 +9,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "build_runtime_bundle.py"
+CATALOG = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8"))
+EXPECTED_SKILLS = len(CATALOG.get("skills", []))
 errors: list[str] = []
 
 
@@ -29,6 +31,9 @@ def run(*args: str, expected: set[int] = {0}) -> subprocess.CompletedProcess[str
     return completed
 
 
+if EXPECTED_SKILLS <= 0:
+    errors.append("canonical catalog has no skills")
+
 with tempfile.TemporaryDirectory(prefix="agent-skills-runtime-test-") as temp:
     bundle = Path(temp) / "runtime"
     built = run("build", "--output", str(bundle), "--allow-dirty")
@@ -38,7 +43,7 @@ with tempfile.TemporaryDirectory(prefix="agent-skills-runtime-test-") as temp:
         except json.JSONDecodeError as exc:
             errors.append(f"build summary is not JSON: {exc}")
             summary = {}
-        if summary.get("skills") != 45:
+        if summary.get("skills") != EXPECTED_SKILLS:
             errors.append(f"unexpected runtime skill count: {summary.get('skills')}")
 
     verified = run("verify", "--bundle", str(bundle))
@@ -48,7 +53,7 @@ with tempfile.TemporaryDirectory(prefix="agent-skills-runtime-test-") as temp:
         except json.JSONDecodeError as exc:
             errors.append(f"verify summary is not JSON: {exc}")
             verify_summary = {}
-        if verify_summary.get("skills") != 45:
+        if verify_summary.get("skills") != EXPECTED_SKILLS:
             errors.append(f"verified runtime skill count mismatch: {verify_summary.get('skills')}")
 
     required = {
@@ -86,7 +91,7 @@ with tempfile.TemporaryDirectory(prefix="agent-skills-runtime-test-") as temp:
             errors.append("manifest routing authority mismatch")
         if manifest.get("source_repository") != "WSL043/agent-skills-neutral":
             errors.append("manifest source repository mismatch")
-        if len(manifest.get("skills", [])) != 45:
+        if len(manifest.get("skills", [])) != EXPECTED_SKILLS:
             errors.append("manifest skill count mismatch")
 
     target = bundle / "skills" / "clarify-requirements" / "SKILL.md"
@@ -111,4 +116,7 @@ if errors:
         print(f"- {error}")
     raise SystemExit(1)
 
-print("RUNTIME BUNDLE TESTS PASSED skills=45 tamper_guard=pass boundary_guard=pass")
+print(
+    f"RUNTIME BUNDLE TESTS PASSED skills={EXPECTED_SKILLS} "
+    "tamper_guard=pass boundary_guard=pass"
+)
