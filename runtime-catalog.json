@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "library": "agent-skills-neutral",
+  "routing_authority": "model-native-semantic",
+  "skills": [
+    {
+      "name": "build-cli",
+      "description": "Design and implement command-line interfaces with coherent commands, arguments, configuration precedence, structured output, exit codes, and automated tests. Use for new CLIs or substantial command-surface changes.",
+      "location": "skills/build-cli/SKILL.md"
+    },
+    {
+      "name": "build-mcp-server",
+      "description": "Design and implement Model Context Protocol servers with well-scoped tools, resources, schemas, error handling, and evaluation. Use when exposing an API, datastore, or local capability to MCP-compatible agents.",
+      "location": "skills/build-mcp-server/SKILL.md"
+    },
+    {
+      "name": "capture-screen",
+      "description": "Capture full screens, windows, applications, or bounded regions with correct coordinates, scale, and privacy handling. Use when visual evidence, UI diagnosis, documentation, or pixel-based verification requires a screenshot.",
+      "location": "skills/capture-screen/SKILL.md"
+    },
+    {
+      "name": "clarify-requirements",
+      "description": "Clarify goals, users, constraints, edge cases, and decision tradeoffs before implementation; challenge an existing proposal when hidden ambiguity remains. Use when requirements are underspecified, conflicting, high-impact, or likely to change the solution materially.",
+      "location": "skills/clarify-requirements/SKILL.md"
+    },
+    {
+      "name": "coauthor-documents",
+      "description": "Coauthor structured documents through audience framing, outline agreement, iterative drafting, targeted review, and final reader validation. Use for proposals, design docs, reports, memos, policies, or other collaborative long-form writing.",
+      "location": "skills/coauthor-documents/SKILL.md"
+    },
+    {
+      "name": "create-agent-skill",
+      "description": "Create or revise portable Agent Skills with standard SKILL.md frontmatter, concise trigger descriptions, progressive disclosure, reusable resources, and evidence-based validation. Use when designing, consolidating, testing, or improving an agent skill or skill library.",
+      "location": "skills/create-agent-skill/SKILL.md"
+    },
+    {
+      "name": "design-codebase",
+      "description": "Design or improve a codebase structure by mapping responsibilities, dependency direction, module boundaries, and change pressure. Use for architecture proposals, modularization, package boundaries, or codebase-wide structural changes.",
+      "location": "skills/design-codebase/SKILL.md"
+    },
+    {
+      "name": "design-frontend",
+      "description": "Design, implement, audit, or redesign web and application interfaces with a coherent visual direction, faithful reference translation, complete states, accessibility, responsiveness, and rendered QA. Use for new UI, visual redesign, image-to-code work, design systems, component composition, or anti-generic interface polish.",
+      "location": "skills/design-frontend/SKILL.md"
+    },
+    {
+      "name": "design-motion",
+      "description": "Design, audit, or refine interface motion using explicit purpose, timing, easing, continuity, interruption behavior, accessibility, and performance constraints. Use for animation vocabulary, motion opportunities, animation review, or implementation planning.",
+      "location": "skills/design-motion/SKILL.md"
+    },
+    {
+      "name": "design-visual-theme",
+      "description": "Create, extract, or apply a coherent brand and visual theme across documents, presentations, interfaces, or artwork using a meaningful concept plus semantic color, typography, spacing, imagery, and style rules. Use for brand-system direction, theme derivation, design tokens, or cross-artifact visual alignment.",
+      "location": "skills/design-visual-theme/SKILL.md"
+    },
+    {
+      "name": "develop-with-tdd",
+      "description": "Implement behavior through a red-green-refactor test-driven cycle with explicit failure observation and minimal production changes. Use for new behavior, bug fixes, or refactoring where executable tests can define the contract.",
+      "location": "skills/develop-with-tdd/SKILL.md"
+    },
+    {
+      "name": "diagnose-software",
+      "description": "Diagnose software failures through reproduction, evidence collection, hypothesis testing, root-cause isolation, and regression verification. Use for bugs, flaky tests, performance regressions, integration failures, or unexplained runtime behavior.",
+      "location": "skills/diagnose-software/SKILL.md"
+    },
+    {
+      "name": "discover-agent-skills",
+      "description": "Discover reusable Agent Skills from local catalogs or remote repositories, assess compatibility and trust, and recommend the smallest suitable set. Use when an agent needs a capability that may already exist or when comparing installable skills.",
+      "location": "skills/discover-agent-skills/SKILL.md"
+    },
+    {
+      "name": "evaluate-agent",
+      "description": "Evaluate an agent, skill, workflow, or tool-using system with explicit claims, repeatable tasks, traceable graders, and failure analysis. Use when comparing agent behavior, validating a skill, or building an evaluation loop.",
+      "location": "skills/evaluate-agent/SKILL.md"
+    },
+    {
+      "name": "evaluate-scientific-evidence",
+      "description": "Evaluate scientific claims, studies, and evidence by matching conclusions to study design, measurement, bias, statistical inference, robustness, and replication. Use for paper critique, methodology validity, evidence quality, or deciding what a study actually supports.",
+      "location": "skills/evaluate-scientific-evidence/SKILL.md"
+    },
+    {
+      "name": "execute-plan",
+      "description": "Execute an approved implementation plan in bounded batches while preserving scope, validating each step, and reporting deviations. Use when a written plan already defines the intended change and the task is to carry it out.",
+      "location": "skills/execute-plan/SKILL.md"
+    },
+    {
+      "name": "finish-development-branch",
+      "description": "Finish a development branch by verifying scope, cleaning the diff, choosing an integration path, and preserving recoverability. Use when implementation is complete and the branch should be prepared for merge, review, handoff, or safe abandonment.",
+      "location": "skills/finish-development-branch/SKILL.md"
+    },
+    {
+      "name": "formulate-scientific-hypotheses",
+      "description": "Turn observations and evidence into competing, falsifiable scientific hypotheses with discriminating predictions and an analysis plan. Use for research questions, mechanism proposals, causal explanations, or experiment design.",
+      "location": "skills/formulate-scientific-hypotheses/SKILL.md"
+    },
+    {
+      "name": "handoff-task-context",
+      "description": "Create or resume a durable, redacted task-state handoff that preserves goals, decisions, evidence, changed files, constraints, open risks, and the next valid action. Use when the user explicitly asks to save, transfer, pause, resume, or continue work across agent sessions.",
+      "location": "skills/handoff-task-context/SKILL.md"
+    },
+    {
+      "name": "instrument-observability",
+      "description": "Design, add, or review production telemetry so operators can answer concrete questions with structured logs, bounded-cardinality metrics, traces, and actionable alerts. Use for observability, instrumentation, correlation IDs, SLO signals, or when a production feature is impossible to diagnose from existing evidence.",
+      "location": "skills/instrument-observability/SKILL.md"
+    },
+    {
+      "name": "map-security-ownership",
+      "description": "Map security-sensitive code and assets to maintainers using repository history, dependency paths, and risk boundaries. Use for security ownership analysis, bus-factor review, sensitive-area stewardship, or CODEOWNERS gap assessment.",
+      "location": "skills/map-security-ownership/SKILL.md"
+    },
+    {
+      "name": "migrate-system-safely",
+      "description": "Plan or execute a reversible migration from an old API, schema, dependency, service, format, or implementation to a replacement while preserving live consumers and data. Use for deprecation, backfill, expand-contract, dual-read/write, staged cutover, or removal of a legacy path.",
+      "location": "skills/migrate-system-safely/SKILL.md"
+    },
+    {
+      "name": "model-domain",
+      "description": "Model a problem domain with explicit concepts, invariants, state transitions, ownership, and ubiquitous language. Use when business rules are ambiguous, entities are overloaded, or implementation needs a durable domain model.",
+      "location": "skills/model-domain/SKILL.md"
+    },
+    {
+      "name": "optimize-performance",
+      "description": "Improve software performance through measurement, bottleneck isolation, targeted changes, and remeasurement. Use for slow code, latency or throughput regressions, resource waste, or explicit performance optimization.",
+      "location": "skills/optimize-performance/SKILL.md"
+    },
+    {
+      "name": "orchestrate-agent-work",
+      "description": "Coordinate multiple agents or isolated work streams by decomposing tasks, controlling context, assigning disjoint scopes, and integrating verified results. Use when the runtime supports delegation and independent subtasks can materially reduce latency or context contention.",
+      "location": "skills/orchestrate-agent-work/SKILL.md"
+    },
+    {
+      "name": "plan-implementation",
+      "description": "Write an implementation plan grounded in the current repository, with concrete file changes, dependency order, tests, risks, and completion evidence. Use before multi-file features, migrations, refactors, or work that another agent or engineer must execute.",
+      "location": "skills/plan-implementation/SKILL.md"
+    },
+    {
+      "name": "prepare-repository-for-agents",
+      "description": "Assess and prepare a repository for reliable agent contributions by discovering real conventions, tests, CI, instructions, and missing workflow assets. Use when making a repository agent-ready or reducing contributor and review friction.",
+      "location": "skills/prepare-repository-for-agents/SKILL.md"
+    },
+    {
+      "name": "produce-programmatic-video",
+      "description": "Plan, assemble, edit, render, and verify programmatic video timelines from source media, code, narration, captions, and scene assets. Use when a video file or timeline is the primary deliverable and timing, synchronization, rendering, or media QA must be controlled.",
+      "location": "skills/produce-programmatic-video/SKILL.md"
+    },
+    {
+      "name": "prototype-solution",
+      "description": "Prototype a solution to answer a specific product, design, architecture, or technical uncertainty with the smallest credible artifact. Use when learning is more valuable than production completeness.",
+      "location": "skills/prototype-solution/SKILL.md"
+    },
+    {
+      "name": "research-primary-sources",
+      "description": "Research a question using authoritative primary sources, track claims to evidence, distinguish fact from inference, and report uncertainty. Use for technical, policy, standards, product, scientific, or factual investigations requiring precise attribution.",
+      "location": "skills/research-primary-sources/SKILL.md"
+    },
+    {
+      "name": "resolve-merge-conflicts",
+      "description": "Resolve Git merge or rebase conflicts by reconstructing intent from both sides, preserving invariants, and validating the integrated result. Use when a branch contains textual, semantic, rename, or generated-file conflicts.",
+      "location": "skills/resolve-merge-conflicts/SKILL.md"
+    },
+    {
+      "name": "review-api-design",
+      "description": "Review an API contract, endpoint set, schema, or service interface before implementation for consumer fit, HTTP semantics, compatibility, errors, security boundaries, resilience, and operability. Use for REST/OpenAPI or comparable request-response API design review, not for debugging implemented handlers or reviewing a code diff.",
+      "location": "skills/review-api-design/SKILL.md"
+    },
+    {
+      "name": "review-code",
+      "description": "Review code changes for requirement fit, correctness, security, maintainability, and verification evidence; also prepare and process review feedback. Use for diffs, pull requests, patches, or pre-merge self-review.",
+      "location": "skills/review-code/SKILL.md"
+    },
+    {
+      "name": "review-security-practices",
+      "description": "Review code and configuration for language- and framework-appropriate security practices using evidence from the actual data flow and deployment model. Use for secure-coding assessment, hardening review, or security-focused implementation guidance.",
+      "location": "skills/review-security-practices/SKILL.md"
+    },
+    {
+      "name": "simplify-code",
+      "description": "Simplify existing code while preserving its observable behavior, interfaces, and operational contracts. Use when reducing duplication, nesting, incidental complexity, or confusing structure in an existing implementation.",
+      "location": "skills/simplify-code/SKILL.md"
+    },
+    {
+      "name": "test-web-app",
+      "description": "Test and debug web applications in a real browser using stable selectors, controlled server lifecycle, functional assertions, console/network evidence, screenshots, and cleanup. Use for UI-flow verification, browser automation, visual checks, or frontend runtime diagnosis.",
+      "location": "skills/test-web-app/SKILL.md"
+    },
+    {
+      "name": "threat-model-system",
+      "description": "Threat-model a system by identifying assets, actors, trust boundaries, attack surfaces, abuse cases, and mitigations grounded in the actual architecture. Use before security-sensitive design, during major architecture change, or to scope a security review.",
+      "location": "skills/threat-model-system/SKILL.md"
+    },
+    {
+      "name": "use-git-worktrees",
+      "description": "Create and manage isolated Git worktrees for parallel branches without disturbing the current checkout. Use when work needs separate dependency state, concurrent agents, or safe branch isolation.",
+      "location": "skills/use-git-worktrees/SKILL.md"
+    },
+    {
+      "name": "verify-completion",
+      "description": "Verify that claimed work is actually complete using fresh, task-relevant evidence rather than inference or stale output. Use before declaring a fix, implementation, migration, document, or deployment complete.",
+      "location": "skills/verify-completion/SKILL.md"
+    },
+    {
+      "name": "work-with-docx",
+      "description": "Create, read, edit, or validate DOCX and DOTX documents while preserving professional layout, styles, comments, and tracked changes when required. Use whenever a Word document is a primary input or deliverable.",
+      "location": "skills/work-with-docx/SKILL.md"
+    },
+    {
+      "name": "work-with-jupyter-notebook",
+      "description": "Create, edit, execute, or validate Jupyter notebooks as reproducible computational narratives. Use for .ipynb experiments, tutorials, analyses, or notebook repair.",
+      "location": "skills/work-with-jupyter-notebook/SKILL.md"
+    },
+    {
+      "name": "work-with-pdf",
+      "description": "Read, extract, create, fill, edit, merge, split, OCR, or visually validate PDF files with task-specific routing. Use whenever a PDF is a primary input or required deliverable, especially when layout fidelity matters.",
+      "location": "skills/work-with-pdf/SKILL.md"
+    },
+    {
+      "name": "work-with-postgresql",
+      "description": "Design, query, migrate, secure, or diagnose PostgreSQL systems using runtime, schema, workload, and evidence-aware decisions. Use when PostgreSQL tables, queries, indexes, transactions, roles, row policies, migrations, or database performance are central.",
+      "location": "skills/work-with-postgresql/SKILL.md"
+    },
+    {
+      "name": "work-with-pptx",
+      "description": "Create, read, edit, template, or validate PPTX and POTX presentations with layout-aware routing, reusable design systems, and rendered visual QA. Use whenever slides or PowerPoint files are a primary input or deliverable.",
+      "location": "skills/work-with-pptx/SKILL.md"
+    },
+    {
+      "name": "work-with-xlsx",
+      "description": "Create, read, analyze, edit, or validate XLSX, XLSM, CSV, and related spreadsheet files while preserving formulas, formatting, and advanced workbook features when required. Use whenever a spreadsheet is a primary input or deliverable.",
+      "location": "skills/work-with-xlsx/SKILL.md"
+    }
+  ]
+}

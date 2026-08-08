@@ -188,12 +188,26 @@ levels = Counter(
 index_path = ROOT / "index.json"
 routed_names: list[str] = []
 indexed_categories: set[str] = set()
+runtime_catalog_path = ROOT / "runtime-catalog.json"
 if not index_path.is_file():
     errors.append("missing compact routing index: index.json")
 else:
     index = json.loads(index_path.read_text(encoding="utf-8"))
-    if index.get("preferred_router") != "python scripts/select_skills.py <task> --json":
-        errors.append("index preferred_router is missing or unexpected")
+    if index.get("routing_authority") != "model-native-semantic":
+        errors.append("index routing_authority is missing or unexpected")
+    runtime_catalog_reference = index.get("runtime_catalog")
+    if not isinstance(runtime_catalog_reference, str) or not runtime_catalog_reference:
+        errors.append("index runtime_catalog is missing or invalid")
+    else:
+        indexed_runtime_path = ROOT / runtime_catalog_reference
+        if not indexed_runtime_path.is_file():
+            errors.append(f"missing indexed runtime catalog: {indexed_runtime_path}")
+        elif indexed_runtime_path != runtime_catalog_path:
+            errors.append(
+                f"index runtime_catalog must point to runtime-catalog.json: {runtime_catalog_reference}"
+            )
+    if index.get("advisory_router") != "python scripts/select_skills.py <task> --json":
+        errors.append("index advisory_router is missing or unexpected")
 
     categories = index.get("categories", [])
     for category in categories:
@@ -271,6 +285,48 @@ else:
         profile_path = ROOT / relative_path
         if not profile_path.is_file():
             errors.append(f"missing indexed profile: {profile_name} -> {relative_path}")
+
+if not runtime_catalog_path.is_file():
+    errors.append("missing runtime catalog: runtime-catalog.json")
+else:
+    runtime_catalog = json.loads(runtime_catalog_path.read_text(encoding="utf-8"))
+    runtime_entries = runtime_catalog.get("skills", [])
+    if not isinstance(runtime_entries, list):
+        errors.append("runtime catalog skills must be a list")
+        runtime_entries = []
+    runtime_names: list[str] = []
+    for entry in runtime_entries:
+        if not isinstance(entry, dict):
+            errors.append("runtime catalog skill entry must be an object")
+            continue
+        name = entry.get("name", "")
+        description = entry.get("description", "")
+        location = entry.get("location", "")
+        runtime_names.append(name)
+        if name in runtime_names[:-1]:
+            errors.append(f"duplicate runtime catalog name: {name}")
+        if name not in names:
+            errors.append(f"runtime catalog skill not in catalog: {name}")
+            continue
+        expected_location = f"skills/{name}/SKILL.md"
+        if location != expected_location:
+            errors.append(
+                f"runtime catalog location mismatch: {name} -> {location}"
+            )
+        if not (ROOT / location).is_file():
+            errors.append(f"missing runtime catalog location: {name} -> {location}")
+        catalog_item = next(item for item in catalog["skills"] if item["name"] == name)
+        if description != catalog_item.get("description"):
+            errors.append(f"runtime catalog description mismatch: {name}")
+    if len(runtime_entries) != len(names):
+        errors.append(
+            f"runtime catalog count mismatch: catalog={len(names)} runtime={len(runtime_entries)}"
+        )
+    if set(runtime_names) != names:
+        errors.append(
+            f"runtime catalog/catalog mismatch: catalog_only={sorted(names-set(runtime_names))} "
+            f"runtime_only={sorted(set(runtime_names)-names)}"
+        )
 
 expected_default = [
     "clarify-requirements",

@@ -561,18 +561,40 @@ for profile, names in PROFILES.items():
 index = {
     "schema_version": 1,
     "library": "agent-skills-neutral",
-    "preferred_router": "python scripts/select_skills.py <task> --json",
+    "routing_authority": "model-native-semantic",
+    "runtime_catalog": "runtime-catalog.json",
+    "advisory_router": "python scripts/select_skills.py <task> --json",
     "manual_protocol": [
-        "Choose one category from this index.",
-        "Read only that category's route_file.",
-        "Load the best matching SKILL.md completely.",
-        "Add at most one support skill unless the task explicitly spans multiple phases.",
+        "Use the host-discovered skill metadata or runtime-catalog.json for model-native semantic selection.",
+        "Choose by user outcome and skill description, not keyword overlap.",
+        "Load only the selected SKILL.md body.",
+        "Use category route files only as hierarchical navigation or diagnostic metadata.",
+        "Use select_skills.py only as advisory fallback/regression evidence.",
+        "No matching skill is a valid result.",
     ],
     "default_profile": "profiles/default.txt",
     "profiles": {name: f"profiles/{name}.txt" for name in PROFILES},
     "categories": categories,
 }
 (ROOT / "index.json").write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+runtime_catalog = {
+    "schema_version": 1,
+    "library": "agent-skills-neutral",
+    "routing_authority": "model-native-semantic",
+    "skills": [
+        {
+            "name": item["name"],
+            "description": item["description"],
+            "location": f"{item['path']}/SKILL.md",
+        }
+        for item in sorted(catalog["skills"], key=lambda value: value["name"])
+    ],
+}
+(ROOT / "runtime-catalog.json").write_text(
+    json.dumps(runtime_catalog, ensure_ascii=False, indent=2) + "\n",
+    encoding="utf-8",
+)
 
 level_counts = Counter(item["reference_level"] for item in catalog["skills"])
 catalog_lines = [
