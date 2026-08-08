@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
+
+from build_runtime_bundle import BundleError, _markdown_headings, strip_terminal_provenance
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -12,6 +15,16 @@ SCRIPT = ROOT / "scripts" / "build_runtime_bundle.py"
 CATALOG = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8"))
 EXPECTED_SKILLS = len(CATALOG.get("skills", []))
 errors: list[str] = []
+
+
+def source_skill_digests() -> dict[str, str]:
+    return {
+        path.relative_to(ROOT).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in sorted((ROOT / "skills").glob("*/SKILL.md"))
+    }
+
+
+source_digests_before = source_skill_digests()
 
 
 def run(*args: str, expected: set[int] = {0}) -> subprocess.CompletedProcess[str]:
@@ -118,6 +131,55 @@ with tempfile.TemporaryDirectory(prefix="agent-skills-runtime-test-") as temp:
     leakage = run("verify", "--bundle", str(bundle), expected={1})
     if leakage.returncode != 1 or "unexpected runtime top-level content" not in leakage.stderr:
         errors.append("runtime verifier did not reject leaked control-plane content")
+
+    for item in CATALOG.get("skills", []):
+        name = item["name"]
+        source = ROOT / item["path"] / "SKILL.md"
+        generated = bundle / "skills" / name / "SKILL.md"
+        if not generated.is_file():
+            errors.append(f"generated SKILL.md missing for exact transform test: {name}")
+            continue
+        expected = strip_terminal_provenance(source.read_text(encoding="utf-8")).encode("utf-8")
+        actual = generated.read_bytes()
+        if actual != expected:
+            errors.append(f"generated SKILL.md is not the exact provenance transform: {name}")
+        generated_text = actual.decode("utf-8")
+        real_provenance = [
+            heading
+            for heading in _markdown_headings(generated_text)
+            if heading[1] == 2 and heading[2] == "Provenance"
+        ]
+        if real_provenance:
+            errors.append(f"runtime SKILL.md retains real Provenance heading: {name}")
+        if "../../provenance.json" in generated_text:
+            errors.append(f"runtime SKILL.md retains provenance link: {name}")
+
+    nonterminal = "# Skill\n\n## Provenance\n\nsource info\n\n## Decision rules\n\nimportant\n"
+    try:
+        strip_terminal_provenance(nonterminal)
+    except BundleError:
+        pass
+    else:
+        errors.append("non-terminal Provenance section was not rejected")
+
+    fenced = "# Example\n\n```markdown\n## Provenance\n```\n\n## Decision rules\n\nKeep this.\n"
+    if strip_terminal_provenance(fenced) != fenced:
+        errors.append("fenced Provenance text was treated as a real heading")
+
+    tilde_fenced = "# Example\n\n~~~markdown\n## Provenance\n~~~\n\n## Decision rules\n\nKeep this.\n"
+    if strip_terminal_provenance(tilde_fenced) != tilde_fenced:
+        errors.append("tilde-fenced Provenance text was treated as a real heading")
+
+    duplicate = "# Skill\n\n## Provenance\n\nfirst\n\n## Provenance\n\nsecond\n"
+    try:
+        strip_terminal_provenance(duplicate)
+    except BundleError:
+        pass
+    else:
+        errors.append("duplicate Provenance sections were not rejected")
+
+if source_skill_digests() != source_digests_before:
+    errors.append("canonical SKILL.md digest inventory changed during runtime bundle tests")
 
 if errors:
     print("RUNTIME BUNDLE TESTS FAILED")

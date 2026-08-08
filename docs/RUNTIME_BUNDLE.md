@@ -23,6 +23,8 @@ Evolution, evaluation, and maintenance may change those sources only through the
 
 Generated runtime output is not canonical source and must never be edited as the way to change a skill.
 
+Canonical `SKILL.md` files may contain a terminal maintainer-only `## Provenance` section. Runtime compilation deterministically removes that terminal section from generated `SKILL.md` files because attribution/review lineage belongs to the authoring/control plane and `provenance.json` is intentionally absent from task-time artifacts. This is a build transform, not a second canonical skill representation.
+
 ## Build
 
 Production build from a clean commit:

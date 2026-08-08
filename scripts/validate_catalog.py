@@ -16,6 +16,33 @@ sha_pattern = re.compile(r"^[0-9a-f]{40}$")
 markdown_link_pattern = re.compile(r"\]\(([^)#]+\.md)(?:#[^)]+)?\)")
 
 
+def real_h1_h2_headings(text: str) -> list[tuple[int, int, str]]:
+    headings: list[tuple[int, int, str]] = []
+    in_fence = False
+    fence_char = ""
+    fence_length = 0
+    for index, line in enumerate(text.splitlines(keepends=True)):
+        stripped = line.lstrip(" \t")
+        fence = re.match(r"(`{3,}|~{3,})(?:[^`~]*)?(?:\r?\n)?$", stripped)
+        if fence:
+            marker = fence.group(1)
+            if not in_fence:
+                in_fence = True
+                fence_char = marker[0]
+                fence_length = len(marker)
+            elif marker[0] == fence_char and len(marker) >= fence_length:
+                in_fence = False
+                fence_char = ""
+                fence_length = 0
+            continue
+        if in_fence:
+            continue
+        heading = re.match(r"^(#{1,2})[ \t]+([^\r\n]*?)[ \t]*(?:\r?\n)?$", line)
+        if heading:
+            headings.append((index, len(heading.group(1)), heading.group(2).strip()))
+    return headings
+
+
 def check_local_markdown_links(root: Path) -> None:
     for markdown_path in root.rglob("*.md"):
         text = markdown_path.read_text(encoding="utf-8")
@@ -76,6 +103,19 @@ for item in catalog.get("skills", []):
         errors.append(f"frontmatter/catalog description mismatch: {name}")
     if not body.strip() or "TODO" in text or "Insert instructions" in text:
         errors.append(f"empty or placeholder body: {name}")
+
+    headings = real_h1_h2_headings(text)
+    provenance_headings = [
+        heading
+        for heading in headings
+        if heading[1] == 2 and heading[2] == "Provenance"
+    ]
+    if len(provenance_headings) > 1:
+        errors.append(f"multiple real top-level Provenance sections: {name}")
+    elif provenance_headings:
+        provenance_index = provenance_headings[0][0]
+        if any(index > provenance_index for index, _level, _title in headings):
+            errors.append(f"Provenance section must be terminal: {name}")
 
     agent_metadata = skill_dir / "agents" / "openai.yaml"
     if not agent_metadata.is_file():

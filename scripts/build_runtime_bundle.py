@@ -27,6 +27,57 @@ class BundleError(RuntimeError):
     pass
 
 
+def _markdown_headings(text: str) -> list[tuple[int, int, str]]:
+    """Return real H1/H2 headings, ignoring fenced Markdown blocks."""
+    headings: list[tuple[int, int, str]] = []
+    in_fence = False
+    fence_char = ""
+    fence_length = 0
+    for index, line in enumerate(text.splitlines(keepends=True)):
+        stripped = line.lstrip(" \t")
+        fence = re.match(r"(`{3,}|~{3,})(?:[^`~]*)?(?:\r?\n)?$", stripped)
+        if fence:
+            marker = fence.group(1)
+            if not in_fence:
+                in_fence = True
+                fence_char = marker[0]
+                fence_length = len(marker)
+            elif marker[0] == fence_char and len(marker) >= fence_length:
+                in_fence = False
+                fence_char = ""
+                fence_length = 0
+            continue
+        if in_fence:
+            continue
+        heading = re.match(r"^(#{1,2})[ \t]+([^\r\n]*?)[ \t]*(?:\r?\n)?$", line)
+        if heading:
+            headings.append((index, len(heading.group(1)), heading.group(2).strip()))
+    return headings
+
+
+def strip_terminal_provenance(text: str) -> str:
+    """Remove one terminal, real top-level ``## Provenance`` section."""
+    lines = text.splitlines(keepends=True)
+    headings = _markdown_headings(text)
+    provenance = [
+        heading
+        for heading in headings
+        if heading[1] == 2 and heading[2] == "Provenance"
+    ]
+    if len(provenance) > 1:
+        raise BundleError("multiple real top-level Provenance sections")
+    if not provenance:
+        return text
+
+    start = provenance[0][0]
+    if any(index > start for index, _level, _title in headings):
+        raise BundleError("Provenance section must be terminal")
+
+    prefix = "".join(lines[:start])
+    prefix = re.sub(r"(?:\r?\n)+$", "", prefix)
+    return prefix + "\n"
+
+
 def read_json(path: Path) -> dict[str, Any]:
     try:
         value = json.loads(path.read_text(encoding="utf-8"))
@@ -159,7 +210,11 @@ def copy_skill_tree(source: Path, destination: Path) -> None:
             target.mkdir(parents=True, exist_ok=True)
         elif path.is_file():
             target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(path, target)
+            if path == source / "SKILL.md":
+                target.write_bytes(strip_terminal_provenance(path.read_text(encoding="utf-8")).encode("utf-8"))
+                shutil.copystat(path, target)
+            else:
+                shutil.copy2(path, target)
         else:
             raise BundleError(f"unsupported filesystem entry in skill: {path}")
 
