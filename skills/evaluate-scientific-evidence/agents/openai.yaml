@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evaluate Scientific Evidence"
+  short_description: "Neutral workflow: Evaluate Scientific Evidence"
+  default_prompt: "Use $evaluate-scientific-evidence to determine what scientific conclusions the available design and evidence can support."

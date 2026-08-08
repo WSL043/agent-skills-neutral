@@ -2,7 +2,7 @@
 
 A private, vendor-neutral Agent Skills reference and evolution library. It consolidates reusable capabilities into a smaller canonical set while keeping source discovery, comparison, and runtime routing separated.
 
-The current library contains 43 canonical skills. That number is not a target: source coverage and domain coverage may grow, while normal task context stays limited to the smallest routed skill set.
+The current library contains 45 canonical skills. That number is not a target: source coverage and domain coverage may grow, while normal task context stays limited to the smallest routed skill set.
 
 ## Core model
 

@@ -40,6 +40,12 @@
     {"query": "帮我分析这个 PostgreSQL 查询的 EXPLAIN 和索引", "primary": "work-with-postgresql"},
     {"query": "turn this observation into rival scientific hypotheses and discriminating predictions", "primary": "formulate-scientific-hypotheses"},
     {"query": "把这个观察结果变成可证伪的科学假设和对立解释", "primary": "formulate-scientific-hypotheses"},
+    {"query": "critique this paper's methods and tell me what conclusions the evidence supports", "primary": "evaluate-scientific-evidence"},
+    {"query": "does this observational study actually support its causal claim?", "primary": "evaluate-scientific-evidence"},
+    {"query": "评估这篇论文的研究设计、偏差和证据强度", "primary": "evaluate-scientific-evidence"},
+    {"query": "assemble these scene renders and narration into a final MP4 with captions", "primary": "produce-programmatic-video"},
+    {"query": "trim this MP4 and burn subtitles into the final video", "primary": "produce-programmatic-video"},
+    {"query": "用代码把这些场景、旁白和字幕合成为最终视频并做渲染检查", "primary": "produce-programmatic-video"},
     {"query": "make this repository easier for coding agents to work in", "primary": "prepare-repository-for-agents"},
     {"query": "基于这个仓库真实结构整理 AGENTS.md 和 agent 开发约定", "primary": "prepare-repository-for-agents"},
     {"query": "diagnose this performance regression and optimize the measured bottleneck", "primary": "optimize-performance"},
@@ -60,11 +66,15 @@
     {"query": "debug this crash", "forbid": ["optimize-performance"]},
     {"query": "create a new agent skill", "forbid": ["evaluate-agent"]},
     {"query": "research the latest papers about X", "forbid": ["formulate-scientific-hypotheses"]},
+    {"query": "research the latest papers about X", "forbid": ["evaluate-scientific-evidence"]},
+    {"query": "turn this observation into rival scientific hypotheses", "forbid": ["evaluate-scientific-evidence"]},
     {"query": "design a generic SQL schema", "forbid": ["work-with-postgresql"]},
     {"query": "design a frontend page", "forbid": ["prepare-repository-for-agents"]},
     {"query": "take a screenshot", "forbid": ["simplify-code", "optimize-performance", "evaluate-agent", "work-with-postgresql", "formulate-scientific-hypotheses", "prepare-repository-for-agents"]},
     {"query": "make this endpoint faster without changing behavior", "forbid": ["simplify-code"]},
     {"query": "整理这个仓库的模块边界和依赖方向", "forbid": ["prepare-repository-for-agents"]},
-    {"query": "简化部署流程", "forbid": ["simplify-code"]}
+    {"query": "简化部署流程", "forbid": ["simplify-code"]},
+    {"query": "design UI animation for this button", "forbid": ["produce-programmatic-video"]},
+    {"query": "summarize what happens in this video", "forbid": ["produce-programmatic-video"]}
   ]
 }

@@ -61,6 +61,12 @@
       "skill_count": 6
     },
     {
+      "name": "media-production",
+      "summary": "Plan, assemble, render, edit, and verify time-based media.",
+      "route_file": "routes/media-production.json",
+      "skill_count": 1
+    },
+    {
       "name": "operations-evolution",
       "summary": "Instrument production behavior and migrate live systems through reversible stages.",
       "route_file": "routes/operations-evolution.json",
@@ -82,7 +88,7 @@
       "name": "research-communication",
       "summary": "Research primary sources, formulate scientific hypotheses, and coauthor decision-ready documents.",
       "route_file": "routes/research-communication.json",
-      "skill_count": 3
+      "skill_count": 4
     },
     {
       "name": "security",

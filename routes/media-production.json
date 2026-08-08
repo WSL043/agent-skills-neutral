@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "category": "media-production",
+  "summary": "Plan, assemble, render, edit, and verify time-based media.",
+  "skills": [
+    {
+      "kind": "domain",
+      "maturity": "stable",
+      "choose_when": "A video file or time-based media timeline is the primary deliverable and the task needs controlled editing, scene assembly, synchronization, captions, rendering, or final media QA.",
+      "avoid_when": "Do not use for UI animation with no video deliverable, or for merely summarizing or analyzing the content of an existing video.",
+      "triggers": [
+        "programmatic video",
+        "video as code",
+        "assemble video",
+        "video assembly",
+        "video timeline",
+        "edit video timeline",
+        "render final video",
+        "video rendering",
+        "trim this mp4",
+        "burn subtitles",
+        "burn captions",
+        "sync narration to video",
+        "sync audio to video",
+        "ffmpeg video",
+        "assemble these scene renders",
+        "视频合成",
+        "程序化视频",
+        "视频时间轴",
+        "视频剪辑",
+        "渲染视频",
+        "字幕烧录",
+        "音画同步",
+        "旁白同步",
+        "场景、旁白和字幕合成为最终视频"
+      ],
+      "negative_triggers": [],
+      "explicit_only": true,
+      "name": "produce-programmatic-video",
+      "level": "A",
+      "path": "skills/produce-programmatic-video/SKILL.md"
+    }
+  ]
+}

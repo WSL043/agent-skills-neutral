@@ -12,11 +12,13 @@
     "psenger/ai-agent-skills": "96716a643138665b4e335f836fb661f126944644",
     "addyosmani/agent-skills": "d2478bf0c73a6357df39a3ed6aff16acaa218843",
     "vercel-labs/skills": "1164afa5f0e21ebd01e6fc11249759353f494ad1",
+    "vercel-labs/web-interface-guidelines": "4e799d45c17aec1498c269287a83b9dba22b966b",
     "google/skills": "426c0776b0adc0a8c873f4012fc166756c0a989a",
     "github/awesome-copilot": "811ed362dd9cdbbc83efc10e43039598654a7dda",
-    "K-Dense-AI/scientific-agent-skills": "d767725c6e93b1d02a220e6be75b261a9833ede5",
+    "K-Dense-AI/scientific-agent-skills": "991bd993aca4e90891d1f9908ba82ef45d77b6f0",
     "supabase/agent-skills": "1207767388a0ffb55f21fb4e6988fee96942431d",
-    "johnpapa/ai-ready": "b3538e9104e710c8ce528466840e8db1fee3c56b"
+    "johnpapa/ai-ready": "b3538e9104e710c8ce528466840e8db1fee3c56b",
+    "saranambiar/hyperframes-video-agent-skills": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4"
   },
   "skills": {
     "build-cli": [
@@ -155,6 +157,16 @@
         "path": "skills/image-to-code-skill/SKILL.md",
         "commit": "e988add20dab0fa97d7a76781c48961c8184288e",
         "url": "https://github.com/Leonxlnx/taste-skill/tree/e988add20dab0fa97d7a76781c48961c8184288e/skills/image-to-code-skill"
+      },
+      {
+        "repository": "vercel-labs/web-interface-guidelines",
+        "skill": "web-interface-guidelines",
+        "path": "README.md",
+        "commit": "4e799d45c17aec1498c269287a83b9dba22b966b",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines/blob/4e799d45c17aec1498c269287a83b9dba22b966b/README.md",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Extracted durable interaction, accessibility, focus, form, content-resilience, localization, hydration, and rendered-QA rules; removed Vercel-specific style/copy preferences, fixed thresholds, and mutable remote-instruction behavior."
       }
     ],
     "design-motion": [
@@ -704,6 +716,28 @@
         "adaptation_note": "Extracted falsifiable rival hypotheses, discriminating predictions, and measurement safeguards; bundled scripts and domain-specific material were excluded."
       }
     ],
+    "evaluate-scientific-evidence": [
+      {
+        "repository": "K-Dense-AI/scientific-agent-skills",
+        "skill": "scientific-critical-thinking",
+        "path": "skills/scientific-critical-thinking/SKILL.md",
+        "commit": "991bd993aca4e90891d1f9908ba82ef45d77b6f0",
+        "url": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/991bd993aca4e90891d1f9908ba82ef45d77b6f0/skills/scientific-critical-thinking",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Extracted study-design validity, bias/confounding, statistical-inference, evidence-quality, and claim-bounding mechanisms; optional external services and framework-specific checklists were excluded."
+      },
+      {
+        "repository": "K-Dense-AI/scientific-agent-skills",
+        "skill": "peer-review",
+        "path": "skills/peer-review/SKILL.md",
+        "commit": "991bd993aca4e90891d1f9908ba82ef45d77b6f0",
+        "url": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/991bd993aca4e90891d1f9908ba82ef45d77b6f0/skills/peer-review",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained claim-to-evidence alignment, unit-of-inference, missingness, multiplicity, reproducibility, and reporting-versus-validity distinctions without importing peer-review workflow or confidential-review tooling."
+      }
+    ],
     "prepare-repository-for-agents": [
       {
         "repository": "johnpapa/ai-ready",
@@ -713,7 +747,59 @@
         "url": "https://github.com/johnpapa/ai-ready/tree/b3538e9104e710c8ce528466840e8db1fee3c56b/skills/ai-ready",
         "license": "MIT",
         "license_url": "https://opensource.org/license/mit/",
-        "adaptation_note": "Rewritten as a minimal evidence-backed repository-readiness audit; generated boilerplate, provider-specific integrations, and overwrite behavior were excluded."
+        "adaptation_note": "Rewritten as a minimal evidence-backed repository-readiness audit; later strengthened with repeated PR-review evidence and demonstrated change-cascade discovery while rejecting fixed asset scores, badges, and provider-specific integrations."
+      }
+    ],
+    "produce-programmatic-video": [
+      {
+        "repository": "saranambiar/hyperframes-video-agent-skills",
+        "skill": "end-to-end-video-playbook",
+        "path": "skills/end-to-end-video-playbook/SKILL.md",
+        "commit": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4",
+        "url": "https://github.com/saranambiar/hyperframes-video-agent-skills/tree/f6b043d9fd3b8a9820af143a47db8c74f1194fb4/skills/end-to-end-video-playbook",
+        "license": "Apache-2.0",
+        "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+        "adaptation_note": "Retained source-first staged production, layered assembly, approval boundaries, and final-render verification; HyperFrames-specific routing and fixed output choices were removed."
+      },
+      {
+        "repository": "saranambiar/hyperframes-video-agent-skills",
+        "skill": "video-intake-and-storyboard",
+        "path": "skills/video-intake-and-storyboard/SKILL.md",
+        "commit": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4",
+        "url": "https://github.com/saranambiar/hyperframes-video-agent-skills/tree/f6b043d9fd3b8a9820af143a47db8c74f1194fb4/skills/video-intake-and-storyboard",
+        "license": "Apache-2.0",
+        "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+        "adaptation_note": "Retained scene/timeline specification, locked-content boundaries, local/global timing, source-of-truth assets, and proof timestamps; fixed style assumptions were removed."
+      },
+      {
+        "repository": "saranambiar/hyperframes-video-agent-skills",
+        "skill": "audio-sync-assembly",
+        "path": "skills/audio-sync-assembly/SKILL.md",
+        "commit": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4",
+        "url": "https://github.com/saranambiar/hyperframes-video-agent-skills/tree/f6b043d9fd3b8a9820af143a47db8c74f1194fb4/skills/audio-sync-assembly",
+        "license": "Apache-2.0",
+        "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+        "adaptation_note": "Retained probe-first media inspection, authoritative timing sources, segment-local retiming, shared caption/visual timing, and final sync verification without copying FFmpeg recipes or parameter defaults."
+      },
+      {
+        "repository": "saranambiar/hyperframes-video-agent-skills",
+        "skill": "captions-and-music-bed",
+        "path": "skills/captions-and-music-bed/SKILL.md",
+        "commit": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4",
+        "url": "https://github.com/saranambiar/hyperframes-video-agent-skills/tree/f6b043d9fd3b8a9820af143a47db8c74f1194fb4/skills/captions-and-music-bed",
+        "license": "Apache-2.0",
+        "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+        "adaptation_note": "Retained final-audio timing as the basis for captions, preview-before-full-burn, and rendered/listened caption-audio QA; caption styling and music parameter defaults were removed."
+      },
+      {
+        "repository": "saranambiar/hyperframes-video-agent-skills",
+        "skill": "render-qa-and-surgical-changes",
+        "path": "skills/render-qa-and-surgical-changes/SKILL.md",
+        "commit": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4",
+        "url": "https://github.com/saranambiar/hyperframes-video-agent-skills/tree/f6b043d9fd3b8a9820af143a47db8c74f1194fb4/skills/render-qa-and-surgical-changes",
+        "license": "Apache-2.0",
+        "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+        "adaptation_note": "Retained source-level surgical edits, affected-scene rebuilds, media probing, proof frames/contact sheets, exact timestamp checks, and final-master verification."
       }
     ]
   }

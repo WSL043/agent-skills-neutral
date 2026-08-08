@@ -1,0 +1,4 @@
+interface:
+  display_name: "Produce Programmatic Video"
+  short_description: "Neutral workflow: Produce Programmatic Video"
+  default_prompt: "Use $produce-programmatic-video to plan, assemble, render, and verify a time-based video artifact from source media, code, and timeline evidence."
