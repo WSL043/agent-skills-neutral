@@ -124,6 +124,12 @@ def load_rules(root: Path = ROOT) -> list[dict[str, Any]]:
 
 
 def match_rule(query: str, rule: dict[str, Any]) -> dict[str, Any] | None:
+    """Return deterministic lexical evidence for one route.
+
+    This function deliberately remains simple and inspectable. It is used to
+    test routing metadata and provide fallback suggestions; it is not intended
+    to reproduce a capable model's semantic routing judgment.
+    """
     normalized_query = normalize(query)
     query_tokens = expanded_tokens(query)
 
@@ -164,11 +170,9 @@ def match_rule(query: str, rule: dict[str, Any]) -> dict[str, Any] | None:
         match_class = "terms"
         class_order = 2
 
-    # Ranking evidence is derived only from the text that actually matched:
-    # explicit name > explicit trigger > shared terms. Within the same class,
-    # more matched triggers/terms and a more specific trigger phrase provide
-    # stronger evidence. Project S/A priority and the skill name are stable
-    # tie-breakers rather than invented numeric weights.
+    # Ranking evidence is derived only from text that actually matched. These
+    # rules keep the fallback deterministic; they are not a claim that lexical
+    # rank is semantically optimal for an agent.
     longest_trigger_terms = max(
         (len(tokens(phrase)) for phrase in trigger_hits),
         default=0,
@@ -229,8 +233,9 @@ def route_query(
         else (candidates[0] if candidates else None)
     )
 
-    # AGENTS.md explicitly authorizes at most one support skill for a distinct
-    # second phase, so this is project policy rather than an inferred cap.
+    # AGENTS.md authorizes at most one support skill for a distinct second
+    # phase. This remains useful for fallback output but does not constrain a
+    # host that implements its own model-native progressive-disclosure policy.
     supports = [
         item
         for item in candidates
@@ -246,15 +251,19 @@ def route_query(
     if alternative_limit is not None:
         alternatives = alternatives[: max(0, alternative_limit)]
 
-    warnings: list[str] = []
+    warnings: list[str] = [
+        "Advisory lexical result only. A capable agent should select from skill "
+        "name/description metadata semantically and may override this suggestion."
+    ]
     if not primary:
         warnings.append(
-            "No confident route. Inspect index.json and one likely category route file; "
-            "do not load every skill."
+            "No lexical suggestion. Model-native semantic selection may still find a "
+            "useful skill; no route is also a valid result."
         )
 
     return {
         "query": query,
+        "authority": "advisory-lexical-fallback",
         "primary": public_result(primary) if primary else None,
         "support": [public_result(item) for item in supports],
         "alternatives": [public_result(item) for item in alternatives],
@@ -266,10 +275,10 @@ def print_text(result: dict[str, Any]) -> None:
     primary = result["primary"]
     if primary:
         print(
-            f"PRIMARY  [{primary['level']}] {primary['name']}  "
+            f"SUGGESTED_PRIMARY  [{primary['level']}] {primary['name']}  "
             f"match={primary['match_class']}"
         )
-        print(f"         {primary['path']}")
+        print(f"                   {primary['path']}")
         matched = primary["matched"]
         evidence: list[str] = []
         if matched["name"]:
@@ -278,28 +287,31 @@ def print_text(result: dict[str, Any]) -> None:
             evidence.append("triggers=" + ",".join(matched["triggers"]))
         if matched["terms"]:
             evidence.append("terms=" + ",".join(matched["terms"]))
-        print(f"         matched: {'; '.join(evidence)}")
+        print(f"                   matched: {'; '.join(evidence)}")
     else:
-        print("PRIMARY  none")
+        print("SUGGESTED_PRIMARY  none")
 
     for item in result["support"]:
         print(
-            f"SUPPORT  [{item['level']}] {item['name']}  "
+            f"SUGGESTED_SUPPORT  [{item['level']}] {item['name']}  "
             f"match={item['match_class']}"
         )
-        print(f"         {item['path']}")
+        print(f"                   {item['path']}")
     for item in result["alternatives"]:
         print(
-            f"ALT      [{item['level']}] {item['name']}  "
+            f"ALT                [{item['level']}] {item['name']}  "
             f"match={item['match_class']}"
         )
     for warning in result["warnings"]:
-        print(f"WARNING  {warning}")
+        print(f"WARNING            {warning}")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Route a task to the smallest matching Agent Skill set"
+        description=(
+            "Advisory lexical Agent Skill router for regression tests, diagnostics, "
+            "and clients without model-native semantic activation"
+        )
     )
     parser.add_argument(
         "query",
