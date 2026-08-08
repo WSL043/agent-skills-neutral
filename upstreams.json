@@ -12,7 +12,7 @@
     {"repository": "openai/skills", "last_reviewed_commit": "49f948faa9258a0c61caceaf225e179651397431", "focus": ["core", "artifacts", "tooling"]},
     {"repository": "psenger/ai-agent-skills", "last_reviewed_commit": "96716a643138665b4e335f836fb661f126944644", "focus": ["general-reservoir"]},
     {"repository": "addyosmani/agent-skills", "last_reviewed_commit": "d2478bf0c73a6357df39a3ed6aff16acaa218843", "focus": ["core", "engineering", "quality"]},
-    {"repository": "vercel-labs/skills", "last_reviewed_commit": "a4d243c3d4f86cdf9385dd1b6a0733f6937e70b5", "focus": ["skill-tooling"]},
+    {"repository": "vercel-labs/skills", "last_reviewed_commit": "941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c", "focus": ["skill-tooling"]},
     {"repository": "vercel-labs/agent-skills", "last_reviewed_commit": "7c180d9044c9ae2b442b567aad4e42a28dd5ed62", "focus": ["frontend", "react", "design-quality"]},
     {"repository": "vercel-labs/web-interface-guidelines", "last_reviewed_commit": "4e799d45c17aec1498c269287a83b9dba22b966b", "focus": ["frontend", "interaction-quality", "accessibility"]},
     {"repository": "google/skills", "last_reviewed_commit": null, "focus": ["agent-evaluation", "cloud-reservoir"]},
