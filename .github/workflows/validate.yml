@@ -23,3 +23,5 @@ jobs:
         run: python scripts/validate_catalog.py
       - name: Test routing
         run: python scripts/test_routing.py
+      - name: Test evolution runner
+        run: python scripts/test_evolution_runner.py
