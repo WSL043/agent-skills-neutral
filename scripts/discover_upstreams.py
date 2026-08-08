@@ -38,23 +38,12 @@ DEFAULT_QUERIES = [
 # self-correction, routing/tool choice, and learning from experience. The
 # scheduled authenticated scan enables this lane; local callers can opt in.
 DEFAULT_MECHANISM_QUERIES = [
-    '"agent evaluation" in:name,description,readme',
-    '"agent reasoning" in:name,description,readme',
-    '"agent memory" in:name,description,readme',
-    '"agent self improvement" in:name,description,readme',
-    '"context engineering" in:name,description,readme',
-    '"agent routing" in:name,description,readme',
-    '"skill evolution" in:name,description,readme',
-    '"self evolving agent" in:name,description,readme',
-    '"self-evolving agent" in:name,description,readme',
-    '"trajectory distillation" in:name,description,readme',
-    '"agent experience learning" in:name,description,readme',
-    '"memory optimization" in:name,description,readme',
-    '"memory evolution" in:name,description,readme',
-    '"context evolution" in:name,description,readme',
-    '"agent harness optimization" in:name,description,readme',
-    '"semantic skill routing" in:name,description,readme',
-    '"skill retrieval" in:name,description,readme',
+    '("agent evaluation" OR evaluator OR "validation gate" OR "agent benchmark") in:name,description,readme',
+    '("agent reasoning" OR "agent planning" OR decomposition OR "information gain") in:name,description,readme',
+    '("agent memory" OR "memory evolution" OR "context engineering" OR "context evolution") in:name,description,readme',
+    '("skill evolution" OR "skill optimization" OR "trajectory distillation" OR "experience learning") in:name,description,readme',
+    '("agent routing" OR "tool selection" OR "semantic routing" OR "skill retrieval") in:name,description,readme',
+    '("agent abstention" OR "self correction" OR "self-correction" OR "self-evolving agent") in:name,description,readme',
 ]
 
 # Metadata-only review signals. They only affect review order; they never grant
@@ -86,6 +75,8 @@ CAPABILITY_LIFT_SIGNAL_PATTERNS: dict[str, tuple[str, ...]] = {
         "decomposition",
         "hypothesis",
         "decision making",
+        "information gain",
+        "clarification",
     ),
     "memory-context": (
         "agent memory",
@@ -125,6 +116,8 @@ CAPABILITY_LIFT_SIGNAL_PATTERNS: dict[str, tuple[str, ...]] = {
         "capability tree",
         "skill dependency",
         "hierarchical routing",
+        "tool timing",
+        "tool invocation",
     ),
     "feedback-trajectory-distillation": (
         "trajectory",
@@ -145,6 +138,12 @@ CAPABILITY_LIFT_SIGNAL_PATTERNS: dict[str, tuple[str, ...]] = {
         "calibration",
         "confidence calibration",
         "abstention",
+        "agent abstention",
+        "abstain",
+        "should act",
+        "should-act",
+        "should abstain",
+        "should-abstain",
     ),
 }
 
@@ -165,6 +164,26 @@ def github_get(path: str) -> tuple[Any, dict[str, str]]:
         return payload, {key.casefold(): value for key, value in response.headers.items()}
 
 
+def http_error_details(error: urllib.error.HTTPError) -> dict[str, Any]:
+    details: dict[str, Any] = {
+        "status": error.code,
+        "error": str(error),
+    }
+    headers = error.headers
+    for name in (
+        "x-ratelimit-limit",
+        "x-ratelimit-remaining",
+        "x-ratelimit-reset",
+        "retry-after",
+    ):
+        value = headers.get(name) if headers is not None else None
+        if value is not None:
+            details[name] = value
+    if error.code in {403, 429}:
+        details["rate_limit"] = True
+    return details
+
+
 def has_next(link_header: str | None) -> bool:
     if not link_header:
         return False
@@ -180,13 +199,27 @@ def tracked_repositories() -> set[str]:
     }
 
 
-def search_repositories(query: str) -> list[dict[str, Any]]:
+GITHUB_SEARCH_MAX_PER_PAGE = 100
+
+
+def search_repositories(
+    query: str,
+    exhaustive: bool = False,
+) -> list[dict[str, Any]]:
     page = 1
     found: list[dict[str, Any]] = []
     while True:
-        encoded = urllib.parse.quote(query, safe="")
+        params = urllib.parse.urlencode(
+            {
+                "q": query,
+                "per_page": GITHUB_SEARCH_MAX_PER_PAGE,
+                "page": page,
+                "sort": "updated",
+                "order": "desc",
+            }
+        )
         payload, headers = github_get(
-            f"/search/repositories?q={encoded}&per_page=100&page={page}"
+            f"/search/repositories?{params}"
         )
         if not isinstance(payload, dict):
             raise RuntimeError("invalid repository search response")
@@ -194,7 +227,7 @@ def search_repositories(query: str) -> list[dict[str, Any]]:
         if not isinstance(items, list):
             raise RuntimeError("repository search response has no item list")
         found.extend(item for item in items if isinstance(item, dict))
-        if not has_next(headers.get("link")):
+        if not exhaustive or not has_next(headers.get("link")):
             break
         page += 1
     return found
@@ -232,7 +265,7 @@ def normalize_repo_reference(owner: str, name: str) -> str:
 
 def referenced_repositories(
     repositories: set[str],
-    errors: list[dict[str, str]],
+    errors: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
     tracked_folded = {repository.casefold() for repository in repositories}
     references: dict[str, set[str]] = defaultdict(set)
@@ -243,7 +276,12 @@ def referenced_repositories(
     for source in sorted(repositories, key=str.casefold):
         try:
             text = readme_text(source)
-        except (urllib.error.URLError, urllib.error.HTTPError, RuntimeError) as exc:
+        except urllib.error.HTTPError as exc:
+            error = {"repository": source, "readme_error": str(exc)}
+            error.update(http_error_details(exc))
+            errors.append(error)
+            continue
+        except (urllib.error.URLError, RuntimeError) as exc:
             errors.append({"repository": source, "readme_error": str(exc)})
             continue
         if not text:
@@ -292,10 +330,15 @@ def capability_lift_signals(item: dict[str, Any]) -> list[str]:
 def discover(
     skill_queries: list[str],
     mechanism_queries: list[str],
+    exhaustive: bool = False,
+    targeted_queries: set[str] | None = None,
 ) -> dict[str, Any]:
     tracked = tracked_repositories()
     raw: dict[str, dict[str, Any]] = {}
-    errors: list[dict[str, str]] = []
+    errors: list[dict[str, Any]] = []
+    if exhaustive and targeted_queries is None:
+        targeted_queries = set(skill_queries) | set(mechanism_queries)
+    targeted_queries = targeted_queries or set()
 
     query_plan = [
         *(('skill', query) for query in skill_queries),
@@ -304,8 +347,16 @@ def discover(
 
     for lane, query in query_plan:
         try:
-            items = search_repositories(query)
-        except (urllib.error.URLError, urllib.error.HTTPError, RuntimeError) as exc:
+            items = search_repositories(
+                query,
+                exhaustive=exhaustive and query in targeted_queries,
+            )
+        except urllib.error.HTTPError as exc:
+            error = {"lane": lane, "query": query}
+            error.update(http_error_details(exc))
+            errors.append(error)
+            continue
+        except (urllib.error.URLError, RuntimeError) as exc:
             errors.append({"lane": lane, "query": query, "error": str(exc)})
             continue
         for item in items:
@@ -361,6 +412,14 @@ def discover(
 
     return {
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+        "search_mode": "targeted-exhaustive" if exhaustive else "recent-window",
+        "coverage_note": (
+            "Repository search uses the API-max first page of each relevance lens "
+            "ordered by recent update. This is candidate generation, not a completeness claim."
+            if not exhaustive
+            else "Repository search follows pagination only for explicitly supplied query lenses. "
+            "This is targeted deep search, not a completeness claim."
+        ),
         "skill_queries": skill_queries,
         "mechanism_queries": mechanism_queries,
         "tracked_count": len(tracked),
@@ -409,11 +468,24 @@ def main() -> int:
         ),
     )
     parser.add_argument(
+        "--exhaustive-search",
+        action="store_true",
+        help=(
+            "Follow pagination only for explicitly supplied --query or "
+            "--mechanism-query lenses."
+        ),
+    )
+    parser.add_argument(
         "--output",
         type=Path,
         help="Write JSON to this path instead of stdout.",
     )
     args = parser.parse_args()
+
+    if args.exhaustive_search and not (args.query or args.mechanism_query):
+        parser.error(
+            "--exhaustive-search requires at least one explicit --query or --mechanism-query"
+        )
 
     skill_queries = args.query or DEFAULT_QUERIES
     include_mechanisms = args.include_mechanisms or bool(args.mechanism_query)
@@ -422,7 +494,12 @@ def main() -> int:
         if include_mechanisms
         else []
     )
-    result = discover(skill_queries, mechanism_queries)
+    result = discover(
+        skill_queries,
+        mechanism_queries,
+        exhaustive=args.exhaustive_search,
+        targeted_queries=set(args.query) | set(args.mechanism_query),
+    )
     rendered = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)

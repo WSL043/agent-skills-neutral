@@ -22,7 +22,8 @@
   },
   "mechanism_snapshots": {
     "microsoft/SkillOpt": "47fe269d75d3def79ffd90236261d26d84868ae5",
-    "Qwen-Applications/Trace2Skill": "3d0b52a140f002a512930252b613c49048f7d5ac"
+    "Qwen-Applications/Trace2Skill": "3d0b52a140f002a512930252b613c49048f7d5ac",
+    "smalls257/eval-pack": "3f95a1545ef4b2c925d9059d0035ab29417be995"
   },
   "skills": {
     "build-cli": [
@@ -757,6 +758,39 @@
         "license": "MIT",
         "license_url": "https://opensource.org/license/mit/",
         "adaptation_note": "Retained the architectural separation between candidate generation and an explicit accept/reject validation gate. Hard/soft/mixed score formulas, fixed weights, semantic-density bonuses, leading-word heuristics, and project-specific thresholds were explicitly rejected."
+      },
+      {
+        "source_kind": "mechanism",
+        "repository": "smalls257/eval-pack",
+        "skill": "independent-evaluation-synthesis",
+        "path": "agents/eval-pack-evaluator.md",
+        "commit": "3f95a1545ef4b2c925d9059d0035ab29417be995",
+        "url": "https://github.com/smalls257/eval-pack/blob/3f95a1545ef4b2c925d9059d0035ab29417be995/agents/eval-pack-evaluator.md",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained the separation between independent dimension-specific findings and a final synthesizer that consumes recorded evidence without silently re-scoring every dimension; product/report formatting and fixed confidence-score conventions were excluded."
+      },
+      {
+        "source_kind": "mechanism",
+        "repository": "smalls257/eval-pack",
+        "skill": "verification-evidence-lens",
+        "path": "agents/lenses/verification-rigor.md",
+        "commit": "3f95a1545ef4b2c925d9059d0035ab29417be995",
+        "url": "https://github.com/smalls257/eval-pack/blob/3f95a1545ef4b2c925d9059d0035ab29417be995/agents/lenses/verification-rigor.md",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained claim-to-observed-evidence verification as an independent evaluation dimension; numeric scoring formulas and prose/report schemas were excluded."
+      },
+      {
+        "source_kind": "mechanism",
+        "repository": "smalls257/eval-pack",
+        "skill": "requirement-fit-lens",
+        "path": "agents/lenses/requirement-drift.md",
+        "commit": "3f95a1545ef4b2c925d9059d0035ab29417be995",
+        "url": "https://github.com/smalls257/eval-pack/blob/3f95a1545ef4b2c925d9059d0035ab29417be995/agents/lenses/requirement-drift.md",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained asked-versus-delivered requirement fit as a dimension independent from verification and implementation quality; fixed point deductions and score ranges were excluded."
       }
     ],
     "work-with-postgresql": [
