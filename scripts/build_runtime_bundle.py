@@ -238,8 +238,15 @@ def build_manifest(
 
 def prepare_output(output: Path) -> Path:
     output = output.expanduser().resolve()
-    if output == ROOT or output in ROOT.parents:
-        raise BundleError(f"refusing unsafe output path: {output}")
+    dist_root = (ROOT / "dist").resolve()
+    if output == ROOT or ROOT.is_relative_to(output):
+        raise BundleError(
+            f"refusing unsafe output path at or above source repository: {output}"
+        )
+    if output.is_relative_to(ROOT) and not output.is_relative_to(dist_root):
+        raise BundleError(
+            f"output inside source repository must be under dist/: {output}"
+        )
     if output.exists():
         if output.is_symlink():
             raise BundleError(f"refusing to replace symlink output: {output}")

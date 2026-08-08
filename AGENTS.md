@@ -86,3 +86,6 @@ See `docs/EVOLUTION.md` and `docs/BENCHMARK.md` for the full maintenance contrac
 - Prefer fresh runtime or rendered evidence over configuration-only claims.
 - Label facts, inference, and blocked checks separately.
 - Do not use proprietary API or SaaS adapters unless the task explicitly requests that provider.
+- Treat the source repository as the authoring/control plane and a generated runtime bundle as the serving surface. When deployment supports it, task agents should receive the runtime bundle rather than the maintenance repository root.
+- Never edit `dist/runtime` as canonical source. Change the canonical skill/runtime source, validate it, and rebuild the artifact.
+- A runtime bundle or future runtime-only mirror is distribution output, not an independent authority and not a second hand-maintained skill library.

@@ -34,6 +34,15 @@ def run(*args: str, expected: set[int] = {0}) -> subprocess.CompletedProcess[str
 if EXPECTED_SKILLS <= 0:
     errors.append("canonical catalog has no skills")
 
+for protected_name in ("skills", "docs"):
+    protected_path = ROOT / protected_name
+    protected = run("build", "--output", str(protected_path), "--allow-dirty", expected={1})
+    error_text = protected.stderr.lower()
+    if not any(marker in error_text for marker in ("source repository", "dist/", "unsafe output")):
+        errors.append(f"source-protection error did not identify unsafe output: {protected.stderr}")
+    if protected_name == "skills" and not (ROOT / "skills" / "clarify-requirements" / "SKILL.md").is_file():
+        errors.append("source skill disappeared during destructive-path test")
+
 with tempfile.TemporaryDirectory(prefix="agent-skills-runtime-test-") as temp:
     bundle = Path(temp) / "runtime"
     built = run("build", "--output", str(bundle), "--allow-dirty")

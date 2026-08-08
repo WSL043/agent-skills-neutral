@@ -316,6 +316,89 @@ else:
         if not isinstance(phase, dict) or set(phase.get("enum", [])) != expected_phases:
             errors.append("evolution run experiment phase enum is unexpected")
 
+runtime_manifest_schema_path = ROOT / "schemas" / "runtime-manifest.schema.json"
+if not runtime_manifest_schema_path.is_file():
+    errors.append("missing runtime manifest schema: schemas/runtime-manifest.schema.json")
+else:
+    try:
+        runtime_manifest_schema = json.loads(
+            runtime_manifest_schema_path.read_text(encoding="utf-8")
+        )
+    except (OSError, json.JSONDecodeError) as exc:
+        errors.append(f"invalid runtime manifest schema JSON: {exc}")
+    else:
+        if not isinstance(runtime_manifest_schema, dict) or runtime_manifest_schema.get("type") != "object":
+            errors.append("runtime manifest schema top level must be an object schema")
+        runtime_properties = (
+            runtime_manifest_schema.get("properties", {})
+            if isinstance(runtime_manifest_schema, dict)
+            else {}
+        )
+        runtime_version = (
+            runtime_properties.get("schema_version", {})
+            if isinstance(runtime_properties, dict)
+            else {}
+        )
+        if not isinstance(runtime_version, dict) or runtime_version.get("const") != 1:
+            errors.append("runtime manifest schema_version must have const=1")
+        runtime_authority = (
+            runtime_properties.get("routing_authority", {})
+            if isinstance(runtime_properties, dict)
+            else {}
+        )
+        if not isinstance(runtime_authority, dict) or runtime_authority.get("const") != "model-native-semantic":
+            errors.append("runtime manifest routing_authority must have const=model-native-semantic")
+        runtime_required_fields = {
+            "schema_version",
+            "source_repository",
+            "source_commit",
+            "source_dirty",
+            "routing_authority",
+            "catalog_digest",
+            "runtime_catalog_digest",
+            "skills",
+            "files",
+        }
+        runtime_required = (
+            runtime_manifest_schema.get("required", [])
+            if isinstance(runtime_manifest_schema, dict)
+            else []
+        )
+        if not isinstance(runtime_required, list) or not runtime_required_fields.issubset(runtime_required):
+            errors.append("runtime manifest schema required fields are incomplete")
+        runtime_skills = (
+            runtime_properties.get("skills", {})
+            if isinstance(runtime_properties, dict)
+            else {}
+        )
+        runtime_files = (
+            runtime_properties.get("files", {})
+            if isinstance(runtime_properties, dict)
+            else {}
+        )
+        if not isinstance(runtime_skills, dict) or runtime_skills.get("type") != "array":
+            errors.append("runtime manifest skills property must be an array")
+        if not isinstance(runtime_files, dict) or runtime_files.get("type") != "array":
+            errors.append("runtime manifest files property must be an array")
+        skill_items = runtime_skills.get("items", {}) if isinstance(runtime_skills, dict) else {}
+        skill_required = skill_items.get("required", []) if isinstance(skill_items, dict) else []
+        if not isinstance(skill_required, list) or not {"name", "location", "digest"}.issubset(skill_required):
+            errors.append("runtime manifest skill required fields are incomplete")
+
+for required_path in (
+    "runtime/AGENTS.md",
+    "scripts/build_runtime_bundle.py",
+    "scripts/test_runtime_bundle.py",
+    "docs/RUNTIME_BUNDLE.md",
+):
+    path = ROOT / required_path
+    if not path.is_file() or not path.read_text(encoding="utf-8").strip():
+        errors.append(f"runtime authoring surface file is missing or empty: {required_path}")
+
+gitignore_path = ROOT / ".gitignore"
+if not gitignore_path.is_file() or "dist/" not in gitignore_path.read_text(encoding="utf-8").splitlines():
+    errors.append(".gitignore must contain an independent dist/ entry")
+
 levels = Counter(
     item.get("reference_level") for item in catalog.get("skills", [])
 )

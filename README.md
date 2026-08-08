@@ -57,6 +57,21 @@ At the current library size, the full compact metadata catalog is small enough f
 
 See [`docs/SEMANTIC_ROUTING.md`](docs/SEMANTIC_ROUTING.md).
 
+## Runtime bundle
+
+This repository is the authoring and evolution source of truth. Task agents should consume the generated runtime-only bundle instead of the maintenance repository root when the deployment environment supports that boundary.
+
+```bash
+python scripts/build_runtime_bundle.py build --output dist/runtime
+python scripts/build_runtime_bundle.py verify --bundle dist/runtime
+```
+
+The generated surface contains only the minimal runtime `AGENTS.md`, `runtime-catalog.json`, `MANIFEST.json`, and canonical `skills/`. Evolution, provenance, discovery, tests, benchmarks, and maintainer policy remain outside task-time context.
+
+`dist/` is disposable generated output and is never canonical source.
+
+See [`docs/RUNTIME_BUNDLE.md`](docs/RUNTIME_BUNDLE.md).
+
 ## Capability layers
 
 Canonical skills have different strategic roles:

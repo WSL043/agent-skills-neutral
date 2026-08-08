@@ -76,15 +76,23 @@ Canonical does not mean permanent. A skill may be strengthened, merged, replaced
 
 A canonical-count increase is not a success metric. Improvements that strengthen several existing skills without adding a trigger are often more valuable.
 
-### 6. Runtime routing
+### 6. Runtime compilation / serving boundary
 
-The router loads the smallest matching skill set for the actual task. The size of the source reservoir therefore does not directly increase runtime context.
+The source repository remains the single authoring and evolution authority. A deterministic compiler converts validated canonical source into a runtime-only artifact for task agents.
+
+The generated surface contains the compact runtime catalog, the canonical skill-owned runtime files, a minimal runtime AGENTS contract, and an integrity manifest. It excludes discovery state, provenance, evolution machinery, tests, benchmarks, rejected candidates, and maintainer policy.
+
+Generated runtime output is disposable and must not become a second source of truth. A future standalone runtime repository or package may mirror the verified artifact automatically, but it must not be hand-maintained independently.
+
+### 7. Runtime semantic activation
+
+Model-native semantic selection uses the compact runtime catalog and loads the selected `SKILL.md` progressively. The size of the source reservoir therefore does not directly increase runtime context.
 
 This is the primary contamination boundary: unreviewed sources never participate in task routing.
 
 Product or framework specialization should preferably be loaded as a narrow conditional reference or specialist adapter rather than made globally routable when the generic capability remains the same.
 
-### 7. Feedback and evolution
+### 8. Feedback and evolution
 
 Routing failures, task failures, user corrections, benchmarks, upstream changes, and newly discovered sources become evidence for another ingestion pass. The feedback points back to a capability; it does not grant an external source permission to edit canonical instructions.
 
@@ -118,7 +126,7 @@ external sources
  canonical library         (smallest retained behavior)
       |
       v
- task router               (smallest relevant context)
+ runtime semantic activation (smallest relevant context)
 ```
 
 No filter makes poisoning impossible. The safety property is that discovery itself has no path to execution or canonical promotion.
