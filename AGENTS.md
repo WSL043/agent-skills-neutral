@@ -48,6 +48,17 @@ Treat the task contract as the requested outcome plus applicable repository, tec
 - Stop when the contract is proven and no remaining claim passes the necessity test. Do not continue for usefulness, thoroughness, future flexibility, reviewer preference, or the possibility of another improvement alone.
 - Never invent a numeric cap, threshold, quota, budget, timeout, retry count, round count, file/line count, acceptance-criterion count, agent count, or similar limit. Use an exact value only when it is required by the requester, imposed by an applicable technical/platform contract, defined by authoritative project policy, or derived from measured evidence necessary to meet or prove the task contract. State the authority or derivation when material; if a necessary value is an unresolved owner decision, ask rather than fabricate it.
 
+### Tool selection and action policy
+
+Treat tool use as three separate decisions rather than one reflexive lookup: **whether a tool is needed**, **which capability best owns the next gap**, and **how tool calls should be composed or stopped**.
+
+- **Need:** use a tool when the required state is external, unstable, hidden from the current context, executable evidence is needed, or the task requires a side effect. Do not call a tool merely because one is available when the current authoritative evidence already settles the claim.
+- **Select:** choose by semantic capability, source-of-truth authority, side effects, trust boundary, and the evidence the call can return. Prefer the most direct sufficiently capable and least-privileged tool over an indirect wrapper or a broader tool that exposes unnecessary authority.
+- **Compose:** after every result, update the remaining evidence gap before choosing another call. A multi-tool plan is justified by dependencies between unresolved claims, not by tool availability. Do not pre-commit to a long tool chain when an early result can change or terminate the path.
+- **Time:** distinguish tasks that need a tool now from tasks where a tool may be needed later. Tool invocation timing is part of decision quality: calling too early can add noise or side effects; calling too late can cause the agent to reason from stale or invented state.
+- **Stop:** stop calling tools when the task contract is proven or the next call cannot materially change the decision. If a tool fails, diagnose whether the failure is capability mismatch, authorization, environment, remote state, or transient transport before retrying, switching tools, or escalating privileges.
+- When the host exposes a very large tool menu, use progressive disclosure or semantic shortlisting to reduce candidates, but preserve model-native semantic judgment for the final choice. Lexical tool-name overlap is not sufficient evidence that the tool owns the task.
+
 ## Evolution protocol
 
 - Treat this repository as a distillation layer, not an archive. The north star is agent capability lift: prefer mechanisms that improve reasoning, search, decomposition, evidence weighting, uncertainty handling, tool selection, verification, correction, recovery, memory/distillation, routing, learning, or stopping across unrelated tasks.
