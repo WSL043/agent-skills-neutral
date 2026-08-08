@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-skills-neutral.local/schemas/evolution-run.schema.json",
+  "title": "Agent Skills Neutral Evolution Run State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "candidate_id",
+    "contract",
+    "phase",
+    "promotion_authority",
+    "evidence_packet",
+    "experiments",
+    "history"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "candidate_id": {"type": "string", "minLength": 1},
+    "contract": {
+      "enum": ["satisfaction", "optimization", "discovery", "judgment"]
+    },
+    "phase": {"enum": ["evaluating", "closed"]},
+    "promotion_authority": {"const": "explicit-curator"},
+    "evidence_packet": {"type": "string", "minLength": 1},
+    "baseline_ref": {"type": ["string", "null"]},
+    "candidate_ref": {"type": ["string", "null"]},
+    "rollback_ref": {"type": ["string", "null"]},
+    "experiments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "recorded_at",
+          "phase",
+          "case_id",
+          "variant",
+          "role",
+          "result"
+        ],
+        "properties": {
+          "recorded_at": {"type": "string", "format": "date-time"},
+          "phase": {"enum": ["proposal", "held-out", "regression", "transfer"]},
+          "case_id": {"type": "string", "minLength": 1},
+          "variant": {"enum": ["baseline", "candidate", "reference"]},
+          "role": {
+            "enum": ["success", "failure", "boundary", "counterexample", "transfer"]
+          },
+          "result": {
+            "enum": ["success", "partial", "failure", "blocked", "indeterminate"]
+          },
+          "evidence": {"type": ["string", "null"]},
+          "model_runtime": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["at", "event"],
+        "properties": {
+          "at": {"type": "string", "format": "date-time"},
+          "event": {"type": "string", "minLength": 1},
+          "detail": {"type": "object"}
+        }
+      }
+    }
+  }
+}
