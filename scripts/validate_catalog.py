@@ -270,6 +270,52 @@ else:
                 "evolution evidence schema required fields are incomplete"
             )
 
+run_schema_path = ROOT / "schemas" / "evolution-run.schema.json"
+if not run_schema_path.is_file():
+    errors.append("missing evolution run schema: schemas/evolution-run.schema.json")
+else:
+    try:
+        run_schema = json.loads(run_schema_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        errors.append(f"invalid evolution run schema JSON: {exc}")
+    else:
+        if not isinstance(run_schema, dict) or run_schema.get("type") != "object":
+            errors.append("evolution run schema top level must be an object schema")
+        run_properties = run_schema.get("properties", {}) if isinstance(run_schema, dict) else {}
+        run_version = run_properties.get("schema_version", {}) if isinstance(run_properties, dict) else {}
+        if not isinstance(run_version, dict) or run_version.get("const") != 1:
+            errors.append("evolution run schema_version must have const=1")
+        run_required = run_schema.get("required", []) if isinstance(run_schema, dict) else []
+        run_required_fields = {
+            "schema_version",
+            "candidate_id",
+            "contract",
+            "phase",
+            "promotion_authority",
+            "evidence_packet",
+            "experiments",
+            "history",
+        }
+        if not isinstance(run_required, list) or not run_required_fields.issubset(run_required):
+            errors.append("evolution run schema required fields are incomplete")
+        authority = run_properties.get("promotion_authority", {}) if isinstance(run_properties, dict) else {}
+        if not isinstance(authority, dict) or authority.get("const") != "explicit-curator":
+            errors.append("evolution run promotion_authority must have const=explicit-curator")
+        expected_contracts = {"satisfaction", "optimization", "discovery", "judgment"}
+        contract = run_properties.get("contract", {}) if isinstance(run_properties, dict) else {}
+        if not isinstance(contract, dict) or set(contract.get("enum", [])) != expected_contracts:
+            errors.append("evolution run contract enum is unexpected")
+        experiments = run_properties.get("experiments", {}) if isinstance(run_properties, dict) else {}
+        experiment_properties = experiments.get("items", {}).get("properties", {}) if isinstance(experiments, dict) else {}
+        expected_variants = {"baseline", "candidate", "reference"}
+        expected_phases = {"proposal", "held-out", "regression", "transfer"}
+        variant = experiment_properties.get("variant", {}) if isinstance(experiment_properties, dict) else {}
+        phase = experiment_properties.get("phase", {}) if isinstance(experiment_properties, dict) else {}
+        if not isinstance(variant, dict) or set(variant.get("enum", [])) != expected_variants:
+            errors.append("evolution run experiment variant enum is unexpected")
+        if not isinstance(phase, dict) or set(phase.get("enum", [])) != expected_phases:
+            errors.append("evolution run experiment phase enum is unexpected")
+
 levels = Counter(
     item.get("reference_level") for item in catalog.get("skills", [])
 )

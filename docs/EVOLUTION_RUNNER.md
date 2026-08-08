@@ -208,7 +208,7 @@ python scripts/evolution_runner.py decide \
   --reason "held-out evidence supports the claim and protected behavior did not regress"
 ```
 
-If the gate contains a promotion blocker, the runner refuses `retain`, `narrow`, `specialize`, or `merge`. `reject` and `evaluator-fix` remain available because a decisive failure should be recordable without pretending the candidate was promotable.
+The runner refuses retain or merge while promotion blockers remain. Narrow or specialize require decision-ready evidence and an explicit reduced scope. `reject` and `evaluator-fix` remain available because a decisive failure should be recordable without pretending the candidate was promotable.
 
 ## Model roles
 

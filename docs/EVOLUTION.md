@@ -48,11 +48,15 @@ python scripts/scan_upstreams.py
 python scripts/scan_upstreams.py --json
 python scripts/scan_upstreams.py --repo owner/repo
 python scripts/discover_upstreams.py
+python scripts/evolution_runner.py --help
+python scripts/test_evolution_runner.py
 ```
 
 The scanners are read-only. A changed, discovered, referenced, or unreviewed source remains pending until an agent or maintainer inspects it.
 
 ## Learning from external mechanisms
+
+`python scripts/evolution_runner.py` is the executable outer state machine for candidate evidence. It records and gates experiments but does not generate candidates or make semantic promotion decisions by itself.
 
 Do not compare only prompts with prompts. An external implementation may contain a mechanism that improves the project without becoming a canonical skill.
 

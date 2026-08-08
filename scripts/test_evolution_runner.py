@@ -72,12 +72,33 @@ with tempfile.TemporaryDirectory(prefix="agent-skills-neutral-evo-") as tmp:
         "--phase", "held-out", "--case-id", "held-1", "--variant", "candidate",
         "--role", "success", "--result", "success", "--evidence", "candidate passed",
     )
-    invoke("set-holdout-integrity", "--run", str(optimization), "--status", "clean")
+    invoke(
+        "set-holdout-integrity", "--run", str(optimization), "--status", "clean",
+        "--evidence", "held-out cases were not used for proposal generation",
+    )
+    invoke(
+        "set-model-role", "--run", str(optimization),
+        "--role", "curator", "--model", "independent-curator",
+    )
     ready = json.loads(invoke("gate", "--run", str(optimization)).stdout)
     if ready.get("promotion_ready") is not True:
         errors.append(f"paired optimization case did not become promotion-ready: {ready}")
     if ready.get("paired_held_out_cases") != ["held-1"]:
         errors.append(f"paired held-out detection mismatch: {ready.get('paired_held_out_cases')}")
+
+    invoke(
+        "record-execution", "--run", str(optimization),
+        "--phase", "regression", "--case-id", "protected-behavior", "--variant", "candidate",
+        "--role", "failure", "--result", "failure", "--evidence", "candidate regressed protected behavior",
+    )
+    candidate_failure = json.loads(invoke("gate", "--run", str(optimization)).stdout)
+    if candidate_failure.get("promotion_ready") is not False:
+        errors.append("candidate acceptance failure did not block promotion")
+    if not any(
+        "candidate failed or was blocked on acceptance cases" in blocker
+        for blocker in candidate_failure.get("promotion_blockers", [])
+    ):
+        errors.append(f"candidate acceptance failure blocker missing: {candidate_failure}")
 
     invoke(
         "record-check", "--run", str(optimization),
@@ -94,13 +115,17 @@ with tempfile.TemporaryDirectory(prefix="agent-skills-neutral-evo-") as tmp:
     if "promotion decision refused" not in retain.stderr:
         errors.append("runner did not explain refused retain decision")
     invoke(
-        "decide", "--run", str(optimization), "--status", "reject",
-        "--scope", "test scope", "--reason", "deterministic regression",
-        "--negative-lesson", "candidate regressed protected behavior",
+        "decide", "--run", str(optimization), "--status", "narrow",
+        "--scope", "narrowed test scope", "--reason", "broad claim regressed protected behavior",
+        "--negative-lesson", "do not generalize beyond the surviving condition",
     )
 
     judgment = init_candidate(home, "judgment-case", "judgment")
     invoke("gate", "--run", str(judgment), expected={2})
+    invoke(
+        "set-model-role", "--run", str(judgment),
+        "--role", "curator", "--model", "independent-curator",
+    )
     invoke(
         "record-judgment", "--run", str(judgment), "--dimension", "quality",
         "--result", "supports", "--judge", "independent-curator",
@@ -117,16 +142,29 @@ with tempfile.TemporaryDirectory(prefix="agent-skills-neutral-evo-") as tmp:
         "--phase", "transfer", "--case-id", "transfer-1", "--variant", "candidate",
         "--role", "counterexample", "--result", "success", "--evidence", "transfer evidence",
     )
-    invoke("set-holdout-integrity", "--run", str(discovery), "--status", "clean")
+    invoke(
+        "set-holdout-integrity", "--run", str(discovery), "--status", "clean",
+        "--evidence", "held-out cases were not used for proposal generation",
+    )
+    invoke(
+        "set-model-role", "--run", str(discovery),
+        "--role", "curator", "--model", "independent-curator",
+    )
     invoke(
         "record-judgment", "--run", str(discovery), "--dimension", "novelty-scope",
-        "--result", "supports", "--judge", "independent-curator", "--evidence", "bounded claim review",
+        "--result", "supports", "--judge", "independent-curator",
+        "--independence-note", "candidate author did not judge this case",
+        "--evidence", "bounded claim review",
     )
     discovery_gate = json.loads(invoke("gate", "--run", str(discovery)).stdout)
     if discovery_gate.get("decision_ready") is not True:
         errors.append(f"discovery contract remained incomplete: {discovery_gate}")
 
     satisfaction = init_candidate(home, "satisfaction-case", "satisfaction")
+    invoke(
+        "set-model-role", "--run", str(satisfaction),
+        "--role", "curator", "--model", "independent-curator",
+    )
     check = invoke(
         "run-check", "--run", str(satisfaction), "--check", "stdlib-smoke", "--",
         sys.executable, "-c", "print('pass')",
@@ -137,6 +175,14 @@ with tempfile.TemporaryDirectory(prefix="agent-skills-neutral-evo-") as tmp:
     artifacts = satisfaction / "artifacts"
     if not artifacts.is_dir() or not list(artifacts.glob("*.stdout.txt")):
         errors.append("run-check did not persist local artifacts")
+    history = json.loads((satisfaction / "run.json").read_text(encoding="utf-8")).get("history", [])
+    if any(
+        isinstance(item, dict)
+        and isinstance(item.get("detail"), dict)
+        and "command" in item["detail"]
+        for item in history
+    ):
+        errors.append("run-check history retained a complete command")
     satisfaction_gate = json.loads(invoke("gate", "--run", str(satisfaction)).stdout)
     if satisfaction_gate.get("decision_ready") is not True:
         errors.append("satisfaction contract did not accept deterministic evidence")

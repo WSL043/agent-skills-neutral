@@ -22,7 +22,7 @@ EXECUTION_RESULTS = ("success", "partial", "failure", "blocked", "indeterminate"
 CHECK_RESULTS = ("pass", "fail", "blocked", "not-applicable")
 JUDGMENT_RESULTS = ("supports", "contradicts", "mixed", "indeterminate")
 DECISIONS = ("pending", "retain", "narrow", "specialize", "merge", "reject", "evaluator-fix")
-PROMOTION_DECISIONS = {"retain", "narrow", "specialize", "merge"}
+PROMOTION_DECISIONS = {"retain", "merge"}
 TARGET_KINDS = (
     "skill",
     "shared-kernel",
@@ -278,7 +278,7 @@ def cmd_run_check(args: argparse.Namespace) -> int:
     add_history(
         state,
         "deterministic-check-executed",
-        {"check": args.check, "result": result, "exit_code": completed.returncode, "command": command},
+        {"check": args.check, "result": result, "exit_code": completed.returncode},
     )
     save_run(run_dir, state, evidence)
     print(json.dumps({"check": args.check, "result": result, "exit_code": completed.returncode}))
@@ -310,7 +310,10 @@ def cmd_set_holdout(args: argparse.Namespace) -> int:
     run_dir = resolve_run_dir(args.run)
     state, evidence = load_run(run_dir)
     evidence.setdefault("acceptance_evidence", {})["holdout_integrity"] = args.status
-    add_history(state, "holdout-integrity-set", {"status": args.status})
+    detail = {"status": args.status}
+    if args.evidence:
+        detail["evidence"] = args.evidence
+    add_history(state, "holdout-integrity-set", detail)
     save_run(run_dir, state, evidence)
     return 0
 
@@ -355,6 +358,10 @@ def gate_result(state: dict[str, Any], evidence: dict[str, Any]) -> dict[str, An
     if evidence.get("candidate_change", {}).get("bounded_to_claim") is not True:
         promotion_blockers.append("candidate change is not explicitly bounded to the claim")
 
+    model_roles = evidence.get("model_roles", {})
+    if not isinstance(model_roles, dict) or not model_roles.get("curator"):
+        promotion_blockers.append("no explicit curator identity/runtime is recorded")
+
     failed_checks = [
         item.get("check", "unnamed")
         for item in checks
@@ -383,6 +390,39 @@ def gate_result(state: dict[str, Any], evidence: dict[str, Any]) -> dict[str, An
     elif holdout_integrity == "unknown" and contract in {"optimization", "discovery"}:
         coverage_gaps.append("hold-out integrity has not been established")
 
+    acceptance_failures: list[str] = []
+    acceptance_indeterminate: list[str] = []
+    for item in state.get("experiments", []):
+        if not isinstance(item, dict):
+            continue
+        phase = item.get("phase")
+        if item.get("variant") != "candidate" or phase not in {"held-out", "regression"}:
+            continue
+        label = f"{phase}:{item.get('case_id', 'unnamed')}"
+        result = item.get("result")
+        if result in {"failure", "blocked"}:
+            acceptance_failures.append(label)
+        elif result == "indeterminate":
+            acceptance_indeterminate.append(label)
+    if acceptance_failures:
+        promotion_blockers.append(
+            "candidate failed or was blocked on acceptance cases: "
+            + ", ".join(acceptance_failures)
+        )
+    if acceptance_indeterminate:
+        promotion_blockers.append(
+            "candidate acceptance evidence is indeterminate: "
+            + ", ".join(acceptance_indeterminate)
+        )
+
+    complete_judgments = [
+        item
+        for item in judgments
+        if isinstance(item, dict)
+        and item.get("judge")
+        and item.get("independence_note")
+    ]
+
     if contract == "satisfaction":
         if not held_out and not checks and not judgments:
             coverage_gaps.append("no acceptance evidence recorded")
@@ -398,11 +438,15 @@ def gate_result(state: dict[str, Any], evidence: dict[str, Any]) -> dict[str, An
             coverage_gaps.append("discovery contract requires an explicit falsifier")
         if not held_out and not transfer_cases:
             coverage_gaps.append("discovery contract requires held-out or transfer/counterexample evidence")
-        if not judgments:
-            coverage_gaps.append("discovery contract requires semantic adjudication")
+        if not complete_judgments:
+            coverage_gaps.append(
+                "discovery contract requires semantic adjudication with judge identity and independence note"
+            )
     elif contract == "judgment":
-        if not judgments:
-            coverage_gaps.append("judgment contract requires semantic adjudication")
+        if not complete_judgments:
+            coverage_gaps.append(
+                "judgment contract requires semantic adjudication with judge identity and independence note"
+            )
     else:
         coverage_gaps.append(f"unknown contract: {contract!r}")
 
@@ -443,6 +487,11 @@ def cmd_decide(args: argparse.Namespace) -> int:
         raise RuntimeError(
             "promotion decision refused; resolve gate blockers first: "
             + "; ".join([*gate["coverage_gaps"], *gate["promotion_blockers"]])
+        )
+    if args.status in {"narrow", "specialize"} and not gate["decision_ready"]:
+        raise RuntimeError(
+            "scope-reduction decision refused; complete the evidence contract first: "
+            + "; ".join(gate["coverage_gaps"])
         )
     evidence["decision"] = {
         "status": args.status,
@@ -555,6 +604,7 @@ def build_parser() -> argparse.ArgumentParser:
     holdout = sub.add_parser("set-holdout-integrity", help="Record hold-out separation state.")
     holdout.add_argument("--run", required=True)
     holdout.add_argument("--status", choices=("clean", "leaked", "unknown"), required=True)
+    holdout.add_argument("--evidence")
     holdout.set_defaults(func=cmd_set_holdout)
 
     role = sub.add_parser("set-model-role", help="Record a worker/analyst/curator/judge model/runtime.")

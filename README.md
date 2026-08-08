@@ -134,6 +134,16 @@ Proposal experience and acceptance evidence are separated. Memory and retrieval 
 
 See [`docs/LEARNING_LOOP.md`](docs/LEARNING_LOOP.md).
 
+## Evolution Runner
+
+`python scripts/evolution_runner.py` turns a proposed capability change into a deterministic experiment state: baseline/candidate evidence, held-out cases, regressions, transfer evidence, semantic judgments, and an explicit curator decision.
+
+The runner never generates or auto-promotes a candidate. `retain` and `merge` require a promotion-ready gate; `narrow` and `specialize` are explicit scope-reduction outcomes when the broader claim does not survive.
+
+Local run state lives under `.evolution/` and is ignored by Git.
+
+See [`docs/EVOLUTION_RUNNER.md`](docs/EVOLUTION_RUNNER.md).
+
 ## Model roles
 
 The weakest worker should not determine the quality ceiling of shared canonical behavior.
