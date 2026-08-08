@@ -175,19 +175,56 @@ Compression must preserve proven behavior. Shorter is not automatically better.
 
 Do not assume that only skill prose can evolve. Failures may arise from how experience is stored, retrieved, or presented.
 
-Treat these as separate learnable objects when evidence supports it:
+Treat **memory content** and **retrieval policy** as different objects. What the system remembers may be correct while the policy that decides when, how, and how much to retrieve is wrong. Diagnose those failure classes separately before changing either one.
+
+Treat these as learnable objects when evidence supports it:
 
 - what experience is worth retaining;
 - how observations are compressed into memory units;
+- provenance, time, scope, confidence, and supersession metadata attached to those units;
 - which memories are retrieved for a new task;
 - whether retrieval should happen at all;
-- how retrieved evidence is ranked or fused;
-- when old memory should be merged, superseded, or ignored;
+- how exact state-matching evidence is separated from analogy or merely similar prior experience;
+- how retrieved evidence is ranked, filtered, decomposed, or fused;
+- how much retrieved context is exposed to the agent;
+- when low-confidence retrieval needs verification or a second retrieval path;
+- when old memory should be merged, superseded, quarantined, or ignored;
 - how routing metadata is structured for model-native selection.
 
-Changes to memory/retrieval policy pass the same baseline, held-out, and regression gates as skill edits.
+When optimizing retrieval behavior, expose a **bounded, inspectable policy state** rather than asking an optimizer to rewrite the whole memory system. A candidate may change one or a small coherent set of retrieval dimensions, but the accepted state is still the best evidence-backed incumbent until a candidate beats it.
 
-Do not turn benchmark-specific retrieval knobs into universal runtime policy.
+Use a closed loop analogous to other capability evolution:
+
+```text
+held-out retrieval tasks
+        |
+        v
+ evaluate failures
+        |
+        v
+ diagnose retrieval cause
+        |
+        v
+ propose bounded policy change
+        |
+        v
+ run candidate + regression/transfer checks
+        |
+    +---+---+
+    |       |
+ improve  regress
+    |       |
+    v       v
+ retain   revert
+```
+
+A failure diagnosis is allowed to propose a previously absent retrieval dimension, such as query decomposition or an additional verification step, but a new dimension is still only a candidate. Require evidence that it improves the underlying task contract and test transfer before promoting it into shared policy.
+
+Keep best-known recoverable state so memory-policy experimentation can revert cleanly. Do not let exploratory policy mutation overwrite the incumbent before acceptance evidence exists.
+
+Changes to memory/retrieval policy pass the same baseline, held-out, evaluator, transfer, and regression gates as skill edits.
+
+Do not turn benchmark-specific retrieval knobs, fixed fusion weights, context sizes, iteration counts, or stopping thresholds into universal runtime policy.
 
 ## 13. Learn the learning procedure cautiously
 
