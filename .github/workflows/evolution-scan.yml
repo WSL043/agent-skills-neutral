@@ -23,10 +23,10 @@ jobs:
         run: mkdir -p artifacts
       - name: Scan tracked upstream deltas
         run: python scripts/scan_upstreams.py --json > artifacts/tracked-upstreams.json
-      - name: Discover direct and transitive ecosystem sources
+      - name: Discover direct, mechanism, and transitive ecosystem sources
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/discover_upstreams.py --output artifacts/discovered-upstreams.json
+        run: python scripts/discover_upstreams.py --include-mechanisms --output artifacts/discovered-upstreams.json
       - name: Add scan summary
         run: |
           python - <<'PY'
@@ -41,8 +41,9 @@ jobs:
               f.write('# Skill ecosystem scan\n\n')
               f.write('Tracked upstream states: ' + ', '.join(f'{k}={v}' for k, v in sorted(states.items())) + '\n\n')
               f.write(f"Untracked repository-search candidates: {len(discovered['candidates'])}\n\n")
+              f.write(f"Capability-lift-first candidates: {discovered.get('capability_lift_candidate_count', 0)}\n\n")
               f.write(f"One-hop GitHub repositories referenced by tracked sources: {len(discovered['transitive_references'])}\n\n")
-              f.write('Discovery remains metadata-only. File-level verification, execution, and promotion are deferred to review.\n')
+              f.write('Capability-lift signals only prioritize review. Discovery remains metadata-only; file-level verification, execution, and promotion are deferred to review.\n')
           PY
       - name: Upload scan reports
         uses: actions/upload-artifact@v4
