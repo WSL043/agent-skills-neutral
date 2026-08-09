@@ -72,6 +72,14 @@ The generated surface contains only the minimal runtime `AGENTS.md`, `runtime-ca
 
 See [`docs/RUNTIME_BUNDLE.md`](docs/RUNTIME_BUNDLE.md).
 
+## Execution attribution
+
+Future trajectory mining can bind a real session to the exact Runtime Bundle it was assigned without adding provenance or bookkeeping to task-time instructions. A privacy-minimal execution receipt derives artifact identity from `MANIFEST.json`, uses runtime-specific adapters for session linkage, and keeps actual serving, full Skill-body delivery, and separately evidenced compliance as distinct claims.
+
+The first adapter uses Codex `SessionStart` / `SessionEnd` hooks, `debug prompt-input` preflight, and local JSONL trace evidence. Old pre-instrumentation sessions correctly remain `unknown` for serving and activation even when model/runtime metadata is recoverable.
+
+See [`docs/EXECUTION_ATTRIBUTION.md`](docs/EXECUTION_ATTRIBUTION.md).
+
 ## Capability layers
 
 Canonical skills have different strategic roles:
@@ -264,7 +272,10 @@ scripts/scan_upstreams.py  changed-upstream detector
 scripts/discover_upstreams.py metadata-only skill + mechanism discovery
 scripts/test_routing.py    deterministic boundary regression tests
 scripts/validate_catalog.py deterministic repository validator
+scripts/execution_attribution.py receipt core + Codex adapter + failure attribution interface
+scripts/test_execution_attribution.py deterministic serving/activation/privacy tests
 docs/ARCHITECTURE.md       source/runtime separation and capability-lift model
+docs/EXECUTION_ATTRIBUTION.md serving/activation evidence boundary and Codex adapter
 docs/SEMANTIC_ROUTING.md   model-native activation and scale-up path
 docs/CAPABILITY_LAYERS.md  meta/workflow/specialist strategic classification
 docs/LEARNING_LOOP.md      trajectory-grounded, held-out-gated evolution loop

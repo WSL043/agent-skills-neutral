@@ -89,6 +89,8 @@ The runtime `AGENTS.md` is deliberately smaller than the maintainer `AGENTS.md`.
 
 The manifest is a reproducibility and integrity record. It is not proof that a skill is semantically correct; semantic promotion still belongs to the evolution/evaluation layer.
 
+The same manifest is the artifact identity source for execution attribution. A session receipt records the manifest digest and selected derived digests; it does not create another hand-maintained bundle registry. Manifest verification proves artifact integrity at the observed path, while a runtime adapter is still required to link that artifact to a real session. See [`EXECUTION_ATTRIBUTION.md`](EXECUTION_ATTRIBUTION.md).
+
 ## Verification
 
 `verify` rejects:

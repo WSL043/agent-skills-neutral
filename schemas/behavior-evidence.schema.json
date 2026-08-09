@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-skills-neutral.local/schemas/behavior-evidence.schema.json",
+  "title": "Behavior Evidence Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "session_id",
+    "skill",
+    "assessment",
+    "evaluator",
+    "evidence",
+    "integrity"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "record_type": {"const": "behavior-evidence"},
+    "session_id": {"$ref": "#/$defs/opaqueId"},
+    "skill": {"$ref": "#/$defs/skillName"},
+    "assessment": {"enum": ["contradicted", "followed"]},
+    "evaluator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id_digest"],
+      "properties": {
+        "kind": {"enum": ["human", "deterministic", "model"]},
+        "id_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attribution_receipt_digest", "content_digest", "recorded_at"],
+      "properties": {
+        "attribution_receipt_digest": {"$ref": "#/$defs/digest"},
+        "content_digest": {"$ref": "#/$defs/digest"},
+        "recorded_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "record_digest"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "record_digest": {"$ref": "#/$defs/digest"}
+      }
+    }
+  },
+  "$defs": {
+    "skillName": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "opaqueId": {
+      "anyOf": [
+        {"type": "string", "format": "uuid"},
+        {"$ref": "#/$defs/digest"}
+      ]
+    }
+  }
+}
