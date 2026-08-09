@@ -787,9 +787,21 @@ with tempfile.TemporaryDirectory(prefix="execution-attribution-test-") as tempor
             "payload": {
                 "type": "mcp_tool_call_end",
                 "call_id": "exec-observed-mcp",
-                "invocation": {},
-                "duration": {},
-                "result": {},
+                "invocation": {
+                    "server": "node_repl",
+                    "tool": "js",
+                    "arguments": {
+                        "title": "No-op",
+                        "code": "nodeRepl.write('ok');",
+                    },
+                },
+                "duration": {"secs": 0, "nanos": 1},
+                "result": {
+                    "Ok": {
+                        "content": [{"type": "text", "text": "ok"}],
+                        "isError": False,
+                    }
+                },
             },
         },
         {
@@ -818,6 +830,142 @@ with tempfile.TemporaryDirectory(prefix="execution-attribution-test-") as tempor
         observed_status_receipt["serving"]["status"] == "verified"
         and observed_status_receipt["activation"]["status"] == "none_observed",
         "observed Codex status events invalidated a complete trace",
+    )
+
+    mcp_activation_trace = temp / "mcp-activation-event.jsonl"
+    mcp_activation_rows = [
+        json.loads(line) for line in no_read_trace.read_text(encoding="utf-8").splitlines()
+    ]
+    mcp_skill_path = bundle / "skills" / "verify-completion" / "SKILL.md"
+    mcp_skill_body = mcp_skill_path.read_text(encoding="utf-8")
+    mcp_activation_rows[-1:-1] = [
+        {
+            "type": "event_msg",
+            "payload": {
+                "type": "mcp_tool_call_end",
+                "call_id": "exec-mcp-skill-read",
+                "invocation": {
+                    "server": "node_repl",
+                    "tool": "js",
+                    "arguments": {
+                        "title": "Load verification skill",
+                        "code": (
+                            f"const body = await fs.readFile('{mcp_skill_path}', 'utf8'); "
+                            "nodeRepl.write(body);"
+                        ),
+                    },
+                },
+                "duration": {"secs": 0, "nanos": 1},
+                "result": {
+                    "Ok": {
+                        "content": [{"type": "text", "text": mcp_skill_body}],
+                        "isError": False,
+                    }
+                },
+            },
+        }
+    ]
+    mcp_activation_trace.write_text(
+        "".join(json.dumps(row) + "\n" for row in mcp_activation_rows),
+        encoding="utf-8",
+    )
+    mcp_activation_receipt = copy.deepcopy(receipt)
+    attach_trace(
+        mcp_activation_receipt,
+        mcp_activation_trace,
+        bundle_path=bundle,
+        complete=True,
+    )
+    check(
+        mcp_activation_receipt["activation"]["status"] == "observed_skill_content"
+        and [
+            item["name"] for item in mcp_activation_receipt["activation"]["observed_skills"]
+        ]
+        == ["verify-completion"],
+        "successful MCP Skill-body read was not observed",
+    )
+
+    split_mcp_trace = temp / "split-mcp-read-evidence.jsonl"
+    split_mcp_rows = copy.deepcopy(mcp_activation_rows)
+    split_mcp_rows[-2]["payload"]["invocation"]["arguments"] = {
+        "operation": "fs.readFile(",
+        "unrelated_path": str(mcp_skill_path),
+    }
+    split_mcp_trace.write_text(
+        "".join(json.dumps(row) + "\n" for row in split_mcp_rows),
+        encoding="utf-8",
+    )
+    split_mcp_receipt = copy.deepcopy(receipt)
+    attach_trace(
+        split_mcp_receipt,
+        split_mcp_trace,
+        bundle_path=bundle,
+        complete=True,
+    )
+    check(
+        split_mcp_receipt["activation"]["status"] == "none_observed",
+        "strings assembled across MCP argument fields produced activation evidence",
+    )
+
+    truncated_mcp_trace = temp / "truncated-mcp-skill-body.jsonl"
+    truncated_mcp_rows = copy.deepcopy(mcp_activation_rows)
+    check(mcp_skill_body.endswith("\n"), "runtime Skill fixture lacks final newline")
+    truncated_mcp_rows[-2]["payload"]["result"]["Ok"]["content"][0]["text"] = (
+        mcp_skill_body[:-1]
+    )
+    truncated_mcp_trace.write_text(
+        "".join(json.dumps(row) + "\n" for row in truncated_mcp_rows),
+        encoding="utf-8",
+    )
+    truncated_mcp_receipt = copy.deepcopy(receipt)
+    attach_trace(
+        truncated_mcp_receipt,
+        truncated_mcp_trace,
+        bundle_path=bundle,
+        complete=True,
+    )
+    check(
+        truncated_mcp_receipt["activation"]["status"] == "none_observed",
+        "one-byte-truncated MCP Skill body produced activation evidence",
+    )
+
+    failed_mcp_trace = temp / "failed-mcp-activation-event.jsonl"
+    failed_mcp_rows = copy.deepcopy(mcp_activation_rows)
+    failed_mcp_rows[-2]["payload"]["result"]["Ok"]["isError"] = True
+    failed_mcp_trace.write_text(
+        "".join(json.dumps(row) + "\n" for row in failed_mcp_rows),
+        encoding="utf-8",
+    )
+    failed_mcp_receipt = copy.deepcopy(receipt)
+    attach_trace(
+        failed_mcp_receipt,
+        failed_mcp_trace,
+        bundle_path=bundle,
+        complete=True,
+    )
+    check(
+        failed_mcp_receipt["activation"]["status"] == "none_observed",
+        "failed MCP Skill-body read produced activation evidence",
+    )
+
+    future_mcp_trace = temp / "future-mcp-activation-event.jsonl"
+    future_mcp_rows = copy.deepcopy(mcp_activation_rows)
+    future_mcp_rows[-2]["payload"]["invocation"]["future_field"] = True
+    future_mcp_trace.write_text(
+        "".join(json.dumps(row) + "\n" for row in future_mcp_rows),
+        encoding="utf-8",
+    )
+    future_mcp_receipt = copy.deepcopy(receipt)
+    attach_trace(
+        future_mcp_receipt,
+        future_mcp_trace,
+        bundle_path=bundle,
+        complete=True,
+    )
+    check(
+        future_mcp_receipt["serving"]["status"] == "unknown"
+        and future_mcp_receipt["activation"]["status"] == "unknown",
+        "future nested MCP event shape produced attribution evidence",
     )
 
     future_status_trace = temp / "future-status-event-shape.jsonl"

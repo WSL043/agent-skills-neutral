@@ -29,7 +29,8 @@ SAFE_TOKEN_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._+-]{0,199}$")
 SKILL_NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 READ_VERB_RE = re.compile(
     r"(?i)(?:get-content|select-string|\bcat\b|\btype\b|\bmore\b|"
-    r"\.read_text\s*\(|\.read_bytes\s*\(|\bopen\s*\(|\brg\b)"
+    r"\.read_text\s*\(|\.read_bytes\s*\(|\.readFile(?:Sync)?\s*\(|"
+    r"\bopen\s*\(|\brg\b)"
 )
 SKILL_PATH_RE = re.compile(
     r"(?i)(?:[A-Za-z]:)?[^\"'\r\n|;]{0,320}?skills[\\/]+"
@@ -933,12 +934,43 @@ def _output_segments(payload: dict[str, Any]) -> tuple[list[str], bool]:
 def _supported_event_message(payload: dict[str, Any]) -> bool:
     event_type = payload.get("type")
     if event_type == "mcp_tool_call_end":
-        return (
+        invocation = payload.get("invocation")
+        duration = payload.get("duration")
+        result = payload.get("result")
+        if not (
             set(payload) == {"type", "call_id", "invocation", "duration", "result"}
             and isinstance(payload.get("call_id"), str)
-            and isinstance(payload.get("invocation"), dict)
-            and isinstance(payload.get("duration"), dict)
-            and isinstance(payload.get("result"), dict)
+            and isinstance(invocation, dict)
+            and set(invocation) == {"server", "tool", "arguments"}
+            and isinstance(invocation.get("server"), str)
+            and isinstance(invocation.get("tool"), str)
+            and isinstance(invocation.get("arguments"), dict)
+            and isinstance(duration, dict)
+            and set(duration) == {"secs", "nanos"}
+            and all(
+                isinstance(duration.get(key), int)
+                and not isinstance(duration.get(key), bool)
+                and duration[key] >= 0
+                for key in ("secs", "nanos")
+            )
+            and isinstance(result, dict)
+            and set(result) == {"Ok"}
+            and isinstance(result.get("Ok"), dict)
+        ):
+            return False
+        ok = result["Ok"]
+        content = ok.get("content")
+        return (
+            set(ok) == {"content", "isError"}
+            and isinstance(ok.get("isError"), bool)
+            and isinstance(content, list)
+            and all(
+                isinstance(item, dict)
+                and set(item) == {"type", "text"}
+                and item.get("type") == "text"
+                and isinstance(item.get("text"), str)
+                for item in content
+            )
         )
     if event_type == "web_search_end":
         return (
@@ -949,6 +981,30 @@ def _supported_event_message(payload: dict[str, Any]) -> bool:
             and isinstance(payload.get("results"), list)
         )
     return True
+
+
+def _string_leaves(value: Any) -> list[str]:
+    if isinstance(value, str):
+        return [value]
+    if isinstance(value, list):
+        return [text for item in value for text in _string_leaves(item)]
+    if isinstance(value, dict):
+        return [text for item in value.values() for text in _string_leaves(item)]
+    return []
+
+
+def _mcp_event_call(payload: dict[str, Any], line: int) -> tuple[dict[str, Any], list[str]]:
+    invocation = payload["invocation"]
+    ok = payload["result"]["Ok"]
+    return (
+        {
+            "line": line,
+            "tool": f"{invocation['server']}.{invocation['tool']}",
+            "texts": _string_leaves(invocation["arguments"]),
+            "host_success": ok["isError"] is False,
+        },
+        [item["text"] for item in ok["content"]],
+    )
 
 
 def _supported_non_tool_response(payload: dict[str, Any]) -> bool:
@@ -1179,6 +1235,22 @@ def scan_codex_trace(
             elif record_type == "event_msg" and payload.get("type") == "task_complete":
                 terminal_task_complete_line = line_count
                 last_relevant_line = line_count
+            elif record_type == "event_msg" and payload.get("type") == "mcp_tool_call_end":
+                last_relevant_line = line_count
+                call_id = payload["call_id"]
+                if (
+                    call_id in calls
+                    or call_id in outputs
+                    or call_id in invalid_call_ids
+                ):
+                    unsupported_records += 1
+                    invalid_call_ids.add(call_id)
+                    calls.pop(call_id, None)
+                    outputs.pop(call_id, None)
+                else:
+                    call, output_segments = _mcp_event_call(payload, line_count)
+                    calls[call_id] = call
+                    outputs[call_id] = output_segments
             elif record_type == "event_msg" and payload.get("type") in {
                 "user_message",
                 "agent_message",
@@ -1258,11 +1330,19 @@ def scan_codex_trace(
     for call_id, call in calls.items():
         if call_id in invalid_call_ids:
             continue
-        text = call["text"]
-        if not _is_read_call(text):
+        call_texts = call.get("texts")
+        if not isinstance(call_texts, list):
+            call_texts = [call.get("text")]
+        read_matches = [
+            match
+            for text in call_texts
+            if isinstance(text, str) and _is_read_call(text)
+            for match in SKILL_PATH_RE.finditer(text)
+        ]
+        if not read_matches:
             continue
         output_segments = outputs.get(call_id, [])
-        for match in SKILL_PATH_RE.finditer(text):
+        for match in read_matches:
             name = match.group("name")
             if bundle is not None and name not in bundle_names:
                 continue
@@ -1270,7 +1350,7 @@ def scan_codex_trace(
                 continue
             skill_path = bundle_path / "skills" / name / "SKILL.md"
             try:
-                skill_body = normalize_text(skill_path.read_text(encoding="utf-8")).strip()
+                skill_body = normalize_text(skill_path.read_text(encoding="utf-8"))
             except OSError:
                 continue
             normalized_segments = [normalize_text(segment) for segment in output_segments]
@@ -1283,7 +1363,11 @@ def scan_codex_trace(
                     segment = segment.replace(skill_body, "", 1)
                     body_removed = True
                 envelope_segments.append(segment)
-            if not _successful_output("\n".join(envelope_segments)):
+            host_success = call.get("host_success")
+            if host_success is False or (
+                host_success is not True
+                and not _successful_output("\n".join(envelope_segments))
+            ):
                 continue
             observed.setdefault(
                 name,
