@@ -88,7 +88,7 @@ python scripts/execution_attribution.py codex-probe \
   --output /private/evidence/serving-probe.json
 ```
 
-The probe invokes `codex debug prompt-input --disable hooks` with a fixed non-sensitive marker. It stores only digests, time, runtime identity, visibility booleans, and a self-digest. Linkage rejects a probe created after the session starts. Probe/cwd evidence alone does not set `serving=verified`.
+The probe invokes `codex debug prompt-input --disable hooks` with a fixed non-sensitive marker. It stores only digests, time, runtime identity, visibility booleans, and a self-digest. The expected runtime `AGENTS.md` must appear as the isolated exact Codex project-instruction block; a bundle nested below an authoring repository whose ancestor `AGENTS.md` is composed into the same block is rejected. Linkage rejects a probe created after the session starts. Probe/cwd evidence alone does not set `serving=verified`.
 
 Configure trusted project hooks adjacent to the deployment environment, not inside the verified Runtime Bundle. The command must use absolute paths. A minimal `hooks.json` shape is:
 

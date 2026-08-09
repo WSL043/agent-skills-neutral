@@ -68,7 +68,7 @@ python scripts/build_runtime_bundle.py verify --bundle dist/runtime
 
 The generated surface contains only the minimal runtime `AGENTS.md`, `runtime-catalog.json`, `MANIFEST.json`, and canonical `skills/`. Evolution, provenance, discovery, tests, benchmarks, and maintainer policy remain outside task-time context.
 
-`dist/` is disposable generated output and is never canonical source.
+`dist/` is disposable staging output and is never canonical source. When a host such as Codex discovers `AGENTS.md` from ancestor directories, do not use an in-repository `dist/` bundle as the task working root: deploy and reverify the artifact outside the authoring repository tree so maintainer instructions cannot join the runtime prompt.
 
 See [`docs/RUNTIME_BUNDLE.md`](docs/RUNTIME_BUNDLE.md).
 

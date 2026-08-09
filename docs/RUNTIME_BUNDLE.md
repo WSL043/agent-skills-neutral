@@ -25,9 +25,9 @@ Generated runtime output is not canonical source and must never be edited as the
 
 Canonical `SKILL.md` files may contain a terminal maintainer-only `## Provenance` section. Runtime compilation deterministically removes that terminal section from generated `SKILL.md` files because attribution/review lineage belongs to the authoring/control plane and `provenance.json` is intentionally absent from task-time artifacts. This is a build transform, not a second canonical skill representation.
 
-## Build
+## Build and staging
 
-Production build from a clean commit:
+Create and verify a clean staging artifact:
 
 ```bash
 python scripts/build_runtime_bundle.py build --output dist/runtime
@@ -43,6 +43,19 @@ python scripts/build_runtime_bundle.py build --output dist/runtime --allow-dirty
 A dirty build records `source_dirty=true` in `MANIFEST.json` and is not a publication-quality artifact.
 
 `dist/` is generated and ignored by Git.
+
+## Serving deployment
+
+`dist/runtime` is suitable for build verification, CI, and disposable inspection. It is not automatically a clean task-time instruction root. Hosts such as Codex may discover and combine `AGENTS.md` files from ancestor directories; running a task from an in-repository bundle can therefore expose both the authoring contract and the runtime contract even though the bundle itself contains only runtime files.
+
+For actual serving, build or mirror the same verified output to a location outside the authoring repository tree, then verify it at that final path:
+
+```bash
+python scripts/build_runtime_bundle.py build --output /srv/agent-runtime
+python scripts/build_runtime_bundle.py verify --bundle /srv/agent-runtime
+```
+
+On Windows, use an equivalent external path such as `C:\agent-runtime`. A runtime-specific preflight should reject a deployment whose effective instruction block contains ancestor authoring instructions. Copying or mirroring does not create a second authority: the manifest still binds the disposable deployment to the canonical source commit.
 
 ## Runtime surface
 

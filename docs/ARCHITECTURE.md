@@ -82,6 +82,8 @@ The source repository remains the single authoring and evolution authority. A de
 
 The generated surface contains the compact runtime catalog, the canonical skill-owned runtime files, a minimal runtime AGENTS contract, and an integrity manifest. It excludes discovery state, provenance, evolution machinery, tests, benchmarks, rejected candidates, and maintainer policy.
 
+The serving location is part of this boundary. If the host discovers instructions from ancestor directories, the deployed bundle must live outside the authoring repository tree (or behind an equivalent host-enforced root) so the maintainer `AGENTS.md` cannot be composed with the runtime contract.
+
 Generated runtime output is disposable and must not become a second source of truth. A future standalone runtime repository or package may mirror the verified artifact automatically, but it must not be hand-maintained independently.
 
 ### 7. Runtime semantic activation

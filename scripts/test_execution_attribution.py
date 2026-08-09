@@ -14,6 +14,7 @@ from execution_attribution import (
     SERVING_EVIDENCE_CODES,
     SURFACE_EVIDENCE_CODES,
     SURFACE_NAMES,
+    _codex_agents_prompt_isolated,
     attach_trace,
     bundle_identity,
     classify_failure,
@@ -323,6 +324,27 @@ with tempfile.TemporaryDirectory(prefix="execution-attribution-test-") as tempor
     check(identity["source_repository"] == "WSL043/agent-skills-neutral", "bundle source identity lost")
     check(identity["agents_digest"].startswith("sha256:"), "AGENTS digest missing")
     check("verify-completion" in identity["skill_digests"], "bundle skill index missing")
+
+    agents_text = (bundle / "AGENTS.md").read_text(encoding="utf-8").strip()
+    isolated_agents_block = (
+        f"# AGENTS.md instructions for {bundle}\n\n"
+        f"<INSTRUCTIONS>\n{agents_text}\n\n</INSTRUCTIONS>"
+    )
+    check(
+        _codex_agents_prompt_isolated([isolated_agents_block], bundle, agents_text),
+        "exact isolated runtime AGENTS block was rejected",
+    )
+    contaminated_agents_block = isolated_agents_block.replace(
+        "<INSTRUCTIONS>\n",
+        "<INSTRUCTIONS>\n# Authoring Instructions\n\nDo maintainer work.\n\n",
+        1,
+    )
+    check(
+        not _codex_agents_prompt_isolated(
+            [contaminated_agents_block], bundle, agents_text
+        ),
+        "ancestor authoring AGENTS contamination passed preflight",
+    )
 
     probe = {
         "schema_version": 1,
@@ -753,6 +775,69 @@ with tempfile.TemporaryDirectory(prefix="execution-attribution-test-") as tempor
     check(
         not_activated["classification"] == "not_activated",
         f"complete no-read trace was not classified: {not_activated}",
+    )
+
+    observed_status_trace = temp / "observed-status-events.jsonl"
+    observed_status_rows = [
+        json.loads(line) for line in no_read_trace.read_text(encoding="utf-8").splitlines()
+    ]
+    observed_status_rows[-1:-1] = [
+        {
+            "type": "event_msg",
+            "payload": {
+                "type": "mcp_tool_call_end",
+                "call_id": "exec-observed-mcp",
+                "invocation": {},
+                "duration": {},
+                "result": {},
+            },
+        },
+        {
+            "type": "event_msg",
+            "payload": {
+                "type": "web_search_end",
+                "call_id": "exec-observed-search",
+                "query": "",
+                "action": {},
+                "results": [],
+            },
+        },
+    ]
+    observed_status_trace.write_text(
+        "".join(json.dumps(row) + "\n" for row in observed_status_rows),
+        encoding="utf-8",
+    )
+    observed_status_receipt = copy.deepcopy(receipt)
+    attach_trace(
+        observed_status_receipt,
+        observed_status_trace,
+        bundle_path=bundle,
+        complete=True,
+    )
+    check(
+        observed_status_receipt["serving"]["status"] == "verified"
+        and observed_status_receipt["activation"]["status"] == "none_observed",
+        "observed Codex status events invalidated a complete trace",
+    )
+
+    future_status_trace = temp / "future-status-event-shape.jsonl"
+    future_status_rows = copy.deepcopy(observed_status_rows)
+    future_status_rows[-3]["payload"]["future_field"] = True
+    future_status_trace.write_text(
+        "".join(json.dumps(row) + "\n" for row in future_status_rows),
+        encoding="utf-8",
+    )
+    future_status_receipt = copy.deepcopy(receipt)
+    attach_trace(
+        future_status_receipt,
+        future_status_trace,
+        bundle_path=bundle,
+        complete=True,
+    )
+    check(
+        future_status_receipt["serving"]["status"] == "unknown"
+        and future_status_receipt["activation"]["status"] == "unknown",
+        "future status-event shape produced attribution evidence",
     )
 
     missing_bundle_path_receipt = copy.deepcopy(receipt)

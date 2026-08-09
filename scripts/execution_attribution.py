@@ -867,7 +867,9 @@ def validate_probe(probe: dict[str, Any]) -> None:
         _require_digest(bundle[field], f"preflight bundle.{field}")
     _require_digest(probe.get("prompt_input_digest"), "preflight prompt_input_digest")
     if probe.get("agents_prompt_visible") is not True:
-        raise AttributionError("serving preflight must observe AGENTS.md")
+        raise AttributionError(
+            "serving preflight must observe an isolated exact runtime AGENTS.md block"
+        )
     if not isinstance(probe.get("runtime_catalog_prompt_visible"), bool):
         raise AttributionError("serving preflight runtime_catalog_prompt_visible must be boolean")
     privacy = probe.get("privacy")
@@ -926,6 +928,27 @@ def _output_segments(payload: dict[str, Any]) -> tuple[list[str], bool]:
             return [], False
         segments.append(item["text"])
     return segments, True
+
+
+def _supported_event_message(payload: dict[str, Any]) -> bool:
+    event_type = payload.get("type")
+    if event_type == "mcp_tool_call_end":
+        return (
+            set(payload) == {"type", "call_id", "invocation", "duration", "result"}
+            and isinstance(payload.get("call_id"), str)
+            and isinstance(payload.get("invocation"), dict)
+            and isinstance(payload.get("duration"), dict)
+            and isinstance(payload.get("result"), dict)
+        )
+    if event_type == "web_search_end":
+        return (
+            set(payload) == {"type", "call_id", "query", "action", "results"}
+            and isinstance(payload.get("call_id"), str)
+            and isinstance(payload.get("query"), str)
+            and isinstance(payload.get("action"), dict)
+            and isinstance(payload.get("results"), list)
+        )
+    return True
 
 
 def _supported_non_tool_response(payload: dict[str, Any]) -> bool:
@@ -1051,6 +1074,8 @@ def scan_codex_trace(
         "task_started",
         "token_count",
         "task_complete",
+        "mcp_tool_call_end",
+        "web_search_end",
     }
     allowed_response_types = {
         "message",
@@ -1089,6 +1114,9 @@ def scan_codex_trace(
                 unsupported_records += 1
                 continue
             if record_type == "event_msg" and payload.get("type") not in allowed_event_types:
+                unsupported_records += 1
+                continue
+            if record_type == "event_msg" and not _supported_event_message(payload):
                 unsupported_records += 1
                 continue
             if record_type == "response_item" and payload.get("type") not in allowed_response_types:
@@ -1716,6 +1744,16 @@ def prompt_input_texts(value: Any) -> list[str]:
     return texts
 
 
+def _codex_agents_prompt_isolated(
+    texts: list[str], bundle_path: Path, agents: str
+) -> bool:
+    expected = (
+        f"# AGENTS.md instructions for {bundle_path}\n\n"
+        f"<INSTRUCTIONS>\n{normalize_text(agents).strip()}\n\n</INSTRUCTIONS>"
+    )
+    return any(normalize_text(text).strip() == expected for text in texts)
+
+
 def run_codex_version(command: Path) -> str | None:
     completed = subprocess.run(
         [str(command), "--version"],
@@ -1786,7 +1824,9 @@ def create_codex_probe(bundle_path: Path, codex_command: Path) -> dict[str, Any]
             "runtime_catalog_digest": identity["runtime_catalog_digest"],
         },
         "prompt_input_digest": f"sha256:{sha256_bytes(completed.stdout.encode('utf-8'))}",
-        "agents_prompt_visible": any(agents in text for text in texts),
+        "agents_prompt_visible": _codex_agents_prompt_isolated(
+            texts, bundle_path, agents
+        ),
         "runtime_catalog_prompt_visible": any(catalog in text for text in texts),
         "privacy": {
             "prompt_content_stored": False,
