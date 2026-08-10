@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "category": "planning-orchestration",
-  "summary": "Plan, execute, delegate, and finish bounded engineering work.",
+  "category": "planning-coordination",
+  "summary": "Plan, execute, delegate, and transfer bounded work while preserving decisions and evidence.",
   "skills": [
     {
       "kind": "workflow",
@@ -27,29 +27,6 @@
       "name": "execute-plan",
       "level": "S",
       "path": "skills/execute-plan/SKILL.md"
-    },
-    {
-      "kind": "workflow",
-      "maturity": "stable",
-      "choose_when": "Implementation is complete and the branch must be verified, prepared for review/merge, handed off, or cleaned up.",
-      "avoid_when": "Do not use in the middle of active implementation.",
-      "triggers": [
-        "finish branch",
-        "prepare for merge",
-        "ready for review",
-        "finalize development branch",
-        "完成开发分支",
-        "准备合并",
-        "提交前收尾"
-      ],
-      "negative_triggers": [
-        "start implementation",
-        "开始实现"
-      ],
-      "explicit_only": false,
-      "name": "finish-development-branch",
-      "level": "A",
-      "path": "skills/finish-development-branch/SKILL.md"
     },
     {
       "kind": "workflow",

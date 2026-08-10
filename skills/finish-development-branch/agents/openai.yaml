@@ -1,4 +1,0 @@
-interface:
-  display_name: "Finish Development Branch"
-  short_description: "Neutral workflow: Finish Development Branch"
-  default_prompt: "Use $finish-development-branch to leave the branch in a verified, reviewable state with an explicit next integration action."

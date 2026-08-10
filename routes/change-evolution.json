@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "category": "operations-evolution",
-  "summary": "Instrument production behavior and migrate live systems through reversible stages.",
+  "category": "change-evolution",
+  "summary": "Reason about observable system change, staged migration, recoverability, and operational feedback.",
   "skills": [
     {
-      "kind": "domain",
+      "kind": "workflow",
       "maturity": "stable",
       "choose_when": "A system needs structured logs, metrics, traces, correlation, SLO signals, or production telemetry that answers operational questions.",
       "avoid_when": "Do not use as the primary workflow for diagnosing one current bug or adding a temporary print statement.",
@@ -34,7 +34,7 @@
       "path": "skills/instrument-observability/SKILL.md"
     },
     {
-      "kind": "domain",
+      "kind": "workflow",
       "maturity": "stable",
       "choose_when": "A live schema, API, dependency, data representation, or behavior must migrate through compatibility, backfill, cutover, and cleanup stages.",
       "avoid_when": "Do not use for resolving Git conflicts, moving one local file, or changing isolated test fixtures with no live consumers.",

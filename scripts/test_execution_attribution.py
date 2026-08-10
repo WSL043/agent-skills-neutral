@@ -179,7 +179,7 @@ def write_trace(
                         "type": "custom_tool_call",
                         "call_id": "call-other-nonzero",
                         "name": "exec",
-                        "input": "Get-Content skills/build-cli/SKILL.md",
+                        "input": "Get-Content skills/review-api-design/SKILL.md",
                     },
                 },
                 {

@@ -14,6 +14,29 @@ name_pattern = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 repo_pattern = re.compile(r"^[^/\s]+/[^/\s]+$")
 sha_pattern = re.compile(r"^[0-9a-f]{40}$")
 markdown_link_pattern = re.compile(r"\]\(([^)#]+\.md)(?:#[^)]+)?\)")
+RETIRED_ADAPTERS = {
+    "build-cli",
+    "build-mcp-server",
+    "capture-screen",
+    "create-agent-skill",
+    "discover-agent-skills",
+    "finish-development-branch",
+    "map-security-ownership",
+    "prepare-repository-for-agents",
+    "produce-programmatic-video",
+    "resolve-merge-conflicts",
+    "test-web-app",
+    "use-git-worktrees",
+    "work-with-docx",
+    "work-with-jupyter-notebook",
+    "work-with-pdf",
+    "work-with-postgresql",
+    "work-with-pptx",
+    "work-with-xlsx",
+}
+
+if catalog.get("canonical_scope") != "thinking-workflows":
+    errors.append("catalog canonical_scope must be thinking-workflows")
 
 
 def real_h1_h2_headings(text: str) -> list[tuple[int, int, str]]:
@@ -143,6 +166,10 @@ if disk_names != names:
         f"catalog/disk mismatch: catalog_only={sorted(names-disk_names)} "
         f"disk_only={sorted(disk_names-names)}"
     )
+
+retired_present = sorted(names & RETIRED_ADAPTERS)
+if retired_present:
+    errors.append(f"retired tool/domain adapters returned to canonical: {retired_present}")
 
 provenance_path = ROOT / "provenance.json"
 source_repositories: set[str] = set()
@@ -516,6 +543,27 @@ for required_path in (
     if not path.is_file() or not path.read_text(encoding="utf-8").strip():
         errors.append(f"runtime authoring surface file is missing or empty: {required_path}")
 
+runtime_core_path = ROOT / "runtime" / "AGENTS.md"
+if runtime_core_path.is_file():
+    runtime_core = runtime_core_path.read_text(encoding="utf-8")
+    for heading in (
+        "# Runtime Thinking Core",
+        "## Default reasoning loop",
+        "## Workflow activation",
+        "## Evidence and uncertainty",
+        "## Learning boundary",
+        "## Bundle boundary",
+    ):
+        if heading not in runtime_core:
+            errors.append(f"runtime thinking core is missing heading: {heading}")
+    for required_rule in (
+        "No workflow is a valid result",
+        "replaceable tool knowledge",
+        "surface that actually consumes it",
+    ):
+        if required_rule not in runtime_core:
+            errors.append(f"runtime thinking core is missing contract: {required_rule}")
+
 gitignore_path = ROOT / ".gitignore"
 if not gitignore_path.is_file() or "dist/" not in gitignore_path.read_text(encoding="utf-8").splitlines():
     errors.append(".gitignore must contain an independent dist/ entry")
@@ -534,6 +582,17 @@ else:
     index = json.loads(index_path.read_text(encoding="utf-8"))
     if index.get("routing_authority") != "model-native-semantic":
         errors.append("index routing_authority is missing or unexpected")
+    expected_thinking_core = {
+        "source": "runtime/AGENTS.md",
+        "serving": "AGENTS.md",
+        "loading": "always-on",
+    }
+    if index.get("thinking_core") != expected_thinking_core:
+        errors.append("index thinking_core contract is missing or unexpected")
+    elif not (ROOT / expected_thinking_core["source"]).is_file():
+        errors.append("index thinking_core source does not exist")
+    if "default_profile" in index or "profiles" in index:
+        errors.append("index must not expose retired persistent profiles")
     runtime_catalog_reference = index.get("runtime_catalog")
     if not isinstance(runtime_catalog_reference, str) or not runtime_catalog_reference:
         errors.append("index runtime_catalog is missing or invalid")
@@ -583,6 +642,10 @@ else:
                 errors.append(
                     f"route fields missing: {rule.get('name')} -> {sorted(missing)}"
                 )
+            if rule.get("kind") != "workflow":
+                errors.append(
+                    f"route kind must be workflow: {rule.get('name')} -> {rule.get('kind')}"
+                )
 
     catalog_categories = {
         item.get("category", "") for item in catalog.get("skills", [])
@@ -619,16 +682,23 @@ else:
             f"index_only={sorted(indexed_route_files-route_files)}"
         )
 
-    profile_map = index.get("profiles", {})
-    for profile_name, relative_path in profile_map.items():
-        profile_path = ROOT / relative_path
-        if not profile_path.is_file():
-            errors.append(f"missing indexed profile: {profile_name} -> {relative_path}")
-
 if not runtime_catalog_path.is_file():
     errors.append("missing runtime catalog: runtime-catalog.json")
 else:
     runtime_catalog = json.loads(runtime_catalog_path.read_text(encoding="utf-8"))
+    if runtime_catalog.get("schema_version") != 1:
+        errors.append("runtime catalog schema_version must be 1")
+    if runtime_catalog.get("library") != "agent-skills-neutral":
+        errors.append("runtime catalog library is missing or unexpected")
+    if runtime_catalog.get("routing_authority") != "model-native-semantic":
+        errors.append("runtime catalog routing_authority is missing or unexpected")
+    if set(runtime_catalog) != {
+        "schema_version",
+        "library",
+        "routing_authority",
+        "skills",
+    }:
+        errors.append("runtime catalog contains fields outside the progressive-disclosure contract")
     runtime_entries = runtime_catalog.get("skills", [])
     if not isinstance(runtime_entries, list):
         errors.append("runtime catalog skills must be a list")
@@ -638,6 +708,10 @@ else:
         if not isinstance(entry, dict):
             errors.append("runtime catalog skill entry must be an object")
             continue
+        if set(entry) != {"name", "description", "location"}:
+            errors.append(
+                f"runtime catalog entry fields must be name,description,location: {entry.get('name')}"
+            )
         name = entry.get("name", "")
         description = entry.get("description", "")
         location = entry.get("location", "")
@@ -667,48 +741,9 @@ else:
             f"runtime_only={sorted(set(runtime_names)-names)}"
         )
 
-expected_default = [
-    "clarify-requirements",
-    "plan-implementation",
-    "execute-plan",
-    "diagnose-software",
-    "review-code",
-    "verify-completion",
-]
-profile_paths = sorted((ROOT / "profiles").glob("*.txt"))
-for profile_path in profile_paths:
-    profile_names = [
-        line.removeprefix("skills/").strip()
-        for line in profile_path.read_text(encoding="utf-8").splitlines()
-        if line.strip()
-    ]
-    unknown = sorted(set(profile_names) - names)
-    if unknown:
-        errors.append(f"unknown skills in profile {profile_path.name}: {unknown}")
-    if profile_path.name == "default.txt":
-        if profile_names != expected_default:
-            errors.append(f"unexpected default profile: {profile_names}")
-        non_s_names = {
-            item["name"]
-            for item in catalog["skills"]
-            if item.get("reference_level") != "S"
-        }
-        if set(profile_names) & non_s_names:
-            errors.append("default profile contains non-S skills")
-
-if index_path.is_file():
-    index = json.loads(index_path.read_text(encoding="utf-8"))
-    indexed_profiles = {
-        (ROOT / relative_path).resolve()
-        for relative_path in index.get("profiles", {}).values()
-    }
-    disk_profiles = {path.resolve() for path in profile_paths}
-    if indexed_profiles != disk_profiles:
-        errors.append(
-            "index/profile mismatch: "
-            f"disk_only={sorted(str(path.relative_to(ROOT.resolve())) for path in disk_profiles-indexed_profiles)} "
-            f"index_only={sorted(str(path.relative_to(ROOT.resolve())) for path in indexed_profiles-disk_profiles)}"
-        )
+profiles_path = ROOT / "profiles"
+if profiles_path.exists():
+    errors.append("retired profiles directory must not exist")
 
 review_path = ROOT / "docs" / "SKILL_REVIEW.md"
 if not review_path.is_file():
@@ -742,6 +777,6 @@ if errors:
 
 print(
     f"VALID skills={len(names)} levels={dict(levels)} "
-    f"routes={len(routed_names)} profiles={len(profile_paths)} "
+    f"routes={len(routed_names)} thinking_core=always-on profiles=0 "
     f"upstreams={len(tracked_repositories)}"
 )

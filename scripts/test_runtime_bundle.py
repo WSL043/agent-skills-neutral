@@ -7,13 +7,38 @@ import sys
 import tempfile
 from pathlib import Path
 
-from build_runtime_bundle import BundleError, _markdown_headings, strip_terminal_provenance
+from build_runtime_bundle import (
+    BundleError,
+    _markdown_headings,
+    strip_terminal_provenance,
+    validate_thinking_core,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "build_runtime_bundle.py"
 CATALOG = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8"))
 EXPECTED_SKILLS = len(CATALOG.get("skills", []))
+RETIRED_ADAPTERS = {
+    "build-cli",
+    "build-mcp-server",
+    "capture-screen",
+    "create-agent-skill",
+    "discover-agent-skills",
+    "finish-development-branch",
+    "map-security-ownership",
+    "prepare-repository-for-agents",
+    "produce-programmatic-video",
+    "resolve-merge-conflicts",
+    "test-web-app",
+    "use-git-worktrees",
+    "work-with-docx",
+    "work-with-jupyter-notebook",
+    "work-with-pdf",
+    "work-with-postgresql",
+    "work-with-pptx",
+    "work-with-xlsx",
+}
 errors: list[str] = []
 
 
@@ -87,6 +112,23 @@ with tempfile.TemporaryDirectory(prefix="agent-skills-runtime-test-") as temp:
     actual = {path.name for path in bundle.iterdir()} if bundle.is_dir() else set()
     if actual != required:
         errors.append(f"runtime top-level surface mismatch: {sorted(actual)}")
+
+    try:
+        validate_thinking_core(bundle / "AGENTS.md")
+    except BundleError as exc:
+        errors.append(str(exc))
+    source_core = ROOT / "runtime" / "AGENTS.md"
+    bundled_core = bundle / "AGENTS.md"
+    if bundled_core.is_file() and bundled_core.read_bytes() != source_core.read_bytes():
+        errors.append("runtime thinking core is not the exact source contract")
+
+    runtime_catalog_path = bundle / "runtime-catalog.json"
+    if runtime_catalog_path.is_file():
+        runtime = json.loads(runtime_catalog_path.read_text(encoding="utf-8"))
+        runtime_names = {item.get("name") for item in runtime.get("skills", []) if isinstance(item, dict)}
+        leaked_adapters = sorted(runtime_names & RETIRED_ADAPTERS)
+        if leaked_adapters:
+            errors.append(f"retired adapters leaked into runtime catalog: {leaked_adapters}")
 
     forbidden = {
         "provenance.json",

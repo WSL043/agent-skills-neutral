@@ -1,4 +1,0 @@
-interface:
-  display_name: "Build MCP Server"
-  short_description: "Neutral workflow: Build MCP Server"
-  default_prompt: "Use $build-mcp-server to deliver an MCP server whose tools are predictable, safe, discoverable, and easy for agents to call correctly."

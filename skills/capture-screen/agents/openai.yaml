@@ -1,4 +1,0 @@
-interface:
-  display_name: "Capture Screen"
-  short_description: "Neutral workflow: Capture Screen"
-  default_prompt: "Use $capture-screen to produce a correctly scoped screenshot with enough metadata to support reliable visual reasoning."

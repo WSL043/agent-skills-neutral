@@ -1,4 +1,0 @@
-interface:
-  display_name: "Create Agent Skill"
-  short_description: "Neutral workflow: Create Agent Skill"
-  default_prompt: "Use $create-agent-skill to produce a focused, portable skill whose behavior is more reliable than an unstructured prompt."

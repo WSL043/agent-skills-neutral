@@ -38,6 +38,14 @@ for case in CASES["guardrails"]:
     if forbidden_level and any(item["level"] == forbidden_level for item in candidates):
         errors.append(f"guardrail route {case['query']!r} included level {forbidden_level}")
 
+for case in CASES.get("no_match", []):
+    result = route_query(case["query"])
+    candidates = [item for item in [result["primary"], *result["support"], *result["alternatives"]] if item]
+    if candidates:
+        errors.append(
+            f"no-match route {case['query']!r} selected {[item['name'] for item in candidates]}"
+        )
+
 if errors:
     print("ROUTING TESTS FAILED")
     for error in errors:
@@ -46,5 +54,5 @@ if errors:
 
 print(
     f"ROUTING TESTS PASSED reachable={reachable} positive={len(CASES['positive'])} "
-    f"guardrails={len(CASES['guardrails'])}"
+    f"guardrails={len(CASES['guardrails'])} no_match={len(CASES.get('no_match', []))}"
 )

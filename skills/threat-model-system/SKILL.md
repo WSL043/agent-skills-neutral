@@ -38,7 +38,6 @@ Produce a prioritized threat model that connects realistic attacker goals to sys
 ## Related skills
 
 - `review-security-practices`
-- `map-security-ownership`
 
 ## Provenance
 

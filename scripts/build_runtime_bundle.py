@@ -21,10 +21,35 @@ ALLOWED_TOP_LEVEL_FILES = {"AGENTS.md", "runtime-catalog.json", "MANIFEST.json"}
 ALLOWED_TOP_LEVEL_DIRS = {"skills"}
 IGNORED_FILE_NAMES = {".DS_Store"}
 IGNORED_DIR_NAMES = {"__pycache__"}
+THINKING_CORE_HEADINGS = {
+    "Runtime Thinking Core",
+    "Default reasoning loop",
+    "Workflow activation",
+    "Evidence and uncertainty",
+    "Learning boundary",
+    "Bundle boundary",
+}
 
 
 class BundleError(RuntimeError):
     pass
+
+
+def validate_thinking_core(path: Path) -> None:
+    if not path.is_file():
+        raise BundleError(f"runtime thinking core is missing: {path}")
+    text = path.read_text(encoding="utf-8")
+    headings = {title for _index, _level, title in _markdown_headings(text)}
+    missing = sorted(THINKING_CORE_HEADINGS - headings)
+    if missing:
+        raise BundleError(f"runtime thinking core headings missing: {missing}")
+    for contract in (
+        "No workflow is a valid result",
+        "replaceable tool knowledge",
+        "surface that actually consumes it",
+    ):
+        if contract not in text:
+            raise BundleError(f"runtime thinking core contract missing: {contract}")
 
 
 def _markdown_headings(text: str) -> list[tuple[int, int, str]]:
@@ -137,12 +162,18 @@ def validate_source_catalogs() -> tuple[dict[str, Any], dict[str, Any]]:
     catalog = read_json(catalog_path)
     runtime = read_json(runtime_path)
 
+    if catalog.get("canonical_scope") != "thinking-workflows":
+        raise BundleError("catalog canonical scope must be thinking-workflows")
+    validate_thinking_core(ROOT / "runtime" / "AGENTS.md")
+
     catalog_items = catalog.get("skills")
     runtime_items = runtime.get("skills")
     if not isinstance(catalog_items, list) or not isinstance(runtime_items, list):
         raise BundleError("catalog and runtime catalog must contain skill lists")
     if runtime.get("routing_authority") != "model-native-semantic":
         raise BundleError("runtime catalog routing authority must be model-native-semantic")
+    if set(runtime) != {"schema_version", "library", "routing_authority", "skills"}:
+        raise BundleError("runtime catalog exposes unsupported top-level metadata")
 
     canonical: dict[str, dict[str, Any]] = {}
     for item in catalog_items:
@@ -376,6 +407,8 @@ def verify_bundle(bundle: Path) -> dict[str, Any]:
         raise BundleError(f"unexpected runtime top-level content: {sorted(unexpected)}")
     if missing:
         raise BundleError(f"missing runtime top-level content: {sorted(missing)}")
+
+    validate_thinking_core(bundle / "AGENTS.md")
 
     runtime_catalog = read_json(bundle / "runtime-catalog.json")
     if runtime_catalog.get("routing_authority") != "model-native-semantic":

@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "category": "architecture-codebase",
-  "summary": "Design code boundaries and domain models before large structural change.",
+  "category": "system-design",
+  "summary": "Design code boundaries, domain models, and public contracts before structural change.",
   "skills": [
     {
-      "kind": "domain",
+      "kind": "workflow",
       "maturity": "stable",
       "choose_when": "The task concerns module boundaries, dependency direction, modularization, or architecture migration.",
       "avoid_when": "Do not use for a small localized implementation with no structural decision.",
@@ -26,7 +26,7 @@
       "path": "skills/design-codebase/SKILL.md"
     },
     {
-      "kind": "domain",
+      "kind": "workflow",
       "maturity": "stable",
       "choose_when": "Business concepts, invariants, state transitions, or bounded contexts need explicit modeling.",
       "avoid_when": "Do not use for directory organization without domain-rule ambiguity.",
@@ -48,7 +48,7 @@
       "path": "skills/model-domain/SKILL.md"
     },
     {
-      "kind": "domain",
+      "kind": "workflow",
       "maturity": "stable",
       "choose_when": "An API contract, OpenAPI description, public interface, versioning policy, or compatibility promise needs design review before or alongside implementation.",
       "avoid_when": "Do not use for debugging one handler, reviewing an ordinary code diff, or merely documenting an already-fixed private function.",

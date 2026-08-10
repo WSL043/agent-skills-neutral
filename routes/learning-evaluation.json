@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "category": "learning-evaluation",
+  "summary": "Evaluate agent behavior and evidence-gated improvements without confusing activity with capability lift.",
+  "skills": [
+    {
+      "kind": "workflow",
+      "maturity": "stable",
+      "choose_when": "The task evaluates an agent, skill, workflow, or tool-using system with explicit tasks, graders, traces, or failure analysis.",
+      "avoid_when": "Do not use for ordinary product or model evaluation without an agent or workflow behavior contract.",
+      "triggers": [
+        "evaluate agent",
+        "agent evaluation",
+        "evaluate skill",
+        "skill evaluation",
+        "agent evaluation loop",
+        "benchmark agent",
+        "compare two versions of this agent",
+        "task success and tool use",
+        "agent baseline and candidate eval",
+        "compare agent prompts",
+        "compare agent variants",
+        "评估 agent",
+        "评估技能",
+        "智能体评估",
+        "评测 agent",
+        "评测技能"
+      ],
+      "negative_triggers": [
+        "model weights",
+        "普通模型评估",
+        "create agent skill",
+        "create a new agent skill",
+        "install agent skill",
+        "install an agent skill",
+        "find agent skill",
+        "find an agent skill",
+        "创建技能",
+        "创建新的 agent skill",
+        "安装技能",
+        "查找技能"
+      ],
+      "explicit_only": false,
+      "name": "evaluate-agent",
+      "level": "A",
+      "path": "skills/evaluate-agent/SKILL.md"
+    }
+  ]
+}

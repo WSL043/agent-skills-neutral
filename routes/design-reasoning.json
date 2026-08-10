@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "category": "visual-design-motion",
-  "summary": "Design visual systems, interfaces, and motion.",
+  "category": "design-reasoning",
+  "summary": "Turn product intent and evidence into deliberate interface, motion, and visual-system decisions.",
   "skills": [
     {
-      "kind": "domain",
+      "kind": "workflow",
       "maturity": "stable",
       "choose_when": "The task is interface hierarchy, responsive layout, component design, UI aesthetic judgment, anti-generic visual critique, redesign, polish, or implementation of a visual reference as frontend code.",
       "avoid_when": "Do not use for a static poster, presentation, or backend-only task.",
@@ -51,7 +51,7 @@
       "path": "skills/design-frontend/SKILL.md"
     },
     {
-      "kind": "domain",
+      "kind": "workflow",
       "maturity": "stable",
       "choose_when": "The task explicitly concerns UI animation, transition timing, easing, motion audit, or reduced-motion behavior.",
       "avoid_when": "Do not use for video editing or animation unrelated to interface behavior.",
@@ -77,7 +77,7 @@
       "path": "skills/design-motion/SKILL.md"
     },
     {
-      "kind": "domain",
+      "kind": "workflow",
       "maturity": "stable",
       "choose_when": "The task needs reusable color, typography, spacing, style tokens, a brand kit, or a coherent visual system across artifacts.",
       "avoid_when": "Do not use when only one isolated color value or font choice is requested.",

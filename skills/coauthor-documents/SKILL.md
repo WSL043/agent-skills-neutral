@@ -37,7 +37,6 @@ Produce a coherent document that serves its audience and can be reviewed section
 ## Related skills
 
 - `research-primary-sources`
-- `work-with-docx`
 
 ## Provenance
 

@@ -11,14 +11,10 @@
     "openai/skills": "49f948faa9258a0c61caceaf225e179651397431",
     "psenger/ai-agent-skills": "96716a643138665b4e335f836fb661f126944644",
     "addyosmani/agent-skills": "d2478bf0c73a6357df39a3ed6aff16acaa218843",
-    "vercel-labs/skills": "941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c",
     "vercel-labs/web-interface-guidelines": "4e799d45c17aec1498c269287a83b9dba22b966b",
     "google/skills": "426c0776b0adc0a8c873f4012fc166756c0a989a",
     "github/awesome-copilot": "811ed362dd9cdbbc83efc10e43039598654a7dda",
-    "K-Dense-AI/scientific-agent-skills": "991bd993aca4e90891d1f9908ba82ef45d77b6f0",
-    "supabase/agent-skills": "1207767388a0ffb55f21fb4e6988fee96942431d",
-    "johnpapa/ai-ready": "b3538e9104e710c8ce528466840e8db1fee3c56b",
-    "saranambiar/hyperframes-video-agent-skills": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4"
+    "K-Dense-AI/scientific-agent-skills": "991bd993aca4e90891d1f9908ba82ef45d77b6f0"
   },
   "mechanism_snapshots": {
     "microsoft/SkillOpt": "47fe269d75d3def79ffd90236261d26d84868ae5",
@@ -26,33 +22,6 @@
     "smalls257/eval-pack": "3f95a1545ef4b2c925d9059d0035ab29417be995"
   },
   "skills": {
-    "build-cli": [
-      {
-        "repository": "openai/skills",
-        "skill": "cli-creator",
-        "path": "skills/.curated/cli-creator/SKILL.md",
-        "commit": "49f948faa9258a0c61caceaf225e179651397431",
-        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/cli-creator"
-      }
-    ],
-    "build-mcp-server": [
-      {
-        "repository": "anthropics/skills",
-        "skill": "mcp-builder",
-        "path": "skills/mcp-builder/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/mcp-builder"
-      }
-    ],
-    "capture-screen": [
-      {
-        "repository": "openai/skills",
-        "skill": "screenshot",
-        "path": "skills/.curated/screenshot/SKILL.md",
-        "commit": "49f948faa9258a0c61caceaf225e179651397431",
-        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/screenshot"
-      }
-    ],
     "clarify-requirements": [
       {
         "repository": "mattpocock/skills",
@@ -76,60 +45,6 @@
         "path": "skills/doc-coauthoring/SKILL.md",
         "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
         "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/doc-coauthoring"
-      }
-    ],
-    "create-agent-skill": [
-      {
-        "repository": "anthropics/skills",
-        "skill": "skill-creator",
-        "path": "skills/skill-creator/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/skill-creator"
-      },
-      {
-        "repository": "obra/superpowers",
-        "skill": "writing-skills",
-        "path": "skills/writing-skills/SKILL.md",
-        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
-        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/writing-skills"
-      },
-      {
-        "repository": "openai/skills",
-        "skill": "skill-creator",
-        "path": "skills/.system/skill-creator/SKILL.md",
-        "commit": "49f948faa9258a0c61caceaf225e179651397431",
-        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.system/skill-creator"
-      },
-      {
-        "repository": "mattpocock/skills",
-        "skill": "writing-for-agents",
-        "path": "skills/productivity/writing-for-agents/SKILL.md",
-        "commit": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
-        "url": "https://github.com/mattpocock/skills/tree/84fdeffd12f2ee307994d1eb6feb48173b6e0502/skills/productivity/writing-for-agents",
-        "license": "MIT",
-        "license_url": "https://opensource.org/license/mit/",
-        "adaptation_note": "Extracted context-pointer branches, environment-as-source-of-truth, and checkable completion criteria; rewritten for the neutral library."
-      },
-      {
-        "source_kind": "mechanism",
-        "repository": "microsoft/SkillOpt",
-        "skill": "skill-evolution-loop",
-        "path": "skillopt/engine/trainer.py",
-        "commit": "47fe269d75d3def79ffd90236261d26d84868ae5",
-        "url": "https://github.com/microsoft/SkillOpt/blob/47fe269d75d3def79ffd90236261d26d84868ae5/skillopt/engine/trainer.py",
-        "license": "MIT",
-        "license_url": "https://opensource.org/license/mit/",
-        "adaptation_note": "Retained the separation of rollout experience, reflection, patch aggregation, bounded update, and post-update evaluation as an evidence-gated skill-evolution loop; source-specific optimizer settings, scoring formulas, learning-rate policies, and semantic-density heuristics were excluded."
-      },
-      {
-        "source_kind": "mechanism",
-        "repository": "Qwen-Applications/Trace2Skill",
-        "skill": "parallel-trajectory-skill-evolution",
-        "path": "skill_evolver/parallel_evolving_agent.py",
-        "commit": "3d0b52a140f002a512930252b613c49048f7d5ac",
-        "url": "https://github.com/Qwen-Applications/Trace2Skill/blob/3d0b52a140f002a512930252b613c49048f7d5ac/skill_evolver/parallel_evolving_agent.py",
-        "license_note": "Repository README advertises Apache-2.0 at this snapshot, but no root LICENSE file was resolved during review. Only the mechanism concept was synthesized; no source code or prose was copied.",
-        "adaptation_note": "Retained independent trajectory-local patch proposals against a frozen baseline followed by hierarchical semantic consolidation; spreadsheet-specific agents, benchmark settings, worker counts, prompts, and implementation code were excluded."
       }
     ],
     "design-codebase": [
@@ -287,45 +202,6 @@
         "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/systematic-debugging"
       }
     ],
-    "discover-agent-skills": [
-      {
-        "repository": "vercel-labs/skills",
-        "skill": "find-skills",
-        "path": "skills/find-skills/SKILL.md",
-        "commit": "1164afa5f0e21ebd01e6fc11249759353f494ad1",
-        "url": "https://github.com/vercel-labs/skills/tree/1164afa5f0e21ebd01e6fc11249759353f494ad1/skills/find-skills"
-      },
-      {
-        "repository": "vercel-labs/skills",
-        "skill": "git-transport-authentication",
-        "path": "src/git.ts",
-        "commit": "941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c",
-        "url": "https://github.com/vercel-labs/skills/blob/941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c/src/git.ts",
-        "license": "MIT",
-        "license_url": "https://opensource.org/license/mit/",
-        "adaptation_note": "Retained host- and transport-bound authentication, explicit transport restrictions, credential-safe fallback behavior, and separation of authentication failures from unrelated remote errors."
-      },
-      {
-        "repository": "vercel-labs/skills",
-        "skill": "authenticated-tree-discovery",
-        "path": "src/blob.ts",
-        "commit": "941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c",
-        "url": "https://github.com/vercel-labs/skills/blob/941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c/src/blob.ts",
-        "license": "MIT",
-        "license_url": "https://opensource.org/license/mit/",
-        "adaptation_note": "Retained lazy credential escalation for authentication-recoverable failures, rate-limit versus permission distinction, and credential-safe authenticated repository-tree fallback."
-      },
-      {
-        "repository": "github/awesome-copilot",
-        "skill": "trojan-skill-hunter",
-        "path": "agents/trojan-skill-hunter.agent.md",
-        "commit": "811ed362dd9cdbbc83efc10e43039598654a7dda",
-        "url": "https://github.com/github/awesome-copilot/tree/811ed362dd9cdbbc83efc10e43039598654a7dda/agents",
-        "license": "MIT",
-        "license_url": "https://opensource.org/license/mit/",
-        "adaptation_note": "Added static supply-chain inspection points for hidden directives, Unicode, permission mismatch, and unpinned execution paths."
-      }
-    ],
     "execute-plan": [
       {
         "repository": "obra/superpowers",
@@ -340,15 +216,6 @@
         "path": "skills/engineering/implement/SKILL.md",
         "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
         "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/implement"
-      }
-    ],
-    "finish-development-branch": [
-      {
-        "repository": "obra/superpowers",
-        "skill": "finishing-a-development-branch",
-        "path": "skills/finishing-a-development-branch/SKILL.md",
-        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
-        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/finishing-a-development-branch"
       }
     ],
     "handoff-task-context": [
@@ -388,15 +255,6 @@
         "path": "skills/observability-and-instrumentation/SKILL.md",
         "commit": "bdf76c7c6b7b3b3e01bb15c9fdc42ac5351855c1",
         "url": "https://github.com/addyosmani/agent-skills/tree/bdf76c7c6b7b3b3e01bb15c9fdc42ac5351855c1/skills/observability-and-instrumentation"
-      }
-    ],
-    "map-security-ownership": [
-      {
-        "repository": "openai/skills",
-        "skill": "security-ownership-map",
-        "path": "skills/.curated/security-ownership-map/SKILL.md",
-        "commit": "49f948faa9258a0c61caceaf225e179651397431",
-        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-ownership-map"
       }
     ],
     "migrate-system-safely": [
@@ -512,15 +370,6 @@
         "adaptation_note": "Added supports/contradicts/qualifies/missing evidence structure without copying the source artifact format or scripts."
       }
     ],
-    "resolve-merge-conflicts": [
-      {
-        "repository": "mattpocock/skills",
-        "skill": "resolving-merge-conflicts",
-        "path": "skills/engineering/resolving-merge-conflicts/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/resolving-merge-conflicts"
-      }
-    ],
     "review-code": [
       {
         "repository": "mattpocock/skills",
@@ -565,22 +414,6 @@
         "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices"
       }
     ],
-    "test-web-app": [
-      {
-        "repository": "anthropics/skills",
-        "skill": "webapp-testing",
-        "path": "skills/webapp-testing/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/webapp-testing"
-      },
-      {
-        "repository": "openai/skills",
-        "skill": "playwright",
-        "path": "skills/.curated/playwright/SKILL.md",
-        "commit": "49f948faa9258a0c61caceaf225e179651397431",
-        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/playwright"
-      }
-    ],
     "threat-model-system": [
       {
         "repository": "openai/skills",
@@ -590,15 +423,6 @@
         "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model"
       }
     ],
-    "use-git-worktrees": [
-      {
-        "repository": "obra/superpowers",
-        "skill": "using-git-worktrees",
-        "path": "skills/using-git-worktrees/SKILL.md",
-        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
-        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/using-git-worktrees"
-      }
-    ],
     "verify-completion": [
       {
         "repository": "obra/superpowers",
@@ -606,100 +430,6 @@
         "path": "skills/verification-before-completion/SKILL.md",
         "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
         "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/verification-before-completion"
-      }
-    ],
-    "work-with-docx": [
-      {
-        "repository": "anthropics/skills",
-        "skill": "docx",
-        "path": "skills/docx/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/docx"
-      }
-    ],
-    "work-with-jupyter-notebook": [
-      {
-        "repository": "openai/skills",
-        "skill": "jupyter-notebook",
-        "path": "skills/.curated/jupyter-notebook/SKILL.md",
-        "commit": "49f948faa9258a0c61caceaf225e179651397431",
-        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/jupyter-notebook"
-      }
-    ],
-    "work-with-pdf": [
-      {
-        "repository": "MiniMax-AI/skills",
-        "skill": "minimax-pdf",
-        "path": "skills/minimax-pdf/SKILL.md",
-        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
-        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/minimax-pdf"
-      },
-      {
-        "repository": "anthropics/skills",
-        "skill": "pdf",
-        "path": "skills/pdf/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/pdf"
-      },
-      {
-        "repository": "openai/skills",
-        "skill": "pdf",
-        "path": "skills/.curated/pdf/SKILL.md",
-        "commit": "49f948faa9258a0c61caceaf225e179651397431",
-        "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/pdf"
-      }
-    ],
-    "work-with-pptx": [
-      {
-        "repository": "MiniMax-AI/skills",
-        "skill": "ppt-editing-skill",
-        "path": "plugins/pptx-plugin/skills/ppt-editing-skill/SKILL.md",
-        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
-        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/plugins/pptx-plugin/skills/ppt-editing-skill"
-      },
-      {
-        "repository": "MiniMax-AI/skills",
-        "skill": "ppt-orchestra-skill",
-        "path": "plugins/pptx-plugin/skills/ppt-orchestra-skill/SKILL.md",
-        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
-        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/plugins/pptx-plugin/skills/ppt-orchestra-skill"
-      },
-      {
-        "repository": "MiniMax-AI/skills",
-        "skill": "slide-making-skill",
-        "path": "plugins/pptx-plugin/skills/slide-making-skill/SKILL.md",
-        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
-        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/plugins/pptx-plugin/skills/slide-making-skill"
-      },
-      {
-        "repository": "MiniMax-AI/skills",
-        "skill": "pptx-generator",
-        "path": "skills/pptx-generator/SKILL.md",
-        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
-        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/pptx-generator"
-      },
-      {
-        "repository": "anthropics/skills",
-        "skill": "pptx",
-        "path": "skills/pptx/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/pptx"
-      }
-    ],
-    "work-with-xlsx": [
-      {
-        "repository": "MiniMax-AI/skills",
-        "skill": "minimax-xlsx",
-        "path": "skills/minimax-xlsx/SKILL.md",
-        "commit": "60aaae52bb2af8162732751a4332f62a5fef518b",
-        "url": "https://github.com/MiniMax-AI/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/minimax-xlsx"
-      },
-      {
-        "repository": "anthropics/skills",
-        "skill": "xlsx",
-        "path": "skills/xlsx/SKILL.md",
-        "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/xlsx"
       }
     ],
     "simplify-code": [
@@ -793,18 +523,6 @@
         "adaptation_note": "Retained asked-versus-delivered requirement fit as a dimension independent from verification and implementation quality; fixed point deductions and score ranges were excluded."
       }
     ],
-    "work-with-postgresql": [
-      {
-        "repository": "supabase/agent-skills",
-        "skill": "supabase-postgres-best-practices",
-        "path": "skills/supabase-postgres-best-practices/SKILL.md",
-        "commit": "1207767388a0ffb55f21fb4e6988fee96942431d",
-        "url": "https://github.com/supabase/agent-skills/tree/1207767388a0ffb55f21fb4e6988fee96942431d/skills/supabase-postgres-best-practices",
-        "license": "MIT",
-        "license_url": "https://opensource.org/license/mit/",
-        "adaptation_note": "Rewritten as a vendor-neutral PostgreSQL workflow grounded in runtime, workload, security, migration, and plan evidence."
-      }
-    ],
     "formulate-scientific-hypotheses": [
       {
         "repository": "K-Dense-AI/scientific-agent-skills",
@@ -837,70 +555,6 @@
         "license": "MIT",
         "license_url": "https://opensource.org/license/mit/",
         "adaptation_note": "Retained claim-to-evidence alignment, unit-of-inference, missingness, multiplicity, reproducibility, and reporting-versus-validity distinctions without importing peer-review workflow or confidential-review tooling."
-      }
-    ],
-    "prepare-repository-for-agents": [
-      {
-        "repository": "johnpapa/ai-ready",
-        "skill": "ai-ready",
-        "path": "skills/ai-ready/SKILL.md",
-        "commit": "b3538e9104e710c8ce528466840e8db1fee3c56b",
-        "url": "https://github.com/johnpapa/ai-ready/tree/b3538e9104e710c8ce528466840e8db1fee3c56b/skills/ai-ready",
-        "license": "MIT",
-        "license_url": "https://opensource.org/license/mit/",
-        "adaptation_note": "Rewritten as a minimal evidence-backed repository-readiness audit; later strengthened with repeated PR-review evidence and demonstrated change-cascade discovery while rejecting fixed asset scores, badges, and provider-specific integrations."
-      }
-    ],
-    "produce-programmatic-video": [
-      {
-        "repository": "saranambiar/hyperframes-video-agent-skills",
-        "skill": "end-to-end-video-playbook",
-        "path": "skills/end-to-end-video-playbook/SKILL.md",
-        "commit": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4",
-        "url": "https://github.com/saranambiar/hyperframes-video-agent-skills/tree/f6b043d9fd3b8a9820af143a47db8c74f1194fb4/skills/end-to-end-video-playbook",
-        "license": "Apache-2.0",
-        "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
-        "adaptation_note": "Retained source-first staged production, layered assembly, approval boundaries, and final-render verification; HyperFrames-specific routing and fixed output choices were removed."
-      },
-      {
-        "repository": "saranambiar/hyperframes-video-agent-skills",
-        "skill": "video-intake-and-storyboard",
-        "path": "skills/video-intake-and-storyboard/SKILL.md",
-        "commit": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4",
-        "url": "https://github.com/saranambiar/hyperframes-video-agent-skills/tree/f6b043d9fd3b8a9820af143a47db8c74f1194fb4/skills/video-intake-and-storyboard",
-        "license": "Apache-2.0",
-        "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
-        "adaptation_note": "Retained scene/timeline specification, locked-content boundaries, local/global timing, source-of-truth assets, and proof timestamps; fixed style assumptions were removed."
-      },
-      {
-        "repository": "saranambiar/hyperframes-video-agent-skills",
-        "skill": "audio-sync-assembly",
-        "path": "skills/audio-sync-assembly/SKILL.md",
-        "commit": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4",
-        "url": "https://github.com/saranambiar/hyperframes-video-agent-skills/tree/f6b043d9fd3b8a9820af143a47db8c74f1194fb4/skills/audio-sync-assembly",
-        "license": "Apache-2.0",
-        "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
-        "adaptation_note": "Retained probe-first media inspection, authoritative timing sources, segment-local retiming, shared caption/visual timing, and final sync verification without copying FFmpeg recipes or parameter defaults."
-      },
-      {
-        "repository": "saranambiar/hyperframes-video-agent-skills",
-        "skill": "captions-and-music-bed",
-        "path": "skills/captions-and-music-bed/SKILL.md",
-        "commit": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4",
-        "url": "https://github.com/saranambiar/hyperframes-video-agent-skills/tree/f6b043d9fd3b8a9820af143a47db8c74f1194fb4/skills/captions-and-music-bed",
-        "license": "Apache-2.0",
-        "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
-        "adaptation_note": "Retained final-audio timing as the basis for captions, preview-before-full-burn, and rendered/listened caption-audio QA; caption styling and music parameter defaults were removed."
-      },
-      {
-        "repository": "saranambiar/hyperframes-video-agent-skills",
-        "skill": "render-qa-and-surgical-changes",
-        "path": "skills/render-qa-and-surgical-changes/SKILL.md",
-        "commit": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4",
-        "url": "https://github.com/saranambiar/hyperframes-video-agent-skills/tree/f6b043d9fd3b8a9820af143a47db8c74f1194fb4/skills/render-qa-and-surgical-changes",
-        "license": "Apache-2.0",
-        "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
-        "adaptation_note": "Retained source-level surgical edits, affected-scene rebuilds, media probing, proof frames/contact sheets, exact timestamp checks, and final-master verification."
       }
     ]
   }

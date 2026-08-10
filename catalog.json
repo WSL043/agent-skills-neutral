@@ -1,75 +1,33 @@
 {
   "schema_version": 1,
   "library": "agent-skills-neutral",
-  "generated_on": "2026-08-08",
+  "canonical_scope": "thinking-workflows",
+  "generated_on": "2026-08-10",
   "selection": {
-    "S": "First-wave core workflow; keep one canonical trigger.",
-    "A": "High-value task-domain module; load on demand.",
-    "B": "Specialist module; keep outside the default global set."
+    "S": "High-transfer thinking workflow; load on demand for its cognitive outcome.",
+    "A": "Scenario thinking workflow; load on demand when it adds independent reasoning value.",
+    "B": "Non-canonical material; keep outside the model-facing runtime."
   },
   "skills": [
     {
-      "name": "create-agent-skill",
-      "path": "skills/create-agent-skill",
-      "category": "agent-skill-ecosystem",
-      "reference_level": "S",
-      "recommended_use": "优先整合为核心 workflow；只保留一个 canonical 入口",
-      "description": "Create or revise portable Agent Skills with standard SKILL.md frontmatter, concise trigger descriptions, progressive disclosure, reusable resources, and evidence-based validation. Use when designing, consolidating, testing, or improving an agent skill or skill library.",
-      "related": [
-        "discover-agent-skills",
-        "verify-completion"
-      ],
-      "has_variants_reference": true,
-      "merge_treatment": "merge-complementary-implementations"
-    },
-    {
-      "name": "discover-agent-skills",
-      "path": "skills/discover-agent-skills",
-      "category": "agent-skill-ecosystem",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Discover reusable Agent Skills and transferable agent-capability mechanisms from local catalogs or remote repositories, assess compatibility and trust, and recommend the smallest useful retained set. Use when an agent needs a capability that may already exist or when comparing external skill or agent-improvement implementations.",
-      "related": [
-        "create-agent-skill"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
       "name": "evaluate-agent",
       "path": "skills/evaluate-agent",
-      "category": "agent-skill-ecosystem",
+      "category": "learning-evaluation",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按需评估 Agent、Skill 或工具工作流",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Evaluate an agent, skill, workflow, memory/routing policy, or tool-using system with explicit claims, repeatable tasks, traceable graders, and failure analysis. Use when comparing agent behavior, validating a skill, or building an evidence-gated improvement loop.",
       "related": [
-        "create-agent-skill",
-        "discover-agent-skills",
         "verify-completion"
       ],
       "has_variants_reference": false,
       "merge_treatment": "standalone-gap-fill"
     },
     {
-      "name": "build-mcp-server",
-      "path": "skills/build-mcp-server",
-      "category": "agent-tooling",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Design and implement Model Context Protocol servers with well-scoped tools, resources, schemas, error handling, and evaluation. Use when exposing an API, datastore, or local capability to MCP-compatible agents.",
-      "related": [
-        "threat-model-system",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
       "name": "design-codebase",
       "path": "skills/design-codebase",
-      "category": "architecture-codebase",
+      "category": "system-design",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Design or improve a codebase structure by mapping responsibilities, dependency direction, module boundaries, and change pressure. Use for architecture proposals, modularization, package boundaries, or codebase-wide structural changes.",
       "related": [
         "model-domain",
@@ -81,9 +39,9 @@
     {
       "name": "model-domain",
       "path": "skills/model-domain",
-      "category": "architecture-codebase",
+      "category": "system-design",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Model a problem domain with explicit concepts, invariants, state transitions, ownership, and ubiquitous language. Use when business rules are ambiguous, entities are overloaded, or implementation needs a durable domain model.",
       "related": [
         "clarify-requirements",
@@ -95,9 +53,9 @@
     {
       "name": "review-api-design",
       "path": "skills/review-api-design",
-      "category": "architecture-codebase",
+      "category": "system-design",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Review an API contract, endpoint set, schema, or service interface before implementation for consumer fit, HTTP semantics, compatibility, errors, security boundaries, resilience, and operability. Use for REST/OpenAPI or comparable request-response API design review, not for debugging implemented handlers or reviewing a code diff.",
       "related": [
         "model-domain",
@@ -108,161 +66,11 @@
       "merge_treatment": "merge-best-review-coverage"
     },
     {
-      "name": "work-with-docx",
-      "path": "skills/work-with-docx",
-      "category": "artifacts-documents",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Create, read, edit, or validate DOCX and DOTX documents while preserving professional layout, styles, comments, and tracked changes when required. Use whenever a Word document is a primary input or deliverable.",
-      "related": [
-        "work-with-pdf",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "keep-runtime-variants"
-    },
-    {
-      "name": "work-with-pdf",
-      "path": "skills/work-with-pdf",
-      "category": "artifacts-documents",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Read, extract, create, fill, edit, merge, split, OCR, or visually validate PDF files with task-specific routing. Use whenever a PDF is a primary input or required deliverable, especially when layout fidelity matters.",
-      "related": [
-        "work-with-docx",
-        "capture-screen"
-      ],
-      "has_variants_reference": true,
-      "merge_treatment": "merge-as-task-router"
-    },
-    {
-      "name": "work-with-pptx",
-      "path": "skills/work-with-pptx",
-      "category": "artifacts-documents",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Create, read, edit, template, or validate PPTX and POTX presentations with layout-aware routing, reusable design systems, and rendered visual QA. Use whenever slides or PowerPoint files are a primary input or deliverable.",
-      "related": [
-        "design-visual-theme",
-        "capture-screen"
-      ],
-      "has_variants_reference": true,
-      "merge_treatment": "merge-orchestrator-and-support-modules"
-    },
-    {
-      "name": "work-with-xlsx",
-      "path": "skills/work-with-xlsx",
-      "category": "artifacts-documents",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Create, read, analyze, edit, or validate XLSX, XLSM, CSV, and related spreadsheet files while preserving formulas, formatting, and advanced workbook features when required. Use whenever a spreadsheet is a primary input or deliverable.",
-      "related": [
-        "verify-completion"
-      ],
-      "has_variants_reference": true,
-      "merge_treatment": "keep-editing-strategy-variants"
-    },
-    {
-      "name": "work-with-postgresql",
-      "path": "skills/work-with-postgresql",
-      "category": "database-data",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按需处理 PostgreSQL 数据库和查询任务",
-      "description": "Design, query, migrate, secure, or diagnose PostgreSQL systems using runtime, schema, workload, and evidence-aware decisions. Use when PostgreSQL tables, queries, indexes, transactions, roles, row policies, migrations, or database performance are central.",
-      "related": [
-        "migrate-system-safely",
-        "diagnose-software",
-        "review-security-practices"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone-gap-fill"
-    },
-    {
-      "name": "build-cli",
-      "path": "skills/build-cli",
-      "category": "developer-tooling",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Design and implement command-line interfaces with coherent commands, arguments, configuration precedence, structured output, exit codes, and automated tests. Use for new CLIs or substantial command-surface changes.",
-      "related": [
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
-      "name": "capture-screen",
-      "path": "skills/capture-screen",
-      "category": "developer-tooling",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Capture full screens, windows, applications, or bounded regions with correct coordinates, scale, and privacy handling. Use when visual evidence, UI diagnosis, documentation, or pixel-based verification requires a screenshot.",
-      "related": [],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
-      "name": "resolve-merge-conflicts",
-      "path": "skills/resolve-merge-conflicts",
-      "category": "developer-tooling",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Resolve Git merge or rebase conflicts by reconstructing intent from both sides, preserving invariants, and validating the integrated result. Use when a branch contains textual, semantic, rename, or generated-file conflicts.",
-      "related": [
-        "review-code",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
-      "name": "use-git-worktrees",
-      "path": "skills/use-git-worktrees",
-      "category": "developer-tooling",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Create and manage isolated Git worktrees for parallel branches without disturbing the current checkout. Use when work needs separate dependency state, concurrent agents, or safe branch isolation.",
-      "related": [
-        "finish-development-branch"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
-      "name": "work-with-jupyter-notebook",
-      "path": "skills/work-with-jupyter-notebook",
-      "category": "developer-tooling",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Create, edit, execute, or validate Jupyter notebooks as reproducible computational narratives. Use for .ipynb experiments, tutorials, analyses, or notebook repair.",
-      "related": [
-        "work-with-xlsx",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
-      "name": "prepare-repository-for-agents",
-      "path": "skills/prepare-repository-for-agents",
-      "category": "developer-tooling",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按需审查并准备仓库的 Agent 工作流",
-      "description": "Assess and prepare a repository for reliable agent contributions by discovering real conventions, tests, CI, instructions, and missing workflow assets. Use when making a repository agent-ready or reducing contributor and review friction.",
-      "related": [
-        "create-agent-skill",
-        "plan-implementation",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone-gap-fill"
-    },
-    {
       "name": "develop-with-tdd",
       "path": "skills/develop-with-tdd",
-      "category": "implementation-quality",
+      "category": "implementation-reasoning",
       "reference_level": "S",
-      "recommended_use": "优先整合为核心 workflow；只保留一个 canonical 入口",
+      "recommended_use": "高迁移价值的思维工作流；仅在对应认知瓶颈出现时按需加载",
       "description": "Implement behavior through a red-green-refactor test-driven cycle with explicit failure observation and minimal production changes. Use for new behavior, bug fixes, or refactoring where executable tests can define the contract.",
       "related": [
         "diagnose-software",
@@ -274,9 +82,9 @@
     {
       "name": "diagnose-software",
       "path": "skills/diagnose-software",
-      "category": "implementation-quality",
+      "category": "implementation-reasoning",
       "reference_level": "S",
-      "recommended_use": "优先整合为核心 workflow；只保留一个 canonical 入口",
+      "recommended_use": "高迁移价值的思维工作流；仅在对应认知瓶颈出现时按需加载",
       "description": "Diagnose software failures through reproduction, evidence collection, hypothesis testing, root-cause isolation, and regression verification. Use for bugs, flaky tests, performance regressions, integration failures, or unexplained runtime behavior.",
       "related": [
         "develop-with-tdd",
@@ -288,9 +96,9 @@
     {
       "name": "optimize-performance",
       "path": "skills/optimize-performance",
-      "category": "implementation-quality",
+      "category": "implementation-reasoning",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按需进行测量驱动的性能优化",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Improve software performance through measurement, bottleneck isolation, targeted changes, and remeasurement. Use for slow code, latency or throughput regressions, resource waste, or explicit performance optimization.",
       "related": [
         "diagnose-software",
@@ -303,9 +111,9 @@
     {
       "name": "simplify-code",
       "path": "skills/simplify-code",
-      "category": "implementation-quality",
+      "category": "implementation-reasoning",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按需减少实现复杂度并保持行为不变",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Simplify existing code while preserving its observable behavior, interfaces, and operational contracts. Use when reducing duplication, nesting, incidental complexity, or confusing structure in an existing implementation.",
       "related": [
         "develop-with-tdd",
@@ -318,9 +126,9 @@
     {
       "name": "review-code",
       "path": "skills/review-code",
-      "category": "implementation-quality",
+      "category": "implementation-reasoning",
       "reference_level": "S",
-      "recommended_use": "优先整合为核心 workflow；只保留一个 canonical 入口",
+      "recommended_use": "高迁移价值的思维工作流；仅在对应认知瓶颈出现时按需加载",
       "description": "Review code changes for requirement fit, correctness, security, maintainability, and verification evidence; also prepare and process review feedback. Use for diffs, pull requests, patches, or pre-merge self-review.",
       "related": [
         "verify-completion",
@@ -332,9 +140,9 @@
     {
       "name": "verify-completion",
       "path": "skills/verify-completion",
-      "category": "implementation-quality",
+      "category": "implementation-reasoning",
       "reference_level": "S",
-      "recommended_use": "优先整合为核心 workflow；只保留一个 canonical 入口",
+      "recommended_use": "高迁移价值的思维工作流；仅在对应认知瓶颈出现时按需加载",
       "description": "Verify that claimed work is actually complete using fresh, task-relevant evidence rather than inference or stale output. Use before declaring a fix, implementation, migration, document, or deployment complete.",
       "related": [],
       "has_variants_reference": false,
@@ -343,9 +151,9 @@
     {
       "name": "execute-plan",
       "path": "skills/execute-plan",
-      "category": "planning-orchestration",
+      "category": "planning-coordination",
       "reference_level": "S",
-      "recommended_use": "优先整合为核心 workflow；只保留一个 canonical 入口",
+      "recommended_use": "高迁移价值的思维工作流；仅在对应认知瓶颈出现时按需加载",
       "description": "Execute an approved implementation plan in bounded batches while preserving scope, validating each step, and reporting deviations. Use when a written plan already defines the intended change and the task is to carry it out.",
       "related": [
         "plan-implementation",
@@ -355,26 +163,11 @@
       "merge_treatment": "merge-same-workflow"
     },
     {
-      "name": "finish-development-branch",
-      "path": "skills/finish-development-branch",
-      "category": "planning-orchestration",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Finish a development branch by verifying scope, cleaning the diff, choosing an integration path, and preserving recoverability. Use when implementation is complete and the branch should be prepared for merge, review, handoff, or safe abandonment.",
-      "related": [
-        "use-git-worktrees",
-        "review-code",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
       "name": "handoff-task-context",
       "path": "skills/handoff-task-context",
-      "category": "planning-orchestration",
+      "category": "planning-coordination",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Create or resume a durable, redacted task-state handoff that preserves goals, decisions, evidence, changed files, constraints, open risks, and the next valid action. Use when the user explicitly asks to save, transfer, pause, resume, or continue work across agent sessions.",
       "related": [
         "plan-implementation",
@@ -387,9 +180,9 @@
     {
       "name": "orchestrate-agent-work",
       "path": "skills/orchestrate-agent-work",
-      "category": "planning-orchestration",
+      "category": "planning-coordination",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Coordinate multiple agents or isolated work streams by decomposing tasks, controlling context, assigning disjoint scopes, and integrating verified results. Use when the runtime supports delegation and independent subtasks can materially reduce latency or context contention.",
       "related": [
         "plan-implementation",
@@ -402,9 +195,9 @@
     {
       "name": "plan-implementation",
       "path": "skills/plan-implementation",
-      "category": "planning-orchestration",
+      "category": "planning-coordination",
       "reference_level": "S",
-      "recommended_use": "优先整合为核心 workflow；只保留一个 canonical 入口",
+      "recommended_use": "高迁移价值的思维工作流；仅在对应认知瓶颈出现时按需加载",
       "description": "Write an implementation plan grounded in the current repository, with concrete file changes, dependency order, tests, risks, and completion evidence. Use before multi-file features, migrations, refactors, or work that another agent or engineer must execute.",
       "related": [
         "clarify-requirements",
@@ -416,9 +209,9 @@
     {
       "name": "clarify-requirements",
       "path": "skills/clarify-requirements",
-      "category": "requirements-design",
+      "category": "problem-framing",
       "reference_level": "S",
-      "recommended_use": "优先整合为核心 workflow；只保留一个 canonical 入口",
+      "recommended_use": "高迁移价值的思维工作流；仅在对应认知瓶颈出现时按需加载",
       "description": "Clarify goals, users, constraints, edge cases, and decision tradeoffs before implementation; challenge an existing proposal when hidden ambiguity remains. Use when requirements are underspecified, conflicting, high-impact, or likely to change the solution materially.",
       "related": [
         "prototype-solution",
@@ -430,9 +223,9 @@
     {
       "name": "prototype-solution",
       "path": "skills/prototype-solution",
-      "category": "requirements-design",
+      "category": "problem-framing",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Prototype a solution to answer a specific product, design, architecture, or technical uncertainty with the smallest credible artifact. Use when learning is more valuable than production completeness.",
       "related": [
         "clarify-requirements",
@@ -446,11 +239,10 @@
       "path": "skills/coauthor-documents",
       "category": "research-communication",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Coauthor structured documents through audience framing, outline agreement, iterative drafting, targeted review, and final reader validation. Use for proposals, design docs, reports, memos, policies, or other collaborative long-form writing.",
       "related": [
-        "research-primary-sources",
-        "work-with-docx"
+        "research-primary-sources"
       ],
       "has_variants_reference": false,
       "merge_treatment": "standalone"
@@ -460,8 +252,8 @@
       "path": "skills/research-primary-sources",
       "category": "research-communication",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Research a question using authoritative primary sources, track claims to evidence, distinguish fact from inference, and report uncertainty. Use for technical, policy, standards, product, scientific, or factual investigations requiring precise attribution.",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
+      "description": "Research and synthesize primary or authoritative sources while preserving version context, citations, contradictions, and fact-versus-inference boundaries. Use for defensible multi-source research, literature review, or material versioned claims; not for a single replaceable tool-option lookup.",
       "related": [
         "coauthor-documents",
         "verify-completion"
@@ -474,7 +266,7 @@
       "path": "skills/formulate-scientific-hypotheses",
       "category": "research-communication",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按需组织可证伪的研究假设和分析计划",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Turn observations and evidence into competing, falsifiable scientific hypotheses with discriminating predictions and an analysis plan. Use for research questions, mechanism proposals, causal explanations, or experiment design.",
       "related": [
         "research-primary-sources",
@@ -489,7 +281,7 @@
       "path": "skills/evaluate-scientific-evidence",
       "category": "research-communication",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按需评估科研证据、研究设计与方法学有效性",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Evaluate scientific claims, studies, and evidence by matching conclusions to study design, measurement, bias, statistical inference, robustness, and replication. Use for paper critique, methodology validity, evidence quality, or deciding what a study actually supports.",
       "related": [
         "research-primary-sources",
@@ -502,9 +294,9 @@
     {
       "name": "instrument-observability",
       "path": "skills/instrument-observability",
-      "category": "operations-evolution",
+      "category": "change-evolution",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Design, add, or review production telemetry so operators can answer concrete questions with structured logs, bounded-cardinality metrics, traces, and actionable alerts. Use for observability, instrumentation, correlation IDs, SLO signals, or when a production feature is impossible to diagnose from existing evidence.",
       "related": [
         "diagnose-software",
@@ -517,9 +309,9 @@
     {
       "name": "migrate-system-safely",
       "path": "skills/migrate-system-safely",
-      "category": "operations-evolution",
+      "category": "change-evolution",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Plan or execute a reversible migration from an old API, schema, dependency, service, format, or implementation to a replacement while preserving live consumers and data. Use for deprecation, backfill, expand-contract, dual-read/write, staged cutover, or removal of a legacy path.",
       "related": [
         "plan-implementation",
@@ -530,25 +322,11 @@
       "merge_treatment": "merge-lifecycle-and-data-migration"
     },
     {
-      "name": "map-security-ownership",
-      "path": "skills/map-security-ownership",
-      "category": "security",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
-      "description": "Map security-sensitive code and assets to maintainers using repository history, dependency paths, and risk boundaries. Use for security ownership analysis, bus-factor review, sensitive-area stewardship, or CODEOWNERS gap assessment.",
-      "related": [
-        "threat-model-system",
-        "review-security-practices"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
       "name": "review-security-practices",
       "path": "skills/review-security-practices",
-      "category": "security",
+      "category": "security-reasoning",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Review code and configuration for language- and framework-appropriate security practices using evidence from the actual data flow and deployment model. Use for secure-coding assessment, hardening review, or security-focused implementation guidance.",
       "related": [
         "threat-model-system",
@@ -560,13 +338,12 @@
     {
       "name": "threat-model-system",
       "path": "skills/threat-model-system",
-      "category": "security",
+      "category": "security-reasoning",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Threat-model a system by identifying assets, actors, trust boundaries, attack surfaces, abuse cases, and mitigations grounded in the actual architecture. Use before security-sensitive design, during major architecture change, or to scope a security review.",
       "related": [
-        "review-security-practices",
-        "map-security-ownership"
+        "review-security-practices"
       ],
       "has_variants_reference": false,
       "merge_treatment": "standalone"
@@ -574,14 +351,13 @@
     {
       "name": "design-frontend",
       "path": "skills/design-frontend",
-      "category": "visual-design-motion",
+      "category": "design-reasoning",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Design, implement, audit, or redesign web and application interfaces with a coherent visual direction, faithful reference translation, complete states, accessibility, responsiveness, and rendered QA. Use for new UI, visual redesign, image-to-code work, design systems, component composition, or anti-generic interface polish.",
       "related": [
         "design-motion",
-        "design-visual-theme",
-        "test-web-app"
+        "design-visual-theme"
       ],
       "has_variants_reference": true,
       "merge_treatment": "merge-as-principle-layers"
@@ -589,9 +365,9 @@
     {
       "name": "design-motion",
       "path": "skills/design-motion",
-      "category": "visual-design-motion",
+      "category": "design-reasoning",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Design, audit, or refine interface motion using explicit purpose, timing, easing, continuity, interruption behavior, accessibility, and performance constraints. Use for animation vocabulary, motion opportunities, animation review, or implementation planning.",
       "related": [
         "design-frontend"
@@ -602,45 +378,15 @@
     {
       "name": "design-visual-theme",
       "path": "skills/design-visual-theme",
-      "category": "visual-design-motion",
+      "category": "design-reasoning",
       "reference_level": "A",
-      "recommended_use": "高参考价值；按任务域安装或作为 canonical 子模块",
+      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
       "description": "Create, extract, or apply a coherent brand and visual theme across documents, presentations, interfaces, or artwork using a meaningful concept plus semantic color, typography, spacing, imagery, and style rules. Use for brand-system direction, theme derivation, design tokens, or cross-artifact visual alignment.",
       "related": [
         "design-frontend"
       ],
       "has_variants_reference": true,
       "merge_treatment": "merge-as-modes"
-    },
-    {
-      "name": "test-web-app",
-      "path": "skills/test-web-app",
-      "category": "web-ui-testing",
-      "reference_level": "S",
-      "recommended_use": "优先整合为核心 workflow；只保留一个 canonical 入口",
-      "description": "Test and debug web applications in a real browser using stable selectors, controlled server lifecycle, functional assertions, console/network evidence, screenshots, and cleanup. Use for UI-flow verification, browser automation, visual checks, or frontend runtime diagnosis.",
-      "related": [
-        "capture-screen",
-        "diagnose-software",
-        "verify-completion"
-      ],
-      "has_variants_reference": true,
-      "merge_treatment": "keep-session-model-variants"
-    },
-    {
-      "name": "produce-programmatic-video",
-      "path": "skills/produce-programmatic-video",
-      "category": "media-production",
-      "reference_level": "A",
-      "recommended_use": "高参考价值；按需处理程序化视频合成、同步、字幕、渲染与媒体 QA",
-      "description": "Plan, assemble, edit, render, and verify programmatic video timelines from source media, code, narration, captions, and scene assets. Use when a video file or timeline is the primary deliverable and timing, synchronization, rendering, or media QA must be controlled.",
-      "related": [
-        "design-motion",
-        "design-visual-theme",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone-gap-fill"
     }
   ]
 }

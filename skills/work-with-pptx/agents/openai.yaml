@@ -1,4 +1,0 @@
-interface:
-  display_name: "Work With PPTX"
-  short_description: "Neutral workflow: Work With PPTX"
-  default_prompt: "Use $work-with-pptx to deliver a coherent, editable presentation whose slide structure and rendered visuals are both verified."

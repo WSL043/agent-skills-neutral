@@ -1,10 +1,10 @@
-# Semantic Skill Routing
+# Semantic Workflow Activation
 
-Skill activation is a semantic agent decision. Deterministic code may discover, filter, organize, and test candidate metadata, but it must not replace the model's understanding of the user's requested outcome.
+The thinking core is always active. Optional workflow activation is a semantic agent decision. Deterministic code may discover, filter, organize, and test candidate metadata, but it must not replace the model's understanding of the current cognitive outcome.
 
 ## Current runtime contract
 
-For the current library size, expose compact progressive-disclosure metadata:
+Always expose `runtime/AGENTS.md` as the default thinking policy. For optional workflows, expose compact progressive-disclosure metadata:
 
 ```text
 name
@@ -12,7 +12,7 @@ description
 location
 ```
 
-The agent compares skill descriptions semantically, selects the smallest useful skill set, then loads only the selected `SKILL.md` bodies and any conditionally required references.
+The agent compares workflow descriptions semantically, selects the smallest useful workflow set, then loads only the selected `SKILL.md` bodies and any conditionally required references. No workflow is a valid result when the core is sufficient or the request only needs replaceable operational knowledge.
 
 Do not load all skill bodies merely to make a selection.
 
@@ -48,7 +48,7 @@ The model should select by outcome, decision boundary, required evidence, and ex
 
 ## Scaling path
 
-As the source or specialist library grows, do not respond by exposing every full skill or by making keyword rules authoritative. Add structure progressively.
+As the source or workflow library grows, do not respond by exposing every full body or by making keyword rules authoritative. Add structure progressively.
 
 ### Layer 1: semantic groups
 
@@ -81,13 +81,9 @@ For very large libraries, build the capability tree or graph offline from review
 
 The graph is an index. It is not a source of new behavior and it cannot grant trust to an unreviewed skill.
 
-## Capability layer and specialist layer
+## Core, workflow, and operational boundary
 
-The library should distinguish reusable agent capability from specialist operational knowledge.
-
-### Capability layer
-
-Prioritize skills or mechanisms that improve reusable judgment across unrelated tasks, including:
+The always-on core owns reusable judgment across unrelated tasks, including:
 
 - decomposition and planning;
 - evidence search and weighting;
@@ -99,15 +95,7 @@ Prioritize skills or mechanisms that improve reusable judgment across unrelated 
 - orchestration and context control;
 - skill evolution and evaluation.
 
-This layer defines the project's quality direction.
-
-### Specialist layer
-
-Specialists encode knowledge that changes correctness or completion in a narrower task family, format, protocol, technology, or domain.
-
-Specialists remain valuable, but catalog breadth in this layer is not the project goal. Prefer expanding a specialist branch only when a real task requires knowledge that cannot be recovered reliably from the capability layer plus current primary documentation.
-
-A future host may expose the capability layer first and expand specialist metadata only when the task indicates that a specialist branch is relevant.
+Optional workflows add a distinct reasoning process for one active cognitive bottleneck. Operational knowledge such as exact commands, file-format procedures, SDK behavior, and domain facts stays outside canonical activation and is recovered from the live environment or current primary documentation.
 
 ## Description quality
 
@@ -139,10 +127,10 @@ Do not force a capable model to imitate a weaker heuristic solely to make the te
 
 ## Trust boundary
 
-Routing only chooses among already eligible canonical skills. Discovery candidates, upstream material, provenance references, and quarantined sources never become selectable merely because semantic retrieval finds them relevant.
+Routing only chooses among already eligible canonical thinking workflows. Discovery candidates, upstream material, provenance references, operational adapters, and quarantined sources never become selectable merely because semantic retrieval finds them relevant.
 
 Trust/promotion and runtime relevance are separate decisions.
 
 ## Success criterion
 
-The routing system is successful when the agent loads the smallest context that materially improves the requested outcome, while semantic choice remains robust as the library grows. Fewer model decisions are not inherently better; cheaper routing that consistently chooses the wrong workflow is a regression.
+The activation system is successful when the thinking core handles ordinary tasks and the agent loads only the smallest workflow context that materially improves the requested outcome. Fewer model decisions are not inherently better; cheaper routing that consistently chooses the wrong workflow is a regression.

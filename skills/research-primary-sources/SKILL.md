@@ -1,6 +1,6 @@
 ---
 name: research-primary-sources
-description: "Research a question using authoritative primary sources, track claims to evidence, distinguish fact from inference, and report uncertainty. Use for technical, policy, standards, product, scientific, or factual investigations requiring precise attribution."
+description: "Research and synthesize primary or authoritative sources while preserving version context, citations, contradictions, and fact-versus-inference boundaries. Use for defensible multi-source research, literature review, or material versioned claims; not for a single replaceable tool-option lookup."
 ---
 
 # Research Primary Sources
@@ -8,6 +8,8 @@ description: "Research a question using authoritative primary sources, track cla
 ## Goal
 
 Deliver a synthesis whose important claims are traceable to current, authoritative evidence.
+
+If one current manual page or live `--help` result can directly settle a tool-specific fact, use that source without activating this research workflow.
 
 ## Workflow
 

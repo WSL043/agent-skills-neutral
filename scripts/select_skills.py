@@ -94,6 +94,21 @@ def normalize(value: str) -> str:
     return re.sub(r"\s+", " ", value.casefold()).strip()
 
 
+def contains_phrase(normalized_query: str, phrase: str) -> bool:
+    """Match Latin trigger phrases at token boundaries and CJK phrases by substring."""
+    normalized_phrase = normalize(phrase)
+    if not normalized_phrase:
+        return False
+    if re.fullmatch(r"[a-z0-9][a-z0-9 .+#-]*", normalized_phrase):
+        return bool(
+            re.search(
+                rf"(?<![a-z0-9]){re.escape(normalized_phrase)}(?![a-z0-9])",
+                normalized_query,
+            )
+        )
+    return normalized_phrase in normalized_query
+
+
 def tokens(value: str) -> set[str]:
     return {
         token
@@ -134,17 +149,18 @@ def match_rule(query: str, rule: dict[str, Any]) -> dict[str, Any] | None:
     query_tokens = expanded_tokens(query)
 
     for phrase in rule["negative_triggers"]:
-        normalized_phrase = normalize(phrase)
-        if normalized_phrase and normalized_phrase in normalized_query:
+        if contains_phrase(normalized_query, phrase):
             return None
 
     name_phrase = rule["name"].replace("-", " ")
-    name_hit = name_phrase in normalized_query or rule["name"] in normalized_query
+    name_hit = contains_phrase(normalized_query, name_phrase) or contains_phrase(
+        normalized_query, rule["name"]
+    )
 
     trigger_hits = [
         phrase
         for phrase in rule["triggers"]
-        if normalize(phrase) and normalize(phrase) in normalized_query
+        if contains_phrase(normalized_query, phrase)
     ]
 
     route_text = " ".join(
@@ -157,7 +173,10 @@ def match_rule(query: str, rule: dict[str, Any]) -> dict[str, Any] | None:
         return None
     if rule.get("explicit_only") and not explicit:
         return None
-    if not explicit and not overlap:
+    # One shared term is too weak to justify loading a workflow. High-signal
+    # single phrases belong in explicit trigger metadata; free-term fallback
+    # requires corroborating lexical evidence.
+    if not explicit and len(overlap) < 2:
         return None
 
     if name_hit:

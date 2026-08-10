@@ -102,7 +102,7 @@ When the candidate is a new skill, first test whether the behavior can be expres
 - a stronger existing rule;
 - a conditional branch;
 - a reference loaded only for one mode;
-- a specialist extension;
+- non-canonical operational knowledge recovered at task time;
 - an architecture mechanism that does not need a user-facing skill.
 
 ## 7. Separate proposal data from acceptance data
@@ -136,7 +136,7 @@ Possible outcomes:
 
 - **retain** — demonstrated improvement at the claimed scope;
 - **narrow** — improvement exists only under a tighter condition;
-- **specialize** — useful behavior does not generalize enough for the shared owner;
+- **specialize** — useful behavior does not generalize enough for canonical runtime and remains an external operational result;
 - **merge** — several candidates reduce to one stronger mechanism;
 - **reject** — no reliable improvement or material regression;
 - **evaluator-fix** — the candidate exposed a broken acceptance test rather than a skill defect.
@@ -168,7 +168,7 @@ Periodically review accumulated retained and rejected lessons for:
 - rules that no longer change behavior;
 - contradictions created by local patches;
 - over-specific examples that can be replaced by a decision policy;
-- specialist knowledge leaking into meta capabilities;
+- replaceable operational knowledge leaking into the thinking core or workflows;
 - repeated patterns that justify a shared mechanism;
 - rules whose source assumptions are obsolete.
 

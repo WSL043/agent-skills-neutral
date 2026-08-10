@@ -4,7 +4,7 @@ The source repository is the single authoring and evolution authority. Task agen
 
 ## Why the boundary exists
 
-Maintainers need discovery state, provenance, rejected candidates, evaluators, Evolution Runner state, schemas, tests, and source policy. A task agent normally needs none of that context. Exposing the full control plane can waste attention, create irrelevant routing choices, and blur the distinction between validated capabilities and the machinery used to produce them.
+Maintainers need discovery state, provenance, rejected candidates, evaluators, Evolution Runner state, schemas, tests, and source policy. A task agent needs the compact thinking core and, only when useful, an optional thinking workflow. Exposing the full control plane or operational adapter manuals can waste attention and blur validated reasoning with the machinery or replaceable facts used to execute it.
 
 The runtime boundary therefore separates **authoring authority** from **task-time consumption** without creating a second hand-maintained source tree.
 
@@ -68,7 +68,7 @@ MANIFEST.json
 skills/
 ```
 
-The skill directories contain the canonical skill-owned files required at task time, including their `SKILL.md` bodies and conditionally loaded references/resources.
+`AGENTS.md` is the always-on thinking core. The skill directories contain optional workflow-owned files, including `SKILL.md` bodies and conditionally loaded references/resources.
 
 The bundle intentionally excludes repository-level control-plane material such as:
 
@@ -78,7 +78,6 @@ upstreams.json
 catalog.json
 index.json
 routes/
-profiles/
 docs/
 scripts/
 tests/
@@ -87,7 +86,7 @@ schemas/
 .evolution/
 ```
 
-The runtime `AGENTS.md` is deliberately smaller than the maintainer `AGENTS.md`.
+The runtime `AGENTS.md` is deliberately smaller than the maintainer `AGENTS.md`, but it is not optional: it is the default reasoning policy for every task. `runtime-catalog.json` exposes only workflow `name`, `description`, and `location`; selecting no workflow remains valid.
 
 ## Manifest
 
@@ -98,7 +97,7 @@ The runtime `AGENTS.md` is deliberately smaller than the maintainer `AGENTS.md`.
 - routing authority;
 - canonical-catalog and runtime-catalog digests;
 - every runtime file's SHA-256 and byte size;
-- one deterministic digest for each skill directory.
+- one deterministic digest for each workflow directory.
 
 The manifest is a reproducibility and integrity record. It is not proof that a skill is semantically correct; semantic promotion still belongs to the evolution/evaluation layer.
 
@@ -146,6 +145,6 @@ The generated destination should reject manual edits or treat them as disposable
 
 ## Scaling into packs
 
-The initial bundle contains all canonical skills because the current metadata surface is small. If specialist breadth grows enough to create context competition, the compiler may later emit deterministic packs such as `core`, `reasoning`, and specialist groups.
+The bundle contains all canonical workflow metadata because the current surface is small. If workflow breadth grows enough to create context competition, the compiler may later emit deterministic cognitive-category packs while keeping the same always-on core.
 
 Pack generation must remain an artifact concern. It must not turn a deterministic classifier into the semantic task-time authority: the agent still chooses among exposed candidates by meaning and task outcome.

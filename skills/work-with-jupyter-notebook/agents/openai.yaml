@@ -1,4 +1,0 @@
-interface:
-  display_name: "Work With Jupyter Notebook"
-  short_description: "Neutral workflow: Work With Jupyter Notebook"
-  default_prompt: "Use $work-with-jupyter-notebook to produce a notebook that runs top-to-bottom from a clean kernel and communicates its result clearly."

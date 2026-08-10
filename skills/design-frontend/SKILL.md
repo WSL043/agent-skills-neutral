@@ -49,7 +49,6 @@ Create an interface whose visual language is specific to its product and audienc
 
 - `design-motion`
 - `design-visual-theme`
-- `test-web-app`
 
 ## Conditional reference
 

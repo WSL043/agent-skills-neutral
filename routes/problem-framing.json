@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "category": "requirements-design",
-  "summary": "Clarify decisions or prototype a specific uncertainty.",
+  "category": "problem-framing",
+  "summary": "Clarify consequential uncertainty or prototype the smallest discriminating experiment.",
   "skills": [
     {
       "kind": "workflow",

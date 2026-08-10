@@ -2,115 +2,76 @@
   "schema_version": 1,
   "library": "agent-skills-neutral",
   "routing_authority": "model-native-semantic",
+  "thinking_core": {
+    "source": "runtime/AGENTS.md",
+    "serving": "AGENTS.md",
+    "loading": "always-on"
+  },
   "runtime_catalog": "runtime-catalog.json",
   "advisory_router": "python scripts/select_skills.py <task> --json",
   "manual_protocol": [
-    "Use the host-discovered skill metadata or runtime-catalog.json for model-native semantic selection.",
-    "Choose by user outcome and skill description, not keyword overlap.",
-    "Load only the selected SKILL.md body.",
+    "Keep runtime/AGENTS.md active as the default thinking core for every task.",
+    "Use host-discovered workflow metadata or runtime-catalog.json for model-native semantic selection.",
+    "Choose by the current cognitive outcome and workflow description, not keyword, domain, file-format, product, or tool overlap.",
+    "Load only the selected SKILL.md body and its task-relevant resources.",
     "Use category route files only as hierarchical navigation or diagnostic metadata.",
     "Use select_skills.py only as advisory fallback/regression evidence.",
-    "No matching skill is a valid result."
+    "No workflow is a valid result when the thinking core is sufficient or the need is only replaceable tool knowledge."
   ],
-  "default_profile": "profiles/default.txt",
-  "profiles": {
-    "default": "profiles/default.txt",
-    "software-engineering": "profiles/software-engineering.txt",
-    "documents": "profiles/documents.txt",
-    "security": "profiles/security.txt",
-    "design": "profiles/design.txt",
-    "operations": "profiles/operations.txt"
-  },
   "categories": [
     {
-      "name": "agent-skill-ecosystem",
-      "summary": "Create, discover, evaluate, compare, and maintain Agent Skills and agent workflows.",
-      "route_file": "routes/agent-skill-ecosystem.json",
-      "skill_count": 3
-    },
-    {
-      "name": "agent-tooling",
-      "summary": "Build protocols and tools that expose capabilities to agents.",
-      "route_file": "routes/agent-tooling.json",
-      "skill_count": 1
-    },
-    {
-      "name": "architecture-codebase",
-      "summary": "Design code boundaries and domain models before large structural change.",
-      "route_file": "routes/architecture-codebase.json",
-      "skill_count": 3
-    },
-    {
-      "name": "artifacts-documents",
-      "summary": "Read, create, edit, and visually verify office and document formats.",
-      "route_file": "routes/artifacts-documents.json",
-      "skill_count": 4
-    },
-    {
-      "name": "database-data",
-      "summary": "Design, query, migrate, and secure relational data systems using evidence from the live workload.",
-      "route_file": "routes/database-data.json",
-      "skill_count": 1
-    },
-    {
-      "name": "developer-tooling",
-      "summary": "Operate developer workflows, repositories, notebooks, screenshots, and scaffolding.",
-      "route_file": "routes/developer-tooling.json",
-      "skill_count": 6
-    },
-    {
-      "name": "implementation-quality",
-      "summary": "Implement, simplify, optimize, diagnose, review, and verify software behavior.",
-      "route_file": "routes/implementation-quality.json",
-      "skill_count": 6
-    },
-    {
-      "name": "media-production",
-      "summary": "Plan, assemble, render, edit, and verify time-based media.",
-      "route_file": "routes/media-production.json",
-      "skill_count": 1
-    },
-    {
-      "name": "operations-evolution",
-      "summary": "Instrument production behavior and migrate live systems through reversible stages.",
-      "route_file": "routes/operations-evolution.json",
+      "name": "change-evolution",
+      "summary": "Reason about observable system change, staged migration, recoverability, and operational feedback.",
+      "route_file": "routes/change-evolution.json",
       "skill_count": 2
     },
     {
-      "name": "planning-orchestration",
-      "summary": "Plan, execute, delegate, and finish bounded engineering work.",
-      "route_file": "routes/planning-orchestration.json",
-      "skill_count": 5
+      "name": "design-reasoning",
+      "summary": "Turn product intent and evidence into deliberate interface, motion, and visual-system decisions.",
+      "route_file": "routes/design-reasoning.json",
+      "skill_count": 3
     },
     {
-      "name": "requirements-design",
-      "summary": "Clarify decisions or prototype a specific uncertainty.",
-      "route_file": "routes/requirements-design.json",
+      "name": "implementation-reasoning",
+      "summary": "Implement, simplify, optimize, diagnose, review, and verify software behavior.",
+      "route_file": "routes/implementation-reasoning.json",
+      "skill_count": 6
+    },
+    {
+      "name": "learning-evaluation",
+      "summary": "Evaluate agent behavior and evidence-gated improvements without confusing activity with capability lift.",
+      "route_file": "routes/learning-evaluation.json",
+      "skill_count": 1
+    },
+    {
+      "name": "planning-coordination",
+      "summary": "Plan, execute, delegate, and transfer bounded work while preserving decisions and evidence.",
+      "route_file": "routes/planning-coordination.json",
+      "skill_count": 4
+    },
+    {
+      "name": "problem-framing",
+      "summary": "Clarify consequential uncertainty or prototype the smallest discriminating experiment.",
+      "route_file": "routes/problem-framing.json",
       "skill_count": 2
     },
     {
       "name": "research-communication",
-      "summary": "Research primary sources, formulate scientific hypotheses, and coauthor decision-ready documents.",
+      "summary": "Research primary evidence, test scientific claims, and structure decision-ready writing.",
       "route_file": "routes/research-communication.json",
       "skill_count": 4
     },
     {
-      "name": "security",
-      "summary": "Threat-model, review, and map ownership of security-sensitive systems.",
-      "route_file": "routes/security.json",
-      "skill_count": 3
+      "name": "security-reasoning",
+      "summary": "Reason about threats, reachable vulnerabilities, controls, owners, and residual risk.",
+      "route_file": "routes/security-reasoning.json",
+      "skill_count": 2
     },
     {
-      "name": "visual-design-motion",
-      "summary": "Design visual systems, interfaces, and motion.",
-      "route_file": "routes/visual-design-motion.json",
+      "name": "system-design",
+      "summary": "Design code boundaries, domain models, and public contracts before structural change.",
+      "route_file": "routes/system-design.json",
       "skill_count": 3
-    },
-    {
-      "name": "web-ui-testing",
-      "summary": "Exercise and diagnose web applications in a real browser.",
-      "route_file": "routes/web-ui-testing.json",
-      "skill_count": 1
     }
   ]
 }

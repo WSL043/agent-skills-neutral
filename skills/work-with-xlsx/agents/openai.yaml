@@ -1,4 +1,0 @@
-interface:
-  display_name: "Work With XLSX"
-  short_description: "Neutral workflow: Work With XLSX"
-  default_prompt: "Use $work-with-xlsx to produce a correct, recalculable workbook with preserved structure and verified presentation."

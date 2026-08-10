@@ -69,8 +69,6 @@ Determine whether an agent or externalized behavior actually satisfies a stated 
 
 ## Related skills
 
-- `create-agent-skill`
-- `discover-agent-skills`
 - `verify-completion`
 
 ## Provenance

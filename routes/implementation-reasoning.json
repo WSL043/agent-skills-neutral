@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "category": "implementation-quality",
+  "category": "implementation-reasoning",
   "summary": "Implement, simplify, optimize, diagnose, review, and verify software behavior.",
   "skills": [
     {
@@ -54,7 +54,7 @@
       "path": "skills/diagnose-software/SKILL.md"
     },
     {
-      "kind": "domain",
+      "kind": "workflow",
       "maturity": "stable",
       "choose_when": "The task explicitly optimizes measured software performance or addresses a latency, throughput, resource, or performance regression with a remeasurement loop.",
       "avoid_when": "Do not use for an unexplained failure whose primary need is root-cause diagnosis, or for a generic code cleanup with no performance signal.",
@@ -115,7 +115,7 @@
       "path": "skills/review-code/SKILL.md"
     },
     {
-      "kind": "domain",
+      "kind": "workflow",
       "maturity": "stable",
       "choose_when": "The task reduces incidental code complexity, duplication, nesting, or confusing structure while preserving the existing behavior contract.",
       "avoid_when": "Do not use for a performance optimization, a public contract redesign, or a broad architecture migration without a simplification goal.",
@@ -144,10 +144,10 @@
       "path": "skills/simplify-code/SKILL.md"
     },
     {
-      "kind": "support",
+      "kind": "workflow",
       "maturity": "stable",
       "choose_when": "The task asks to prove completion, validate a claimed result, or perform final evidence checks.",
-      "avoid_when": "Do not make it the primary domain skill when a concrete artifact or runtime skill matches better.",
+      "avoid_when": "Do not use when no completion claim exists and the task still needs its primary work.",
       "triggers": [
         "verify completion",
         "prove it works",

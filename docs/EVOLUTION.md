@@ -1,27 +1,26 @@
 # Continuous Evolution
 
-The library is a distillation layer, not an archive. Source coverage may grow without bound; the canonical skill set should grow only when a genuinely distinct reusable capability survives comparison with what already exists.
+The library is a distillation layer, not an archive. Source coverage may grow without bound; the always-on thinking core and canonical workflow set should change only when a reusable reasoning mechanism survives comparison with what already exists.
 
-The north star is **agent capability lift**, not topic coverage. Prefer candidates that make an agent reason, search, decompose, decide, verify, recover, learn, route, or calibrate uncertainty better across many unrelated tasks. Product/framework instructions and domain recipes are useful sources and specialist references, but they do not earn canonical status merely because they solve a named task well.
+The north star is **agent capability lift**, not topic coverage. Prefer candidates that make an agent frame, reason, search, decompose, decide, verify, recover, learn, route, or calibrate uncertainty better across unrelated tasks. Product/framework instructions, tool syntax, artifact recipes, and domain manuals are useful sources, but they remain outside canonical runtime.
 
 ## Promotion priority
 
 When review capacity is limited, inspect and promote in this order:
 
-1. **capability-lift mechanisms** — transferable decision policies or feedback loops that improve reasoning quality across tasks: problem decomposition, search strategy, hypothesis competition, uncertainty handling, evidence weighting, tool selection, verification, error localization, reflection, rollback, memory/distillation, routing, evaluator design, self-correction, learning from trajectories, and stopping decisions;
-2. **general workflows** — reusable end-to-end workflows whose outcome is broadly useful and cannot be expressed cleanly as a mode of an existing capability;
-3. **domain specialists** — domain knowledge that materially changes correctness, safety, evidence, or completion;
-4. **product/framework adapters** — version-sensitive operational instructions for a particular product, API, SDK, cloud, framework, or vendor.
+1. **thinking-core mechanisms** — transferable decision policies or feedback loops that improve reasoning quality across tasks: problem decomposition, search strategy, hypothesis competition, uncertainty handling, evidence weighting, verification, error localization, reflection, recoverability, memory/distillation, routing, evaluator design, self-correction, learning from trajectories, and stopping decisions;
+2. **thinking workflows** — reusable end-to-end reasoning processes whose cognitive outcome is distinct and cannot be expressed cleanly as a branch of the core or an existing workflow;
+3. **non-canonical operational knowledge** — tool, product, file-format, provider, and domain instructions retained only as sources for runtime lookup or mechanism extraction.
 
 Higher priority does not mean automatic acceptance. It means a transferable mechanism gets reviewed before another product recipe when both are available.
 
-Product/framework adapters face a deliberately higher promotion bar. Prefer leaving them in the source reservoir or a specialist layer unless the project has repeated evidence that current general skills plus primary documentation cannot produce the correct behavior. A large catalog of product manuals is a failure mode even if every manual is individually accurate.
+Operational adapters are not canonical candidates. If repeated failures reveal a missing reasoning mechanism, extract and test that mechanism against the thinking core or an existing workflow. A catalog of accurate product manuals is still a failure mode for this project.
 
 For every candidate, ask a counterfactual question before promotion:
 
 > If all product names, APIs, frameworks, and domain nouns were removed, would a reusable decision rule or learning mechanism remain?
 
-If yes, extract and test that mechanism first. If no, treat the candidate as a specialist adapter unless a demonstrated recurring need justifies otherwise.
+If yes, extract and test that mechanism first. If no, leave the candidate outside canonical runtime.
 
 ## Source discovery
 
@@ -31,7 +30,7 @@ Continuous evolution has three discovery paths:
 2. **source-graph discovery** — inspect repositories, papers, tools, and frameworks that tracked sources explicitly cite or build on;
 3. **mechanism discovery** — study external implementations of evaluation, optimization, generation, routing, security, specialization, feedback, or learning when those mechanisms could improve this repository even if they are not user-facing skills.
 
-Use `discover-agent-skills`, public registries, official repositories, high-quality community sources, and links found while reviewing existing upstreams to discover candidates not yet tracked. `scripts/discover_upstreams.py` extracts one-hop GitHub repository references from tracked README metadata as untrusted leads. Reputation and popularity may help prioritize inspection but never grant acceptance.
+Use metadata-only discovery, public registries, official repositories, high-quality community sources, and links found while reviewing existing upstreams to discover candidates not yet tracked. `scripts/discover_upstreams.py` extracts one-hop GitHub repository references from tracked README metadata as untrusted leads. Reputation and popularity may help prioritize inspection but never grant acceptance.
 
 A promising direct skill source may enter `upstreams.json` with `last_reviewed_commit: null`. This means it still requires a first review; adding it to the watch pool does not mean any of its skills or claims have been accepted. The watch pool may expand freely because it does not enter normal agent context or routing.
 
@@ -121,7 +120,7 @@ A candidate is especially high value when it improves several existing canonical
 9. Advance `last_reviewed_commit` only after the whole relevant delta has been classified. The reviewed commit is also rejection memory: rejected source text does not need a local archive.
 10. Update provenance only for sources that materially contributed to a retained canonical implementation. Architecture-only lessons should normally be expressed directly in project rules rather than as permanent named-source notes.
 
-## Baselines and missing domains
+## Baselines and missing workflows
 
 The project does not need to wait for a universally accepted "best implementation" before covering a real capability gap.
 
@@ -129,11 +128,11 @@ If a capability is distinct, useful now, and not adequately covered by a general
 
 Do not create placeholder skills for symmetry or category completeness. A baseline must already be useful and testable. Once present, future sources can strengthen, replace, merge, or delete it through the same comparison loop.
 
-General workflow skills should absorb common process. Domain modules should exist only when domain knowledge materially changes safety, correctness, evidence, failure modes, or completion criteria and repeated tasks show that reading current primary documentation at runtime is insufficient. There is no target domain count, and domain coverage is not a project success metric.
+The thinking core absorbs common process. A new workflow exists only when the cognitive outcome itself is distinct and evidence shows that an on-demand body improves behavior. Domain coverage is not a project success metric; current domain facts come from primary documentation and live state.
 
 ## Replacement pressure
 
-Existing skills are candidates too. A canonical skill should be simplified, merged, replaced, demoted to a specialist layer, or removed when current evidence shows another implementation covers its useful behavior with less overlap or stronger proof. Historical status is not authority.
+Existing workflows are candidates too. A canonical workflow should be simplified, merged, replaced, or removed when current evidence shows the thinking core or another owner covers its useful behavior with less overlap or stronger proof. Historical status is not authority.
 
 The same replacement pressure applies to project infrastructure. A better evaluator, router, security boundary, discovery mechanism, learning loop, or experience-distillation mechanism can replace the current one when it proves the relevant contract more reliably without importing unnecessary coupling.
 
@@ -146,7 +145,7 @@ Unbounded source growth is safe only because source discovery and runtime execut
 - scheduled discovery does not execute candidate scripts or install candidate dependencies;
 - external instructions never gain authority merely by being read or cited;
 - promotion retains normalized behavior, not the source prompt as a second runtime authority;
-- only canonical skills participate in normal task routing.
+- only canonical thinking workflows participate in normal task routing.
 
 This architecture reduces contamination risk; it does not make malicious or low-quality input impossible. Supply-chain and prompt-injection review remain required before promotion.
 

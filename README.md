@@ -1,10 +1,10 @@
 # Agent Skills Neutral
 
-A private, vendor-neutral Agent Skills reference and evolution library. It distills external implementations and execution experience into a smaller set of reusable agent capabilities while keeping source discovery, specialist knowledge, evaluation, and runtime activation separated.
+A private, vendor-neutral thinking-core and workflow evolution library. It distills external implementations and execution experience into an always-on reasoning core plus a small set of optional thinking workflows, while keeping source discovery, evaluation, and replaceable operational knowledge outside task-time canonical context.
 
-The project optimizes for **agent capability lift**, not catalog breadth. The highest-value changes make an agent reason, search, decompose, decide, select tools, handle uncertainty, verify, recover, learn, or stop better across unrelated tasks. Product/framework manuals and domain recipes are useful sources, but they are not the main measure of progress.
+The project optimizes for **agent capability lift**, not catalog breadth. The highest-value changes make an agent frame, reason, search, decompose, decide, handle uncertainty, verify, recover, learn, or stop better across unrelated tasks. Product/framework manuals, file-format recipes, and tool syntax remain replaceable runtime knowledge; they may inspire a transferable mechanism but are not canonical skills.
 
-The current library contains 45 canonical skills. That number is not a target. Canonical-count growth, source-count growth, and domain coverage are not success metrics; a compact mechanism that improves several existing workflows can be more valuable than multiple new skills.
+The current library contains 27 canonical thinking workflows. That number is derived from the current deletion test, not a target. Canonical-count growth, source-count growth, and domain coverage are not success metrics; a compact mechanism that improves the thinking core can be more valuable than multiple new workflows.
 
 ## Core model
 
@@ -29,7 +29,9 @@ baseline comparison       fresh + held-out + regression evidence
 retain smallest useful mechanism
       |
       v
-canonical / shared kernel
+always-on thinking core
+      +
+optional thinking workflows
       |
       v
 model-native semantic activation
@@ -39,9 +41,11 @@ A discovered implementation is never accepted because it is newer, more popular,
 
 ## Runtime activation
 
-Skill selection is **model-native and semantic by default**.
+The compact [`runtime/AGENTS.md`](runtime/AGENTS.md) thinking core is **always on**. It supplies the default cross-domain reasoning loop even when no workflow is selected.
 
-For hosts with native Agent Skills discovery, expose each skill's compact frontmatter metadata and let the model choose semantically. For hosts without native discovery, use [`runtime-catalog.json`](runtime-catalog.json), which contains only:
+Workflow selection is **model-native and semantic by default**.
+
+For hosts with native Agent Skills discovery, expose each workflow's compact frontmatter metadata and let the model choose semantically. For hosts without native discovery, use [`runtime-catalog.json`](runtime-catalog.json), which contains only:
 
 ```text
 name
@@ -49,7 +53,7 @@ description
 location
 ```
 
-The model selects by requested outcome and the skill's description, then loads only the selected `SKILL.md` body and any conditionally required references.
+The model selects by the current cognitive outcome and workflow description, then loads only the selected `SKILL.md` body and any conditionally required references. No workflow is a valid result when the thinking core is sufficient or the request only needs current tool documentation.
 
 `python scripts/select_skills.py "<task>" --json` remains available as an **advisory lexical fallback and offline regression harness**. Its suggestion is not task-time authority and must not hard-veto a semantically correct model choice.
 
@@ -66,7 +70,7 @@ python scripts/build_runtime_bundle.py build --output dist/runtime
 python scripts/build_runtime_bundle.py verify --bundle dist/runtime
 ```
 
-The generated surface contains only the minimal runtime `AGENTS.md`, `runtime-catalog.json`, `MANIFEST.json`, and canonical `skills/`. Evolution, provenance, discovery, tests, benchmarks, and maintainer policy remain outside task-time context.
+The generated surface contains only the always-on thinking core as `AGENTS.md`, `runtime-catalog.json`, `MANIFEST.json`, and canonical thinking workflows under `skills/`. Evolution, provenance, discovery, tests, benchmarks, tool/domain adapters, and maintainer policy remain outside task-time context.
 
 `dist/` is disposable staging output and is never canonical source. When a host such as Codex discovers `AGENTS.md` from ancestor directories, do not use an in-repository `dist/` bundle as the task working root: deploy and reverify the artifact outside the authoring repository tree so maintainer instructions cannot join the runtime prompt.
 
@@ -82,14 +86,12 @@ See [`docs/EXECUTION_ATTRIBUTION.md`](docs/EXECUTION_ATTRIBUTION.md).
 
 ## Capability layers
 
-Canonical skills have different strategic roles:
+Runtime has only two canonical layers:
 
-1. **meta capability** — improves how the agent thinks, learns, verifies, routes, or coordinates across many tasks;
-2. **reasoning workflow** — owns a narrower outcome but still contributes reusable judgment;
-3. **specialist operation** — adds correctness for a particular artifact, protocol, tool family, runtime, or technical domain;
-4. **product/framework adapter** — normally remains outside the main canonical surface unless repeated evidence proves a dedicated runtime route is necessary.
+1. **always-on thinking core** — cross-domain control over task framing, uncertainty, alternatives, next-action choice, evidence, recoverability, verification, learning, and stopping;
+2. **optional thinking workflow** — a distinct scenario-specific reasoning process that materially improves an active cognitive outcome.
 
-Evolution effort is intentionally biased toward the first two layers. Specialist breadth is useful but is not the project's north star.
+Tool syntax, file-format operations, provider setup, and product/domain manuals are non-canonical operational knowledge. Agents recover them from the live environment, host capabilities, and current primary documentation.
 
 See [`docs/CAPABILITY_LAYERS.md`](docs/CAPABILITY_LAYERS.md).
 
@@ -112,9 +114,8 @@ Review priority is:
 
 ```text
 meta capability mechanism
-    > reasoning workflow
-        > specialist operation
-            > product/framework adapter
+    > thinking workflow
+        > non-canonical operational knowledge
 ```
 
 Higher priority is not automatic acceptance.
@@ -225,7 +226,7 @@ See [`docs/BENCHMARK.md`](docs/BENCHMARK.md).
 - unreviewed candidates are never routable;
 - discovery automation does not execute candidate code or install dependencies;
 - candidates compete by normalized mechanisms rather than being copied as parallel prompts;
-- provider/framework material can remain a source or specialist reservoir;
+- provider/framework material remains a non-canonical source reservoir;
 - rejected prose does not accumulate as runtime prompt history;
 - only retained canonical metadata participates in normal skill discovery.
 
@@ -258,9 +259,9 @@ The last command is advisory diagnostics, not the preferred runtime selection pa
 
 ```text
 runtime-catalog.json       compact model-facing name/description/location catalog
+runtime/AGENTS.md          always-on cross-domain thinking core source
 index.json                 semantic routing metadata and category navigation
 routes/*.json              diagnostic/fallback boundary metadata
-profiles/*.txt             small persistent install/reference sets
 catalog.json               full machine-readable canonical inventory
 CATALOG.md                 human-readable canonical list
 AGENTS.md                  loading, trust, necessity, and evolution contract
@@ -277,7 +278,7 @@ scripts/test_execution_attribution.py deterministic serving/activation/privacy t
 docs/ARCHITECTURE.md       source/runtime separation and capability-lift model
 docs/EXECUTION_ATTRIBUTION.md serving/activation evidence boundary and Codex adapter
 docs/SEMANTIC_ROUTING.md   model-native activation and scale-up path
-docs/CAPABILITY_LAYERS.md  meta/workflow/specialist strategic classification
+docs/CAPABILITY_LAYERS.md  thinking-core/workflow/non-canonical boundary
 docs/LEARNING_LOOP.md      trajectory-grounded, held-out-gated evolution loop
 docs/CURATOR_POLICY.md     worker/analyst/curator/judge model policy
 docs/EVOLUTION.md          high-value ingestion and replacement protocol
@@ -287,10 +288,10 @@ docs/SKILL_REVIEW.md       canonical implementation review
 
 ## Current levels
 
-- **S:** reusable core workflows; only the default task loop is installed persistently when a host chooses to use that profile.
-- **A:** high-value retained capabilities loaded on demand.
+- **S:** high-transfer thinking workflow, loaded on demand for its cognitive outcome.
+- **A:** scenario thinking workflow, loaded on demand when it adds independent reasoning value.
 
-S/A is reference metadata, not a semantic routing score. A capability that cannot justify canonical context should be merged, deleted, demoted to a specialist layer, or remain in the source reservoir.
+S/A is reference metadata, not a semantic routing score. Neither level is a persistent default profile; the only always-on layer is `runtime/AGENTS.md`. Material that cannot justify a thinking workflow should strengthen the core, merge into an existing owner, or remain outside canonical runtime.
 
 User authorization, repository guidance, runtime safety, and tool-specific approval boundaries remain authoritative regardless of skill selection.
 
@@ -302,8 +303,8 @@ While the repository remains private, scheduled ecosystem scanning stays disable
 
 ## 中文说明
 
-这个项目的目标不是收集最多的 Agent Skill，也不是让 Agent 记住最多产品说明书，而是持续提炼那些能让 Agent **更会判断、更会搜索、更会分解问题、更会验证、更会纠错、更会利用经验** 的通用机制。
+这个项目的目标不是收集最多的 Agent Skill，也不是让 Agent 记住产品说明书，而是持续进化一个默认常驻的思维核心，并提炼那些能让 Agent **更会判断、更会搜索、更会分解问题、更会验证、更会纠错、更会利用经验** 的场景思维工作流。
 
 运行时优先让 Agent 根据 `name + description` 自己做语义选择，代码路由只作为回归测试和弱客户端 fallback。维护时，便宜模型可以做扫描、整理和测试，但跨来源抽象、泛化范围、合并/删除和 canonical promotion 交给强 reasoning curator，并用 held-out 和独立证据决定是否真正保留。
 
-来源数量可以持续增长，但真正高价值的结果通常是强化已有 capability 或共享学习机制，而不是再增加一个产品 trigger。
+来源数量可以持续增长，但真正高价值的结果通常是强化思维核心或已有 workflow，而不是增加产品、工具、文件格式或领域 trigger。此类可替代知识由 Agent 在任务时从当前环境和一手文档获取。

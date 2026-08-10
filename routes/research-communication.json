@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "category": "research-communication",
-  "summary": "Research primary sources, formulate scientific hypotheses, and coauthor decision-ready documents.",
+  "summary": "Research primary evidence, test scientific claims, and structure decision-ready writing.",
   "skills": [
     {
       "kind": "workflow",
       "maturity": "stable",
       "choose_when": "The task is collaborative long-form writing, outlining, or revising a proposal, design doc, memo, report, or policy.",
-      "avoid_when": "Use a file-format skill as primary when manipulating DOCX/PDF/PPTX is the dominant task.",
+      "avoid_when": "Do not use when the task is only file-format conversion or mechanical layout editing with no writing decision.",
       "triggers": [
         "coauthor document",
         "write proposal",
@@ -23,6 +23,9 @@
         ".docx",
         ".pdf",
         ".pptx",
+        "docx",
+        "pdf",
+        "pptx",
         "编辑 word 格式"
       ],
       "explicit_only": false,
@@ -31,7 +34,7 @@
       "path": "skills/coauthor-documents/SKILL.md"
     },
     {
-      "kind": "domain",
+      "kind": "workflow",
       "maturity": "stable",
       "choose_when": "The task evaluates what a scientific study, paper, or body of evidence can support by examining design validity, measurement, bias, statistical inference, robustness, or replication.",
       "avoid_when": "Do not use for source discovery alone or for generating a new hypothesis or experiment without an evidence-appraisal outcome.",
@@ -66,7 +69,7 @@
       "path": "skills/evaluate-scientific-evidence/SKILL.md"
     },
     {
-      "kind": "domain",
+      "kind": "workflow",
       "maturity": "stable",
       "choose_when": "The task turns observations into competing, falsifiable scientific hypotheses, discriminating predictions, or an experiment and analysis plan.",
       "avoid_when": "Do not use for a source-only fact lookup or a general document with no hypothesis or research-design decision.",
@@ -96,8 +99,8 @@
     {
       "kind": "workflow",
       "maturity": "stable",
-      "choose_when": "The answer requires current authoritative primary sources, precise citations, or fact/inference separation.",
-      "avoid_when": "Do not use for purely local code inspection with no external or documentary research need.",
+      "choose_when": "The task requires synthesizing authoritative primary sources, resolving material versioned claims, or producing traceable citations.",
+      "avoid_when": "Do not use for purely local inspection or a single replaceable tool-option lookup that current documentation can answer directly.",
       "triggers": [
         "primary sources",
         "official documentation",

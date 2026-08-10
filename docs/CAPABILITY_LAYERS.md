@@ -1,143 +1,76 @@
 # Capability Layers
 
-The repository is not optimized for the number of tasks or products it can name. Its primary purpose is to improve agent judgment and reliable action.
+The project has one durable subject: how an agent thinks. Runtime therefore has two canonical layers and one explicit non-canonical boundary.
 
-Canonical skills therefore have different strategic roles even when they are all valid runtime skills.
+## 1. Always-on thinking core
 
-## Layers
+[`../runtime/AGENTS.md`](../runtime/AGENTS.md) is the default policy for every task. It is deliberately compact and cross-domain. It governs:
 
-### 1. Meta capability
+- task-contract framing and authority boundaries;
+- fact, inference, hypothesis, and unknown separation;
+- competing explanations and discriminating evidence;
+- next-action choice by information value, risk, cost, and safe recoverability;
+- verification at the consumed or observed surface;
+- correction, recovery, claim narrowing, learning, and stopping.
 
-A meta capability improves how an agent thinks, learns, selects, checks, or coordinates across many unrelated tasks. This is the highest-priority evolution layer.
+The core is not a skill and cannot fail to activate because routing missed a keyword. It contains only behavior the model should carry across unrelated tasks.
 
-Current meta-capability owners:
+## 2. Optional thinking workflows
 
-- `create-agent-skill`
-- `discover-agent-skills`
-- `evaluate-agent`
-- `clarify-requirements`
-- `plan-implementation`
-- `execute-plan`
-- `diagnose-software`
-- `review-code`
-- `verify-completion`
-- `prototype-solution`
-- `research-primary-sources`
-- `orchestrate-agent-work`
-- `handoff-task-context`
+A workflow owns a distinct cognitive outcome that benefits from a fuller process than the core can carry economically. Examples include root-cause diagnosis, threat modeling, evidence appraisal, implementation planning, collaborative writing, interface design, migration reasoning, and agent evaluation.
 
-A mechanism that can strengthen one of these across domains is normally more valuable than another narrow task adapter.
+The scenario set is open-ended. Categories organize current owners; they are not a claim that every future situation is already enumerated. A new scenario becomes canonical only when its reasoning result is independently useful and cannot be expressed cleanly as a branch of the core or an existing workflow.
 
-### 2. Reasoning workflow
+Every workflow remains on demand. `S` means high-transfer and `A` means scenario-specific; neither means always loaded.
 
-A reasoning workflow owns a narrower outcome but still teaches reusable judgment rather than a product manual. These skills may contain domain concepts, but their main value is a decision process that cannot be replaced by looking up API syntax.
+## 3. Non-canonical operational knowledge
 
-Current reasoning-workflow owners:
+The following are useful but replaceable and therefore stay outside canonical runtime:
 
-- `design-codebase`
-- `model-domain`
-- `review-api-design`
-- `prepare-repository-for-agents`
-- `develop-with-tdd`
-- `optimize-performance`
-- `simplify-code`
-- `instrument-observability`
-- `migrate-system-safely`
-- `finish-development-branch`
-- `coauthor-documents`
-- `evaluate-scientific-evidence`
-- `formulate-scientific-hypotheses`
-- `review-security-practices`
-- `threat-model-system`
-- `design-frontend`
-- `design-motion`
-- `design-visual-theme`
+- exact tool commands, flags, SDK calls, and provider setup;
+- file-format manipulation recipes;
+- product or framework manuals;
+- technology-specific installation and maintenance procedures;
+- domain facts that current primary sources or the live environment can supply.
 
-These remain useful canonical skills, but they should not dominate source discovery merely because they have clear names or large source ecosystems.
+Agents obtain these from host capabilities, repository instructions, current official documentation, and observed runtime state. Canonical reasoning decides what evidence is needed and how to verify it; it does not duplicate every mechanism for obtaining that evidence.
 
-### 3. Specialist operation
+Operational material may still contribute a transferable rule. For example, document, browser, media, and spreadsheet workflows all support the general rule “verify the rendered or consumed result”; database and Git operations support “preserve invariants and a safely recoverable path.” Those rules belong in the core or an existing thinking workflow, while the format- or command-specific manual does not.
 
-A specialist changes correctness for a specific artifact, protocol, tool family, runtime, or technical domain. Specialists are legitimate runtime capabilities, but breadth in this layer is not the project's success metric.
+## Deletion test
 
-Current specialist owners:
+For any proposed canonical entry, ask:
 
-- `build-mcp-server`
-- `work-with-docx`
-- `work-with-pdf`
-- `work-with-pptx`
-- `work-with-xlsx`
-- `work-with-postgresql`
-- `build-cli`
-- `capture-screen`
-- `resolve-merge-conflicts`
-- `use-git-worktrees`
-- `work-with-jupyter-notebook`
-- `produce-programmatic-video`
-- `map-security-ownership`
-- `test-web-app`
+1. Remove product, framework, file-format, tool, provider, and domain nouns. What reasoning behavior remains?
+2. Does that behavior change a decision, evidence requirement, recovery path, or stopping condition?
+3. Is it already present in the thinking core or an existing workflow?
+4. If the candidate is removed, does controlled or repeated evidence show a meaningful behavior loss?
+5. When transfer is claimed, does the loss and recovery appear on a contrasting or held-out task?
 
-A specialist should stay compact and defer version-sensitive facts to the live environment and current primary documentation whenever possible.
+If no independent behavior remains, reject the canonical route. If a rule remains but has no independent outcome, strengthen the core or existing owner. Add a workflow only when both the outcome and evidence justify it.
 
-## Product/framework adapters
-
-A product/framework adapter is below the three canonical priority layers. It primarily explains how to operate a named vendor product, SDK, API, cloud service, framework, or release-specific interface.
-
-Product adapters belong in the source reservoir or an explicit optional specialist branch by default. They become canonical only when repeated evidence shows that:
-
-- the task recurs materially;
-- the capability cannot be recovered reliably from existing reasoning skills plus current primary documentation;
-- the retained content includes real decision logic rather than syntax lookup;
-- the extra runtime surface is worth its routing and maintenance cost.
-
-Removing the product and API nouns is a useful test: if no reusable decision rule remains, do not promote the source as a capability-lift skill.
-
-## Evolution priority
-
-When several candidates are available, prefer review effort in this order:
+## Activation boundary
 
 ```text
-meta capability
-    > reasoning workflow
-        > specialist operation
-            > product/framework adapter
+always-on runtime/AGENTS.md
+          |
+          v
+identify current cognitive bottleneck
+          |
+          +---- core sufficient / direct tool lookup ----> no workflow
+          |
+          v
+runtime-catalog.json metadata
+          |
+          v
+smallest useful thinking workflow
+          |
+          v
+selected SKILL.md body only
 ```
 
-This is a review priority, not an automatic quality score. A weak meta-level idea can still be rejected, and a specialist can still be essential for a real recurring task.
-
-## Promotion pressure
-
-A new source should first compete to strengthen an existing owner.
-
-For a proposed new canonical skill, ask:
-
-1. Is the outcome genuinely unowned?
-2. Does the skill contain non-trivial decision logic that the agent cannot reliably reconstruct from the environment or primary documentation?
-3. Does it improve future task behavior rather than merely expose knowledge?
-4. Could the behavior be a mode, branch, reference, or specialist extension of an existing owner instead?
-5. Would deleting the candidate leave the demonstrated capability gap open?
-
-If the answer to the last question is no, do not add a new canonical owner.
-
-## Runtime implications
-
-The current library is small enough that model-native selection can inspect the compact metadata catalog directly.
-
-If the library grows enough that flat metadata becomes noisy, preserve the strategic layers during hierarchical semantic discovery:
-
-- expose meta capabilities directly;
-- expose compact reasoning-workflow groups;
-- expand specialist groups only when task intent makes them plausible;
-- never expose unreviewed source candidates as runtime options.
-
-This hierarchy reduces context competition without making a lexical router authoritative.
+`routes/*.json` and `select_skills.py` provide navigation, diagnostics, regression evidence, and weak-client fallback. They do not define task-time semantic authority.
 
 ## Reclassification
 
-Layer assignment is not permanent. Reclassify when evidence shows that a skill:
-
-- contains more cross-task judgment than originally understood;
-- has collapsed into version-sensitive operational instructions;
-- can be absorbed into a stronger shared capability;
-- no longer changes agent behavior beyond what current models and primary documentation already provide.
-
-Reclassification may lead to strengthening, merging, specialist demotion, or deletion. Historical canonical status is not protection from compression.
+Canonical status is not permanent. Repeated real-task evidence may strengthen, merge, narrow, or remove a workflow. A source with useful operational detail can remain available through its original project or current documentation without occupying this runtime. Git history preserves removed implementations; canonical context does not need to preserve them as an archive.

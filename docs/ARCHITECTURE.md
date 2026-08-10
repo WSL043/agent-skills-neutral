@@ -1,8 +1,8 @@
 # Architecture
 
-The repository separates **source growth** from **runtime growth**. The source reservoir may grow continuously; the canonical library and the context loaded for any one task stay filtered by capability and evidence.
+The repository separates **source growth** from **runtime growth**. The source reservoir may grow continuously; runtime stays centered on an always-on thinking core and a small evidence-gated set of optional thinking workflows.
 
-The canonical library is optimized first for **agent capability lift**: reusable mechanisms that improve how an agent reasons, searches, decomposes, selects tools, handles uncertainty, tests hypotheses, verifies claims, recovers from failure, compresses experience, and decides when to stop. Domain and product coverage is secondary and should not turn the library into a handbook collection.
+The canonical library is optimized for **agent capability lift**: reusable mechanisms that improve how an agent frames, reasons, searches, decomposes, handles uncertainty, tests hypotheses, verifies claims, recovers from failure, compresses experience, and decides when to stop. Tool and domain coverage is not a runtime goal.
 
 ## Layers
 
@@ -25,7 +25,7 @@ The second lane has higher strategic value when it yields a transferable agent b
 
 A null reviewed commit means first review is pending. A repository can remain in this layer indefinitely without affecting routing or normal agent context.
 
-Product/framework repositories may remain useful indefinitely as specialist reservoirs even when nothing in them merits a canonical trigger.
+Product/framework repositories may remain useful indefinitely as source reservoirs even when nothing in them merits a canonical workflow.
 
 ### 2. Capability normalization
 
@@ -49,7 +49,7 @@ Compare the candidate with the canonical implementation that owns the same outco
 
 Deterministic evidence is preferred where possible. Judgment-heavy capabilities may use model evaluation, rendered review, or human review, but the evaluation contract is defined before candidate output is inspected.
 
-For a mechanism claimed to generalize, include contrasting or held-out tasks outside the source domain. A mechanism that only wins on its own product examples remains a specialist result.
+For a mechanism claimed to generalize, include contrasting or held-out tasks outside the source domain. A mechanism that only wins on its own product examples remains non-canonical operational knowledge.
 
 The result may be `strengthen`, `replace`, `new capability`, `architecture lesson`, or `reject`.
 
@@ -59,10 +59,9 @@ Promotion copies no upstream artifact by default. It retains the smallest behavi
 
 Promotion pressure is intentionally asymmetric:
 
-1. cross-cutting capability-lift mechanisms are preferred when evidence is comparable;
-2. general workflows may become canonical when their outcome is genuinely distinct;
-3. domain specialists require evidence that domain invariants change correctness, safety, evidence, or completion;
-4. product/framework adapters normally remain outside the main canonical set unless repeated real tasks show that primary documentation plus general skills is insufficient.
+1. cross-cutting capability-lift mechanisms strengthen the always-on thinking core when evidence transfers across tasks;
+2. a thinking workflow becomes canonical only when its cognitive outcome is genuinely distinct and an on-demand body adds demonstrated value;
+3. tool syntax, file-format procedures, provider setup, product manuals, and domain recipes remain outside canonical runtime. Their reusable decision mechanisms may still be extracted into the first two layers.
 
 For a genuinely new capability with no established winner, a useful evidence-backed implementation may become the **current baseline**. Baseline means "best retained implementation currently available to this project," not "globally optimal." It remains replaceable.
 
@@ -70,9 +69,9 @@ A placeholder created only to fill a category is not a baseline.
 
 ### 5. Canonical library
 
-`skills/`, `catalog.json`, routes, and profiles contain retained capabilities. One canonical trigger owns a capability; materially different strategies remain modes or conditional references when that is cleaner than another global trigger.
+`runtime/AGENTS.md` contains the always-on core. `skills/`, `catalog.json`, and routes contain optional retained thinking workflows. One canonical route owns a cognitive outcome; materially different strategies remain modes or conditional references when that is cleaner than another global route.
 
-Canonical does not mean permanent. A skill may be strengthened, merged, replaced, demoted to a specialist layer, or deleted when a more general mechanism covers its useful behavior with less runtime surface.
+Canonical does not mean permanent. A workflow may be strengthened, merged, replaced, or deleted when the core or a more general owner covers its useful behavior with less runtime surface.
 
 A canonical-count increase is not a success metric. Improvements that strengthen several existing skills without adding a trigger are often more valuable.
 
@@ -80,7 +79,7 @@ A canonical-count increase is not a success metric. Improvements that strengthen
 
 The source repository remains the single authoring and evolution authority. A deterministic compiler converts validated canonical source into a runtime-only artifact for task agents.
 
-The generated surface contains the compact runtime catalog, the canonical skill-owned runtime files, a minimal runtime AGENTS contract, and an integrity manifest. It excludes discovery state, provenance, evolution machinery, tests, benchmarks, rejected candidates, and maintainer policy.
+The generated surface contains the compact runtime catalog, the canonical workflow-owned runtime files, the always-on thinking core as `AGENTS.md`, and an integrity manifest. It excludes discovery state, provenance, evolution machinery, tests, benchmarks, rejected candidates, tool/domain adapters, and maintainer policy.
 
 The serving location is part of this boundary. If the host discovers instructions from ancestor directories, the deployed bundle must live outside the authoring repository tree (or behind an equivalent host-enforced root) so the maintainer `AGENTS.md` cannot be composed with the runtime contract.
 
@@ -88,11 +87,11 @@ Generated runtime output is disposable and must not become a second source of tr
 
 ### 7. Runtime semantic activation
 
-Model-native semantic selection uses the compact runtime catalog and loads the selected `SKILL.md` progressively. The size of the source reservoir therefore does not directly increase runtime context.
+The thinking core is loaded for every task. Model-native semantic selection then uses the compact runtime catalog and progressively loads a `SKILL.md` only when a distinct reasoning workflow materially helps. No workflow is valid when the core is sufficient or the request only needs current operational facts.
 
 This is the primary contamination boundary: unreviewed sources never participate in task routing.
 
-Product or framework specialization should preferably be loaded as a narrow conditional reference or specialist adapter rather than made globally routable when the generic capability remains the same.
+Product or framework knowledge comes from the live environment and current primary documentation. It does not become globally routable when the generic reasoning capability remains the same.
 
 ### 8. Feedback and evolution
 
@@ -135,25 +134,13 @@ external sources
 
 No filter makes poisoning impossible. The safety property is that discovery itself has no path to execution or canonical promotion.
 
-## Domain and specialist expansion
+## Operational knowledge boundary
 
-General capability skills and domain specialists solve different problems.
+General thinking workflows cover reusable decision processes: clarify, plan, search, diagnose, compare hypotheses, review, verify, research, migrate, design, evaluate, recover, and learn. They operate in unfamiliar domains by reading current primary sources and inspecting live state.
 
-General capabilities cover reusable decision process: clarify, plan, search, diagnose, compare hypotheses, review, verify, research, migrate, design, evaluate, recover, and learn. They can often operate in an unfamiliar domain by reading current primary sources.
+Tool commands, artifact manipulation, SDK behavior, provider configuration, and domain facts are replaceable inputs to those processes. They stay outside canonical runtime even when they are important to completing a task. The host or current documentation supplies them at the moment of need.
 
-A domain specialist is justified only when domain knowledge changes one or more of:
-
-- what must be inspected before acting;
-- safety or correctness invariants;
-- failure modes and diagnostic evidence;
-- version-sensitive implementation choices that cannot be discovered cheaply at runtime;
-- what counts as completion.
-
-Even then, prefer a specialist layer or conditional reference when the underlying reasoning workflow is unchanged. Do not create a domain skill merely because a technology has a name or a source repository contains a detailed manual.
-
-Before a domain/product candidate receives a new canonical trigger, remove its product and domain nouns mentally. If no reusable decision mechanism remains, require repeated real-task evidence that a specialist route is necessary.
-
-The domain set therefore has no target size, and domain coverage is not a project success metric.
+When operational material reveals a durable principle, remove its product and domain nouns and test the remaining rule. Promote the rule only if it changes behavior beyond the source scenario. Examples include verifying the consumed artifact, preserving authoritative state, reconciling before claiming completion, and keeping changes safely recoverable. The manual that revealed the principle is not promoted with it.
 
 ## High-value absorption architecture
 
@@ -169,6 +156,7 @@ A mechanism can be promoted into:
 - error-correction or rollback logic;
 - memory/trajectory distillation;
 - source trust and supply-chain boundaries;
+- the always-on thinking core;
 - an existing canonical skill;
 - a new canonical skill only when the outcome itself is distinct.
 

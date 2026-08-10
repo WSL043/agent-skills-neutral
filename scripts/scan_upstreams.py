@@ -5,12 +5,16 @@ import json
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE_PATH = ROOT / "upstreams.json"
 SHA_RE = re.compile(r"^[0-9a-f]{40}$")
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 
 def git(*args: str, cwd: Path | None = None) -> str:
