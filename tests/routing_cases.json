@@ -2,6 +2,7 @@
   "positive": [
     {"query": "debug a flaky integration test", "primary": "diagnose-software"},
     {"query": "排查接口偶发失败", "primary": "diagnose-software"},
+    {"query": "diagnose why this service hangs but do not modify anything", "primary": "diagnose-software"},
     {"query": "write an implementation plan", "primary": "plan-implementation"},
     {"query": "review this diff", "primary": "review-code"},
     {"query": "verify completion with fresh runtime evidence", "primary": "verify-completion"},

@@ -1,13 +1,13 @@
 ---
 name: diagnose-software
-description: "Diagnose software failures through reproduction, evidence collection, hypothesis testing, root-cause isolation, and regression verification. Use for bugs, flaky tests, performance regressions, integration failures, or unexplained runtime behavior."
+description: "Diagnose software failures through reproduction, evidence collection, hypothesis testing, and root-cause isolation. Use for bugs, flaky tests, performance regressions, integration failures, or unexplained runtime behavior; implement a fix only when the task authorizes changes."
 ---
 
 # Diagnose Software
 
 ## Goal
 
-Identify the root mechanism with discriminating evidence before implementing a durable fix.
+Identify the root mechanism with discriminating evidence, then implement a durable fix only when the task authorizes changes.
 
 ## Workflow
 
@@ -16,7 +16,7 @@ Identify the root mechanism with discriminating evidence before implementing a d
 3. Inspect logs, state transitions, data, timing, dependencies, and recent changes near the first divergence. Prefer evidence from the boundary where the symptom becomes observable over guesses about internals.
 4. State ranked falsifiable hypotheses and the observation that would distinguish each from alternatives.
 5. Run the smallest discriminating experiment; update the hypothesis from evidence rather than layering fixes.
-6. Fix the root cause, add a regression test when a correct seam exists, and verify focused plus broader behavior.
+6. If the task authorizes changes, fix the root cause, add a regression test when a correct seam exists, and verify focused plus broader behavior. Otherwise stop with the diagnosis, evidence, and the smallest justified fix recommendation.
 
 ## Decision rules
 
@@ -28,6 +28,7 @@ Identify the root mechanism with discriminating evidence before implementing a d
 
 ## Guardrails
 
+- Do not treat a request to diagnose, investigate, explain, or report as authorization to modify the system.
 - Do not apply multiple speculative changes in one experiment.
 - Do not confuse a retry, restart, or symptom suppression with a root-cause fix.
 - Do not declare success from a single non-reproduction when the bug is intermittent.
@@ -36,8 +37,8 @@ Identify the root mechanism with discriminating evidence before implementing a d
 ## Completion evidence
 
 - The report explains the causal chain and cites the observations that falsified alternatives.
-- A regression test fails before the fix and passes after it when a correct test seam exists; otherwise equivalent repeated evidence and the missing seam are recorded explicitly.
-- Broader checks show no introduced regression.
+- For an authorized fix, a regression test fails before the fix and passes after it when a correct test seam exists; otherwise equivalent repeated evidence and the missing seam are recorded explicitly.
+- When production state changed, broader checks show no introduced regression.
 
 ## Related skills
 
