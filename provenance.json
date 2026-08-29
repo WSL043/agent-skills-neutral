@@ -15,7 +15,8 @@
     "google/skills": "426c0776b0adc0a8c873f4012fc166756c0a989a",
     "github/awesome-copilot": "811ed362dd9cdbbc83efc10e43039598654a7dda",
     "K-Dense-AI/scientific-agent-skills": "991bd993aca4e90891d1f9908ba82ef45d77b6f0",
-    "deepseek-ai/deepseek-harness": "cd5ef8148158c3a752a658978873241fdf8e2bbc"
+    "deepseek-ai/deepseek-harness": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+    "DietrichGebert/ponytail": "2ed6c52c9d7e5e56942508591085fd45dea277d3"
   },
   "mechanism_snapshots": {
     "microsoft/SkillOpt": "47fe269d75d3def79ffd90236261d26d84868ae5",
@@ -460,6 +461,16 @@
         "license": "MIT",
         "license_url": "https://opensource.org/license/mit/",
         "adaptation_note": "Retained candidate proof against consumers and lifecycle plus stale prose, speculative compatibility, and hand-rolled machinery as audit signals; Agent Notes and DSH-specific validation were excluded."
+      },
+      {
+        "repository": "DietrichGebert/ponytail",
+        "skill": "ponytail",
+        "path": "skills/ponytail/SKILL.md",
+        "commit": "2ed6c52c9d7e5e56942508591085fd45dea277d3",
+        "url": "https://github.com/DietrichGebert/ponytail/blob/2ed6c52c9d7e5e56942508591085fd45dea277d3/skills/ponytail/SKILL.md",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained the ordered no-build/reuse/standard-or-native/already-owned-dependency/minimum-new-mechanism decision ladder. Persona, persistent modes, forced activation, code-golf output rules, marker comments, scoreboards, help/debt skills, and product-specific hooks were excluded."
       }
     ],
     "optimize-performance": [

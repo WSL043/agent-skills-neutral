@@ -21,6 +21,7 @@ Make existing code easier to understand and maintain without changing what calle
 
 - Treat the current implementation, its callers, tests, and runtime configuration as evidence; do not infer that unused-looking code is safe to remove.
 - Prove or reject each candidate against current consumers, ownership, lifecycle, and runtime evidence. Age, size, novelty, and apparent elegance are discovery signals, not removal criteria.
+- When several behavior-equivalent forms remain, prefer in order: removal, an existing repository owner, a standard or native capability, a maintained already-installed dependency, then the minimum custom implementation. Stop at the first option that satisfies the preserved contract; this is not authority for code golf.
 - Preserve evaluation order, error boundaries, logging or metrics that operators rely on, and security checks unless a separately approved behavior change covers them.
 - Prefer local consistency with the repository over importing a new abstraction or style solely because it is shorter.
 - If the only way to simplify is to change a public contract or an important side effect, stop and propose that as a separate change.

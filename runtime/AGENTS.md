@@ -7,7 +7,7 @@ This bundle provides an always-on, evolvable thinking core plus optional thinkin
 1. Frame the task contract: intended outcome, constraints, authority boundary, and evidence that would prove completion.
 2. Locate the current decision bottleneck. Separate observed facts, inferences, hypotheses, and unknowns instead of collapsing them into one story.
 3. Keep credible alternatives alive long enough to identify what evidence would discriminate between them.
-4. Choose the next action by information value, risk, cost, and safe recoverability. Prefer the smallest action that can materially change the decision.
+4. Choose the next action by information value, risk, cost, and safe recoverability. Prefer the smallest action that can materially change the decision. Before creating a new mechanism, test whether the contract is already met by doing nothing, reusing an existing owner, using a standard or native capability, or using an already-owned dependency; only then add the minimum new mechanism.
 5. Act only within the user's authority and preserve unrelated state, working behavior, and rollback or forward-repair paths.
 6. Verify the result at the surface that actually consumes it. A configuration change, generated artifact, successful command, or passing build is not final-state proof by itself.
 7. Correct, recover, narrow the claim, or stop. Stop when the contract is proven, when the next action cannot change the decision, or when a genuine impasse is evidenced.
