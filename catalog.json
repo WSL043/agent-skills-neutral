@@ -149,20 +149,6 @@
       "merge_treatment": "standalone"
     },
     {
-      "name": "execute-plan",
-      "path": "skills/execute-plan",
-      "category": "planning-coordination",
-      "reference_level": "S",
-      "recommended_use": "高迁移价值的思维工作流；仅在对应认知瓶颈出现时按需加载",
-      "description": "Execute an approved implementation plan in bounded batches while preserving scope, validating each step, and reporting deviations. Use when a written plan already defines the intended change and the task is to carry it out.",
-      "related": [
-        "plan-implementation",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "merge-same-workflow"
-    },
-    {
       "name": "handoff-task-context",
       "path": "skills/handoff-task-context",
       "category": "planning-coordination",
@@ -171,26 +157,10 @@
       "description": "Create or resume a durable, redacted task-state handoff that preserves goals, decisions, evidence, changed files, constraints, open risks, and the next valid action. Use when the user explicitly asks to save, transfer, pause, resume, or continue work across agent sessions.",
       "related": [
         "plan-implementation",
-        "execute-plan",
-        "orchestrate-agent-work"
+        "verify-completion"
       ],
       "has_variants_reference": false,
       "merge_treatment": "merge-structured-and-readable-handoffs"
-    },
-    {
-      "name": "orchestrate-agent-work",
-      "path": "skills/orchestrate-agent-work",
-      "category": "planning-coordination",
-      "reference_level": "A",
-      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
-      "description": "Coordinate multiple agents or isolated work streams by decomposing tasks, controlling context, assigning disjoint scopes, and integrating verified results. Use when the runtime supports delegation and independent subtasks can materially reduce latency or context contention.",
-      "related": [
-        "plan-implementation",
-        "handoff-task-context",
-        "verify-completion"
-      ],
-      "has_variants_reference": true,
-      "merge_treatment": "keep-capability-dependent-variants"
     },
     {
       "name": "plan-implementation",
@@ -201,7 +171,7 @@
       "description": "Write an implementation plan grounded in the current repository, with concrete file changes, dependency order, tests, risks, and completion evidence. Use before multi-file features, migrations, refactors, or work that another agent or engineer must execute.",
       "related": [
         "clarify-requirements",
-        "execute-plan"
+        "verify-completion"
       ],
       "has_variants_reference": false,
       "merge_treatment": "merge-complementary-implementations"
@@ -253,43 +223,13 @@
       "category": "research-communication",
       "reference_level": "A",
       "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
-      "description": "Research and synthesize primary or authoritative sources while preserving version context, citations, contradictions, and fact-versus-inference boundaries. Use for defensible multi-source research, literature review, or material versioned claims; not for a single replaceable tool-option lookup.",
+      "description": "Research and synthesize primary or authoritative sources while preserving version context, citations, contradictions, and fact-versus-inference boundaries. Use for defensible multi-source research, literature review, scientific hypothesis or study appraisal, or material versioned claims; not for a single replaceable tool-option lookup.",
       "related": [
         "coauthor-documents",
         "verify-completion"
       ],
       "has_variants_reference": false,
-      "merge_treatment": "standalone"
-    },
-    {
-      "name": "formulate-scientific-hypotheses",
-      "path": "skills/formulate-scientific-hypotheses",
-      "category": "research-communication",
-      "reference_level": "A",
-      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
-      "description": "Turn observations and evidence into competing, falsifiable scientific hypotheses with discriminating predictions and an analysis plan. Use for research questions, mechanism proposals, causal explanations, or experiment design.",
-      "related": [
-        "research-primary-sources",
-        "coauthor-documents",
-        "verify-completion"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone-gap-fill"
-    },
-    {
-      "name": "evaluate-scientific-evidence",
-      "path": "skills/evaluate-scientific-evidence",
-      "category": "research-communication",
-      "reference_level": "A",
-      "recommended_use": "场景化思维工作流；仅在其独立判断过程能提升任务时按需加载",
-      "description": "Evaluate scientific claims, studies, and evidence by matching conclusions to study design, measurement, bias, statistical inference, robustness, and replication. Use for paper critique, methodology validity, evidence quality, or deciding what a study actually supports.",
-      "related": [
-        "research-primary-sources",
-        "formulate-scientific-hypotheses",
-        "coauthor-documents"
-      ],
-      "has_variants_reference": false,
-      "merge_treatment": "standalone-gap-fill"
+      "merge_treatment": "merge-scientific-modes-as-conditional-reference"
     },
     {
       "name": "instrument-observability",

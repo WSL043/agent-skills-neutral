@@ -43,7 +43,7 @@ Produce an executable plan that a capable implementer can follow without redisco
 ## Related skills
 
 - `clarify-requirements`
-- `execute-plan`
+- `verify-completion`
 
 ## Provenance
 

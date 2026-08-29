@@ -1,4 +1,0 @@
-interface:
-  display_name: "Execute Plan"
-  short_description: "Neutral workflow: Execute Plan"
-  default_prompt: "Use $execute-plan to complete the approved plan with traceable evidence and controlled handling of newly discovered work."

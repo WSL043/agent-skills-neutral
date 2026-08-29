@@ -21,6 +21,7 @@
     {"repository": "supabase/agent-skills", "last_reviewed_commit": "1207767388a0ffb55f21fb4e6988fee96942431d", "focus": ["postgresql", "database"]},
     {"repository": "johnpapa/ai-ready", "last_reviewed_commit": "b3538e9104e710c8ce528466840e8db1fee3c56b", "focus": ["repository-guidance", "agent-readiness"]},
     {"repository": "remotion-dev/skills", "last_reviewed_commit": "eed702478ce34eff4eb77230b748375332c536ae", "focus": ["motion", "visual-storytelling", "media-reservoir"]},
-    {"repository": "saranambiar/hyperframes-video-agent-skills", "last_reviewed_commit": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4", "focus": ["video-production", "media"]}
+    {"repository": "saranambiar/hyperframes-video-agent-skills", "last_reviewed_commit": "f6b043d9fd3b8a9820af143a47db8c74f1194fb4", "focus": ["video-production", "media"]},
+    {"repository": "deepseek-ai/deepseek-harness", "last_reviewed_commit": null, "focus": ["repository-workflows", "review", "documentation", "simplification", "verification"]}
   ]
 }

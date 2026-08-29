@@ -1,6 +1,6 @@
 ---
 name: research-primary-sources
-description: "Research and synthesize primary or authoritative sources while preserving version context, citations, contradictions, and fact-versus-inference boundaries. Use for defensible multi-source research, literature review, or material versioned claims; not for a single replaceable tool-option lookup."
+description: "Research and synthesize primary or authoritative sources while preserving version context, citations, contradictions, and fact-versus-inference boundaries. Use for defensible multi-source research, literature review, scientific hypothesis or study appraisal, or material versioned claims; not for a single replaceable tool-option lookup."
 ---
 
 # Research Primary Sources
@@ -19,6 +19,8 @@ If one current manual page or live `--help` result can directly settle a tool-sp
 4. Record source date/version, scope, exact support, contradictions, qualifying differences, and inaccessible or missing checks. Structure each material claim around evidence that supports, contradicts, qualifies, or remains missing.
 5. Triangulate unstable or high-impact claims and explain any inference from multiple sources.
 6. Write the answer with citations next to claims, bounded quotations, and explicit uncertainty.
+
+For scientific hypothesis formation or study-method appraisal, read [references/scientific-evidence.md](references/scientific-evidence.md). Keep it behind this owner instead of routing scientific submodes as separate global skills.
 
 ## Decision rules
 
@@ -41,6 +43,10 @@ If one current manual page or live `--help` result can directly settle a tool-sp
 
 - `coauthor-documents`
 - `verify-completion`
+
+## Conditional reference
+
+Read [references/scientific-evidence.md](references/scientific-evidence.md) only when the task requires falsifiable rival hypotheses, experiment-design reasoning, or appraisal of what a scientific study can support.
 
 ## Provenance
 

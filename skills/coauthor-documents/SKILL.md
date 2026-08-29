@@ -11,11 +11,11 @@ Produce a coherent document that serves its audience and can be reviewed section
 
 ## Workflow
 
-1. Identify audience, decision or action sought, source material, constraints, voice, and required format.
+1. Identify audience, decision or action sought, source material, constraints, voice, required format, and the authoritative owner of each operational or repository-specific fact.
 2. Agree on an outline and the job of each section before drafting prose.
 3. Draft one section at a time from claims and evidence, marking missing facts rather than inventing them.
-4. Review for argument flow, duplicated content, unsupported claims, terminology, and reader questions.
-5. Run a fresh-reader pass that sees the document without the authoring conversation.
+4. Review for argument flow, duplicated content, unsupported claims, terminology, and reader questions. For operational or repository documentation, run safe commands and examples against the current version; mark blocked claims instead of filling them from memory.
+5. Run a fresh-reader pass that sees the document without the authoring conversation. Rewrite or remove references to draft decisions, review rounds, prior cuts, and other session context that a reader at the documented state cannot resolve, unless the document is explicitly a history or decision record.
 6. Polish headings, summaries, citations, formatting, and calls to action in the target medium.
 
 ## Decision rules

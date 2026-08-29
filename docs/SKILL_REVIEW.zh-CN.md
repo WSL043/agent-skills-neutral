@@ -1,6 +1,6 @@
 # 思维核心与 Workflow 保留审查
 
-当前 canonical 包含 27 个思维 workflow：S=7、A=20，共 9 个认知类别。`runtime/AGENTS.md` 是唯一常驻的默认思维核心；不存在默认 skill profile。所有 `SKILL.md` 都只在当前认知瓶颈需要其独立工作流时按需加载。
+当前 canonical 包含 23 个思维 workflow：S=6、A=17，共 9 个认知类别。`runtime/AGENTS.md` 是唯一常驻的默认思维核心；不存在默认 skill profile。所有 `SKILL.md` 都只在当前认知瓶颈需要其独立工作流时按需加载。
 
 S 表示跨场景迁移价值较高，A 表示更具体的场景思维流程。两者都不是路由分数，也不代表默认加载。
 
@@ -42,9 +42,7 @@ S 表示跨场景迁移价值较高，A 表示更具体的场景思维流程。�
 
 | Workflow | 级别 | 独立思维结果 |
 |---|---:|---|
-| `execute-plan` | S | 验证计划假设，按依赖执行可验证切片；新决策出现时停下重估。 |
 | `handoff-task-context` | A | 保存目标、证据、决策、阻塞和 frontier，并在恢复时逐项对账。 |
-| `orchestrate-agent-work` | A | 只委派互相独立的决策切片，保留阻塞路径并统一集成证据。 |
 | `plan-implementation` | S | 基于真实仓库给出文件/符号级、依赖有序、可回滚的实现计划。 |
 
 ### 问题框定
@@ -59,9 +57,7 @@ S 表示跨场景迁移价值较高，A 表示更具体的场景思维流程。�
 | Workflow | 级别 | 独立思维结果 |
 |---|---:|---|
 | `coauthor-documents` | A | 先确定受众、决定和 claim hierarchy，再按证据写作并做陌生读者检查。 |
-| `research-primary-sources` | A | 综合多份一手来源，保留版本、矛盾、引用和事实/推断边界；单一工具参数查询不激活。 |
-| `formulate-scientific-hypotheses` | A | 生成相互竞争、可证伪的解释及其区分性预测和分析计划。 |
-| `evaluate-scientific-evidence` | A | 从设计、测量、偏差、推断、稳健性和外推边界判断证据真正支持什么。 |
+| `research-primary-sources` | A | 综合多份一手来源，保留版本、矛盾、引用和事实/推断边界；科学假设与研究证据评估作为按需 reference 加载，单一工具参数查询不激活。 |
 
 ### 安全推理
 
@@ -77,6 +73,15 @@ S 表示跨场景迁移价值较高，A 表示更具体的场景思维流程。�
 | `design-frontend` | A | 把用户目标和证据转成有意图的层级、状态、响应式和审美方向，并防止参考漂移。 |
 | `design-motion` | A | 只为反馈、连续性、状态或层级使用动效，并推理时序、中断、降级和性能。 |
 | `design-visual-theme` | A | 把产品与品牌意图转成语义化颜色、字体、间距和组件规则。 |
+
+## 本轮删除测试
+
+- `execute-plan`：淘汰。执行已有计划属于常驻核心的基本执行循环，独立 skill 会重复加载范围控制、逐步验证和偏差处理。
+- `orchestrate-agent-work`：淘汰。是否可委派、并发上限和隔离规则由宿主能力与当前系统指令决定，不应固化成跨宿主全局 skill。
+- `formulate-scientific-hypotheses`：并入 `research-primary-sources` 的条件 reference；保留竞争假设、可证伪预测和分析计划机制。
+- `evaluate-scientific-evidence`：并入同一条件 reference；保留研究设计、测量、偏差、统计推断和结论边界机制。
+
+被淘汰名称不再进入 runtime catalog、语义路由或本机同步集合；历史与来源仍由 Git 提交保留。
 
 ## 已移出 canonical runtime
 

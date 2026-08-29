@@ -14,7 +14,8 @@
     "vercel-labs/web-interface-guidelines": "4e799d45c17aec1498c269287a83b9dba22b966b",
     "google/skills": "426c0776b0adc0a8c873f4012fc166756c0a989a",
     "github/awesome-copilot": "811ed362dd9cdbbc83efc10e43039598654a7dda",
-    "K-Dense-AI/scientific-agent-skills": "991bd993aca4e90891d1f9908ba82ef45d77b6f0"
+    "K-Dense-AI/scientific-agent-skills": "991bd993aca4e90891d1f9908ba82ef45d77b6f0",
+    "deepseek-ai/deepseek-harness": "cd5ef8148158c3a752a658978873241fdf8e2bbc"
   },
   "mechanism_snapshots": {
     "microsoft/SkillOpt": "47fe269d75d3def79ffd90236261d26d84868ae5",
@@ -45,6 +46,16 @@
         "path": "skills/doc-coauthoring/SKILL.md",
         "commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
         "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb/skills/doc-coauthoring"
+      },
+      {
+        "repository": "deepseek-ai/deepseek-harness",
+        "skill": "dsh-doc-and-prose",
+        "path": ".agents/skills/dsh-doc/SKILL.md",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "url": "https://github.com/deepseek-ai/deepseek-harness/blob/cd5ef8148158c3a752a658978873241fdf8e2bbc/.agents/skills/dsh-doc/SKILL.md",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained current-state fact ownership, executed operational claims, and fresh-reader removal of unresolved authoring-session prose; DSH metadata, bilingual pairing, site publishing, and repository commands were excluded."
       }
     ],
     "design-codebase": [
@@ -202,22 +213,6 @@
         "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/systematic-debugging"
       }
     ],
-    "execute-plan": [
-      {
-        "repository": "obra/superpowers",
-        "skill": "executing-plans",
-        "path": "skills/executing-plans/SKILL.md",
-        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
-        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/executing-plans"
-      },
-      {
-        "repository": "mattpocock/skills",
-        "skill": "implement",
-        "path": "skills/engineering/implement/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/implement"
-      }
-    ],
     "handoff-task-context": [
       {
         "repository": "psenger/ai-agent-skills",
@@ -282,43 +277,6 @@
         "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/domain-modeling"
       }
     ],
-    "orchestrate-agent-work": [
-      {
-        "repository": "obra/superpowers",
-        "skill": "dispatching-parallel-agents",
-        "path": "skills/dispatching-parallel-agents/SKILL.md",
-        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
-        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/dispatching-parallel-agents"
-      },
-      {
-        "repository": "obra/superpowers",
-        "skill": "subagent-driven-development",
-        "path": "skills/subagent-driven-development/SKILL.md",
-        "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
-        "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/subagent-driven-development"
-      },
-      {
-        "repository": "mattpocock/skills",
-        "skill": "ask-matt",
-        "path": "skills/engineering/ask-matt/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/ask-matt"
-      },
-      {
-        "repository": "mattpocock/skills",
-        "skill": "to-tickets",
-        "path": "skills/engineering/to-tickets/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/to-tickets"
-      },
-      {
-        "repository": "mattpocock/skills",
-        "skill": "wayfinder",
-        "path": "skills/engineering/wayfinder/SKILL.md",
-        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "url": "https://github.com/mattpocock/skills/tree/2ab958093e83e0ec752e6c1c5932da465bf23e0c/skills/engineering/wayfinder"
-      }
-    ],
     "plan-implementation": [
       {
         "repository": "obra/superpowers",
@@ -368,6 +326,36 @@
         "license": "MIT",
         "license_url": "https://opensource.org/license/mit/",
         "adaptation_note": "Added supports/contradicts/qualifies/missing evidence structure without copying the source artifact format or scripts."
+      },
+      {
+        "repository": "K-Dense-AI/scientific-agent-skills",
+        "skill": "hypothesis-generation",
+        "path": "skills/hypothesis-generation/SKILL.md",
+        "commit": "d767725c6e93b1d02a220e6be75b261a9833ede5",
+        "url": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/d767725c6e93b1d02a220e6be75b261a9833ede5/skills/hypothesis-generation",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Merged falsifiable rival hypotheses, discriminating predictions, and measurement safeguards into the owner's conditional scientific-evidence reference."
+      },
+      {
+        "repository": "K-Dense-AI/scientific-agent-skills",
+        "skill": "scientific-critical-thinking",
+        "path": "skills/scientific-critical-thinking/SKILL.md",
+        "commit": "991bd993aca4e90891d1f9908ba82ef45d77b6f0",
+        "url": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/991bd993aca4e90891d1f9908ba82ef45d77b6f0/skills/scientific-critical-thinking",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Merged study-design validity, bias, statistical inference, and claim-bounding mechanisms into the owner's conditional scientific-evidence reference."
+      },
+      {
+        "repository": "K-Dense-AI/scientific-agent-skills",
+        "skill": "peer-review",
+        "path": "skills/peer-review/SKILL.md",
+        "commit": "991bd993aca4e90891d1f9908ba82ef45d77b6f0",
+        "url": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/991bd993aca4e90891d1f9908ba82ef45d77b6f0/skills/peer-review",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Merged claim-to-evidence alignment, unit-of-inference, missingness, multiplicity, reproducibility, and reporting-versus-validity distinctions without importing peer-review workflow or tooling."
       }
     ],
     "review-code": [
@@ -391,6 +379,16 @@
         "path": "skills/requesting-code-review/SKILL.md",
         "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
         "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/requesting-code-review"
+      },
+      {
+        "repository": "deepseek-ai/deepseek-harness",
+        "skill": "dsh-code-review",
+        "path": ".agents/skills/dsh-code-review/SKILL.md",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "url": "https://github.com/deepseek-ai/deepseek-harness/blob/cd5ef8148158c3a752a658978873241fdf8e2bbc/.agents/skills/dsh-code-review/SKILL.md",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained live base/head scope, semantic review of prose surfaces, and the distinction between scope tooling and review judgment; repository-specific invariants and gates were excluded."
       }
     ],
     "review-api-design": [
@@ -430,6 +428,16 @@
         "path": "skills/verification-before-completion/SKILL.md",
         "commit": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
         "url": "https://github.com/obra/superpowers/tree/44c9b2d6e889982ac18c27d05a19fefe335194e1/skills/verification-before-completion"
+      },
+      {
+        "repository": "deepseek-ai/deepseek-harness",
+        "skill": "dsh-pre-push-and-ui-evidence",
+        "path": ".agents/skills/dsh-pre-push-checks/SKILL.md",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "url": "https://github.com/deepseek-ai/deepseek-harness/blob/cd5ef8148158c3a752a658978873241fdf8e2bbc/.agents/skills/dsh-pre-push-checks/SKILL.md",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained verification against the actual outgoing diff and provenance limits for UI evidence; mandatory GIF publication, DSH commands, and stack-specific procedures were excluded."
       }
     ],
     "simplify-code": [
@@ -442,6 +450,16 @@
         "license": "MIT",
         "license_url": "https://opensource.org/license/mit/",
         "adaptation_note": "Rewritten as a behavior-preserving, vendor-neutral simplification workflow; arbitrary numeric heuristics and source branding were removed."
+      },
+      {
+        "repository": "deepseek-ai/deepseek-harness",
+        "skill": "dsh-find-simplifications",
+        "path": ".agents/skills/dsh-find-simplifications/SKILL.md",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "url": "https://github.com/deepseek-ai/deepseek-harness/blob/cd5ef8148158c3a752a658978873241fdf8e2bbc/.agents/skills/dsh-find-simplifications/SKILL.md",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained candidate proof against consumers and lifecycle plus stale prose, speculative compatibility, and hand-rolled machinery as audit signals; Agent Notes and DSH-specific validation were excluded."
       }
     ],
     "optimize-performance": [
@@ -521,40 +539,6 @@
         "license": "MIT",
         "license_url": "https://opensource.org/license/mit/",
         "adaptation_note": "Retained asked-versus-delivered requirement fit as a dimension independent from verification and implementation quality; fixed point deductions and score ranges were excluded."
-      }
-    ],
-    "formulate-scientific-hypotheses": [
-      {
-        "repository": "K-Dense-AI/scientific-agent-skills",
-        "skill": "hypothesis-generation",
-        "path": "skills/hypothesis-generation/SKILL.md",
-        "commit": "d767725c6e93b1d02a220e6be75b261a9833ede5",
-        "url": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/d767725c6e93b1d02a220e6be75b261a9833ede5/skills/hypothesis-generation",
-        "license": "MIT",
-        "license_url": "https://opensource.org/license/mit/",
-        "adaptation_note": "Extracted falsifiable rival hypotheses, discriminating predictions, and measurement safeguards; bundled scripts and domain-specific material were excluded."
-      }
-    ],
-    "evaluate-scientific-evidence": [
-      {
-        "repository": "K-Dense-AI/scientific-agent-skills",
-        "skill": "scientific-critical-thinking",
-        "path": "skills/scientific-critical-thinking/SKILL.md",
-        "commit": "991bd993aca4e90891d1f9908ba82ef45d77b6f0",
-        "url": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/991bd993aca4e90891d1f9908ba82ef45d77b6f0/skills/scientific-critical-thinking",
-        "license": "MIT",
-        "license_url": "https://opensource.org/license/mit/",
-        "adaptation_note": "Extracted study-design validity, bias/confounding, statistical-inference, evidence-quality, and claim-bounding mechanisms; optional external services and framework-specific checklists were excluded."
-      },
-      {
-        "repository": "K-Dense-AI/scientific-agent-skills",
-        "skill": "peer-review",
-        "path": "skills/peer-review/SKILL.md",
-        "commit": "991bd993aca4e90891d1f9908ba82ef45d77b6f0",
-        "url": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/991bd993aca4e90891d1f9908ba82ef45d77b6f0/skills/peer-review",
-        "license": "MIT",
-        "license_url": "https://opensource.org/license/mit/",
-        "adaptation_note": "Retained claim-to-evidence alignment, unit-of-inference, missingness, multiplicity, reproducibility, and reporting-versus-validity distinctions without importing peer-review workflow or confidential-review tooling."
       }
     ]
   }

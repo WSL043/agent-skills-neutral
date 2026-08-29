@@ -4,7 +4,7 @@ A private, vendor-neutral thinking-core and workflow evolution library. It disti
 
 The project optimizes for **agent capability lift**, not catalog breadth. The highest-value changes make an agent frame, reason, search, decompose, decide, handle uncertainty, verify, recover, learn, or stop better across unrelated tasks. Product/framework manuals, file-format recipes, and tool syntax remain replaceable runtime knowledge; they may inspire a transferable mechanism but are not canonical skills.
 
-The current library contains 27 canonical thinking workflows. That number is derived from the current deletion test, not a target. Canonical-count growth, source-count growth, and domain coverage are not success metrics; a compact mechanism that improves the thinking core can be more valuable than multiple new workflows.
+The current library contains 23 canonical thinking workflows. That number is derived from the current deletion test, not a target. Canonical-count growth, source-count growth, and domain coverage are not success metrics; a compact mechanism that improves the thinking core can be more valuable than multiple new workflows.
 
 ## Core model
 
@@ -75,6 +75,23 @@ The generated surface contains only the always-on thinking core as `AGENTS.md`, 
 `dist/` is disposable staging output and is never canonical source. When a host such as Codex discovers `AGENTS.md` from ancestor directories, do not use an in-repository `dist/` bundle as the task working root: deploy and reverify the artifact outside the authoring repository tree so maintainer instructions cannot join the runtime prompt.
 
 See [`docs/RUNTIME_BUNDLE.md`](docs/RUNTIME_BUNDLE.md).
+
+## Cross-machine Codex sync
+
+The repository remains the authoring authority; local Codex skill folders are deployments, not independent copies to edit. Audit a machine without changing it:
+
+```powershell
+python scripts/sync_codex_skills.py audit
+```
+
+Install or update an explicit set of canonical skills:
+
+```powershell
+python scripts/sync_codex_skills.py install review-code simplify-code verify-completion
+python scripts/sync_codex_skills.py install review-code --replace
+```
+
+The installer never deletes local-only skills. A conflicting local skill is reported as `drifted` and requires explicit `--replace`; this keeps another computer's candidate skills available for review and absorption instead of silently overwriting them. No committed default profile exists: each installation names the workflows that machine should expose, while canonical evolution and deduplication happen here.
 
 ## Execution attribution
 

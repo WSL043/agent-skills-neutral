@@ -45,9 +45,9 @@
     },
     {
       "name": "planning-coordination",
-      "summary": "Plan, execute, delegate, and transfer bounded work while preserving decisions and evidence.",
+      "summary": "Plan and transfer bounded work while preserving decisions and evidence.",
       "route_file": "routes/planning-coordination.json",
-      "skill_count": 4
+      "skill_count": 2
     },
     {
       "name": "problem-framing",
@@ -57,9 +57,9 @@
     },
     {
       "name": "research-communication",
-      "summary": "Research primary evidence, test scientific claims, and structure decision-ready writing.",
+      "summary": "Research primary evidence, appraise scientific claims when needed, and structure decision-ready writing.",
       "route_file": "routes/research-communication.json",
-      "skill_count": 4
+      "skill_count": 2
     },
     {
       "name": "security-reasoning",

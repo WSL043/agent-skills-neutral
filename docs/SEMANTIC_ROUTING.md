@@ -111,6 +111,16 @@ A description should not be a bag of search keywords. Adding synonyms only to sa
 
 Evaluate descriptions on realistic should-use, should-not-use, and mixed-intent tasks with a fresh model-native selector.
 
+## Atomic identity and naming
+
+Treat each skill name as a stable routing API. Prefer a short `action-object` name that identifies one cognitive outcome, such as `review-code` or `verify-completion`; use another grammatical form only when it is materially clearer to a model.
+
+- Keep one canonical name for one semantic owner. Source, vendor, model, tool, repository, and implementation-mode names do not create new canonical identities.
+- Put lifecycle stages or runtime variants behind one owner when they share the same outcome and completion evidence. Split only when they require independently selectable reasoning processes.
+- Reject names that describe a persona, collection, quality adjective, or vague capability without telling the selector what result it owns.
+- Do not rename for cosmetic consistency. Rename only when realistic routing evidence shows ambiguity or when the owned outcome has materially changed; update every catalog, route, reference, deployment, and regression case atomically.
+- A new upstream name is never evidence for a new skill. First attempt to strengthen the existing owner, then the always-on core, before approving another route.
+
 ## Router disagreement
 
 Keep the deterministic router as a regression harness and weak-client fallback.

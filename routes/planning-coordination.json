@@ -1,33 +1,8 @@
 {
   "schema_version": 1,
   "category": "planning-coordination",
-  "summary": "Plan, execute, delegate, and transfer bounded work while preserving decisions and evidence.",
+  "summary": "Plan and transfer bounded work while preserving decisions and evidence.",
   "skills": [
-    {
-      "kind": "workflow",
-      "maturity": "stable",
-      "choose_when": "An approved implementation plan already exists and the user asks to carry it out.",
-      "avoid_when": "Do not use when the plan still needs to be written or key decisions remain unresolved.",
-      "triggers": [
-        "execute the plan",
-        "implement existing plan",
-        "follow this plan",
-        "按计划执行",
-        "按现有计划执行",
-        "执行现有计划",
-        "照这个计划实现"
-      ],
-      "negative_triggers": [
-        "write a plan",
-        "create implementation plan",
-        "制定计划",
-        "写实现计划"
-      ],
-      "explicit_only": false,
-      "name": "execute-plan",
-      "level": "S",
-      "path": "skills/execute-plan/SKILL.md"
-    },
     {
       "kind": "workflow",
       "maturity": "stable",
@@ -55,27 +30,6 @@
       "name": "handoff-task-context",
       "level": "A",
       "path": "skills/handoff-task-context/SKILL.md"
-    },
-    {
-      "kind": "workflow",
-      "maturity": "stable",
-      "choose_when": "The runtime supports delegation and the task contains independent bounded subtasks or explicit multi-agent work.",
-      "avoid_when": "Do not use for a single blocking task or overlapping writes without isolation.",
-      "triggers": [
-        "multiple agents",
-        "parallel agents",
-        "delegate tasks",
-        "subagent",
-        "多 agent",
-        "并行代理",
-        "委派任务",
-        "子代理"
-      ],
-      "negative_triggers": [],
-      "explicit_only": false,
-      "name": "orchestrate-agent-work",
-      "level": "A",
-      "path": "skills/orchestrate-agent-work/SKILL.md"
     },
     {
       "kind": "workflow",

@@ -49,21 +49,6 @@
       "location": "skills/evaluate-agent/SKILL.md"
     },
     {
-      "name": "evaluate-scientific-evidence",
-      "description": "Evaluate scientific claims, studies, and evidence by matching conclusions to study design, measurement, bias, statistical inference, robustness, and replication. Use for paper critique, methodology validity, evidence quality, or deciding what a study actually supports.",
-      "location": "skills/evaluate-scientific-evidence/SKILL.md"
-    },
-    {
-      "name": "execute-plan",
-      "description": "Execute an approved implementation plan in bounded batches while preserving scope, validating each step, and reporting deviations. Use when a written plan already defines the intended change and the task is to carry it out.",
-      "location": "skills/execute-plan/SKILL.md"
-    },
-    {
-      "name": "formulate-scientific-hypotheses",
-      "description": "Turn observations and evidence into competing, falsifiable scientific hypotheses with discriminating predictions and an analysis plan. Use for research questions, mechanism proposals, causal explanations, or experiment design.",
-      "location": "skills/formulate-scientific-hypotheses/SKILL.md"
-    },
-    {
       "name": "handoff-task-context",
       "description": "Create or resume a durable, redacted task-state handoff that preserves goals, decisions, evidence, changed files, constraints, open risks, and the next valid action. Use when the user explicitly asks to save, transfer, pause, resume, or continue work across agent sessions.",
       "location": "skills/handoff-task-context/SKILL.md"
@@ -89,11 +74,6 @@
       "location": "skills/optimize-performance/SKILL.md"
     },
     {
-      "name": "orchestrate-agent-work",
-      "description": "Coordinate multiple agents or isolated work streams by decomposing tasks, controlling context, assigning disjoint scopes, and integrating verified results. Use when the runtime supports delegation and independent subtasks can materially reduce latency or context contention.",
-      "location": "skills/orchestrate-agent-work/SKILL.md"
-    },
-    {
       "name": "plan-implementation",
       "description": "Write an implementation plan grounded in the current repository, with concrete file changes, dependency order, tests, risks, and completion evidence. Use before multi-file features, migrations, refactors, or work that another agent or engineer must execute.",
       "location": "skills/plan-implementation/SKILL.md"
@@ -105,7 +85,7 @@
     },
     {
       "name": "research-primary-sources",
-      "description": "Research and synthesize primary or authoritative sources while preserving version context, citations, contradictions, and fact-versus-inference boundaries. Use for defensible multi-source research, literature review, or material versioned claims; not for a single replaceable tool-option lookup.",
+      "description": "Research and synthesize primary or authoritative sources while preserving version context, citations, contradictions, and fact-versus-inference boundaries. Use for defensible multi-source research, literature review, scientific hypothesis or study appraisal, or material versioned claims; not for a single replaceable tool-option lookup.",
       "location": "skills/research-primary-sources/SKILL.md"
     },
     {

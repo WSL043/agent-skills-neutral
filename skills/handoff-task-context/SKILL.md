@@ -48,8 +48,7 @@ Do not trigger for an ordinary status summary, generic JSON export, commit, or c
 ## Related skills
 
 - `plan-implementation`
-- `execute-plan`
-- `orchestrate-agent-work`
+- `verify-completion`
 
 ## Provenance
 

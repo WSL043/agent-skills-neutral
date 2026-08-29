@@ -11,12 +11,13 @@ Produce prioritized, evidence-backed findings and a reviewed change whose remain
 
 ## Workflow
 
-1. Fix the review scope to a diff or commit range and read the governing requirements, tests, and repository guidance.
+1. Fix the review scope to a verified diff or commit range and read the governing requirements, tests, and repository guidance. For a pull request, resolve the live base and exact head rather than inferring the base from the current branch; re-establish the range after a retarget, rebase, or merge.
 2. Review requirement compliance separately from implementation quality so a polished wrong feature is still caught.
 3. Trace changed data, control flow, error paths, permissions, concurrency, and compatibility boundaries.
 4. Validate each potential finding against reachable behavior, existing safeguards, and the governing contract.
-5. Report only actionable findings with severity, location, mechanism, impact, and a concrete correction or test. A material idea that fails the necessity test may be noted as optional, but is not required work.
-6. After fixes, inspect the new diff and rerun focused checks before resolving feedback.
+5. Review changed documentation, comments, prompts, diagnostics, and visible strings semantically. Verify current-state claims against their owner, exercise safe documented operations when they are part of the contract, and remove authoring-session, review, or change narration that does not belong in an explicit history record.
+6. Report only actionable findings with severity, location, mechanism, impact, and a concrete correction or test. A material idea that fails the necessity test may be noted as optional, but is not required work.
+7. After fixes, inspect the new diff and rerun focused checks before resolving feedback.
 
 ## Decision rules
 
@@ -31,11 +32,13 @@ Produce prioritized, evidence-backed findings and a reviewed change whose remain
 - Do not promote a useful refactor, style preference, or hypothetical future concern into required work unless the contract or authoritative project policy makes it necessary.
 - Do not hide uncertainty; state blocked checks and assumptions.
 - Do not approve solely because tests are green.
+- Do not treat a diff-scoping helper as semantic review; it identifies the changed surface but does not establish correctness.
 
 ## Completion evidence
 
 - Every required finding is tied to code, a plausible execution path, and an impact on the contract or binding constraints.
 - Requirements, tests, and the final diff were all inspected.
+- The reviewed base/head range is explicit and still matches the final change state.
 - Resolved findings have fix evidence; unresolved risks are explicit.
 
 ## Related skills

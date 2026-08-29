@@ -1,4 +1,0 @@
-interface:
-  display_name: "Formulate Scientific Hypotheses"
-  short_description: "Build competing, falsifiable research explanations"
-  default_prompt: "Use $formulate-scientific-hypotheses to separate observation from interpretation and derive predictions that distinguish rival explanations."

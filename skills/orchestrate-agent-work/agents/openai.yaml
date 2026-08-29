@@ -1,4 +1,0 @@
-interface:
-  display_name: "Orchestrate Agent Work"
-  short_description: "Neutral workflow: Orchestrate Agent Work"
-  default_prompt: "Use $orchestrate-agent-work to use delegation only where task boundaries are real, then integrate results without duplicated work or hidden assumptions."
