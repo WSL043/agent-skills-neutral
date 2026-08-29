@@ -93,14 +93,6 @@ python scripts/sync_codex_skills.py install review-code --replace
 
 The installer never deletes local-only skills. A conflicting local skill is reported as `drifted` and requires explicit `--replace`; this keeps another computer's candidate skills available for review and absorption instead of silently overwriting them. No committed default profile exists: each installation names the workflows that machine should expose, while canonical evolution and deduplication happen here.
 
-## Execution attribution
-
-Future trajectory mining can bind a real session to the exact Runtime Bundle it was assigned without adding provenance or bookkeeping to task-time instructions. A privacy-minimal execution receipt derives artifact identity from `MANIFEST.json`, uses runtime-specific adapters for session linkage, and keeps actual serving, full Skill-body delivery, and separately evidenced compliance as distinct claims.
-
-The first adapter uses Codex `SessionStart` / `SessionEnd` hooks, `debug prompt-input` preflight, and local JSONL trace evidence. Old pre-instrumentation sessions correctly remain `unknown` for serving and activation even when model/runtime metadata is recoverable.
-
-See [`docs/EXECUTION_ATTRIBUTION.md`](docs/EXECUTION_ATTRIBUTION.md).
-
 ## Capability layers
 
 Runtime has only two canonical layers:
@@ -290,10 +282,7 @@ scripts/scan_upstreams.py  changed-upstream detector
 scripts/discover_upstreams.py metadata-only skill + mechanism discovery
 scripts/test_routing.py    deterministic boundary regression tests
 scripts/validate_catalog.py deterministic repository validator
-scripts/execution_attribution.py receipt core + Codex adapter + failure attribution interface
-scripts/test_execution_attribution.py deterministic serving/activation/privacy tests
 docs/ARCHITECTURE.md       source/runtime separation and capability-lift model
-docs/EXECUTION_ATTRIBUTION.md serving/activation evidence boundary and Codex adapter
 docs/SEMANTIC_ROUTING.md   model-native activation and scale-up path
 docs/CAPABILITY_LAYERS.md  thinking-core/workflow/non-canonical boundary
 docs/LEARNING_LOOP.md      trajectory-grounded, held-out-gated evolution loop

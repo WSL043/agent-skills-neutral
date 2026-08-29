@@ -19,6 +19,10 @@ jobs:
           python-version: "3.x"
       - name: Compile maintenance scripts
         run: python -m compileall -q scripts
+      - name: Regenerate routing artifacts
+        run: python scripts/build_routing.py
+      - name: Verify generated artifacts are committed
+        run: git diff --exit-code
       - name: Validate catalog and evolution state
         run: python scripts/validate_catalog.py
       - name: Test routing
@@ -27,8 +31,6 @@ jobs:
         run: python scripts/test_evolution_runner.py
       - name: Test runtime bundle boundary
         run: python scripts/test_runtime_bundle.py
-      - name: Test execution attribution evidence
-        run: python scripts/test_execution_attribution.py
       - name: Build clean runtime bundle
         run: python scripts/build_runtime_bundle.py build --output dist/runtime
       - name: Verify runtime bundle manifest

@@ -15,7 +15,6 @@ For behavior-sensitive evolution, preserve enough structured evidence to reconst
 - task contract and relevant constraints;
 - model/runtime/harness when material;
 - skills made available and skills actually loaded;
-- an execution-attribution receipt when the host can provide one, keeping serving, activation, and compliance evidence separate;
 - important tool/environment state;
 - execution trajectory or a bounded diagnostic representation;
 - deterministic outcomes;
@@ -24,8 +23,6 @@ For behavior-sensitive evolution, preserve enough structured evidence to reconst
 - whether the task succeeded despite an inefficient or fragile path.
 
 Do not retain secrets or unnecessary private content merely to make future analysis convenient.
-
-The receipt is referenced evidence, not a second copy of trajectory or Evolution Runner state. Pre-instrumentation sessions without a contemporaneous receipt remain unknown for serving even if their model/runtime can be recovered.
 
 ## 2. Attribute the failure before editing
 

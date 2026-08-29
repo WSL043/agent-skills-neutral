@@ -452,92 +452,11 @@ else:
         if not isinstance(skill_required, list) or not {"name", "location", "digest"}.issubset(skill_required):
             errors.append("runtime manifest skill required fields are incomplete")
 
-attribution_schema_path = ROOT / "schemas" / "execution-attribution.schema.json"
-if not attribution_schema_path.is_file():
-    errors.append(
-        "missing execution attribution schema: schemas/execution-attribution.schema.json"
-    )
-else:
-    try:
-        attribution_schema = json.loads(
-            attribution_schema_path.read_text(encoding="utf-8")
-        )
-    except (OSError, json.JSONDecodeError) as exc:
-        errors.append(f"invalid execution attribution schema JSON: {exc}")
-    else:
-        if not isinstance(attribution_schema, dict) or attribution_schema.get("type") != "object":
-            errors.append("execution attribution schema top level must be an object schema")
-        attribution_properties = (
-            attribution_schema.get("properties", {})
-            if isinstance(attribution_schema, dict)
-            else {}
-        )
-        attribution_version = (
-            attribution_properties.get("schema_version", {})
-            if isinstance(attribution_properties, dict)
-            else {}
-        )
-        if not isinstance(attribution_version, dict) or attribution_version.get("const") != 1:
-            errors.append("execution attribution schema_version must have const=1")
-        attribution_required_fields = {
-            "schema_version",
-            "record_type",
-            "receipt_id",
-            "recorded_at",
-            "producer",
-            "session",
-            "runtime",
-            "serving",
-            "activation",
-            "privacy",
-            "integrity",
-        }
-        attribution_required = (
-            attribution_schema.get("required", [])
-            if isinstance(attribution_schema, dict)
-            else []
-        )
-        if not isinstance(attribution_required, list) or set(attribution_required) != attribution_required_fields:
-            errors.append("execution attribution schema required fields are incomplete or unexpected")
-        privacy = (
-            attribution_properties.get("privacy", {})
-            if isinstance(attribution_properties, dict)
-            else {}
-        )
-        privacy_properties = privacy.get("properties", {}) if isinstance(privacy, dict) else {}
-        if not isinstance(privacy_properties, dict) or not privacy_properties or not all(
-            isinstance(value, dict) and value.get("const") is False
-            for value in privacy_properties.values()
-        ):
-            errors.append("execution attribution privacy properties must all have const=false")
-
-behavior_schema_path = ROOT / "schemas" / "behavior-evidence.schema.json"
-if not behavior_schema_path.is_file():
-    errors.append("missing behavior evidence schema: schemas/behavior-evidence.schema.json")
-else:
-    try:
-        behavior_schema = json.loads(behavior_schema_path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
-        errors.append(f"invalid behavior evidence schema JSON: {exc}")
-    else:
-        behavior_properties = behavior_schema.get("properties", {})
-        if (
-            behavior_schema.get("type") != "object"
-            or not isinstance(behavior_properties, dict)
-            or behavior_properties.get("record_type", {}).get("const")
-            != "behavior-evidence"
-        ):
-            errors.append("behavior evidence schema identity is invalid")
-
 for required_path in (
     "runtime/AGENTS.md",
     "scripts/build_runtime_bundle.py",
     "scripts/test_runtime_bundle.py",
     "docs/RUNTIME_BUNDLE.md",
-    "scripts/execution_attribution.py",
-    "scripts/test_execution_attribution.py",
-    "docs/EXECUTION_ATTRIBUTION.md",
-    "schemas/behavior-evidence.schema.json",
 ):
     path = ROOT / required_path
     if not path.is_file() or not path.read_text(encoding="utf-8").strip():

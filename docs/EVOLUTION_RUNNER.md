@@ -49,8 +49,6 @@ explicit curator decision
 
 The runner never changes `pending` to `retain` by itself.
 
-When execution attribution is available, `trajectory_reference` or an evidence pointer may identify the corresponding local receipt. The Runner does not copy receipt fields into `evidence.json`: serving and activation are independent evidence-plane facts, while candidate acceptance remains governed by the existing experiment contract. See [`EXECUTION_ATTRIBUTION.md`](EXECUTION_ATTRIBUTION.md).
-
 ## Evidence contracts
 
 The contract selects **what evidence must exist before a decision can be considered ready**. It is not a skill router and it does not define a universal score.

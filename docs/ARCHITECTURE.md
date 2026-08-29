@@ -99,8 +99,6 @@ Routing failures, task failures, user corrections, benchmarks, upstream changes,
 
 Feedback should answer not only "which skill failed?" but also "which reusable decision mechanism was missing?" Repeated failures across unrelated skills are evidence for a shared capability-lift improvement rather than several domain patches.
 
-Execution attribution strengthens this feedback edge without entering task-time reasoning context. A vendor-neutral receipt binds a session to verified artifact identity and runtime-specific observed activation evidence. It remains an evidence input: actual artifact assignment, full Skill-body delivery, and separately evaluated guidance compliance are distinct claims. See [`EXECUTION_ATTRIBUTION.md`](EXECUTION_ATTRIBUTION.md).
-
 ## What prevents contamination
 
 The architecture relies on separation rather than assuming perfect filters:
