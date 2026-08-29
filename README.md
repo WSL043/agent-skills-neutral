@@ -93,6 +93,8 @@ python scripts/sync_codex_skills.py install review-code --replace
 
 The installer never deletes local-only skills. A conflicting local skill is reported as `drifted` and requires explicit `--replace`; this keeps another computer's candidate skills available for review and absorption instead of silently overwriting them. No committed default profile exists: each installation names the workflows that machine should expose, while canonical evolution and deduplication happen here.
 
+Codex deployments receive the runtime form of each selected skill. The sync strips the terminal maintainer-only provenance section exactly as the Runtime Bundle build does, so standalone installs do not retain broken control-plane links or load attribution metadata at task time.
+
 ## Capability layers
 
 Runtime has only two canonical layers:

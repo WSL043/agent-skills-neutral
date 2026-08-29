@@ -11,6 +11,13 @@ import shutil
 import sys
 from pathlib import Path
 
+from build_runtime_bundle import (
+    BundleError,
+    copy_skill_tree,
+    should_ignore,
+    strip_terminal_provenance,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = ROOT / "skills"
@@ -54,6 +61,30 @@ def tree_digest(root: Path) -> str:
     return digest.hexdigest()
 
 
+def canonical_runtime_digest(root: Path) -> str:
+    digest = hashlib.sha256()
+    for path in sorted(root.rglob("*"), key=lambda item: item.as_posix()):
+        relative_path = path.relative_to(root)
+        if should_ignore(relative_path):
+            continue
+        if path.is_symlink():
+            raise SyncError(f"skill tree contains unsupported symlink: {path}")
+        if not path.is_file():
+            continue
+        relative = relative_path.as_posix().encode("utf-8")
+        digest.update(len(relative).to_bytes(8, "big"))
+        digest.update(relative)
+        if relative_path.as_posix() == "SKILL.md":
+            data = strip_terminal_provenance(
+                path.read_text(encoding="utf-8")
+            ).encode("utf-8")
+        else:
+            data = path.read_bytes()
+        digest.update(len(data).to_bytes(8, "big"))
+        digest.update(data)
+    return digest.hexdigest()
+
+
 def resolve_target(value: str | None) -> Path:
     target = Path(value).expanduser() if value else default_target()
     target = target.resolve()
@@ -73,7 +104,7 @@ def inventory(target: Path, names: list[str]) -> list[dict[str, str]]:
         elif not destination.is_dir() or not (destination / "SKILL.md").is_file():
             state = "conflict"
         else:
-            state = "current" if tree_digest(source) == tree_digest(destination) else "drifted"
+            state = "current" if canonical_runtime_digest(source) == tree_digest(destination) else "drifted"
         rows.append({"name": name, "state": state})
 
     if target.is_dir():
@@ -108,7 +139,7 @@ def install(target: Path, selected: list[str], replace: bool) -> list[dict[str, 
         source = SOURCE_ROOT / name
         destination = checked_destination(target, name)
         if destination.exists():
-            if destination.is_dir() and tree_digest(source) == tree_digest(destination):
+            if destination.is_dir() and canonical_runtime_digest(source) == tree_digest(destination):
                 results.append({"name": name, "state": "current"})
                 continue
             if not replace:
@@ -118,7 +149,7 @@ def install(target: Path, selected: list[str], replace: bool) -> list[dict[str, 
                 destination.unlink()
             else:
                 shutil.rmtree(destination)
-        shutil.copytree(source, destination)
+        copy_skill_tree(source, destination)
         results.append({"name": name, "state": "installed"})
     return results
 
@@ -150,7 +181,7 @@ def main() -> int:
             rows = install(target, args.names, args.replace)
         print(json.dumps({"target": str(target), "skills": rows}, indent=2))
         return 0
-    except (OSError, ValueError, SyncError) as exc:
+    except (OSError, ValueError, BundleError, SyncError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
 

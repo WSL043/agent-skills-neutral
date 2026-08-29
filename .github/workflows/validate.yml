@@ -31,6 +31,8 @@ jobs:
         run: python scripts/test_evolution_runner.py
       - name: Test runtime bundle boundary
         run: python scripts/test_runtime_bundle.py
+      - name: Test Codex skill sync boundary
+        run: python scripts/test_sync_codex_skills.py
       - name: Build clean runtime bundle
         run: python scripts/build_runtime_bundle.py build --output dist/runtime
       - name: Verify runtime bundle manifest
