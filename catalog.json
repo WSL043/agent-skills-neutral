@@ -85,7 +85,7 @@
       "category": "implementation-reasoning",
       "reference_level": "S",
       "recommended_use": "高迁移价值的思维工作流；仅在对应认知瓶颈出现时按需加载",
-      "description": "Diagnose software failures through reproduction, evidence collection, hypothesis testing, root-cause isolation, and regression verification. Use for bugs, flaky tests, performance regressions, integration failures, or unexplained runtime behavior.",
+      "description": "Diagnose software failures through reproduction, evidence collection, hypothesis testing, and root-cause isolation. Use for bugs, flaky tests, performance regressions, integration failures, or unexplained runtime behavior; implement a fix only when the task authorizes changes.",
       "related": [
         "develop-with-tdd",
         "verify-completion"
