@@ -244,28 +244,22 @@ def route_query(
     primary_pool = [
         item
         for item in candidates
-        if item["kind"] != "support" or item["explicit"]
+        if item["kind"] != "support"
     ]
-    primary = (
-        primary_pool[0]
-        if primary_pool
-        else (candidates[0] if candidates else None)
-    )
+    primary = primary_pool[0] if primary_pool else None
 
-    # AGENTS.md authorizes at most one support skill for a distinct second
-    # phase. This remains useful for fallback output but does not constrain a
-    # host that implements its own model-native progressive-disclosure policy.
-    supports = [
-        item
-        for item in candidates
-        if item["kind"] == "support" and item is not primary
-    ][:1]
+    # The serving contract permits one active workflow per cognitive phase.
+    # Preserve the response field for weak-client schema compatibility, but do
+    # not suggest legacy support entries as concurrently active workflows.
+    supports: list[dict[str, Any]] = []
 
     excluded_names = {item["name"] for item in supports}
     if primary:
         excluded_names.add(primary["name"])
     alternatives = [
-        item for item in candidates if item["name"] not in excluded_names
+        item
+        for item in candidates
+        if item["kind"] != "support" and item["name"] not in excluded_names
     ]
     if alternative_limit is not None:
         alternatives = alternatives[: max(0, alternative_limit)]

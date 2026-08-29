@@ -128,6 +128,13 @@ for item in catalog.get("skills", []):
         errors.append(f"empty or placeholder body: {name}")
 
     headings = real_h1_h2_headings(text)
+    if any(
+        level == 2 and title == "Related skills"
+        for _index, level, title in headings
+    ):
+        errors.append(
+            f"task-time Related skills section is not allowed; keep relationships in catalog metadata: {name}"
+        )
     provenance_headings = [
         heading
         for heading in headings

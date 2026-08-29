@@ -45,12 +45,6 @@ Determine whether an API contract is ready to build and identify the smallest hi
 - Security, compatibility, failure, and operability risks are reviewed at a depth proportional to the API.
 - The readiness verdict and next decisions are unambiguous.
 
-## Related skills
-
-- `model-domain`
-- `review-security-practices`
-- `plan-implementation`
-
 ## Provenance
 
 This is an original vendor-neutral synthesis. Source implementation pointers and snapshot commits are recorded in [`../../provenance.json`](../../provenance.json); upstream text, scripts, and assets are not bundled here.

@@ -39,12 +39,6 @@ Make important production behavior diagnosable from outside the process without 
 - A test request can be followed across relevant boundaries and induced failures produce safe, useful evidence.
 - Metric cardinality, sampling, retention, redaction, alert action, and runbook ownership are reviewed.
 
-## Related skills
-
-- `diagnose-software`
-- `verify-completion`
-- `migrate-system-safely`
-
 ## Provenance
 
 This is an original vendor-neutral synthesis. Source implementation pointers and snapshot commits are recorded in [`../../provenance.json`](../../provenance.json); upstream text, scripts, and assets are not bundled here.

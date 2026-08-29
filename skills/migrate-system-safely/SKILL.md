@@ -39,12 +39,6 @@ Move all verified consumers and state to the replacement through reversible stag
 - Reconciliation shows expected parity or documents accepted differences.
 - Zero required usage is observed before contraction, and cleanup leaves no active stale path.
 
-## Related skills
-
-- `plan-implementation`
-- `instrument-observability`
-- `verify-completion`
-
 ## Provenance
 
 This is an original vendor-neutral synthesis. Source implementation pointers and snapshot commits are recorded in [`../../provenance.json`](../../provenance.json); upstream text, scripts, and assets are not bundled here.

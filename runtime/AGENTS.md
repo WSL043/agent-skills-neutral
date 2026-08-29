@@ -16,9 +16,9 @@ This bundle provides an always-on, evolvable thinking core plus optional thinkin
 
 - Use model-native semantic selection. Start from `runtime-catalog.json`, which exposes only each workflow's `name`, `description`, and `location`.
 - Choose by the reasoning outcome needed now, not by matching domain, file-format, product, or tool nouns.
-- Select the smallest workflow set that materially improves the task. No workflow is a valid result when the default loop is sufficient or the need is only replaceable tool knowledge.
-- Load each selected `SKILL.md` completely, then load only the linked references or resources needed for the active branch.
-- Use at most one additional workflow unless the task genuinely contains a distinct second reasoning phase that the first cannot cover.
+- Select one workflow only when it materially improves the current task phase. No workflow is a valid result when the default loop is sufficient or the need is only replaceable tool knowledge.
+- Load the selected `SKILL.md` completely, then load only the linked references or resources needed for the active branch.
+- Keep one workflow active for the current cognitive phase. If the blocking phase changes, switch to the new owner rather than composing multiple workflow bodies.
 
 ## Evidence and uncertainty
 

@@ -39,11 +39,6 @@ For scientific hypothesis formation or study-method appraisal, read [references/
 - Each material claim has a direct source or is labeled inference.
 - Dates, versions, limitations, contradictions, and blocked checks are visible.
 
-## Related skills
-
-- `coauthor-documents`
-- `verify-completion`
-
 ## Conditional reference
 
 Read [references/scientific-evidence.md](references/scientific-evidence.md) only when the task requires falsifiable rival hypotheses, experiment-design reasoning, or appraisal of what a scientific study can support.

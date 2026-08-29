@@ -34,11 +34,6 @@ Produce an architecture that localizes change, makes dependencies explicit, and 
 - The proposal names current evidence, target boundaries, dependency rules, migration order, and risks.
 - At least one thin vertical migration slice is testable before the full reorganization.
 
-## Related skills
-
-- `model-domain`
-- `plan-implementation`
-
 ## Provenance
 
 This is an original vendor-neutral synthesis. Source implementation pointers and snapshot commits are recorded in [`../../provenance.json`](../../provenance.json); upstream text, scripts, and assets are not bundled here.

@@ -45,11 +45,6 @@ Create an interface whose visual language is specific to its product and audienc
 - Typography, spacing, proportion, contrast, alignment, material consistency, content integrity, state coverage, and visual-reference fidelity are reviewed from rendered output.
 - Any claimed generator-default issue names the recurring visual mechanism rather than relying on the label "AI-looking."
 
-## Related skills
-
-- `design-motion`
-- `design-visual-theme`
-
 ## Conditional reference
 
 Read [references/variants.md](references/variants.md) to select the task mode. Then load only the linked detail references for that mode.
