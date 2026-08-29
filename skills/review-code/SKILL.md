@@ -13,8 +13,8 @@ Produce prioritized, evidence-backed findings and a reviewed change whose remain
 
 1. Fix the review scope to a verified diff or commit range and read the governing requirements, tests, and repository guidance. For a pull request, resolve the live base and exact head rather than inferring the base from the current branch; re-establish the range after a retarget, rebase, or merge.
 2. Review requirement compliance separately from implementation quality so a polished wrong feature is still caught.
-3. Trace changed data, control flow, error paths, permissions, concurrency, and compatibility boundaries.
-4. Validate each potential finding against reachable behavior, existing safeguards, and the governing contract.
+3. Trace changed data, control flow, error paths, permissions, concurrency, and compatibility boundaries across both sides of changed interfaces and through the shipped entry path. Follow enforcement to the final operation, and follow retained values through ownership, notifications, caches, and output views.
+4. Validate each potential finding against reachable behavior, existing safeguards, and the governing contract. For bounds and invariants, inspect the owner of the complete emitted or retained result and require a negative case that fails for the intended rule rather than merely echoing the implementation.
 5. Review changed documentation, comments, prompts, diagnostics, and visible strings semantically. Verify current-state claims against their owner, exercise safe documented operations when they are part of the contract, and remove authoring-session, review, or change narration that does not belong in an explicit history record.
 6. Report only actionable findings with severity, location, mechanism, impact, and a concrete correction or test. A material idea that fails the necessity test may be noted as optional, but is not required work.
 7. After fixes, inspect the new diff and rerun focused checks before resolving feedback.
@@ -38,6 +38,7 @@ Produce prioritized, evidence-backed findings and a reviewed change whose remain
 
 - Every required finding is tied to code, a plausible execution path, and an impact on the contract or binding constraints.
 - Requirements, tests, and the final diff were all inspected.
+- Behavioral evidence exercises the shipped entry path where relevant, and its negative controls fail for the intended defect or rule.
 - The reviewed base/head range is explicit and still matches the final change state.
 - Resolved findings have fix evidence; unresolved risks are explicit.
 

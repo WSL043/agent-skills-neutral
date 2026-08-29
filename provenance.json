@@ -50,13 +50,33 @@
       },
       {
         "repository": "deepseek-ai/deepseek-harness",
-        "skill": "dsh-doc-and-prose",
+        "skill": "dsh-doc",
         "path": ".agents/skills/dsh-doc/SKILL.md",
         "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
         "url": "https://github.com/deepseek-ai/deepseek-harness/blob/cd5ef8148158c3a752a658978873241fdf8e2bbc/.agents/skills/dsh-doc/SKILL.md",
         "license": "MIT",
         "license_url": "https://opensource.org/license/mit/",
-        "adaptation_note": "Retained current-state fact ownership, executed operational claims, and fresh-reader removal of unresolved authoring-session prose; DSH metadata, bilingual pairing, site publishing, and repository commands were excluded."
+        "adaptation_note": "Retained current-state fact ownership and executed operational claims; DSH metadata, bilingual pairing, site publishing, and repository commands were excluded."
+      },
+      {
+        "repository": "deepseek-ai/deepseek-harness",
+        "skill": "dsh-prose-standard",
+        "path": ".agents/skills/dsh-prose-standard/SKILL.md",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "url": "https://github.com/deepseek-ai/deepseek-harness/blob/cd5ef8148158c3a752a658978873241fdf8e2bbc/.agents/skills/dsh-prose-standard/SKILL.md",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained proposition-preserving prose review and contract ownership; DSH surface taxonomy, exclusions, and repository gates were excluded."
+      },
+      {
+        "repository": "deepseek-ai/deepseek-harness",
+        "skill": "dsh-trim-cot-leakage",
+        "path": ".agents/skills/dsh-trim-cot-leakage/SKILL.md",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "url": "https://github.com/deepseek-ai/deepseek-harness/blob/cd5ef8148158c3a752a658978873241fdf8e2bbc/.agents/skills/dsh-trim-cot-leakage/SKILL.md",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained the fresh-reader test and removal of unresolved authoring-session prose while preserving factual clauses; DSH recall batteries and document-pair mechanics were excluded."
       }
     ],
     "design-codebase": [
@@ -389,7 +409,7 @@
         "url": "https://github.com/deepseek-ai/deepseek-harness/blob/cd5ef8148158c3a752a658978873241fdf8e2bbc/.agents/skills/dsh-code-review/SKILL.md",
         "license": "MIT",
         "license_url": "https://opensource.org/license/mit/",
-        "adaptation_note": "Retained live base/head scope, semantic review of prose surfaces, and the distinction between scope tooling and review judgment; repository-specific invariants and gates were excluded."
+        "adaptation_note": "Retained live base/head scope, semantic prose review, scope-tooling limits, two-sided interface and shipped-entry tracing, final-operation enforcement, retained-state ownership, final-result bounds, and defect-sensitive negative controls; repository-specific invariants and gates were excluded."
       }
     ],
     "review-api-design": [
@@ -432,13 +452,23 @@
       },
       {
         "repository": "deepseek-ai/deepseek-harness",
-        "skill": "dsh-pre-push-and-ui-evidence",
+        "skill": "dsh-pre-push-checks",
         "path": ".agents/skills/dsh-pre-push-checks/SKILL.md",
         "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
         "url": "https://github.com/deepseek-ai/deepseek-harness/blob/cd5ef8148158c3a752a658978873241fdf8e2bbc/.agents/skills/dsh-pre-push-checks/SKILL.md",
         "license": "MIT",
         "license_url": "https://opensource.org/license/mit/",
-        "adaptation_note": "Retained verification against the actual outgoing diff and provenance limits for UI evidence; mandatory GIF publication, DSH commands, and stack-specific procedures were excluded."
+        "adaptation_note": "Retained verification against the actual outgoing diff; DSH commands, stack-specific procedures, and repository gate selection were excluded."
+      },
+      {
+        "repository": "deepseek-ai/deepseek-harness",
+        "skill": "record-browser-gif",
+        "path": ".agents/skills/record-browser-gif/SKILL.md",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "url": "https://github.com/deepseek-ai/deepseek-harness/blob/cd5ef8148158c3a752a658978873241fdf8e2bbc/.agents/skills/record-browser-gif/SKILL.md",
+        "license": "MIT",
+        "license_url": "https://opensource.org/license/mit/",
+        "adaptation_note": "Retained UI evidence provenance across exact build, origin, mode, and real versus fixture state; mandatory GIF publication, encoder workflow, DSH setup, and assets-branch policy were excluded."
       }
     ],
     "simplify-code": [
