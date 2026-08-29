@@ -41,10 +41,6 @@ Use motion that feels native to the product's visual language and clarifies stat
 - Interruptions, rapid repetition, reduced motion, realistic content, and lower-performance conditions are tested where relevant.
 - Repeated motion patterns do not overpower hierarchy or make unrelated interfaces converge on the same generator-default choreography.
 
-## Related skills
-
-- `design-frontend`
-
 ## Conditional reference
 
 Read [references/variants.md](references/variants.md) when the task depends on implementation strategy or runtime capability.

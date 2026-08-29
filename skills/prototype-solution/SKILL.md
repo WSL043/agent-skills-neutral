@@ -34,11 +34,6 @@ Produce decision-grade evidence for a named uncertainty without disguising proto
 - The result answers the original uncertainty against the stated threshold.
 - Limitations and non-production shortcuts are visible.
 
-## Related skills
-
-- `clarify-requirements`
-- `plan-implementation`
-
 ## Provenance
 
 This is an original vendor-neutral synthesis. Source implementation pointers and snapshot commits are recorded in [`../../provenance.json`](../../provenance.json); upstream text, scripts, and assets are not bundled here.

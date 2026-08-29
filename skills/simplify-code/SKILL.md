@@ -39,12 +39,6 @@ Make existing code easier to understand and maintain without changing what calle
 - Focused and relevant regression checks pass, and the final diff contains no unexplained semantic change.
 - Any unobservable or unverified behavior is identified rather than assumed safe.
 
-## Related skills
-
-- `develop-with-tdd`
-- `review-code`
-- `verify-completion`
-
 ## Provenance
 
 This is an original vendor-neutral synthesis. Source implementation pointers and snapshot commits are recorded in [`../../provenance.json`](../../provenance.json); upstream text, scripts, and assets are not bundled here.

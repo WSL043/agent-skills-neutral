@@ -45,11 +45,6 @@ Do not trigger for an ordinary status summary, generic JSON export, commit, or c
 - Facts, inferences, blocked checks, and unresolved decisions are distinguishable.
 - On resume, current state has been reconciled before implementation begins.
 
-## Related skills
-
-- `plan-implementation`
-- `verify-completion`
-
 ## Provenance
 
 This is an original vendor-neutral synthesis. Source implementation pointers and snapshot commits are recorded in [`../../provenance.json`](../../provenance.json); upstream text, scripts, and assets are not bundled here.

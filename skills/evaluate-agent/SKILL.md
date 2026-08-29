@@ -67,10 +67,6 @@ Determine whether an agent or externalized behavior actually satisfies a stated 
 - Rejected edits or negative lessons are retained only when they materially reduce repeated failure, not as a historical archive.
 - The report distinguishes observed results, inference, evaluator limitations, transfer claims, indeterminate cases, and the next evidence needed.
 
-## Related skills
-
-- `verify-completion`
-
 ## Provenance
 
 This is an original vendor-neutral synthesis. Source implementation pointers and snapshot commits are recorded in [`../../provenance.json`](../../provenance.json); upstream text, scripts, and assets are not bundled here.

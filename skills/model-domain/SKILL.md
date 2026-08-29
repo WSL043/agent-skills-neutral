@@ -34,11 +34,6 @@ Create a domain model that makes rules and invalid states explicit before code s
 - The glossary, invariants, transitions, and ownership agree across examples.
 - Previously ambiguous scenarios can be decided without ad hoc exceptions.
 
-## Related skills
-
-- `clarify-requirements`
-- `design-codebase`
-
 ## Provenance
 
 This is an original vendor-neutral synthesis. Source implementation pointers and snapshot commits are recorded in [`../../provenance.json`](../../provenance.json); upstream text, scripts, and assets are not bundled here.

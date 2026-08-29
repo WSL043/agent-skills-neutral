@@ -42,11 +42,6 @@ Produce prioritized, evidence-backed findings and a reviewed change whose remain
 - The reviewed base/head range is explicit and still matches the final change state.
 - Resolved findings have fix evidence; unresolved risks are explicit.
 
-## Related skills
-
-- `verify-completion`
-- `review-security-practices`
-
 ## Conditional reference
 
 Read [references/variants.md](references/variants.md) when the task depends on implementation strategy or runtime capability.

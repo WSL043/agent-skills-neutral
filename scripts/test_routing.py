@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import sys
+import tempfile
 from pathlib import Path
 
 from select_skills import load_rules, route_query
@@ -11,6 +12,55 @@ ROOT = Path(__file__).resolve().parents[1]
 CASES = json.loads((ROOT / "tests" / "routing_cases.json").read_text(encoding="utf-8"))
 errors: list[str] = []
 reachable = 0
+
+
+def check_single_active_workflow() -> None:
+    with tempfile.TemporaryDirectory() as temp_dir:
+        root = Path(temp_dir)
+        (root / "routes").mkdir()
+        (root / "index.json").write_text(
+            json.dumps(
+                {
+                    "categories": [
+                        {"route_file": "routes/test.json"},
+                    ]
+                }
+            ),
+            encoding="utf-8",
+        )
+        common = {
+            "level": "S",
+            "maturity": "stable",
+            "choose_when": "Use for a composite routing test.",
+            "avoid_when": "",
+            "triggers": ["composite routing test"],
+            "negative_triggers": [],
+            "explicit_only": False,
+            "path": "skills/test/SKILL.md",
+        }
+        (root / "routes" / "test.json").write_text(
+            json.dumps(
+                {
+                    "category": "test",
+                    "skills": [
+                        dict(common, name="primary-owner", kind="workflow"),
+                        dict(common, name="z-legacy-support", kind="support"),
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        result = route_query("composite routing test", root=root)
+        if not result["primary"] or result["primary"]["kind"] != "workflow":
+            errors.append("router selected a support entry as the active workflow")
+        if result["support"]:
+            errors.append(
+                "router returned an additional active support workflow: "
+                f"{[item['name'] for item in result['support']]}"
+            )
+
+
+check_single_active_workflow()
 
 for rule in load_rules():
     for trigger in rule["triggers"]:

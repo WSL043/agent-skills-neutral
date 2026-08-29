@@ -42,10 +42,6 @@ Produce a reusable visual grammar whose typography, color, spacing, shape, image
 - The rendered system demonstrates coherent relationships among type, color, space, shape, material, imagery, and emphasis rather than only token consistency.
 - Contrast, font fallback, grayscale differentiation, dense/sparse content behavior, and target-medium rendering are checked.
 
-## Related skills
-
-- `design-frontend`
-
 ## Conditional reference
 
 Read [references/variants.md](references/variants.md) when the task depends on implementation strategy or runtime capability.

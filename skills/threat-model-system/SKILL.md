@@ -35,10 +35,6 @@ Produce a prioritized threat model that connects realistic attacker goals to sys
 - Assets, boundaries, threats, controls, owners, and residual risks are linked.
 - High-priority threats have concrete validation or mitigation tasks.
 
-## Related skills
-
-- `review-security-practices`
-
 ## Provenance
 
 This is an original vendor-neutral synthesis. Source implementation pointers and snapshot commits are recorded in [`../../provenance.json`](../../provenance.json); upstream text, scripts, and assets are not bundled here.

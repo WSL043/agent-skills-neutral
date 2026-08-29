@@ -34,11 +34,6 @@ Identify concrete security weaknesses and prioritized hardening actions without 
 - Findings include location, mechanism, preconditions, impact, confidence, fix, and verification.
 - Non-findings and blocked checks are distinguishable from reviewed-safe areas.
 
-## Related skills
-
-- `threat-model-system`
-- `review-code`
-
 ## Provenance
 
 This is an original vendor-neutral synthesis. Source implementation pointers and snapshot commits are recorded in [`../../provenance.json`](../../provenance.json); upstream text, scripts, and assets are not bundled here.

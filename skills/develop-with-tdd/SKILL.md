@@ -35,11 +35,6 @@ Deliver behavior whose contract was demonstrated by a failing test before the im
 - The test was observed failing for the intended reason and passing after the minimal change.
 - Relevant regression tests pass and refactoring did not alter behavior.
 
-## Related skills
-
-- `diagnose-software`
-- `verify-completion`
-
 ## Conditional reference
 
 Read [references/variants.md](references/variants.md) when the task depends on implementation strategy or runtime capability.

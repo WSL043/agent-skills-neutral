@@ -40,11 +40,6 @@ Identify the root mechanism with discriminating evidence, then implement a durab
 - For an authorized fix, a regression test fails before the fix and passes after it when a correct test seam exists; otherwise equivalent repeated evidence and the missing seam are recorded explicitly.
 - When production state changed, broader checks show no introduced regression.
 
-## Related skills
-
-- `develop-with-tdd`
-- `verify-completion`
-
 ## Conditional reference
 
 Read [references/variants.md](references/variants.md) when the task depends on implementation strategy or runtime capability.

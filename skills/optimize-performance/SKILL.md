@@ -36,12 +36,6 @@ Improve a meaningful performance outcome without sacrificing correctness, safety
 - Correctness and relevant regression checks pass, and the change has a durable guard or a stated reason one is not possible.
 - Residual uncertainty, workload limits, and neutral or rejected attempts are visible.
 
-## Related skills
-
-- `diagnose-software`
-- `instrument-observability`
-- `verify-completion`
-
 ## Provenance
 
 This is an original vendor-neutral synthesis. Source implementation pointers and snapshot commits are recorded in [`../../provenance.json`](../../provenance.json); upstream text, scripts, and assets are not bundled here.

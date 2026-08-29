@@ -12,7 +12,7 @@ description
 location
 ```
 
-The agent compares workflow descriptions semantically, selects the smallest useful workflow set, then loads only the selected `SKILL.md` bodies and any conditionally required references. No workflow is a valid result when the core is sufficient or the request only needs replaceable operational knowledge.
+The agent compares workflow descriptions semantically, selects the single workflow that owns the current cognitive phase, then loads only that `SKILL.md` body and any conditionally required references. No workflow is a valid result when the core is sufficient or the request only needs replaceable operational knowledge.
 
 Do not load all skill bodies merely to make a selection.
 
@@ -62,18 +62,11 @@ When a group still contains too many candidates, use semantic retrieval over `na
 
 The model makes the final selection from the shortlist.
 
-### Layer 3: dependency-aware bundles
+### Layer 3: phase-aware owner transitions
 
-When tasks routinely require multiple cooperating skills, represent meaningful dependency or role relationships separately from activation descriptions. Retrieval may return a compact bundle such as:
+When a task contains several cognitive phases, keep one semantic owner active at a time. A later phase may select a different workflow only after it becomes the current bottleneck; stop using the previous workflow body rather than composing both. Record incompatible or redundant paths in routing metadata, not as additional active skills.
 
-```text
-start: primary semantic owner
-support: distinct second-phase capability
-check: verification or evaluation capability
-avoid: known incompatible or redundant path
-```
-
-These roles describe an execution relationship; they do not make every related skill mandatory.
+Every workflow owns its own outcome, guardrails, and completion evidence. Cross-workflow relationships may remain in offline architecture or evaluation metadata, but task-time skill bodies must not instruct the agent to load neighboring workflows.
 
 ### Layer 4: graph/tree navigation
 

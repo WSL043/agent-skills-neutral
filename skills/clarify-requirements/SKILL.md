@@ -38,11 +38,6 @@ Reach a decision-ready brief with explicit assumptions, the smallest acceptance 
 - Every retained acceptance criterion is necessary to keep the requested outcome specified or provable.
 - Any remaining open question is explicitly non-blocking or assigned to a decision owner.
 
-## Related skills
-
-- `prototype-solution`
-- `plan-implementation`
-
 ## Conditional reference
 
 Read [references/variants.md](references/variants.md) when the task depends on implementation strategy or runtime capability.

@@ -40,11 +40,6 @@ Produce an executable plan that a capable implementer can follow without redisco
 - Every retained step maps back to a requirement or evidence needed to prove it.
 - Dependencies, risky transitions, rollback, and final acceptance are explicit.
 
-## Related skills
-
-- `clarify-requirements`
-- `verify-completion`
-
 ## Provenance
 
 This is an original vendor-neutral synthesis. Source implementation pointers and snapshot commits are recorded in [`../../provenance.json`](../../provenance.json); upstream text, scripts, and assets are not bundled here.

@@ -34,10 +34,6 @@ Produce a coherent document that serves its audience and can be reviewed section
 - The document answers the audience's likely questions and makes the requested decision/action explicit.
 - Claims are supported, terminology is consistent, and a fresh-reader pass found no blocking ambiguity.
 
-## Related skills
-
-- `research-primary-sources`
-
 ## Provenance
 
 This is an original vendor-neutral synthesis. Source implementation pointers and snapshot commits are recorded in [`../../provenance.json`](../../provenance.json); upstream text, scripts, and assets are not bundled here.
