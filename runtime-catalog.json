@@ -40,7 +40,7 @@
     },
     {
       "name": "diagnose-software",
-      "description": "Diagnose software failures through reproduction, evidence collection, hypothesis testing, root-cause isolation, and regression verification. Use for bugs, flaky tests, performance regressions, integration failures, or unexplained runtime behavior.",
+      "description": "Diagnose software failures through reproduction, evidence collection, hypothesis testing, and root-cause isolation. Use for bugs, flaky tests, performance regressions, integration failures, or unexplained runtime behavior; implement a fix only when the task authorizes changes.",
       "location": "skills/diagnose-software/SKILL.md"
     },
     {

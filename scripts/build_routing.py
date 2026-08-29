@@ -207,7 +207,7 @@ IMPLEMENTATION = {
     "design-codebase": "Map dependencies and change pressure, compare structural options, then stage an incremental migration with rollback points.",
     "model-domain": "Build a glossary, entities/values, invariants, events, state transitions, ownership, and bounded contexts from real scenarios.",
     "develop-with-tdd": "Run a strict red-green-refactor cycle around observable behavior, with characterization tests for legacy code.",
-    "diagnose-software": "Reproduce and minimize, instrument the first divergence, test one falsifiable hypothesis, fix the root cause, and add regression evidence.",
+    "diagnose-software": "Reproduce and minimize, instrument the first divergence, and test one falsifiable hypothesis; fix and add regression evidence only when changes are authorized.",
     "optimize-performance": "Measure a comparable baseline, isolate the bottleneck, make one targeted change, remeasure correctness and impact, and install a durable guard.",
     "simplify-code": "Define the observable contract, simplify only proven incidental complexity, and verify behavior with focused and broader checks.",
     "review-code": "Review requirement fit and implementation quality separately, validate reachable findings, and support self/request/receive review modes.",
