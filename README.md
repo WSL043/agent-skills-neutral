@@ -1,6 +1,6 @@
 # Agent Skills Neutral
 
-A private, vendor-neutral thinking-core and workflow evolution library. It distills external implementations and execution experience into an always-on reasoning core plus a small set of optional thinking workflows, while keeping source discovery, evaluation, and replaceable operational knowledge outside task-time canonical context.
+A public, vendor-neutral thinking-core and workflow evolution library. It distills external implementations and execution experience into an always-on reasoning core plus a small set of optional thinking workflows, while keeping source discovery, evaluation, and replaceable operational knowledge outside task-time canonical context.
 
 The project optimizes for **agent capability lift**, not catalog breadth. The highest-value changes make an agent frame, reason, search, decompose, decide, handle uncertainty, verify, recover, learn, or stop better across unrelated tasks. Product/framework manuals, file-format recipes, and tool syntax remain replaceable runtime knowledge; they may inspire a transferable mechanism but are not canonical skills.
 
@@ -305,7 +305,7 @@ User authorization, repository guidance, runtime safety, and tool-specific appro
 
 The repository contains deterministic validation and read-only ecosystem scanning. Discovery and preprocessing may be highly automated; semantic promotion remains evidence-gated and uses stronger reasoning capacity only at the high-leverage decision points.
 
-While the repository remains private, scheduled ecosystem scanning stays disabled unless manually dispatched, avoiding unnecessary private Actions usage.
+Ecosystem scanning remains manually dispatched so source review happens only when a maintainer is ready to inspect the resulting evidence.
 
 ## 中文说明
 
